@@ -24,7 +24,8 @@ async function seed() {
     await Promise.all([
         Post.create({ title: 'Hi, its me', description: 'im the problem, its me',
         tags: ['#food', '#life', '#song'], latitude: 234, longitude: 345.963 
-        })
+        }),
+        Post.create({ title: 'Blank space', description: 'nightmare, dressed like a daydream', tags: ['#life, #swiftie, #song'], lattitude: 346, longitude: 9678.302})
     ])
     console.log('posts seeded')
     }
