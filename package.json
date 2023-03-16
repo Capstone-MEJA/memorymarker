@@ -1,0 +1,28 @@
+{
+  "name": "memorymarker",
+  "version": "1.0.0",
+  "description": "Mark the memories you make!",
+  "main": "./server/index.js",
+  "scripts": {
+    "dev": "nodemon /server/index.js",
+    "seed": "node script/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Capstone-MEJA/memorymarker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Capstone-MEJA/memorymarker/issues"
+  },
+  "homepage": "https://github.com/Capstone-MEJA/memorymarker#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
