@@ -1,4 +1,8 @@
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { fetchAllPosts, selectAllPosts } from "./store/postsSlice";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch } from "./store";
 
 const Map = (): JSX.Element => {
     const { isLoaded, loadError } = useLoadScript({
@@ -16,6 +20,17 @@ const Map = (): JSX.Element => {
 };
 
 const MemoryMap = (): JSX.Element => {
+  //useDispatch need a type - define AppDispatch in the store
+  const dispatch = useDispatch<AppDispatch>();
+
+  const allPosts: [object] = useSelector(selectAllPosts);
+  console.log(typeof allPosts);
+  console.log(allPosts);
+
+  //fetch all post
+  useEffect(() => {
+    dispatch(fetchAllPosts());
+  },[dispatch]);
 
   const addMarker = (event:any) => {
     //get location of click and set it to lat lng
@@ -24,6 +39,8 @@ const MemoryMap = (): JSX.Element => {
     console.log(`lat: ${lat} lng: ${lng}`);
 
   }
+
+
 
   return (
     <div>
@@ -34,8 +51,12 @@ const MemoryMap = (): JSX.Element => {
         onClick = {(event) => addMarker(event)}
       >
         <Marker position={{ lat: 40.7527277692752, lng: -73.97722734175942 }} />
-
-
+        {/* please change the any */}
+        {allPosts?.map((post:any) => {
+          return (
+            <Marker key={post._id} position={{ lat: post.latitude, lng: post.longitude}}/>
+          )
+        })}
       </GoogleMap>
     </div>
   );

@@ -19,21 +19,24 @@ export const newPost = createAsyncThunk("newPost", async (postObj) => {
     }
 });
 
+
+
 export const PostsSlice = createSlice({
     name: "posts",
-    initialState: {},
+    initialState: [],
     extraReducers: (builder) => {
         builder
-        .addCase(fetchAllPosts.fulfilled, (state, action) => {
-            return action.payload;
-        })
-        .addCase(newPost.fulfilled, (state, action) => {
-            return action.payload;
-        })
-    }
+            .addCase(fetchAllPosts.fulfilled, (state, action) => {
+                return action.payload;
+            })
+            .addCase(newPost.fulfilled, (state, action) => {
+                return action.payload;
+            });
+    },
+    reducers: {},
 })
 
-export const selectPosts = (state) => {
+export const selectAllPosts = (state:any) => {
     return state.posts;
 };
 
