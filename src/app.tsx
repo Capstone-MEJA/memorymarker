@@ -1,12 +1,14 @@
 import './app.css';
 import Map from './Map';
+import { Provider } from 'react-redux';
+import store from './store/index'
 
 const App = () => {
   return (
     <div>
-      <main>
+      <Provider store={store}>
         <Map />
-        </main>
+      </Provider>
     </div>
   );
 };

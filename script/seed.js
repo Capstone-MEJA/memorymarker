@@ -23,9 +23,9 @@ async function seed() {
     console.log('seeding posts')
     await Promise.all([
         Post.create({ title: 'Hi, its me', description: 'im the problem, its me',
-        tags: ['#food', '#life', '#song'], latitude: 234, longitude: 345.963 
+        tags: ['#food', '#life', '#song'], latitude: 40.782717155326324, longitude: -73.96561558883674 
         }),
-        Post.create({ title: 'Blank space', description: 'nightmare, dressed like a daydream', tags: ['#life, #swiftie, #song'], lattitude: 346, longitude: 9678.302})
+        Post.create({ title: 'Blank space', description: 'nightmare, dressed like a daydream', tags: ['#life, #swiftie, #song'], latitude: 40.7486274226317, longitude: -73.98558930048775})
     ])
     console.log('posts seeded')
     }
