@@ -22,7 +22,6 @@ const MemoryMap = (): JSX.Element => {
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
     console.log(`lat: ${lat} lng: ${lng}`);
-    //create and return <Marker />
 
   }
 
