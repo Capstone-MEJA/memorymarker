@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
+const User = require("./models/User");
 const app = express();
 require("dotenv").config();
 module.exports = app;
@@ -10,6 +11,15 @@ app.use(morgan("dev"));
 
 // body parsing middleware
 app.use(express.json());
+
+// testing compared passwords:
+// const test = async (username, password) => {
+//   const user = await User.findOne({ username: username });
+//   const result = await user.comparePassword(password);
+//   console.log(result);
+// };
+// test("alicia", "123"); // true
+// test("alicia", "1234"); // false
 
 // api routes
 app.use("/api", require("./api"));
