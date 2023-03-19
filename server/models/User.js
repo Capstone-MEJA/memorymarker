@@ -11,11 +11,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  createdAt: {
-    type: Date,
-    immutable: true,
-    default: () => Date.now(),
-  },
+  // createdAt: {
+  //   type: Date,
+  //   immutable: true,
+  //   default: () => Date.now(),
+  // },
   posts: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: "Post",
