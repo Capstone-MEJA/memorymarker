@@ -30,7 +30,7 @@ const MemoryMap = (): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
   const center = useRef({ lat: 40.7527277692752, lng: -73.97722734175942 });
 
-  const allPosts: [object] = useSelector(selectAllPosts);
+  const allPosts = useSelector(selectAllPosts);
 
   //add a state that keep track of selected marker to render infoWindow
   //need to specific typeof selected to either be ISelected interface or null
