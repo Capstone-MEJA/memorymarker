@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import App from '../../src/app';
+import App from '../app/App';
 
 test('renders app component', () => {
   const { container, getByRole } = render(<App />);
