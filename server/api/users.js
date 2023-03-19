@@ -22,4 +22,42 @@ router.get("/:_id", async (req, res, next) => {
   }
 });
 
+// POST
+router.post("/", async (req, res, next) => {
+  try {
+    const user = await User.create({
+      username: req.body.username,
+      password: req.body.password
+    });
+    res.send(user)
+  } catch (err) {
+    next(err);
+  }
+}) 
+
+// PUT
+router.put("/", async (req, res, next) => {
+  try {
+    const user = await User.updateOne(
+      {_id: "someID"},
+      req.body
+    );
+    res.send(user)
+  } catch (err) {
+    next(err);
+  }
+}) 
+
+// DELETE
+router.delete("/", async (req, res, next) => {
+  try {
+    const user = await User.deleteOne(
+      {_id: "someID"}
+    );
+    res.send(user)
+  } catch (err) {
+    next(err);
+  }
+}) 
+
 module.exports = router;
