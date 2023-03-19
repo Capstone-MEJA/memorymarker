@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { isStore } from "./index";
 
 export const fetchAllUsers = createAsyncThunk("allUsers", async () => {
   try {
@@ -28,7 +29,7 @@ export const newUser = createAsyncThunk("newUser", async (postObj) => {
   }
 });
 
-export const updateUser = createAsyncThunk("updateUser", async (postObj) => {
+export const updateUser = createAsyncThunk("updateUser", async (postObj: object) => {
   try {
     const { data } = await axios.put(`/api/users`, postObj);
     return data;
@@ -46,7 +47,15 @@ export const deleteUser = createAsyncThunk("deleteUser", async (_id) => {
   }
 });
 
-let initialState: object[] = [];
+interface isUser {
+  _id: string;
+  username: string;
+  password: string;
+  createdAt: Date;
+  posts: object[];
+}
+let initialState: isUser[] = [];
+
 export const UsersSlice = createSlice({
   name: "users",
   initialState: initialState,
@@ -62,7 +71,7 @@ export const UsersSlice = createSlice({
         return action.payload;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        return state.map((user: any) => {
+        return state.map((user) => {
           if (user._id !== action.payload._id) {
             return user;
           } else {
@@ -71,13 +80,13 @@ export const UsersSlice = createSlice({
         });
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
-        return state.filter((user: any) => user._id !== action.payload);
+        return state.filter((user) => user._id !== action.payload);
       });
   },
   reducers: {},
 });
 
-export const selectAllUsers = (state: any) => {
+export const selectAllUsers = (state: isStore) => {
   return state.users;
 };
 

@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import App from '../../src/app';
+import App from '../app/App';
 
 const rootMock = {
   render: jest.fn(),
