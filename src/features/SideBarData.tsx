@@ -13,7 +13,7 @@ export const SidebarData = [
     },
     {
         title: 'Sign-up',
-        path: '/signup',
+        path: '/register',
         icon: <FaIcons.FaUsers />
     },
     {

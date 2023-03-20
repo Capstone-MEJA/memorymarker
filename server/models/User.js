@@ -5,22 +5,24 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
     required: true,
   },
-  createdAt: {
-    type: Date,
-    immutable: true,
-    default: () => Date.now(),
-  },
+  // createdAt: {
+  //   type: Date,
+  //   immutable: true,
+  //   default: () => Date.now(),
+  // },
   posts: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: "Post",
   },
 });
 
+// *** only needed for seeded users - start
 // before the user's password is saved to the database,
 // hash the password with 5 salt rounds
 userSchema.pre("save", function (next) {
@@ -44,5 +46,6 @@ userSchema.methods.comparePassword = async function (password) {
     console.log("Error while comparing password", err.message);
   }
 };
+// *** only needed for seeded users - end
 
 module.exports = mongoose.model("User", userSchema);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import * as FaIcons from 'react-icons/fa';
-
+import Nav from '../app/Navbar';
 import { SidebarData } from './SideBarData';
 
 const Sidebar: React.FC = () => {
