@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../store/authSlice";
 import { AppDispatch } from "../../store";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const auth = useSelector((state: any) => state.auth);
   //   console.log("auth", auth);
+
+  useEffect(() => {
+    if (auth._id) {
+      navigate("/");
+    }
+  }, [auth._id, navigate]);
 
   const [user, setUser] = useState({
     username: "",
