@@ -2,7 +2,7 @@ import {  Route, Routes } from "react-router-dom";
 import Map from "../Map";
 import UserProfile from "../features/UserProfile";
 import EditAccount from "../features/EditAccount";
-import About from "../pages/about";
+import About from "../features/pages/about";
 import Register from "../features/auth/Register";
 import Login from "../features/auth/Login";
 

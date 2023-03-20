@@ -76,14 +76,14 @@ export default Sidebar;
 
 const Navbar = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-self: center;
   align-items: center;
   height: 5rem;
   background-color: black;
 //   width: 5rem;
   z-index: 1;
-  position: absolute;
+//   position: absolute;
 `;
 
 const MenuIconOpen = styled(Link)`
