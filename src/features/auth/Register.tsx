@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../store/authSlice";
 import { AppDispatch } from "../../store";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const Register = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,7 +27,7 @@ const Register = () => {
     dispatch(registerUser(user));
   }
   return (
-    <div>
+    <RegisterWrapper>
       <form onSubmit={handleSubmit}>
         <h2>Register</h2>
         <input
@@ -50,8 +51,16 @@ const Register = () => {
           <p>{auth.registerError}</p>
         ) : null}
       </form>
-    </div>
+    </RegisterWrapper>
   );
 };
 
 export default Register;
+
+const RegisterWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  height: 70vh;
+`;
