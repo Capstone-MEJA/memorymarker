@@ -4,6 +4,7 @@ const User = require("../models/User");
 const genAuthToken = require("../utils/genAuthToken");
 const router = require("express").Router();
 
+// POST route to /api/login
 router.post("/", async (req, res, next) => {
   try {
     // validate the schema
