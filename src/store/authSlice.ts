@@ -1,4 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -11,11 +13,59 @@ const initialState = {
   userLoaded: false,
 };
 
+export const registerUser = createAsyncThunk(
+  "auth/registerUser",
+  async (user: { username: string; password: string }, { rejectWithValue }) => {
+    try {
+      const token = await axios.post("/api/register", {
+        username: user.username,
+        password: user.password,
+      });
+      localStorage.setItem("token", token.data);
+      return token.data;
+    } catch (err: any) {
+      console.log(err.response.data);
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "users",
   initialState,
   reducers: {},
-  extraReducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(registerUser.pending, (state, action) => {
+      console.log("pending");
+      return { ...state, registerStatus: "pending" };
+    });
+    builder.addCase(registerUser.fulfilled, (state, action) => {
+      console.log("fufilled");
+      if (action.payload) {
+        const user: any = jwtDecode(action.payload);
+
+        return {
+          ...state,
+          token: action.payload,
+          username: user.username,
+          _id: user._id,
+          registerStatus: "success",
+        };
+      } else {
+        return state;
+      }
+    });
+    builder.addCase(registerUser.rejected, (state, action) => {
+      console.log("rejected");
+      console.log(action.payload);
+      //   const payload = action.payload;
+      return {
+        ...state,
+        registerStatus: "rejected",
+        registerError: action.payload as string,
+      };
+    });
+  },
 });
 
 export default authSlice.reducer;
