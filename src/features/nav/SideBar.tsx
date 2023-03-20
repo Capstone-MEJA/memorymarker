@@ -29,30 +29,61 @@ const Sidebar: React.FC = () => {
           </MenuIconClose>
 
           {auth._id ? (
-            <MenuItems>
-              <MenuItemLinks>
-                <MenuItemLink style={{ textDecoration: 'none', color: 'whitesmoke' }} to="/">Home</MenuItemLink>
-                <MenuItemLink to="/account" style={{ textDecoration: 'none', color: 'whitesmoke'}} >{auth.username}</MenuItemLink>
-                <MenuItemLink to="/about" style={{ textDecoration: 'none', color: 'whitesmoke' }}>About</MenuItemLink>
-                <LogoutButton
-                  onClick={() => {
-                    dispatch(logoutUser(null));
-                  }}
-                >
-                  Logout
-                </LogoutButton>
-              </MenuItemLinks>
-            </MenuItems>
+            <MenuItemLinks>
+              <MenuItemLink
+                style={{ textDecoration: "none", color: "whitesmoke" }}
+                to="/"
+              >
+                Home
+              </MenuItemLink>
+              <MenuItemLink
+                to="/account"
+                style={{ textDecoration: "none", color: "whitesmoke" }}
+              >
+                {auth.username}
+              </MenuItemLink>
+              <MenuItemLink
+                to="/about"
+                style={{ textDecoration: "none", color: "whitesmoke" }}
+              >
+                About
+              </MenuItemLink>
+              <LogoutButton
+                style={{ textDecoration: "none", color: "whitesmoke" }}
+                onClick={() => {
+                  dispatch(logoutUser(null));
+                }}
+              >
+                Logout
+              </LogoutButton>
+            </MenuItemLinks>
           ) : (
-            // </MenuItems>
-            <MenuItems>
-              <MenuItemLinks>
-                <MenuItemLink style={{ textDecoration: 'none', color: 'whitesmoke' }} to="/">Home</MenuItemLink>
-                <MenuItemLink style={{ textDecoration: 'none', color: 'whitesmoke' }} to="/Login">Login</MenuItemLink>
-                <MenuItemLink style={{ textDecoration: 'none', color: 'whitesmoke' }} to="/register">Sign-up</MenuItemLink>
-                <MenuItemLink style={{ textDecoration: 'none', color: 'whitesmoke' }} to="/about">About</MenuItemLink>
-              </MenuItemLinks>
-            </MenuItems>
+            <MenuItemLinks>
+              <MenuItemLink
+                style={{ textDecoration: "none", color: "whitesmoke" }}
+                to="/"
+              >
+                Home
+              </MenuItemLink>
+              <MenuItemLink
+                style={{ textDecoration: "none", color: "whitesmoke" }}
+                to="/Login"
+              >
+                Login
+              </MenuItemLink>
+              <MenuItemLink
+                style={{ textDecoration: "none", color: "whitesmoke" }}
+                to="/register"
+              >
+                Sign-up
+              </MenuItemLink>
+              <MenuItemLink
+                style={{ textDecoration: "none", color: "whitesmoke" }}
+                to="/about"
+              >
+                About
+              </MenuItemLink>
+            </MenuItemLinks>
           )}
 
           {/* // if the user is logged in show */}
@@ -81,7 +112,6 @@ const Navbar = styled.div`
   align-items: center;
   height: 5rem;
   background-color: black;
-//   width: 5rem;
   z-index: 1;
   position: absolute;
   border: 1px;
@@ -116,54 +146,56 @@ const SidebarMenu = styled.div<{ sidebar: boolean }>`
   height: 100vh;
   background-color: black;
   position: fixed;
-  top: 0;
+  top: 0px;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 0.6s;
   z-index: 1;
+  // padding-top: 10px;
 `;
 
 const SidebarWrap = styled.div``;
 const LogoutButton = styled.div`
-  color: white;
-`;
-
-const MenuItems = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: start;
+  margin: 0 2rem;
+  border-radius: 5px;
   width: 100%;
-  height: 90px;
-  padding: 1rem 0 1.25rem;
+  text-align: center;
+  // border: 1px solid blue;
+  padding: 1em;
+
+  &:hover {
+    background-color: #ff0000;
+    color: #000080;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    text-decoration: none;
+  }
 `;
 
 const MenuItemLinks = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 2rem;
   font-size: 20px;
   text-decoration: none;
-  margin: 0 2rem;
-  `;
-  
-  const MenuItemLink = styled(Link)`
+  margin: 10px;
+  // border: 1px solid green;
+`;
+
+const MenuItemLink = styled(Link)`
   margin: 0 2rem;
   border-radius: 5px;
-  // height: 45px;
-  // width: 100%;
-  // margin: 0 2rem;
-  
+  width: 100%;
+  text-align: center;
+  // border: 1px solid blue;
+  padding: 1em;
+
   &:hover {
-    // padding: 0 2rem;
     background-color: #ff0000;
     color: #000080;
-    // text-align: center;
-    // align-items:center;
-    // display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 20px;
-  text-decoration: none;
-  // color: green;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    text-decoration: none;
   }
 `;
