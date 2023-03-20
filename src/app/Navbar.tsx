@@ -11,15 +11,17 @@ const Navbar = () => {
   const dispatch = useDispatch<AppDispatch>();
   return (
     <div>
-      <p>this is the navbar</p>
       {auth._id ? (
-        <div
-          onClick={() => {
-            dispatch(logoutUser(null));
-          }}
-        >
-          Logout
-        </div>
+        <>
+          <div>Welcome {auth.username}</div>
+          <div
+            onClick={() => {
+              dispatch(logoutUser(null));
+            }}
+          >
+            Logout
+          </div>
+        </>
       ) : (
         <>
           <Link to="/login">Login</Link>

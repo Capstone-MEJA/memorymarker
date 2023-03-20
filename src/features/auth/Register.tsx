@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../store/authSlice";
 import { AppDispatch } from "../../store";
@@ -20,7 +20,7 @@ const Register = () => {
     password: "",
   });
 
-  function handleSubmit(e: any) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     dispatch(registerUser(user));
@@ -32,12 +32,16 @@ const Register = () => {
         <input
           type="text"
           placeholder="username"
-          onChange={(e) => setUser({ ...user, username: e.target.value })}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setUser({ ...user, username: e.target.value })
+          }
         />
         <input
           type="password"
           placeholder="password"
-          onChange={(e) => setUser({ ...user, password: e.target.value })}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setUser({ ...user, password: e.target.value })
+          }
         />
         <button>
           {auth.registerStatus === "pending" ? "Submitting..." : "Register"}
