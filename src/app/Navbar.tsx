@@ -1,12 +1,12 @@
 // import "./app.css";
 // import Map from "../Map";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
 import { logoutUser } from "../store/authSlice";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const Navbar = () => {
+const Nav = () => {
   const auth = useSelector((state: any) => state.auth);
   const dispatch = useDispatch<AppDispatch>();
   return (
@@ -32,4 +32,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Nav;

@@ -9,7 +9,7 @@ import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "./store";
 import mapStyles from "./mapStyles";
-import { MarkerClusterer } from "@googlemaps/markerclusterer";
+// import { MarkerClusterer } from "@googlemaps/markerclusterer";
 
 const Map = (): JSX.Element => {
   const { isLoaded, loadError } = useLoadScript({
@@ -68,7 +68,7 @@ const MemoryMap = (): JSX.Element => {
     clickableIcons: false,
   };
 
-  const markerCluster = new MarkerClusterer({})
+  // const markerCluster = new MarkerClusterer({})
 
   return (
     <div>
