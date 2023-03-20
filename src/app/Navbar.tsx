@@ -2,15 +2,25 @@
 // import Map from "../Map";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store";
+import { logoutUser } from "../store/authSlice";
 
 const Navbar = () => {
   const auth = useSelector((state: any) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
   console.log(auth);
   return (
     <div>
       <p>this is the navbar</p>
       {auth._id ? (
-        <div>Logout</div>
+        <div
+          onClick={() => {
+            dispatch(logoutUser(null));
+          }}
+        >
+          Logout
+        </div>
       ) : (
         <>
           <Link to="/login">Login</Link>
