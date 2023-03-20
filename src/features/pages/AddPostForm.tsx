@@ -4,6 +4,10 @@ import { useState, ChangeEvent } from "react";
 // import { AppDispatch } from "../../store";
 // import { useNavigate } from "react-router-dom";
 
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
+import { newPost } from "../../store/postsSlice";
+
 const AddPostForm = () => {
   // const dispatch = useDispatch<AppDispatch>();
   // const navigate = useNavigate();
@@ -14,15 +18,16 @@ const AddPostForm = () => {
   //     navigate("/");
   //   }
   // }, [auth._id, navigate]);
-
+  const dispatch = useDispatch<AppDispatch>();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tag, setTag] = useState("");
 
   function handleSubmit(e: React.FormEvent) {
-    // e.preventDefault();
+    e.preventDefault();
     // dispatch(loginUser(user));
-    console.log("clicked");
+    dispatch(newPost());
+    // console.log("clicked");
   }
   return (
     <div>

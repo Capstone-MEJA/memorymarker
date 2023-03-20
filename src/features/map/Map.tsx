@@ -71,8 +71,6 @@ const MemoryMap = (): JSX.Element => {
     // dispatch an action to add a new post to the database
   };
 
-  console.log(togglePostForm);
-
   const options = {
     styles: mapStyles,
     disableDefaultUI: true,
