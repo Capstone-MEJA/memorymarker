@@ -133,4 +133,5 @@ const Form = styled.p`
   text-align: center;
   font-size: 50px;
   color: red;
+  position: relative;
 `;
