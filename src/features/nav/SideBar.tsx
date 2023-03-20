@@ -6,8 +6,8 @@ import * as FaIcons from "react-icons/fa";
 // import { SidebarData } from "./SideBarData";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../store";
-import { logoutUser } from "../store/authSlice";
+import { AppDispatch } from "../../store";
+import { logoutUser } from "../../store/authSlice";
 
 const Sidebar: React.FC = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -76,14 +76,14 @@ export default Sidebar;
 
 const Navbar = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-self: center;
   align-items: center;
   height: 5rem;
   background-color: black;
 //   width: 5rem;
   z-index: 1;
-  position: absolute;
+//   position: absolute;
 `;
 
 const MenuIconOpen = styled(Link)`
