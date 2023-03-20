@@ -9,7 +9,6 @@ import { logoutUser } from "../store/authSlice";
 const Navbar = () => {
   const auth = useSelector((state: any) => state.auth);
   const dispatch = useDispatch<AppDispatch>();
-  console.log(auth);
   return (
     <div>
       <p>this is the navbar</p>

@@ -8,7 +8,6 @@ const Login = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const auth = useSelector((state: any) => state.auth);
-  //   console.log("auth", auth);
 
   useEffect(() => {
     if (auth._id) {
@@ -20,8 +19,6 @@ const Login = () => {
     username: "",
     password: "",
   });
-
-  //   console.log("user:", user);
 
   function handleSubmit(e: any) {
     e.preventDefault();

@@ -81,11 +81,9 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(registerUser.pending, (state, action) => {
-      console.log("pending");
       return { ...state, registerStatus: "pending" };
     });
     builder.addCase(registerUser.fulfilled, (state, action) => {
-      console.log("fufilled");
       if (action.payload) {
         const user: any = jwtDecode(action.payload);
 
@@ -101,9 +99,6 @@ const authSlice = createSlice({
       }
     });
     builder.addCase(registerUser.rejected, (state, action) => {
-      console.log("rejected");
-      console.log(action.payload);
-      //   const payload = action.payload;
       return {
         ...state,
         registerStatus: "rejected",
@@ -112,11 +107,9 @@ const authSlice = createSlice({
     });
 
     builder.addCase(loginUser.pending, (state, action) => {
-      console.log("pending");
       return { ...state, loginStatus: "pending" };
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      console.log("fufilled");
       if (action.payload) {
         const user: any = jwtDecode(action.payload);
 
@@ -132,9 +125,6 @@ const authSlice = createSlice({
       }
     });
     builder.addCase(loginUser.rejected, (state, action) => {
-      console.log("rejected");
-      console.log(action.payload);
-      //   const payload = action.payload;
       return {
         ...state,
         loginStatus: "rejected",
