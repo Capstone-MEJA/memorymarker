@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import mapStyles from "./mapStyles";
 import styled from "styled-components";
+import AddPostForm from "../pages/AddPostForm";
 // import { MarkerClusterer } from "@googlemaps/markerclusterer";
 
 const Map = (): JSX.Element => {
@@ -120,7 +121,11 @@ const MemoryMap = (): JSX.Element => {
             </div>
           </InfoWindow>
         ) : null}
-        {togglePostForm ? <Form>form</Form> : null}
+        {togglePostForm ? (
+          <Form>
+            <AddPostForm />
+          </Form>
+        ) : null}
       </GoogleMap>
     </div>
   );
@@ -128,10 +133,16 @@ const MemoryMap = (): JSX.Element => {
 
 export default Map;
 
-const Form = styled.p`
+const Form = styled.div`
   z-index: 1;
   text-align: center;
   font-size: 50px;
   color: red;
   position: relative;
+  background-color: white;
+  width: 500px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
 `;
