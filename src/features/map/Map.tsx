@@ -9,6 +9,7 @@ import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import mapStyles from "./mapStyles";
+import styled from "styled-components";
 // import { MarkerClusterer } from "@googlemaps/markerclusterer";
 
 const Map = (): JSX.Element => {
@@ -44,6 +45,7 @@ const MemoryMap = (): JSX.Element => {
     longitude: number;
   }
   const [selected, setSelected] = useState<ISelected | null>(null);
+  const [togglePostForm, setTogglePostForm] = useState<boolean>(false);
 
   //fetch all post
   useEffect(() => {
@@ -54,12 +56,19 @@ const MemoryMap = (): JSX.Element => {
   //   dispatch(fetchSinglePost(selected._id));
   // }, [selected]);
 
-  const addMarker = (event: any) => {
+  const togglePostFormFunc = (event: any) => {
     //get location of click and set it to lat lng
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
     console.log(`lat: ${lat} lng: ${lng}`);
+    setTogglePostForm(true);
+
+    // toggle a form
+    // on form submit it will add a marker to the map
+    // dispatch an action to add a new post to the database
   };
+
+  console.log(togglePostForm);
 
   const options = {
     styles: mapStyles,
@@ -77,7 +86,7 @@ const MemoryMap = (): JSX.Element => {
         center={center.current}
         mapContainerStyle={{ width: "100vw", height: "100vh" }}
         options={options}
-        onClick={(event) => addMarker(event)}
+        onClick={(event) => togglePostFormFunc(event)}
       >
         <Marker position={{ lat: 40.7527277692752, lng: -73.97722734175942 }} />
         {/* please change the any */}
@@ -111,9 +120,17 @@ const MemoryMap = (): JSX.Element => {
             </div>
           </InfoWindow>
         ) : null}
+        {togglePostForm ? <Form>form</Form> : null}
       </GoogleMap>
     </div>
   );
 };
 
 export default Map;
+
+const Form = styled.p`
+  z-index: 1;
+  text-align: center;
+  font-size: 50px;
+  color: red;
+`;
