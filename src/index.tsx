@@ -6,7 +6,7 @@ import App from "./app/App";
 import { GlobalStyle } from "./styles/global";
 import React from "react";
 
-import "./index.css";
+import "../src/app.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
