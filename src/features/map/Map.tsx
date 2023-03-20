@@ -4,10 +4,10 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import { fetchAllPosts, selectAllPosts } from "./store/postsSlice";
+import { fetchAllPosts, selectAllPosts } from "../../store/postsSlice";
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { AppDispatch } from "./store";
+import { AppDispatch } from "../../store";
 import mapStyles from "./mapStyles";
 // import { MarkerClusterer } from "@googlemaps/markerclusterer";
 

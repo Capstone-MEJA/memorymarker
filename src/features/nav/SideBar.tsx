@@ -6,8 +6,8 @@ import * as FaIcons from "react-icons/fa";
 // import { SidebarData } from "./SideBarData";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../store";
-import { logoutUser } from "../store/authSlice";
+import { AppDispatch } from "../../store";
+import { logoutUser } from "../../store/authSlice";
 
 const Sidebar: React.FC = () => {
   const [sidebar, setSidebar] = useState(false);
