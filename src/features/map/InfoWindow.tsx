@@ -1,9 +1,9 @@
-import {infoWindow} from "@react-google-maps/api"
+import {InfoWindow} from "@react-google-maps/api"
 
-const InfoWindow = (props: any) => {
+const SingleInfoWindow = (props: any) => {
     return (
 <InfoWindow></InfoWindow>
     )
 };
 
-export default InfoWindow;
+export default SingleInfoWindow;

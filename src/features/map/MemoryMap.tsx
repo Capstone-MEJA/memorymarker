@@ -5,9 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import mapStyles from "./mapStyles";
 import SingleMarker from "./SingleMarker";
+import styled from "styled-components";
+import AddPostForm from "../pages/AddPostForm";
 
 const MemoryMap = (): JSX.Element => {
   //useDispatch need a type - define AppDispatch in the store
+  const auth = useSelector((state: any) => state.auth);
   const dispatch = useDispatch<AppDispatch>();
   const center = useRef({ lat: 40.7527277692752, lng: -73.97722734175942 });
 
@@ -24,6 +27,7 @@ const MemoryMap = (): JSX.Element => {
     longitude: number;
   }
   const [selected, setSelected] = useState<ISelected | null>(null);
+  const [togglePostForm, setTogglePostForm] = useState<boolean>(false);
 
   //fetch all post
   useEffect(() => {
@@ -34,11 +38,16 @@ const MemoryMap = (): JSX.Element => {
   //   dispatch(fetchSinglePost(selected._id));
   // }, [selected]);
 
-  const addMarker = (event: any) => {
+  const togglePostFormFunc = (event: any) => {
     //get location of click and set it to lat lng
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
     console.log(`lat: ${lat} lng: ${lng}`);
+    setTogglePostForm(true);
+
+    // toggle a form
+    // on form submit it will add a marker to the map
+    // dispatch an action to add a new post to the database
   };
 
   const options = {
@@ -55,7 +64,7 @@ const MemoryMap = (): JSX.Element => {
         center={center.current}
         mapContainerStyle={{ width: "100vw", height: "100vh" }}
         options={options}
-        onClick={(event) => addMarker(event)}
+        onClick={(event) => togglePostFormFunc(event)}
       >
         {/* please change the any */}
         {/* rendering all posts */}
@@ -87,9 +96,28 @@ const MemoryMap = (): JSX.Element => {
             </div>
           </InfoWindow>
         ) : null}
+        {auth._id && togglePostForm ? (
+          <Form>
+            <AddPostForm />
+          </Form>
+        ) : null}
       </GoogleMap>
     </div>
   );
 };
 
 export default MemoryMap;
+
+const Form = styled.div`
+  z-index: 1;
+  text-align: center;
+  font-size: 50px;
+  color: red;
+  position: relative;
+  background-color: white;
+  width: 500px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+`;
