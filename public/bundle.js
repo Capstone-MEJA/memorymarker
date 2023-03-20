@@ -680,13 +680,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/store/authSlice.ts":
+/*!********************************!*\
+  !*** ./src/store/authSlice.ts ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reduxjs/toolkit */ \"./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js\");\n\nvar initialState = {\n    token: localStorage.getItem(\"token\"),\n    username: \"\",\n    _id: \"\",\n    registerStatus: \"\",\n    registerError: \"\",\n    loginStatus: \"\",\n    loginError: \"\",\n    userLoaded: false,\n};\nvar authSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({\n    name: \"users\",\n    initialState: initialState,\n    reducers: {},\n    extraReducers: {},\n});\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (authSlice.reducer);\n\n\n//# sourceURL=webpack://memorymarker/./src/store/authSlice.ts?");
+
+/***/ }),
+
 /***/ "./src/store/index.ts":
 /*!****************************!*\
   !*** ./src/store/index.ts ***!
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @reduxjs/toolkit */ \"./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js\");\n/* harmony import */ var _postsSlice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./postsSlice */ \"./src/store/postsSlice.ts\");\n/* harmony import */ var _usersSlice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./usersSlice */ \"./src/store/usersSlice.ts\");\n\n\n\nvar store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.configureStore)({\n    reducer: {\n        posts: _postsSlice__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n        users: _usersSlice__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n    },\n});\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);\n\n\n//# sourceURL=webpack://memorymarker/./src/store/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @reduxjs/toolkit */ \"./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js\");\n/* harmony import */ var _authSlice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./authSlice */ \"./src/store/authSlice.ts\");\n/* harmony import */ var _postsSlice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postsSlice */ \"./src/store/postsSlice.ts\");\n/* harmony import */ var _usersSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./usersSlice */ \"./src/store/usersSlice.ts\");\n\n\n\n\nvar store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_3__.configureStore)({\n    reducer: {\n        posts: _postsSlice__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n        users: _usersSlice__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\n        auth: _authSlice__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n    },\n});\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);\n\n\n//# sourceURL=webpack://memorymarker/./src/store/index.ts?");
 
 /***/ }),
 
