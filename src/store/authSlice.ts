@@ -30,6 +30,23 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+export const loginUser = createAsyncThunk(
+  "auth/loginUser",
+  async (user: { username: string; password: string }, { rejectWithValue }) => {
+    try {
+      const token = await axios.post("/api/login", {
+        username: user.username,
+        password: user.password,
+      });
+      localStorage.setItem("token", token.data);
+      return token.data;
+    } catch (err: any) {
+      console.log(err.response.data);
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "users",
   initialState,
@@ -91,6 +108,37 @@ const authSlice = createSlice({
         ...state,
         registerStatus: "rejected",
         registerError: action.payload as string,
+      };
+    });
+
+    builder.addCase(loginUser.pending, (state, action) => {
+      console.log("pending");
+      return { ...state, loginStatus: "pending" };
+    });
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      console.log("fufilled");
+      if (action.payload) {
+        const user: any = jwtDecode(action.payload);
+
+        return {
+          ...state,
+          token: action.payload,
+          username: user.username,
+          _id: user._id,
+          loginStatus: "success",
+        };
+      } else {
+        return state;
+      }
+    });
+    builder.addCase(loginUser.rejected, (state, action) => {
+      console.log("rejected");
+      console.log(action.payload);
+      //   const payload = action.payload;
+      return {
+        ...state,
+        loginStatus: "rejected",
+        loginError: action.payload as string,
       };
     });
   },
