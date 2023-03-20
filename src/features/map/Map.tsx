@@ -11,6 +11,7 @@ import { AppDispatch } from "../../store";
 import mapStyles from "./mapStyles";
 import styled from "styled-components";
 import AddPostForm from "../pages/AddPostForm";
+
 // import { MarkerClusterer } from "@googlemaps/markerclusterer";
 
 const Map = (): JSX.Element => {
@@ -30,6 +31,7 @@ const Map = (): JSX.Element => {
 
 const MemoryMap = (): JSX.Element => {
   //useDispatch need a type - define AppDispatch in the store
+  const auth = useSelector((state: any) => state.auth);
   const dispatch = useDispatch<AppDispatch>();
   const center = useRef({ lat: 40.7527277692752, lng: -73.97722734175942 });
 
@@ -121,7 +123,7 @@ const MemoryMap = (): JSX.Element => {
             </div>
           </InfoWindow>
         ) : null}
-        {togglePostForm ? (
+        {auth._id && togglePostForm ? (
           <Form>
             <AddPostForm />
           </Form>
