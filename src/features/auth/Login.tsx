@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/authSlice";
 import { AppDispatch } from "../../store";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const Login = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,7 +27,7 @@ const Login = () => {
     dispatch(loginUser(user));
   }
   return (
-    <div>
+    <LoginWrapper>
       <form onSubmit={handleSubmit}>
         <h2>Login</h2>
         <input
@@ -48,8 +49,16 @@ const Login = () => {
         </button>
         {auth.loginStatus === "rejected" ? <p>{auth.loginError}</p> : null}
       </form>
-    </div>
+    </LoginWrapper>
   );
 };
 
 export default Login;
+
+const LoginWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  height: 70vh;
+`;

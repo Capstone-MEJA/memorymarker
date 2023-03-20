@@ -22,6 +22,7 @@ const AddPostForm = () => {
   function handleSubmit(e: React.FormEvent) {
     // e.preventDefault();
     // dispatch(loginUser(user));
+    console.log("clicked");
   }
   return (
     <div>
