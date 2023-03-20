@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// *** only needed for seeded users - start
 // before the user's password is saved to the database,
 // hash the password with 5 salt rounds
 userSchema.pre("save", function (next) {
@@ -45,5 +46,6 @@ userSchema.methods.comparePassword = async function (password) {
     console.log("Error while comparing password", err.message);
   }
 };
+// *** only needed for seeded users - end
 
 module.exports = mongoose.model("User", userSchema);
