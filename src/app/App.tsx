@@ -15,7 +15,6 @@ const App: React.FC = () => {
   return (
     <div>
       <Sidebar />
-      <Nav />
       <AppRoutes />
       {/* <Map /> */}
     </div>
