@@ -31,7 +31,7 @@ const Sidebar: React.FC = () => {
           {auth._id ? (
             <MenuItems>
               <MenuItemLinks>
-                <MenuItemLink to="/home">Home</MenuItemLink>
+                <MenuItemLink to="/">Home</MenuItemLink>
                 <MenuItemLink to="/account">{auth.username}</MenuItemLink>
                 <MenuItemLink to="/about">About</MenuItemLink>
                 <LogoutButton
@@ -47,7 +47,7 @@ const Sidebar: React.FC = () => {
             // </MenuItems>
             <MenuItems>
               <MenuItemLinks>
-                <MenuItemLink to="/home">Home</MenuItemLink>
+                <MenuItemLink to="/">Home</MenuItemLink>
                 <MenuItemLink to="/Login">Login</MenuItemLink>
                 <MenuItemLink to="/register">Sign-up</MenuItemLink>
                 <MenuItemLink to="/about">About</MenuItemLink>
@@ -83,17 +83,23 @@ const Navbar = styled.div`
   background-color: black;
 //   width: 5rem;
   z-index: 1;
-//   position: absolute;
+  position: absolute;
+  border: 1px;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
 `;
 
 const MenuIconOpen = styled(Link)`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   height: 5rem;
   font-size: 2rem;
   margin-left: 2rem;
+  margin-right: 2rem;
   color: #ffffff;
+  border: 1px;
 `;
 
 const MenuIconClose = styled(Link)`
