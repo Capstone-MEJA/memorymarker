@@ -113,14 +113,23 @@ export const PostsSlice = createSlice({
         return [...state, action.payload];
       })
       .addCase(updatePost.fulfilled, (state, action) => {
-        return state.map((post) => {
-          if (post._id !== action.payload._id) {
-            return post;
-          } else {
-            return action.payload;
-          }
-        });
-        // return action.payload;
+        console.log("payload", action.payload);
+        // find the index of the post you are updating
+        // update only that index
+        // spread the rest of the array
+        const index = state.findIndex(action.payload);
+        console.log("index", index);
+
+        state = state.splice(index, 1, action.payload);
+        // return state;
+        // return state.map((post) => {
+        //   if (post._id !== action.payload._id) {
+        //     return post;
+        //   } else {
+        //     return action.payload;
+        //   }
+        // });
+        // return [...state, action.payload];
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         return state.filter((post) => post._id !== action.payload._id);

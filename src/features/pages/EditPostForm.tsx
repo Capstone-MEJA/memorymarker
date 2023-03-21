@@ -41,7 +41,11 @@ const EditPostForm = (props: Props) => {
   console.log("props", props.info);
   return (
     <FormWrapper>
-      <form onSubmit={handleSubmit(props.info._id)}>
+      <form
+        onSubmit={() => {
+          handleSubmit(props.info._id);
+        }}
+      >
         <h2>Edit post</h2>
         <input
           type="text"
