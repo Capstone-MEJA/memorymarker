@@ -1,8 +1,8 @@
 import { useState, ChangeEvent } from "react";
-
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import { newPost } from "../../store/postsSlice";
+import styled from "styled-components";
 
 interface Props {
   lat: number | null;
@@ -29,7 +29,7 @@ const AddPostForm = (props: Props) => {
     props.setTogglePostForm(false);
   }
   return (
-    <div>
+    <FormWrapper>
       <form onSubmit={handleSubmit}>
         <h2>Create post</h2>
         <input
@@ -40,7 +40,7 @@ const AddPostForm = (props: Props) => {
           }
         />
         <input
-          type="text"
+          type="textarea"
           placeholder="description"
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setDescription(e.target.value)
@@ -55,8 +55,21 @@ const AddPostForm = (props: Props) => {
         /> */}
         <button>Submit</button>
       </form>
-    </div>
+    </FormWrapper>
   );
 };
 
 export default AddPostForm;
+
+const FormWrapper = styled.div`
+  text-align: center;
+  font-size: 50px;
+  position: relative;
+  background-color: white;
+  width: auto;
+  padding: 0.5em;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  height: auto;
+`;
