@@ -28,6 +28,8 @@ const MemoryMap = (): JSX.Element => {
   }
   const [selected, setSelected] = useState<ISelected | null>(null);
   const [togglePostForm, setTogglePostForm] = useState<boolean>(false);
+  const [lat, setLat] = useState<number | null>(null);
+  const [long, setLong] = useState<number | null>(null);
 
   //fetch all post
   useEffect(() => {
@@ -44,11 +46,15 @@ const MemoryMap = (): JSX.Element => {
     const lng = event.latLng.lng();
     console.log(`lat: ${lat} lng: ${lng}`);
     setTogglePostForm(true);
+    setLat(lat);
+    setLong(lng);
 
     // toggle a form
     // on form submit it will add a marker to the map
     // dispatch an action to add a new post to the database
   };
+  console.log(lat);
+  console.log(long);
 
   const options = {
     styles: mapStyles,
@@ -98,7 +104,7 @@ const MemoryMap = (): JSX.Element => {
         ) : null}
         {auth._id && togglePostForm ? (
           <Form>
-            <AddPostForm />
+            <AddPostForm lat={lat} long={long} />
           </Form>
         ) : null}
       </GoogleMap>

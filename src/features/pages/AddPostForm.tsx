@@ -8,7 +8,12 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import { newPost } from "../../store/postsSlice";
 
-const AddPostForm = () => {
+interface Props {
+  lat: number | null;
+  long: number | null;
+}
+
+const AddPostForm = (props: Props) => {
   // const dispatch = useDispatch<AppDispatch>();
   // const navigate = useNavigate();
   // const auth = useSelector((state: any) => state.auth);
@@ -26,7 +31,14 @@ const AddPostForm = () => {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     // dispatch(loginUser(user));
-    dispatch(newPost());
+    dispatch(
+      newPost({
+        title: title,
+        description: description,
+        latitude: props.lat,
+        longitude: props.long,
+      })
+    );
     // console.log("clicked");
   }
   return (
