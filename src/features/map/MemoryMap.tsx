@@ -29,6 +29,8 @@ const MemoryMap = (): JSX.Element => {
   }
   const [selected, setSelected] = useState<ISelected | null>(null);
   const [togglePostForm, setTogglePostForm] = useState<boolean>(false);
+  const [lat, setLat] = useState<number | null>(null);
+  const [long, setLong] = useState<number | null>(null);
 
   //fetch all post
   useEffect(() => {
@@ -36,16 +38,15 @@ const MemoryMap = (): JSX.Element => {
   }, []);
 
   const togglePostFormFunc = (event: any) => {
-    //get location of click and set it to lat lng
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
     console.log(`lat: ${lat} lng: ${lng}`);
     setTogglePostForm(true);
-
-    // toggle a form
-    // on form submit it will add a marker to the map
-    // dispatch an action to add a new post to the database
+    setLat(lat);
+    setLong(lng);
   };
+  console.log(lat);
+  console.log(long);
 
   const options = {
     styles: mapStyles,
@@ -91,7 +92,11 @@ const MemoryMap = (): JSX.Element => {
 
         {auth._id && togglePostForm ? (
           <Form>
-            <AddPostForm />
+            <AddPostForm
+              lat={lat}
+              long={long}
+              setTogglePostForm={setTogglePostForm}
+            />
           </Form>
         ) : null}
       </GoogleMap>
@@ -102,15 +107,10 @@ const MemoryMap = (): JSX.Element => {
 export default MemoryMap;
 
 const Form = styled.div`
-  z-index: 1;
-  text-align: center;
-  font-size: 50px;
-  color: red;
   position: relative;
-  background-color: white;
-  width: 500px;
-  border-radius: 8px;
+
   display: flex;
   justify-content: center;
-  margin: auto;
+  align-items: center;
+  height: 100vh;
 `;

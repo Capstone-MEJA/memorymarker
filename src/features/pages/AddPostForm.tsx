@@ -1,36 +1,35 @@
 import { useState, ChangeEvent } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { loginUser } from "../../store/authSlice";
-// import { AppDispatch } from "../../store";
-// import { useNavigate } from "react-router-dom";
-
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import { newPost } from "../../store/postsSlice";
+import styled from "styled-components";
 
-const AddPostForm = () => {
-  // const dispatch = useDispatch<AppDispatch>();
-  // const navigate = useNavigate();
-  // const auth = useSelector((state: any) => state.auth);
+interface Props {
+  lat: number | null;
+  long: number | null;
+  setTogglePostForm: (toggle: boolean) => void;
+}
 
-  // useEffect(() => {
-  //   if (auth._id) {
-  //     navigate("/");
-  //   }
-  // }, [auth._id, navigate]);
+const AddPostForm = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [tag, setTag] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  // const [tag, setTag] = useState("");
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // dispatch(loginUser(user));
-    dispatch(newPost());
-    // console.log("clicked");
+    dispatch(
+      newPost({
+        title: title,
+        description: description,
+        latitude: props.lat,
+        longitude: props.long,
+      })
+    );
+    props.setTogglePostForm(false);
   }
   return (
-    <div>
+    <FormWrapper>
       <form onSubmit={handleSubmit}>
         <h2>Create post</h2>
         <input
@@ -41,23 +40,36 @@ const AddPostForm = () => {
           }
         />
         <input
-          type="text"
+          type="textarea"
           placeholder="description"
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setDescription(e.target.value)
           }
         />
-        <input
+        {/* <input
           type="text"
           placeholder="tag"
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setTag(e.target.value)
           }
-        />
+        /> */}
         <button>Submit</button>
       </form>
-    </div>
+    </FormWrapper>
   );
 };
 
 export default AddPostForm;
+
+const FormWrapper = styled.div`
+  text-align: center;
+  font-size: 50px;
+  position: relative;
+  background-color: white;
+  width: auto;
+  padding: 0.5em;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  height: auto;
+`;
