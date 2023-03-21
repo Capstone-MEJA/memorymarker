@@ -8,12 +8,12 @@ import SingleInfoWindow from "./SingleInfoWindow";
 import styled from "styled-components";
 import AddPostForm from "../pages/AddPostForm";
 import { IsPost } from "../../interface";
-import { AppDispatch } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 import EditPostForm from "../pages/EditPostForm";
 
 const MemoryMap = (): JSX.Element => {
   //useDispatch need a type - define AppDispatch in the store
-  const auth = useSelector((state: any) => state.auth);
+  const auth = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch<AppDispatch>();
 
   const center = useRef({ lat: 40.7527277692752, lng: -73.97722734175942 });
