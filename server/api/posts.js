@@ -37,9 +37,11 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.put("/", async (req, res, next) => {
+router.put("/:_id", async (req, res, next) => {
   try {
-    const post = await Post.updateOne({ _id: "someId" }, req.body);
+    await Post.updateOne({ _id: req.params._id }, req.body);
+    const post = await Post.findById(req.params._id);
+    console.log("post", post);
     res.send(post);
   } catch (err) {
     console.log(err);
