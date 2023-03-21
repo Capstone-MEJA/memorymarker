@@ -22,8 +22,6 @@ const MemoryMap = (): JSX.Element => {
   // const allPosts: any = useSelector(selectAllPosts);
   const allPosts: IsPost[] = useSelector(selectAllPosts);
 
-  console.log("allPosts", allPosts);
-
   //add a state that keep track of selected marker to render infoWindow
   const [selectedPost, setSelectedPost] = useState<IsPost | null>(null);
   const [togglePostForm, setTogglePostForm] = useState<boolean>(false);
