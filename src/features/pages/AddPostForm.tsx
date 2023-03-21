@@ -1,28 +1,16 @@
 import { useState, ChangeEvent } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { loginUser } from "../../store/authSlice";
-// import { AppDispatch } from "../../store";
-// import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
-import { fetchAllPosts, newPost } from "../../store/postsSlice";
+import { newPost } from "../../store/postsSlice";
 
 interface Props {
   lat: number | null;
   long: number | null;
+  setTogglePostForm: (toggle: boolean) => void;
 }
 
 const AddPostForm = (props: Props) => {
-  // const dispatch = useDispatch<AppDispatch>();
-  // const navigate = useNavigate();
-  // const auth = useSelector((state: any) => state.auth);
-
-  // useEffect(() => {
-  //   if (auth._id) {
-  //     navigate("/");
-  //   }
-  // }, [auth._id, navigate]);
   const dispatch = useDispatch<AppDispatch>();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -38,6 +26,7 @@ const AddPostForm = (props: Props) => {
         longitude: props.long,
       })
     );
+    props.setTogglePostForm(false);
   }
   return (
     <div>

@@ -104,7 +104,11 @@ const MemoryMap = (): JSX.Element => {
         ) : null}
         {auth._id && togglePostForm ? (
           <Form>
-            <AddPostForm lat={lat} long={long} />
+            <AddPostForm
+              lat={lat}
+              long={long}
+              setTogglePostForm={setTogglePostForm}
+            />
           </Form>
         ) : null}
       </GoogleMap>
