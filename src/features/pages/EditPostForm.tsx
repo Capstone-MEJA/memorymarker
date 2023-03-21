@@ -5,12 +5,12 @@ import { updatePost } from "../../store/postsSlice";
 import styled from "styled-components";
 
 interface Info {
-  _id: string;
-  title: String;
-  description: String;
-  tags: [String];
-  latitude: Number;
-  longitude: Number;
+  _id?: string;
+  title?: String;
+  description?: String;
+  tags?: [String];
+  latitude?: Number;
+  longitude?: Number;
 }
 
 interface Props {
