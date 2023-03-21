@@ -32,7 +32,6 @@ const MemoryMap = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    console.log("useeffect")
     const findEditedPost: Function = (): IsPost | undefined => {
       if (selectedPost) {
         return allPosts.find((post: IsPost) => post._id === selectedPost._id);
@@ -42,33 +41,20 @@ const MemoryMap = (): JSX.Element => {
     const editedPost = findEditedPost();
     if (editedPost) {
       setSelectedPost(editedPost);
-      console.log(editedPost);
     }
   }, [allPosts]);
-
-  console.log("new", selectedPost);
 
   const togglePostFormFunc = (event: any) => {
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
-    console.log(`lat: ${lat} lng: ${lng}`);
     setTogglePostForm(true);
     setLat(lat);
     setLong(lng);
   };
 
   const toggleEditPostFormFunc = (event: any) => {
-    // const lat = event.latLng.lat();
-    // const lng = event.latLng.lng();
-    // console.log(`lat: ${lat} lng: ${lng}`);
-    // setTogglePostForm(true);
-    // setLat(lat);
-    // setLong(lng);
     setToggleEditPostForm(true);
-    console.log("clicked");
   };
-
-  console.log(toggleEditPostForm);
 
   const options = {
     styles: mapStyles,
@@ -127,11 +113,6 @@ const MemoryMap = (): JSX.Element => {
               setToggleEditPostForm={setToggleEditPostForm}
               info={selectedPost}
             />
-            {/* <AddPostForm
-              lat={lat}
-              long={long}
-              setTogglePostForm={setTogglePostForm}
-            /> */}
           </Form>
         ) : null}
       </GoogleMap>
@@ -143,7 +124,6 @@ export default MemoryMap;
 
 const Form = styled.div`
   position: relative;
-
   display: flex;
   justify-content: center;
   align-items: center;
