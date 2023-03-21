@@ -14,7 +14,7 @@ const AddPostForm = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [tag, setTag] = useState("");
+  // const [tag, setTag] = useState("");
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -46,13 +46,13 @@ const AddPostForm = (props: Props) => {
             setDescription(e.target.value)
           }
         />
-        <input
+        {/* <input
           type="text"
           placeholder="tag"
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setTag(e.target.value)
           }
-        />
+        /> */}
         <button>Submit</button>
       </form>
     </div>

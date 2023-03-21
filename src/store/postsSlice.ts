@@ -11,14 +11,14 @@ export const fetchAllPosts = createAsyncThunk("allPosts", async () => {
   }
 });
 
-// export const fetchSinglePost = createAsyncThunk("singlePost", async (_id) => {
-//   try {
-//     const { data } = await axios.get(`/api/posts/${_id}`);
-//     return data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+export const fetchSinglePost = createAsyncThunk("singlePost", async (_id) => {
+  try {
+    const { data } = await axios.get(`/api/posts/${_id}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 export const newPost = createAsyncThunk(
   "newPost",
@@ -83,11 +83,10 @@ export const PostsSlice = createSlice({
       .addCase(fetchAllPosts.fulfilled, (state, action) => {
         return action.payload;
       })
-      // .addCase(fetchSinglePost.fulfilled, (state, action) => {
-      //   return action.payload;
-      // })
+      .addCase(fetchSinglePost.fulfilled, (state, action) => {
+        return action.payload;
+      })
       .addCase(newPost.fulfilled, (state, action) => {
-        // state.push(action.payload)
         return [...state, action.payload];
       })
       .addCase(updatePost.fulfilled, (state, action) => {
