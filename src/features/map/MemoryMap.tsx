@@ -8,6 +8,7 @@ import SingleMarker from "./SingleMarker";
 import SingleInfoWindow from "./SingleInfoWindow";
 import styled from "styled-components";
 import AddPostForm from "../pages/AddPostForm";
+import EditPostForm from "../pages/EditPostForm";
 
 const MemoryMap = (): JSX.Element => {
   //useDispatch need a type - define AppDispatch in the store
@@ -29,6 +30,7 @@ const MemoryMap = (): JSX.Element => {
   }
   const [selected, setSelected] = useState<ISelected | null>(null);
   const [togglePostForm, setTogglePostForm] = useState<boolean>(false);
+  const [toggleEditPostForm, setToggleEditPostForm] = useState<boolean>(false);
   const [lat, setLat] = useState<number | null>(null);
   const [long, setLong] = useState<number | null>(null);
 
@@ -45,8 +47,19 @@ const MemoryMap = (): JSX.Element => {
     setLat(lat);
     setLong(lng);
   };
-  console.log(lat);
-  console.log(long);
+
+  const toggleEditPostFormFunc = (event: any) => {
+    // const lat = event.latLng.lat();
+    // const lng = event.latLng.lng();
+    // console.log(`lat: ${lat} lng: ${lng}`);
+    // setTogglePostForm(true);
+    // setLat(lat);
+    // setLong(lng);
+    setToggleEditPostForm(true);
+    console.log("clicked");
+  };
+
+  console.log(toggleEditPostForm);
 
   const options = {
     styles: mapStyles,
@@ -87,6 +100,7 @@ const MemoryMap = (): JSX.Element => {
             clickHandler={() => {
               setSelected(null);
             }}
+            toggleEditPostFormFunc={toggleEditPostFormFunc}
           />
         ) : null}
 
@@ -97,6 +111,20 @@ const MemoryMap = (): JSX.Element => {
               long={long}
               setTogglePostForm={setTogglePostForm}
             />
+          </Form>
+        ) : null}
+
+        {auth._id && toggleEditPostForm && selected ? (
+          <Form>
+            <EditPostForm
+              setToggleEditPostForm={setToggleEditPostForm}
+              info={selected}
+            />
+            {/* <AddPostForm
+              lat={lat}
+              long={long}
+              setTogglePostForm={setTogglePostForm}
+            /> */}
           </Form>
         ) : null}
       </GoogleMap>

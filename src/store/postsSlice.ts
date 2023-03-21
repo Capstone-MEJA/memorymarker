@@ -50,14 +50,31 @@ export const newPost = createAsyncThunk(
   }
 );
 
-export const updatePost = createAsyncThunk("updatePost", async (postObj) => {
-  try {
-    const { data } = await axios.put(`/api/posts`, postObj);
-    return data;
-  } catch (error) {
-    console.log(error);
+export const updatePost = createAsyncThunk(
+  "updatePost",
+  async ({
+    _id,
+    title,
+    description,
+  }: {
+    _id: string;
+    title: string;
+    description: string;
+    // latitude: number | null;
+    // longitude: number | null;
+  }) => {
+    try {
+      const { data } = await axios.put(`/api/posts/${_id}`, {
+        _id,
+        title,
+        description,
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
 export const deletePost = createAsyncThunk(
   "deletePost",
@@ -103,6 +120,7 @@ export const PostsSlice = createSlice({
             return action.payload;
           }
         });
+        // return action.payload;
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         return state.filter((post) => post._id !== action.payload._id);
