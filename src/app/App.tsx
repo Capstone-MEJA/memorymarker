@@ -5,7 +5,7 @@ import React from 'react';
 import Sidebar from "../features/nav/SideBar";
 // import Nav from "./Navbar";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../store";
+import { AppDispatch } from "../interface";
 import { loadUser } from "../store/authSlice";
 
 

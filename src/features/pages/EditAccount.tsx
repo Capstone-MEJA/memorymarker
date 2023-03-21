@@ -1,6 +1,6 @@
 // import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store";
+import { AppDispatch } from "../../interface";
 import { updateUser } from "../../store/usersSlice";
 
 const EditAccount = () => {
