@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch, AddFormProps } from "../../interface";
+import { AddFormProps } from "../../interface";
+import { AppDispatch } from "../../store";
 import { newPost } from "../../store/postsSlice";
 import styled from "styled-components";
 

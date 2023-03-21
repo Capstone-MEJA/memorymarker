@@ -7,17 +7,18 @@ import SingleMarker from "./SingleMarker";
 import SingleInfoWindow from "./SingleInfoWindow";
 import styled from "styled-components";
 import AddPostForm from "../pages/AddPostForm";
-import { AppDispatch, IsPost, isStore } from "../../interface";
+import { IsPost } from "../../interface";
+import { AppDispatch } from "../../store";
 import EditPostForm from "../pages/EditPostForm";
 
 const MemoryMap = (): JSX.Element => {
   //useDispatch need a type - define AppDispatch in the store
-  const auth = useSelector((state: isStore) => state.auth);
+  const auth = useSelector((state: any) => state.auth);
   const dispatch = useDispatch<AppDispatch>();
 
   const center = useRef({ lat: 40.7527277692752, lng: -73.97722734175942 });
 
-  const allPosts:IsPost[] = useSelector(selectAllPosts);
+  const allPosts: any = useSelector(selectAllPosts);
 
   //add a state that keep track of selected marker to render infoWindow
   const [selectedPost, setSelectedPost] = useState<IsPost | null>(null);

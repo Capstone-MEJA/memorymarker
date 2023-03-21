@@ -1,14 +1,14 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/authSlice";
-import { AppDispatch, isStore } from "../../interface";
+import { AppDispatch } from "../../store";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Login = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const auth = useSelector((state: isStore) => state.auth);
+  const auth = useSelector((state: any) => state.auth);
 
   useEffect(() => {
     if (auth._id) {
