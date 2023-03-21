@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import jwtDecode from "jwt-decode";
 
 const initialState = {
@@ -23,9 +23,9 @@ export const registerUser = createAsyncThunk(
       });
       localStorage.setItem("token", token.data);
       return token.data;
-    } catch (err: any) {
-      console.log(err.response.data);
-      return rejectWithValue(err.response.data);
+    } catch (err) {
+      const error = err as AxiosError<Error>;
+      return rejectWithValue(error.response?.data);
     }
   }
 );
@@ -40,9 +40,9 @@ export const loginUser = createAsyncThunk(
       });
       localStorage.setItem("token", token.data);
       return token.data;
-    } catch (err: any) {
-      console.log(err.response.data);
-      return rejectWithValue(err.response.data);
+    } catch (err) {
+      const error = err as AxiosError<Error>;
+      return rejectWithValue(error.response?.data);
     }
   }
 );
