@@ -51,7 +51,6 @@ router.delete("/:_id", async (req, res, next) => {
   try {
     const post = await Post.findById(req.params._id);
     await Post.deleteOne({ _id: req.params._id });
-    console.log(post);
     res.send(post);
   } catch (err) {
     console.log(err);
