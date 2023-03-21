@@ -11,14 +11,17 @@ export const fetchAllPosts = createAsyncThunk("allPosts", async () => {
   }
 });
 
-export const fetchSinglePost = createAsyncThunk("singlePost", async (_id) => {
-  try {
-    const { data } = await axios.get(`/api/posts/${_id}`);
-    return data;
-  } catch (error) {
-    console.log(error);
+export const fetchSinglePost = createAsyncThunk(
+  "singlePost",
+  async (_id: string) => {
+    try {
+      const { data } = await axios.get(`/api/posts/${_id}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
 export const newPost = createAsyncThunk(
   "newPost",
@@ -56,14 +59,17 @@ export const updatePost = createAsyncThunk("updatePost", async (postObj) => {
   }
 });
 
-export const deletePost = createAsyncThunk("deletePost", async (_id) => {
-  try {
-    const { data } = await axios.delete(`/api/posts/${_id}`);
-    return data;
-  } catch (error) {
-    console.log(error);
+export const deletePost = createAsyncThunk(
+  "deletePost",
+  async (_id: string) => {
+    try {
+      const { data } = await axios.delete(`/api/posts/${_id}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
 interface isPost {
   _id: string;
@@ -99,7 +105,7 @@ export const PostsSlice = createSlice({
         });
       })
       .addCase(deletePost.fulfilled, (state, action) => {
-        return state.filter((post) => post._id !== action.payload);
+        return state.filter((post) => post._id !== action.payload._id);
       });
   },
   reducers: {},
