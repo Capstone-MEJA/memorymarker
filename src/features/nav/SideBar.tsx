@@ -6,7 +6,7 @@ import * as FaIcons from "react-icons/fa";
 // import { SidebarData } from "./SideBarData";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store";
+import { AppDispatch } from "../../interface";
 import { logoutUser } from "../../store/authSlice";
 
 const Sidebar: React.FC = () => {
