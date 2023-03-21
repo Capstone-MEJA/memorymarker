@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { IsPost, IsUser } from "../interface";
 import authSlice from "./authSlice";
 import postsSlice from "./postsSlice";
 import usersSlice from "./usersSlice";
@@ -19,6 +20,6 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export interface isStore {
-  posts: object[];
-  users: object[];
+  posts: IsPost[];
+  users: IsUser[];
 }

@@ -18,7 +18,9 @@ const MemoryMap = (): JSX.Element => {
 
   const center = useRef({ lat: 40.7527277692752, lng: -73.97722734175942 });
 
-  const allPosts: any = useSelector(selectAllPosts);
+  //an array of objects
+  // const allPosts: any = useSelector(selectAllPosts);
+  const allPosts: IsPost[] = useSelector(selectAllPosts);
 
   console.log("allPosts", allPosts);
 
@@ -89,7 +91,7 @@ const MemoryMap = (): JSX.Element => {
           );
         })}
 
-        {/* conditional render the infoWindow based on selected post */}
+        {/* conditionally render the infoWindow based on selected post */}
         {selectedPost ? (
           <SingleInfoWindow
             info={selectedPost}
@@ -100,6 +102,7 @@ const MemoryMap = (): JSX.Element => {
           />
         ) : null}
 
+        {/* conditionally render the add post from when logged in and toggle is true */}
         {auth._id && togglePostForm ? (
           <Form>
             <AddPostForm
@@ -110,6 +113,7 @@ const MemoryMap = (): JSX.Element => {
           </Form>
         ) : null}
 
+        {/* conditionally render the edit post from when logged in and toggle is true */}
         {auth._id && toggleEditPostForm && selectedPost ? (
           <Form>
             <EditPostForm
