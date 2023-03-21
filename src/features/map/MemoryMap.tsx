@@ -21,12 +21,12 @@ const MemoryMap = (): JSX.Element => {
   //add a state that keep track of selected marker to render infoWindow
   //need to specific typeof selected to either be ISelected interface or null
   interface ISelected {
-    _id: string;
-    title: string;
-    description: string;
-    tags: [string];
-    latitude: number;
-    longitude: number;
+    _id?: string;
+    title?: string;
+    description?: string;
+    tags?: [string];
+    latitude?: number;
+    longitude?: number;
   }
   const [selected, setSelected] = useState<ISelected | null>(null);
   const [togglePostForm, setTogglePostForm] = useState<boolean>(false);
@@ -38,6 +38,23 @@ const MemoryMap = (): JSX.Element => {
   useEffect(() => {
     dispatch(fetchAllPosts());
   }, []);
+
+  useEffect(() => {
+    console.log("useeffect")
+    const findEditedPost: Function = (): ISelected | undefined => {
+      if (selected) {
+        return allPosts.find((post: ISelected) => post._id === selected._id);
+      }
+      return undefined;
+    };
+    const editedPost = findEditedPost();
+    if (editedPost) {
+      setSelected(editedPost);
+      console.log(editedPost);
+    }
+  }, [allPosts]);
+
+  console.log("new", selected);
 
   const togglePostFormFunc = (event: any) => {
     const lat = event.latLng.lat();
