@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
                 to="/account"
                 style={{ textDecoration: "none", color: "whitesmoke" }}
               >
-                {auth.username}
+                Hi, {auth.username}!
               </MenuItemLink>
               <MenuItemLink
                 to="/about"

@@ -81,7 +81,8 @@ export const PostsSlice = createSlice({
         });
       })
       .addCase(deletePost.fulfilled, (state, action) => {
-        return state.filter((post) => post._id !== action.payload);
+        console.log(action.payload)
+        return state.filter((post) => post._id !== action.payload._id);
       });
   },
   reducers: {},
