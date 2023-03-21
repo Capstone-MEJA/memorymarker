@@ -6,7 +6,7 @@ const AboutText = styled.div`
     align-items: center;
     justify-content: center;
     font-size: 20px;
-    height: 70vh;
+    // height: 70vh;
 `
 const AboutTitle = styled.div`
 display: flex;
@@ -16,7 +16,12 @@ display: flex;
     height: 70vh;
 `
 const AboutSection = styled.div``
-const Paragraph = styled.div``
+const Paragraph = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+`
 
 
 const About: React.FC = () => {
