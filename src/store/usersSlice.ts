@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { isStore } from "./index";
+import { IsUser } from "../interface";
+import { isStore } from "../store";
 
 export const fetchAllUsers = createAsyncThunk("allUsers", async () => {
   try {
@@ -29,7 +30,7 @@ export const newUser = createAsyncThunk("newUser", async (postObj) => {
   }
 });
 
-export const updateUser = createAsyncThunk("updateUser", async (postObj: object) => {
+export const updateUser = createAsyncThunk("updateUser", async (postObj) => {
   try {
     const { data } = await axios.put(`/api/users`, postObj);
     return data;
@@ -47,18 +48,11 @@ export const deleteUser = createAsyncThunk("deleteUser", async (_id) => {
   }
 });
 
-interface isUser {
-  _id: string;
-  username: string;
-  password: string;
-  createdAt: Date;
-  posts: object[];
-}
-let initialState: isUser[] = [];
+let initialState: IsUser[] = [];
 
 export const UsersSlice = createSlice({
   name: "users",
-  initialState: initialState,
+  initialState,
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllUsers.fulfilled, (state, action) => {

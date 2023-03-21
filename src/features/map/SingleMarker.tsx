@@ -1,6 +1,8 @@
 import { Marker } from "@react-google-maps/api";
+import { IsPost } from "../../interface";
 
-const SingleMarker = (props: any) => {
+//ideally the only prop passed on should be post and the clickhandler function is located here instead of MemoryMap
+const SingleMarker = (props: {post: IsPost, clickHandler():void}) => {
   return (
     <Marker
       position={{ lat: props.post.latitude, lng: props.post.longitude }}

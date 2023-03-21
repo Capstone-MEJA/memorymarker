@@ -1,17 +1,12 @@
 import { useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
+import { AddFormProps } from "../../interface";
 import { AppDispatch } from "../../store";
 import { newPost } from "../../store/postsSlice";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
 
-interface Props {
-  lat: number | null;
-  long: number | null;
-  setTogglePostForm: (toggle: boolean) => void;
-}
-
-const AddPostForm = (props: Props) => {
+const AddPostForm = (props: AddFormProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
