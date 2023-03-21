@@ -14,8 +14,6 @@ interface Info {
 }
 
 interface Props {
-  //   lat: number | null;
-  //   long: number | null;
   setToggleEditPostForm: (toggle: boolean) => void;
   info: Info;
 }
