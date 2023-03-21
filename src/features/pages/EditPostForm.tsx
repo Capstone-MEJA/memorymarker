@@ -36,7 +36,7 @@ const EditPostForm = (props: Props) => {
     props.setToggleEditPostForm(false);
   }
 
-  console.log("props", props.info);
+  console.log("props", typeof props.info._id);
   return (
     <FormWrapper>
       <form
