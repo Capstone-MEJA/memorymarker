@@ -4,7 +4,7 @@ import store from "./store/index";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./app/App";
 import { GlobalStyle } from "./styles/global";
-import React from "react";
+// import React from "react";
 
 import "../src/app.css";
 
@@ -14,10 +14,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <Router>
     <Provider store={store}>
-    <React.StrictMode>
+    {/* <React.StrictMode> */}
       <GlobalStyle />
       <App />      
-    </React.StrictMode>
+    {/* </React.StrictMode> */}
     </Provider>
   </Router>
 );

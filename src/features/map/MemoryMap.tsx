@@ -1,10 +1,11 @@
-import { GoogleMap, InfoWindow } from "@react-google-maps/api";
+import { GoogleMap } from "@react-google-maps/api";
 import { fetchAllPosts, selectAllPosts } from "../../store/postsSlice";
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import mapStyles from "./mapStyles";
 import SingleMarker from "./SingleMarker";
+import SingleInfoWindow from "./SingleInfoWindow";
 import styled from "styled-components";
 import AddPostForm from "../pages/AddPostForm";
 
@@ -32,11 +33,7 @@ const MemoryMap = (): JSX.Element => {
   //fetch all post
   useEffect(() => {
     dispatch(fetchAllPosts());
-  }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(fetchSinglePost(selected._id));
-  // }, [selected]);
+  }, []);
 
   const togglePostFormFunc = (event: any) => {
     //get location of click and set it to lat lng
@@ -84,18 +81,14 @@ const MemoryMap = (): JSX.Element => {
 
         {/* conditional render the infoWindow based on selected post */}
         {selected ? (
-          <InfoWindow
-            position={{ lat: selected.latitude, lng: selected.longitude }}
-            onCloseClick={() => {
+          <SingleInfoWindow
+            info={selected}
+            clickHandler={() => {
               setSelected(null);
             }}
-          >
-            <div>
-              <h2>{selected.title}</h2>
-              <p>{selected.description}</p>
-            </div>
-          </InfoWindow>
+          />
         ) : null}
+
         {auth._id && togglePostForm ? (
           <Form>
             <AddPostForm />
