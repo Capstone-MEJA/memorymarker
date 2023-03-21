@@ -20,14 +20,32 @@ export const fetchSinglePost = createAsyncThunk("singlePost", async (_id) => {
   }
 });
 
-export const newPost = createAsyncThunk("newPost", async (postObj) => {
-  try {
-    const { data } = await axios.post(`/api/posts`, postObj);
-    return data;
-  } catch (error) {
-    console.log(error);
+export const newPost = createAsyncThunk(
+  "newPost",
+  async ({
+    title,
+    description,
+    latitude,
+    longitude,
+  }: {
+    title: string;
+    description: string;
+    latitude: number | null;
+    longitude: number | null;
+  }) => {
+    try {
+      const { data } = await axios.post(`/api/posts`, {
+        title,
+        description,
+        latitude,
+        longitude,
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
 export const updatePost = createAsyncThunk("updatePost", async (postObj) => {
   try {
@@ -69,7 +87,7 @@ export const PostsSlice = createSlice({
         return action.payload;
       })
       .addCase(newPost.fulfilled, (state, action) => {
-        return action.payload;
+        return [...state, action.payload];
       })
       .addCase(updatePost.fulfilled, (state, action) => {
         return state.map((post) => {
