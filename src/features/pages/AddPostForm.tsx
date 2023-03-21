@@ -12,8 +12,8 @@ interface Props {
 
 const AddPostForm = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   // const [tag, setTag] = useState("");
 
   function handleSubmit(e: React.FormEvent) {

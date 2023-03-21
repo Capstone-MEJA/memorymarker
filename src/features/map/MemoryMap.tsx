@@ -98,7 +98,7 @@ const MemoryMap = (): JSX.Element => {
           </InfoWindow>
         ) : null}
 
-        {/* conditionally create a post form when logged in and map is clicked*/}
+        {/* conditionally render create a post form when logged in and map is clicked*/}
         {auth._id && togglePostForm ? (
           <Form>
             <AddPostForm
