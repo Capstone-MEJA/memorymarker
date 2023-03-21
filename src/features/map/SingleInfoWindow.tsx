@@ -2,6 +2,7 @@ import { InfoWindow } from "@react-google-maps/api";
 import { deletePost } from "../../store/postsSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch, IsPost } from "../../interface";
+// import { useState } from "react";
 
 
 //ideally the only prop passed on should be post and the clickhandler function is located here instead of MemoryMap
@@ -10,7 +11,7 @@ const SingleInfoWindow = (props: {info: IsPost, clickHandler():void}) => {
 
   const deleteSinglePost = (id: string) => {
     // closes info window
-    props.clickHandler()
+    props.clickHandler();
     // deletes marker & post
     dispatch(deletePost(id));
   };
@@ -23,8 +24,16 @@ const SingleInfoWindow = (props: {info: IsPost, clickHandler():void}) => {
       <div>
         <h2>{props.info.title}</h2>
         <p>{props.info.description}</p>
-        <button>Edit Post</button>
-        <button onClick={() => {deleteSinglePost(props.info._id)}}>Delete Post</button>
+        <button onClick={(event) => props.toggleEditPostFormFunc(event)}>
+          Edit Post
+        </button>
+        <button
+          onClick={() => {
+            deleteSinglePost(props.info._id);
+          }}
+        >
+          Delete Post
+        </button>
       </div>
     </InfoWindow>
   );

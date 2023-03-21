@@ -8,6 +8,7 @@ import SingleInfoWindow from "./SingleInfoWindow";
 import styled from "styled-components";
 import AddPostForm from "../pages/AddPostForm";
 import { AppDispatch, IsPost, isStore } from "../../interface";
+import EditPostForm from "../pages/EditPostForm";
 
 const MemoryMap = (): JSX.Element => {
   //useDispatch need a type - define AppDispatch in the store
@@ -21,6 +22,7 @@ const MemoryMap = (): JSX.Element => {
   //add a state that keep track of selected marker to render infoWindow
   const [selectedPost, setSelectedPost] = useState<IsPost | null>(null);
   const [togglePostForm, setTogglePostForm] = useState<boolean>(false);
+  const [toggleEditPostForm, setToggleEditPostForm] = useState<boolean>(false);
   const [lat, setLat] = useState<number | null>(null);
   const [long, setLong] = useState<number | null>(null);
 
@@ -29,8 +31,23 @@ const MemoryMap = (): JSX.Element => {
     dispatch(fetchAllPosts());
   }, []);
 
-  //clicker on the SingleMarker component
-  // event: should be some google.maps.MapMouseEvent
+  useEffect(() => {
+    console.log("useeffect")
+    const findEditedPost: Function = (): IsPost | undefined => {
+      if (selectedPost) {
+        return allPosts.find((post: IsPost) => post._id === selectedPost._id);
+      }
+      return undefined;
+    };
+    const editedPost = findEditedPost();
+    if (editedPost) {
+      setSelectedPost(editedPost);
+      console.log(editedPost);
+    }
+  }, [allPosts]);
+
+  console.log("new", selectedPost);
+
   const togglePostFormFunc = (event: any) => {
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
@@ -39,8 +56,19 @@ const MemoryMap = (): JSX.Element => {
     setLat(lat);
     setLong(lng);
   };
-  console.log(lat);
-  console.log(long);
+
+  const toggleEditPostFormFunc = (event: any) => {
+    // const lat = event.latLng.lat();
+    // const lng = event.latLng.lng();
+    // console.log(`lat: ${lat} lng: ${lng}`);
+    // setTogglePostForm(true);
+    // setLat(lat);
+    // setLong(lng);
+    setToggleEditPostForm(true);
+    console.log("clicked");
+  };
+
+  console.log(toggleEditPostForm);
 
   const options = {
     styles: mapStyles,
@@ -79,6 +107,7 @@ const MemoryMap = (): JSX.Element => {
             clickHandler={() => {
               setSelectedPost(null);
             }}
+            toggleEditPostFormFunc={toggleEditPostFormFunc}
           />
         ) : null}
 
@@ -89,6 +118,20 @@ const MemoryMap = (): JSX.Element => {
               long={long}
               setTogglePostForm={setTogglePostForm}
             />
+          </Form>
+        ) : null}
+
+        {auth._id && toggleEditPostForm && selectedPost ? (
+          <Form>
+            <EditPostForm
+              setToggleEditPostForm={setToggleEditPostForm}
+              info={selectedPost}
+            />
+            {/* <AddPostForm
+              lat={lat}
+              long={long}
+              setTogglePostForm={setTogglePostForm}
+            /> */}
           </Form>
         ) : null}
       </GoogleMap>

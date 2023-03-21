@@ -50,14 +50,31 @@ export const newPost = createAsyncThunk(
   }
 );
 
-export const updatePost = createAsyncThunk("updatePost", async (postObj) => {
-  try {
-    const { data } = await axios.put(`/api/posts`, postObj);
-    return data;
-  } catch (error) {
-    console.log(error);
+export const updatePost = createAsyncThunk(
+  "updatePost",
+  async ({
+    _id,
+    title,
+    description,
+  }: {
+    _id: string;
+    title: string;
+    description: string;
+    // latitude: number | null;
+    // longitude: number | null;
+  }) => {
+    try {
+      const { data } = await axios.put(`/api/posts/${_id}`, {
+        _id,
+        title,
+        description,
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
 export const deletePost = createAsyncThunk(
   "deletePost",
@@ -96,13 +113,27 @@ export const PostsSlice = createSlice({
         return [...state, action.payload];
       })
       .addCase(updatePost.fulfilled, (state, action) => {
-        return state.map((post) => {
-          if (post._id !== action.payload._id) {
-            return post;
+        console.log("payload", action.payload);
+        // find the index of the post you are updating
+        // update only that index
+        // spread the rest of the array
+
+        return state.map(post => {
+          if(post._id === action.payload._id){
+            return action.payload
           } else {
-            return action.payload;
+            return post
           }
-        });
+        })
+        // return state;
+        // return state.map((post) => {
+        //   if (post._id !== action.payload._id) {
+        //     return post;
+        //   } else {
+        //     return action.payload;
+        //   }
+        // });
+        // return [...state, action.payload];
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         return state.filter((post) => post._id !== action.payload._id);
