@@ -6,7 +6,7 @@ import { useState, ChangeEvent } from "react";
 
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
-import { newPost } from "../../store/postsSlice";
+import { fetchAllPosts, newPost } from "../../store/postsSlice";
 
 interface Props {
   lat: number | null;
@@ -30,7 +30,6 @@ const AddPostForm = (props: Props) => {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // dispatch(loginUser(user));
     dispatch(
       newPost({
         title: title,
@@ -39,7 +38,6 @@ const AddPostForm = (props: Props) => {
         longitude: props.long,
       })
     );
-    // console.log("clicked");
   }
   return (
     <div>
