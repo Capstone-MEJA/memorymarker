@@ -4,11 +4,13 @@ import { AddFormProps } from "../../interface";
 import { AppDispatch } from "../../store";
 import { newPost } from "../../store/postsSlice";
 import styled from "styled-components";
+import * as FaIcons from "react-icons/fa";
 
 const AddPostForm = (props: AddFormProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const  togglePostForm = () => props.setTogglePostForm(false);
   // const [tag, setTag] = useState("");
 
   function handleSubmit(e: React.FormEvent) {
@@ -24,8 +26,12 @@ const AddPostForm = (props: AddFormProps) => {
     props.setTogglePostForm(false);
   }
   return (
+    
     <FormWrapper>
       <form onSubmit={handleSubmit}>
+      <button type="button" onClick={togglePostForm}>
+        <FaIcons.FaTimes />
+        </button>
         <h2>Create post</h2>
         <input
           type="text"
@@ -33,14 +39,14 @@ const AddPostForm = (props: AddFormProps) => {
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setTitle(e.target.value)
           }
-        />
+          />
         <input
           type="textarea"
           placeholder="description"
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setDescription(e.target.value)
           }
-        />
+          />
         {/* <input
           type="text"
           placeholder="tag"
@@ -48,10 +54,10 @@ const AddPostForm = (props: AddFormProps) => {
             setTag(e.target.value)
           }
         /> */}
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </FormWrapper>
-  );
+    );
 };
 
 export default AddPostForm;
@@ -68,3 +74,12 @@ const FormWrapper = styled.div`
   justify-content: center;
   height: auto;
 `;
+
+// const PostIconClose = styled.div`
+//   display: flex;
+//   justify-content: end;
+//   font-size: 1.5rem;
+//   margin-top: 0.75rem;
+//   margin-right: 1rem;
+//   color: #ffffff;
+// `;

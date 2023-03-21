@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import { updatePost } from "../../store/postsSlice";
 import styled from "styled-components";
+import * as FaIcons from "react-icons/fa";
 
 interface Info {
   _id?: string;
@@ -23,6 +24,7 @@ const EditPostForm = (props: Props) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   // const [tag, setTag] = useState("");
+  const  toggleEditForm = () => props.setToggleEditPostForm(false);
 
   function handleSubmit(id: any) {
     // e.preventDefault();
@@ -45,6 +47,9 @@ const EditPostForm = (props: Props) => {
         }}
       >
         <h2>Edit post</h2>
+        <button type="button" onClick={toggleEditForm}>
+        <FaIcons.FaTimes />
+        </button>
         <input
           type="text"
           placeholder="title"
