@@ -2,7 +2,7 @@ import { InfoWindow } from "@react-google-maps/api";
 import { deletePost } from "../../store/postsSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
-import { useState } from "react";
+// import { useState } from "react";
 
 const SingleInfoWindow = (props: any) => {
   const dispatch = useDispatch<AppDispatch>();

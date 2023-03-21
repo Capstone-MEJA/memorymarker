@@ -117,10 +117,14 @@ export const PostsSlice = createSlice({
         // find the index of the post you are updating
         // update only that index
         // spread the rest of the array
-        const index = state.findIndex(action.payload);
-        console.log("index", index);
 
-        state = state.splice(index, 1, action.payload);
+        return state.map(post => {
+          if(post._id === action.payload._id){
+            return action.payload
+          } else {
+            return post
+          }
+        })
         // return state;
         // return state.map((post) => {
         //   if (post._id !== action.payload._id) {

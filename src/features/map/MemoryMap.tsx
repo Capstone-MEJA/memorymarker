@@ -21,12 +21,12 @@ const MemoryMap = (): JSX.Element => {
   //add a state that keep track of selected marker to render infoWindow
   //need to specific typeof selected to either be ISelected interface or null
   interface ISelected {
-    _id: string;
-    title: string;
-    description: string;
-    tags: [string];
-    latitude: number;
-    longitude: number;
+    _id?: string;
+    title?: string;
+    description?: string;
+    tags?: [string];
+    latitude?: number;
+    longitude?: number;
   }
   const [selected, setSelected] = useState<ISelected | null>(null);
   const [togglePostForm, setTogglePostForm] = useState<boolean>(false);
@@ -39,27 +39,30 @@ const MemoryMap = (): JSX.Element => {
     dispatch(fetchAllPosts());
   }, []);
 
+  useEffect(() => {
+    const findEditedPost: Function = (): ISelected | undefined => {
+      if (selected) {
+        return allPosts.find((post: ISelected) => post._id === selected._id);
+      }
+      return undefined;
+    };
+    const editedPost = findEditedPost();
+    if (editedPost) {
+      setSelected(editedPost);
+    }
+  }, [allPosts]);
+
   const togglePostFormFunc = (event: any) => {
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
-    console.log(`lat: ${lat} lng: ${lng}`);
     setTogglePostForm(true);
     setLat(lat);
     setLong(lng);
   };
 
   const toggleEditPostFormFunc = (event: any) => {
-    // const lat = event.latLng.lat();
-    // const lng = event.latLng.lng();
-    // console.log(`lat: ${lat} lng: ${lng}`);
-    // setTogglePostForm(true);
-    // setLat(lat);
-    // setLong(lng);
     setToggleEditPostForm(true);
-    console.log("clicked");
   };
-
-  console.log(toggleEditPostForm);
 
   const options = {
     styles: mapStyles,
@@ -120,11 +123,6 @@ const MemoryMap = (): JSX.Element => {
               setToggleEditPostForm={setToggleEditPostForm}
               info={selected}
             />
-            {/* <AddPostForm
-              lat={lat}
-              long={long}
-              setTogglePostForm={setTogglePostForm}
-            /> */}
           </Form>
         ) : null}
       </GoogleMap>
@@ -136,7 +134,6 @@ export default MemoryMap;
 
 const Form = styled.div`
   position: relative;
-
   display: flex;
   justify-content: center;
   align-items: center;
