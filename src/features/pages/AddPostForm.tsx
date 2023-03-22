@@ -31,13 +31,13 @@ const AddPostForm = (props: AddFormProps) => {
         longitude: props.long,
       })
     );
-    togglePostForm();
+    dispatch(togglePostForm());
   }
   return (
     
     <FormWrapper>
       <form onSubmit={handleSubmit}>
-      <button type="button" onClick={() => togglePostForm()}>
+      <button type="button" onClick={() => dispatch(togglePostForm())}>
         <FaIcons.FaTimes />
         </button>
         <h2>Create post</h2>
