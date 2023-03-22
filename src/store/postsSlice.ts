@@ -30,11 +30,13 @@ export const newPost = createAsyncThunk(
     description,
     latitude,
     longitude,
+    user,
   }: {
     title: string;
     description: string;
     latitude: number | null;
     longitude: number | null;
+    user: string;
   }) => {
     try {
       const { data } = await axios.post(`/api/posts`, {
@@ -42,6 +44,7 @@ export const newPost = createAsyncThunk(
         description,
         latitude,
         longitude,
+        user,
       });
       return data;
     } catch (error) {
