@@ -85,7 +85,10 @@ const MemoryMap = (): JSX.Element => {
               key={post._id}
               // jessie wants this fixed!
               clickHandler={() => {
-                center.current = { lat: post.latitude, lng: post.longitude };
+                center.current = {
+                  lat: Number(post.latitude),
+                  lng: Number(post.longitude),
+                };
                 setSelectedPost(post);
               }}
             />
@@ -107,8 +110,8 @@ const MemoryMap = (): JSX.Element => {
         {auth._id && togglePostForm ? (
           <Form>
             <AddPostForm
-              lat={lat}
-              long={long}
+              lat={Number(lat)}
+              long={Number(long)}
               setTogglePostForm={setTogglePostForm}
             />
           </Form>
