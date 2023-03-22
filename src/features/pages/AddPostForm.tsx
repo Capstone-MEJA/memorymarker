@@ -7,6 +7,8 @@ import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { useEffect } from "react";
+import { fetchAllPosts } from "../../store/postsSlice";
 
 const AddPostForm = (props: AddFormProps) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -15,6 +17,10 @@ const AddPostForm = (props: AddFormProps) => {
   const  togglePostForm = () => props.setTogglePostForm(false);
   const auth = useSelector((state: RootState) => state.auth);
   // const [tag, setTag] = useState("");
+
+  useEffect(() => {
+    dispatch(fetchAllPosts());
+  }, [dispatch]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

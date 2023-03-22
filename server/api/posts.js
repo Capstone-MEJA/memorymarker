@@ -26,6 +26,7 @@ router.get("/:_id", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const post = await Post.create(req.body);
+    await post.populate('user');
     res.send(post);
   } catch (err) {
     console.log(err);
