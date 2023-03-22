@@ -55,7 +55,7 @@ const MemoryMap = (): JSX.Element => {
     setLong(lng);
   };
 
-  const toggleEditPostFormFunc = (event: any) => {
+  const toggleEditPostFormFunc = () => {
     setToggleEditPostForm(true);
   };
 

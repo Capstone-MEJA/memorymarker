@@ -23,9 +23,9 @@ const Register = () => {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
     dispatch(registerUser(user));
   }
+
   return (
     <RegisterWrapper>
       <form onSubmit={handleSubmit}>
