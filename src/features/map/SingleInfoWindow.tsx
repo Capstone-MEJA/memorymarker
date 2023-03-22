@@ -7,11 +7,10 @@ import { AppDispatch } from "../../store";
 import { IsPost } from "../../interface";
 // import { useState } from "react";
 
-import { toggleEditPostForm } from "../../store/globalSlice";
+import { setSelectedPost, toggleEditPostForm } from "../../store/globalSlice";
 
 interface singleInfoWindowProps {
   info: IsPost;
-  clickHandler(): void;
 }
 
 
@@ -20,7 +19,7 @@ const SingleInfoWindow = (props: singleInfoWindowProps) => {
 
   const deleteSinglePost = (id: string) => {
     // closes info window
-    props.clickHandler();
+    dispatch(setSelectedPost(null));
     // deletes marker & post
     dispatch(deletePost(id));
   };
@@ -28,7 +27,7 @@ const SingleInfoWindow = (props: singleInfoWindowProps) => {
   return (
     <InfoWindow
       position={{ lat: props.info.latitude, lng: props.info.longitude }}
-      onCloseClick={props.clickHandler}
+      onCloseClick={() => dispatch(setSelectedPost(null))}
     >
       <div>
         <h2>{props.info.title}</h2>
