@@ -19,7 +19,6 @@ const MemoryMap = (): JSX.Element => {
   const center = useRef({ lat: 40.7527277692752, lng: -73.97722734175942 });
 
   //an array of objects
-  // const allPosts: any = useSelector(selectAllPosts);
   const allPosts: IsPost[] = useSelector(selectAllPosts);
 
   //add a state that keep track of selected marker to render infoWindow
