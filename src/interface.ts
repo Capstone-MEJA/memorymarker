@@ -5,6 +5,7 @@ export interface IsPost {
   tags: [string];
   latitude: number;
   longitude: number;
+  user: IsUser;
 }
 
 export interface IsUser {

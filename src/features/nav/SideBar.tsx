@@ -85,7 +85,6 @@ const Sidebar: React.FC = () => {
               </MenuItemLink>
             </MenuItemLinks>
           )}
-
           {/* // if the user is logged in show */}
           {/* {SidebarData.map((item, index) => {
             return (
