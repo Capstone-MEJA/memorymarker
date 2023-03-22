@@ -12,31 +12,31 @@ async function seed() {
 
   console.log("seeding users");
 
-  await Promise.all([
-    User.create({ username: "jessie", password: "123" }),
-    User.create({ username: "mandy", password: "123" }),
-    User.create({ username: "erica", password: "123" }),
-    User.create({ username: "alicia", password: "123" }),
-  ]);
-  console.log("user seeded");
+  // await Promise.all([
+  //   User.create({ username: "jessie", password: "123" }),
+  //   User.create({ username: "mandy", password: "123" }),
+  //   User.create({ username: "erica", password: "123" }),
+  //   User.create({ username: "alicia", password: "123" }),
+  // ]);
+  // console.log("user seeded");
 
-  console.log("seeding posts");
-  await Promise.all([
-    Post.create({
-      title: "Hi, its me",
-      description: "im the problem, its me",
-      tags: ["#food", "#life", "#song"],
-      latitude: 40.782717155326324,
-      longitude: -73.96561558883674,
-    }),
-    Post.create({
-      title: "Blank space",
-      description: "nightmare, dressed like a daydream",
-      tags: ["#life, #swiftie, #song"],
-      latitude: 40.7486274226317,
-      longitude: -73.98558930048775,
-    }),
-  ]);
+  // console.log("seeding posts");
+  // await Promise.all([
+  //   Post.create({
+  //     title: "Hi, its me",
+  //     description: "im the problem, its me",
+  //     tags: ["#food", "#life", "#song"],
+  //     latitude: 40.782717155326324,
+  //     longitude: -73.96561558883674,
+  //   }),
+  //   Post.create({
+  //     title: "Blank space",
+  //     description: "nightmare, dressed like a daydream",
+  //     tags: ["#life, #swiftie, #song"],
+  //     latitude: 40.7486274226317,
+  //     longitude: -73.98558930048775,
+  //   }),
+  // ]);
   console.log("posts seeded");
 }
 

@@ -1,10 +1,11 @@
 const router = require("express").Router();
 module.exports = router;
 const Post = require("../models/Post");
+const User = require("../models/User");
 
 router.get("/", async (req, res, next) => {
   try {
-    const posts = await Post.find({});
+    const posts = await Post.find({}).populate('user');
     res.json(posts);
   } catch (err) {
     console.log(err);

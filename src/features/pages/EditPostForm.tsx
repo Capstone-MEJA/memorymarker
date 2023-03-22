@@ -1,7 +1,7 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
-import { updatePost } from "../../store/postsSlice";
+import { fetchAllPosts, fetchSinglePost, updatePost } from "../../store/postsSlice";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
 
@@ -25,7 +25,7 @@ const EditPostForm = (props: Props) => {
   const [description, setDescription] = useState<string>("");
   // const [tag, setTag] = useState("");
   const toggleEditForm = () => props.setToggleEditPostForm(false);
-
+  // const navigate = useNavigate();
   function handleSubmit(id: string | undefined) {
     if (typeof id === "string") {
       dispatch(
@@ -36,8 +36,14 @@ const EditPostForm = (props: Props) => {
         })
       );
       props.setToggleEditPostForm(false);
+      // window.location.reload();
     }
   }
+
+  // useEffect(() => {
+  //   dispatch(fetchAllPosts());
+  // }, [dispatch]);
+//please fix to fetchSinglePost(props.info.id?...)
 
   return (
     <FormWrapper>

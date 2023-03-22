@@ -32,7 +32,8 @@ const SingleInfoWindow = (props: {
       <div>
         <h2>{props.info.title}</h2>
         <p>{props.info.description}</p>
-        {auth._id === props.info.user ? 
+        <p>{props.info.user.username}</p>
+        {auth._id === props.info.user._id ? 
         <div>
         <button onClick={(event) => props.toggleEditPostFormFunc(event)}>
           Edit Post
