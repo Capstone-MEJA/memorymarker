@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -22,9 +23,9 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-// // *** only needed for seeded users - start
-// // before the user's password is saved to the database,
-// // hash the password with 5 salt rounds
+// *** only needed for seeded users - start
+// before the user's password is saved to the database,
+// hash the password with 5 salt rounds
 // userSchema.pre("save", function (next) {
 //   if (this.isModified("password")) {
 //     bcrypt.hash(this.password, 5, (err, hash) => {
@@ -46,6 +47,33 @@ const userSchema = new mongoose.Schema({
 //     console.log("Error while comparing password", err.message);
 //   }
 // };
-// // *** only needed for seeded users - end
+// *** only needed for seeded users - end
+
+// class methods
+// userSchema.statics.authenticate = async function ({ username, password }) {
+//   const user = await this.findOne({ where: { username } });
+//   if (!user || !(await user.correctPassword(password))) {
+//     const error = Error("Incorrect username/password");
+//     error.status = 401;
+//     throw error;
+//   }
+//   return user.generateToken();
+// };
+
+userSchema.statics.findByToken = async function (token) {
+  try {
+    const { _id } = await jwt.verify(token, process.env.JWT_SECRET);
+    const user = await this.findById(_id);
+    if (!user) {
+      throw "nooo";
+    }
+    return user;
+  } catch (ex) {
+    const error = Error("bad token");
+    error.status = 401;
+    // throw error;
+    return null;
+  }
+};
 
 module.exports = mongoose.model("User", userSchema);

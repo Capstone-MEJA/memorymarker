@@ -22,4 +22,5 @@ export type AppDispatch = typeof store.dispatch;
 export interface isStore {
   posts: IsPost[];
   users: IsUser[];
+  auth: object;
 }
