@@ -1,23 +1,45 @@
 // import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../store";
 import { updateUser } from "../../store/usersSlice";
+import { isStore } from "../../store";
+import { useState } from "react";
+
+export interface updateObj {
+  _id: string;
+  username?: string;
+  password?: string;
+}
 
 const EditAccount = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const loggedInUser = useSelector<isStore>((state) => state.auth);
+  console.log(loggedInUser)
 
-  const handleEditUser = (e: any) => {
-    e.preventDefault();
-    if (e.target.username.value && e.target.password.value) {
-      dispatch(
-        updateUser({
-          _id: "someID",
-          username: e.target.username.value,
-          password: e.target.password.value,
-        })
-      );
+  const [toggleForm, setToggleForm] = useState("");
+  const [formValues, setFormValues] = useState("");
+
+  const handleChange = (e) => {
+    setFormValues(e.target.value);
+    console.log(formValues);
+  };
+
+  const editInfo = (e) => {
+    if (e.target.value === "username") {
+      setToggleForm("username");
+      setFormValues("");
+    } else if (e.target.value === "password") {
+      setToggleForm("password");
+      setFormValues("");
     } else {
-      alert("PLEASE FILL IN ALL BLANKS, THANK YOU :)");
+      const updateObj: updateObj = { _id: loggedInUser._id };
+      if (e.target.value.includes("Username")) {
+        updateObj.username = formValues;
+      } else {
+        updateObj.password = formValues;
+      }
+      dispatch(updateUser(updateObj));
+      setToggleForm("");
     }
   };
 
@@ -25,25 +47,45 @@ const EditAccount = () => {
     <>
       <div className="wrapper">
         <section className="container">
-          <span>
-            <p>Username:</p>
-            <h1>{"username"}</h1>
-          </span>
+          <h1>Edit Account Information</h1>
         </section>
 
-        <section className="container">
-          <h1>Edit Information</h1>
-          <form className="flex-column gap-1" onSubmit={handleEditUser}>
-            <label htmlFor="user name">
-              <small>Username:</small>
-            </label>
-            <input type="text" name="username" />
-            <label htmlFor="password">
-              <small>Password:</small>
-            </label>
-            <input type="password" name="password" />
-            <button type="submit">Save</button>
-          </form>
+        <section>
+          {toggleForm !== "username" ? (
+            <p>{loggedInUser.username}</p>
+          ) : (
+            <input
+              type="text"
+              name="username"
+              onChange={handleChange}
+              value={formValues}
+            />
+          )}
+          <button
+            onClick={editInfo}
+            value={toggleForm !== "username" ? "username" : "updateUsername"}
+          >
+            {toggleForm !== "username" ? "Edit Username" : "Update Username"}
+          </button>
+        </section>
+
+        <section>
+          {toggleForm !== "password" ? (
+            <p>Your Super Top Secret Password :)</p>
+          ) : (
+            <input
+              type="text"
+              name="password"
+              onChange={handleChange}
+              value={formValues}
+            />
+          )}
+          <button
+            onClick={editInfo}
+            value={toggleForm !== "password" ? "password" : "updatePassword"}
+          >
+            {toggleForm !== "password" ? "Edit Password" : "Update Password"}
+          </button>
         </section>
       </div>
     </>

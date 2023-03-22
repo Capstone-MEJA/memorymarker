@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken")
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -47,5 +48,32 @@ userSchema.methods.comparePassword = async function (password) {
   }
 };
 // *** only needed for seeded users - end
+
+// class methods
+// userSchema.statics.authenticate = async function ({ username, password }) {
+//   const user = await this.findOne({ where: { username } });
+//   if (!user || !(await user.correctPassword(password))) {
+//     const error = Error("Incorrect username/password");
+//     error.status = 401;
+//     throw error;
+//   }
+//   return user.generateToken();
+// };
+
+userSchema.statics.findByToken = async function (token) {
+  try {
+    const { _id } = await jwt.verify(token, process.env.JWT_SECRET);
+    const user = await this.findById(_id);
+    if (!user) {
+      throw "nooo";
+    }
+    return user;
+  } catch (ex) {
+    const error = Error("bad token");
+    error.status = 401;
+    // throw error;
+    return null;
+  }
+};
 
 module.exports = mongoose.model("User", userSchema);
