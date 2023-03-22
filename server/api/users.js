@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User");
-const userVerification = require("./verification")
+const userVerification = require("./verification");
+const bcrypt = require("bcrypt");
 
 // GET all users
 router.get("/", async (req, res, next) => {
@@ -39,9 +40,17 @@ router.post("/", async (req, res, next) => {
 // PUT
 router.put("/", userVerification, async (req, res, next) => {
   try {
-    console.log(req.body)
+    console.log(req.body);
+    if (req.body.password) {
+      // sets 10 salt rounds
+      const salt = await bcrypt.genSalt(10);
+
+      // hashes the user's password with 10 salt rounds
+      req.body.password = await bcrypt.hash(req.body.password, salt);
+    }
+    console.log(req.body);
     await User.updateOne({ _id: req.body._id }, req.body);
-    const user = await User.findById(req.body._id)
+    const user = await User.findById(req.body._id);
     res.send(user);
   } catch (err) {
     next(err);
