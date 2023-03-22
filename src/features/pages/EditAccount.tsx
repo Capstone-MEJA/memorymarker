@@ -4,6 +4,8 @@ import { AppDispatch } from "../../store";
 import { updateUser } from "../../store/usersSlice";
 import { isStore } from "../../store";
 import { useState } from "react";
+import { logoutUser } from "../../store/authSlice";
+import { useNavigate } from "react-router-dom";
 
 export interface updateObj {
   _id: string;
@@ -13,8 +15,9 @@ export interface updateObj {
 
 const EditAccount = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const loggedInUser = useSelector<isStore>((state) => state.auth);
-  console.log(loggedInUser)
+  console.log(loggedInUser);
 
   const [toggleForm, setToggleForm] = useState("");
   const [formValues, setFormValues] = useState("");
@@ -24,7 +27,7 @@ const EditAccount = () => {
     console.log(formValues);
   };
 
-  const editInfo = (e) => {
+  const editInfo = async (e) => {
     if (e.target.value === "username") {
       setToggleForm("username");
       setFormValues("");
@@ -38,8 +41,10 @@ const EditAccount = () => {
       } else {
         updateObj.password = formValues;
       }
-      dispatch(updateUser(updateObj));
+      await dispatch(updateUser(updateObj));
       setToggleForm("");
+      await dispatch(logoutUser(null));
+      navigate("/home");
     }
   };
 
