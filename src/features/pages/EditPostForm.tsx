@@ -24,21 +24,21 @@ const EditPostForm = (props: Props) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   // const [tag, setTag] = useState("");
-  const  toggleEditForm = () => props.setToggleEditPostForm(false);
+  const toggleEditForm = () => props.setToggleEditPostForm(false);
 
-  function handleSubmit(id: any) {
-    // e.preventDefault();
-    dispatch(
-      updatePost({
-        _id: id,
-        title: title,
-        description: description,
-      })
-    );
-    props.setToggleEditPostForm(false);
+  function handleSubmit(id: string | undefined) {
+    if (typeof id === "string") {
+      dispatch(
+        updatePost({
+          _id: id,
+          title: title,
+          description: description,
+        })
+      );
+      props.setToggleEditPostForm(false);
+    }
   }
 
-  console.log("props", props.info);
   return (
     <FormWrapper>
       <form
@@ -48,7 +48,7 @@ const EditPostForm = (props: Props) => {
       >
         <h2>Edit post</h2>
         <button type="button" onClick={toggleEditForm}>
-        <FaIcons.FaTimes />
+          <FaIcons.FaTimes />
         </button>
         <input
           type="text"

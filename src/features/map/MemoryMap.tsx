@@ -8,17 +8,18 @@ import SingleInfoWindow from "./SingleInfoWindow";
 import styled from "styled-components";
 import AddPostForm from "../pages/AddPostForm";
 import { IsPost } from "../../interface";
-import { AppDispatch } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 import EditPostForm from "../pages/EditPostForm";
 
 const MemoryMap = (): JSX.Element => {
   //useDispatch need a type - define AppDispatch in the store
-  const auth = useSelector((state: any) => state.auth);
+  const auth = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch<AppDispatch>();
 
   const center = useRef({ lat: 40.7527277692752, lng: -73.97722734175942 });
 
-  const allPosts: any = useSelector(selectAllPosts);
+  //an array of objects
+  const allPosts: IsPost[] = useSelector(selectAllPosts);
 
   //add a state that keep track of selected marker to render infoWindow
   const [selectedPost, setSelectedPost] = useState<IsPost | null>(null);
@@ -45,15 +46,19 @@ const MemoryMap = (): JSX.Element => {
     }
   }, [allPosts]);
 
-  const togglePostFormFunc = (event: any) => {
-    const lat = event.latLng.lat();
-    const lng = event.latLng.lng();
-    setTogglePostForm(true);
-    setLat(lat);
-    setLong(lng);
+  const togglePostFormFunc = (event: google.maps.MapMouseEvent) => {
+    if (event !== null) {
+      const lat = event.latLng?.lat();
+      const lng = event.latLng?.lng();
+      setTogglePostForm(true);
+      if (lat && lng) {
+        setLat(lat);
+        setLong(lng);
+      }
+    }
   };
 
-  const toggleEditPostFormFunc = (event: any) => {
+  const toggleEditPostFormFunc = () => {
     setToggleEditPostForm(true);
   };
 
@@ -80,14 +85,17 @@ const MemoryMap = (): JSX.Element => {
               key={post._id}
               // jessie wants this fixed!
               clickHandler={() => {
-                center.current = { lat: post.latitude, lng: post.longitude };
+                center.current = {
+                  lat: Number(post.latitude),
+                  lng: Number(post.longitude),
+                };
                 setSelectedPost(post);
               }}
             />
           );
         })}
 
-        {/* conditional render the infoWindow based on selected post */}
+        {/* conditionally render the infoWindow based on selected post */}
         {selectedPost ? (
           <SingleInfoWindow
             info={selectedPost}
@@ -98,16 +106,18 @@ const MemoryMap = (): JSX.Element => {
           />
         ) : null}
 
+        {/* conditionally render the add post from when logged in and toggle is true */}
         {auth._id && togglePostForm ? (
           <Form>
             <AddPostForm
-              lat={lat}
-              long={long}
+              lat={Number(lat)}
+              long={Number(long)}
               setTogglePostForm={setTogglePostForm}
             />
           </Form>
         ) : null}
 
+        {/* conditionally render the edit post from when logged in and toggle is true */}
         {auth._id && toggleEditPostForm && selectedPost ? (
           <Form>
             <EditPostForm
