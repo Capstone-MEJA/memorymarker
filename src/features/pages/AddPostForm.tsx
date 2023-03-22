@@ -1,16 +1,24 @@
 import { useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
-import { AddFormProps } from "../../interface";
 import { AppDispatch } from "../../store";
 import { newPost } from "../../store/postsSlice";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
+// import { useSelector } from "react-redux";
+import { togglePostForm } from "../../store/globalSlice"
+
+
+interface AddFormProps {
+  lat: number | null;
+  long: number | null;
+}
 
 const AddPostForm = (props: AddFormProps) => {
   const dispatch = useDispatch<AppDispatch>();
+  // const global = useSelector((state: RootState) => state.global);
+
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const  togglePostForm = () => props.setTogglePostForm(false);
   // const [tag, setTag] = useState("");
 
   function handleSubmit(e: React.FormEvent) {
@@ -23,13 +31,13 @@ const AddPostForm = (props: AddFormProps) => {
         longitude: props.long,
       })
     );
-    props.setTogglePostForm(false);
+    togglePostForm();
   }
   return (
     
     <FormWrapper>
       <form onSubmit={handleSubmit}>
-      <button type="button" onClick={togglePostForm}>
+      <button type="button" onClick={() => togglePostForm()}>
         <FaIcons.FaTimes />
         </button>
         <h2>Create post</h2>

@@ -10,10 +10,13 @@ import AddPostForm from "../pages/AddPostForm";
 import { IsPost } from "../../interface";
 import { AppDispatch, RootState } from "../../store";
 import EditPostForm from "../pages/EditPostForm";
+import { togglePostForm } from "../../store/globalSlice";
 
 const MemoryMap = (): JSX.Element => {
   //useDispatch need a type - define AppDispatch in the store
   const auth = useSelector((state: RootState) => state.auth);
+  const global = useSelector((state: RootState) => state.global);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const center = useRef({ lat: 40.7527277692752, lng: -73.97722734175942 });
@@ -23,8 +26,6 @@ const MemoryMap = (): JSX.Element => {
 
   //add a state that keep track of selected marker to render infoWindow
   const [selectedPost, setSelectedPost] = useState<IsPost | null>(null);
-  const [togglePostForm, setTogglePostForm] = useState<boolean>(false);
-  const [toggleEditPostForm, setToggleEditPostForm] = useState<boolean>(false);
   const [lat, setLat] = useState<number | null>(null);
   const [long, setLong] = useState<number | null>(null);
 
@@ -50,16 +51,12 @@ const MemoryMap = (): JSX.Element => {
     if (event !== null) {
       const lat = event.latLng?.lat();
       const lng = event.latLng?.lng();
-      setTogglePostForm(true);
+      dispatch(togglePostForm());
       if (lat && lng) {
         setLat(lat);
         setLong(lng);
       }
     }
-  };
-
-  const toggleEditPostFormFunc = () => {
-    setToggleEditPostForm(true);
   };
 
   const options = {
@@ -102,26 +99,23 @@ const MemoryMap = (): JSX.Element => {
             clickHandler={() => {
               setSelectedPost(null);
             }}
-            toggleEditPostFormFunc={toggleEditPostFormFunc}
           />
         ) : null}
 
         {/* conditionally render the add post from when logged in and toggle is true */}
-        {auth._id && togglePostForm ? (
+        {auth._id && global.postForm ? (
           <Form>
             <AddPostForm
               lat={Number(lat)}
               long={Number(long)}
-              setTogglePostForm={setTogglePostForm}
             />
           </Form>
         ) : null}
 
         {/* conditionally render the edit post from when logged in and toggle is true */}
-        {auth._id && toggleEditPostForm && selectedPost ? (
+        {auth._id && global.editPostForm && selectedPost ? (
           <Form>
             <EditPostForm
-              setToggleEditPostForm={setToggleEditPostForm}
               info={selectedPost}
             />
           </Form>

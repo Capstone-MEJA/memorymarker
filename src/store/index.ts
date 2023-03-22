@@ -3,12 +3,14 @@ import { IsPost, IsUser } from "../interface";
 import authSlice from "./authSlice";
 import postsSlice from "./postsSlice";
 import usersSlice from "./usersSlice";
+import globalSlice from "./globalSlice"
 
 const store = configureStore({
   reducer: {
     posts: postsSlice,
     users: usersSlice,
     auth: authSlice,
+    global: globalSlice,
   },
 });
 
@@ -23,4 +25,5 @@ export interface isStore {
   posts: IsPost[];
   users: IsUser[];
   auth: object;
+  global: object,
 }

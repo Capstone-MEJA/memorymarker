@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+// import { MouseEvent } from "react";
 import { InfoWindow } from "@react-google-maps/api";
 import { deletePost } from "../../store/postsSlice";
 import { useDispatch } from "react-redux";
@@ -7,12 +7,15 @@ import { AppDispatch } from "../../store";
 import { IsPost } from "../../interface";
 // import { useState } from "react";
 
-//ideally the only prop passed on should be post and the clickhandler function is located here instead of MemoryMap
-const SingleInfoWindow = (props: {
+import { toggleEditPostForm } from "../../store/globalSlice";
+
+interface singleInfoWindowProps {
   info: IsPost;
   clickHandler(): void;
-  toggleEditPostFormFunc: (e: MouseEvent<HTMLButtonElement>) => void;
-}) => {
+}
+
+
+const SingleInfoWindow = (props: singleInfoWindowProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const deleteSinglePost = (id: string) => {
@@ -30,7 +33,7 @@ const SingleInfoWindow = (props: {
       <div>
         <h2>{props.info.title}</h2>
         <p>{props.info.description}</p>
-        <button onClick={(event) => props.toggleEditPostFormFunc(event)}>
+        <button onClick={() => dispatch(toggleEditPostForm())}>
           Edit Post
         </button>
         <button
