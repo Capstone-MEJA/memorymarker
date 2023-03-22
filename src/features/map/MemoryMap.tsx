@@ -46,12 +46,16 @@ const MemoryMap = (): JSX.Element => {
     }
   }, [allPosts]);
 
-  const togglePostFormFunc = (event: any) => {
-    const lat = event.latLng.lat();
-    const lng = event.latLng.lng();
-    setTogglePostForm(true);
-    setLat(lat);
-    setLong(lng);
+  const togglePostFormFunc = (event: google.maps.MapMouseEvent) => {
+    if (event !== null) {
+      const lat = event.latLng?.lat();
+      const lng = event.latLng?.lng();
+      setTogglePostForm(true);
+      if (lat && lng) {
+        setLat(lat);
+        setLong(lng);
+      }
+    }
   };
 
   const toggleEditPostFormFunc = () => {
