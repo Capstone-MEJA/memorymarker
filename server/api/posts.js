@@ -38,6 +38,7 @@ router.put("/:_id", async (req, res, next) => {
   try {
     await Post.updateOne({ _id: req.params._id }, req.body);
     const post = await Post.findById(req.params._id);
+    await post.populate('user');
     res.send(post);
   } catch (err) {
     console.log(err);
