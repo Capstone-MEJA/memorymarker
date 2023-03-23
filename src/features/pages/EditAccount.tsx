@@ -36,9 +36,17 @@ const EditAccount = () => {
     } else {
       const updateObj: updateObj = { _id: loggedInUser._id };
       if (target.value.includes("Username")) {
-        updateObj.username = formValues;
+        if (formValues.length < 5 || formValues.length > 20) {
+          return alert("Username must be between 5 and 20 characters in length :)");
+        } else {
+          updateObj.username = formValues;
+        }
       } else {
-        updateObj.password = formValues;
+        if (formValues.length < 8 || formValues.length > 20) {
+          return alert("Password must be between 8 and 20 characters in length :)")
+        } else {
+          updateObj.password = formValues;
+        }
       }
       await dispatch(updateUser(updateObj));
       setToggleForm("");
@@ -52,9 +60,14 @@ const EditAccount = () => {
       <div className="wrapper">
         <section className="container">
           <h1>Edit Account Information</h1>
+          <p>
+            Friendly Reminder: After editing your account information, you will
+            be asked to sign in again with your newly updated credentials.
+          </p>
         </section>
 
         <section>
+          <p>Username:</p>
           {toggleForm !== "username" ? (
             <p>{loggedInUser.username}</p>
           ) : (
@@ -74,8 +87,9 @@ const EditAccount = () => {
         </section>
 
         <section>
+          <p>Password:</p>
           {toggleForm !== "password" ? (
-            <p>Your Super Top Secret Password :)</p>
+            <p>********</p>
           ) : (
             <input
               type="text"
