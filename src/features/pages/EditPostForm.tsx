@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 const EditPostForm = () => {
   //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
-  const global = useSelector((state: RootState) => state.global)
+  const global = useSelector((state: RootState) => state.global);
 
   //useState
   const [title, setTitle] = useState<string>("");
@@ -34,9 +34,7 @@ const EditPostForm = () => {
 
   return (
     <FormWrapper>
-      <form
-        onSubmit={() => handleSubmit(global.selectedPost!._id)}
-      >
+      <form onSubmit={() => handleSubmit(global.selectedPost!._id)}>
         <h2>Edit post</h2>
         <button type="button" onClick={() => dispatch(toggleEditPostForm())}>
           <FaIcons.FaTimes />

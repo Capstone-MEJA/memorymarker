@@ -37,12 +37,10 @@ export const updateUser = createAsyncThunk(
   async (updateObj: updateObj, thunkAPI) => {
     try {
       const token = window.localStorage.getItem("token");
-      const { data } = await axios.put(
-        `/api/users`,
-        updateObj,
-        { headers: { authorization: token } }
-      );
-      thunkAPI.dispatch(loadUser())
+      const { data } = await axios.put(`/api/users`, updateObj, {
+        headers: { authorization: token },
+      });
+      thunkAPI.dispatch(loadUser(null));
       return data;
     } catch (error) {
       console.log(error);
@@ -76,7 +74,7 @@ export const UsersSlice = createSlice({
         return action.payload;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        console.log(action.payload)
+        console.log(action.payload);
         return state.map((user) => {
           if (user._id !== action.payload._id) {
             return user;

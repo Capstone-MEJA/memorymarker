@@ -1,9 +1,8 @@
 // import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 import { updateUser } from "../../store/usersSlice";
-import { isStore } from "../../store";
-import { useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import { logoutUser } from "../../store/authSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -16,27 +15,27 @@ export interface updateObj {
 const EditAccount = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const loggedInUser = useSelector<isStore>((state) => state.auth);
-  console.log(loggedInUser);
+  const loggedInUser = useSelector((state: RootState) => state.auth);
 
   const [toggleForm, setToggleForm] = useState("");
   const [formValues, setFormValues] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormValues(e.target.value);
     console.log(formValues);
   };
 
-  const editInfo = async (e) => {
-    if (e.target.value === "username") {
+  const editInfo = async (e: MouseEvent<HTMLElement>) => {
+    const target = e.target as HTMLButtonElement;
+    if (target.value === "username") {
       setToggleForm("username");
       setFormValues("");
-    } else if (e.target.value === "password") {
+    } else if (target.value === "password") {
       setToggleForm("password");
       setFormValues("");
     } else {
       const updateObj: updateObj = { _id: loggedInUser._id };
-      if (e.target.value.includes("Username")) {
+      if (target.value.includes("Username")) {
         updateObj.username = formValues;
       } else {
         updateObj.password = formValues;
