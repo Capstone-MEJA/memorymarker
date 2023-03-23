@@ -1,3 +1,6 @@
+// Any reuseable interface are located here
+// Any 1 time use interface are located at their respecitive files for clarity sakes
+
 export interface IsPost {
   _id: string;
   title: string;
@@ -20,14 +23,8 @@ export interface AuthState {
   username: string;
   _id: string;
   registerStatus: string;
-  registerError: string;
+  registerError: string[];
   loginStatus: string;
   loginError: string;
   userLoaded: boolean;
-}
-
-export interface AddFormProps {
-  lat: number | null;
-  long: number | null;
-  setTogglePostForm: (toggle: boolean) => void;
 }
