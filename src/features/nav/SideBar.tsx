@@ -36,20 +36,23 @@ const Sidebar: React.FC = () => {
           {auth._id ? (
             <MenuItemLinks>
               <MenuItemLink
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
                 Home
               </MenuItemLink>
               <MenuItemLink
-                to="/account"
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
+                to="/account"
               >
                 Hi, {auth.username}!
               </MenuItemLink>
               <MenuItemLink
-                to="/about"
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
+                to="/about"
               >
                 About
               </MenuItemLink>
@@ -57,6 +60,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 onClick={() => {
                   dispatch(logoutUser(null));
+                  dispatch(toggleSideBar())
                 }}
               >
                 Logout
@@ -65,24 +69,28 @@ const Sidebar: React.FC = () => {
           ) : (
             <MenuItemLinks>
               <MenuItemLink
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
                 Home
               </MenuItemLink>
               <MenuItemLink
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/Login"
               >
                 Login
               </MenuItemLink>
               <MenuItemLink
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/register"
               >
                 Sign-up
               </MenuItemLink>
               <MenuItemLink
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
