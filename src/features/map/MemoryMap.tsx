@@ -93,9 +93,7 @@ const MemoryMap = (): JSX.Element => {
 
         {/* conditionally render the infoWindow based on selected post */}
         {global.selectedPost ? (
-          <SingleInfoWindow
-            info={global.selectedPost}
-          />
+          <SingleInfoWindow/>
         ) : null}
 
         {/* conditionally render the add post from when logged in and toggle is true */}

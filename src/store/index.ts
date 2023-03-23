@@ -11,7 +11,6 @@ const store = configureStore({
     users: usersSlice,
     auth: authSlice,
     global: globalSlice,
-    global: globalSlice,
   },
 });
 

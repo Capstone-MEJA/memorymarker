@@ -25,7 +25,6 @@ const EditPostForm = () => {
         })
       );
       dispatch(toggleEditPostForm());
-      dispatch(toggleEditPostForm());
     }
   }
 
