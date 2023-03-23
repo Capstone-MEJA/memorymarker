@@ -9,15 +9,20 @@ router.post("/", async (req, res, next) => {
   try {
     // validate the schema
     const schema = Joi.object({
-      username: Joi.string().required(),
-      password: Joi.string().required(),
+      username: Joi.string().required().min(5).max(20),
+      password: Joi.string().required().min(8).max(20),
     });
-    const { error } = schema.validate(req.body);
+    const { error } = schema.validate(req.body, { abortEarly: false });
 
     // if there is an error validating the schema
     // send back the error message
+
     if (error) {
-      return res.status(400).send(error.details[0].message);
+      let errors = [];
+      for (let i = 0; i < error.details.length; i++) {
+        errors.push(error.details[i].message);
+      }
+      return res.status(400).send(errors);
     }
 
     // try to find the user in the database

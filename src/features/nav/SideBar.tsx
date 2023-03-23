@@ -10,10 +10,17 @@ import { AppDispatch, RootState } from "../../store";
 import { logoutUser } from "../../store/authSlice";
 
 const Sidebar: React.FC = () => {
-  const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
-  const auth = useSelector((state: RootState) => state.auth);
+  //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
+  const auth = useSelector((state: RootState) => state.auth);
+
+  //useState
+  const [sidebar, setSidebar] = useState(false);
+
+  //useEffect hooks
+  //helper function
+  const showSidebar = () => setSidebar(!sidebar);
+
   return (
     <>
       <Navbar>

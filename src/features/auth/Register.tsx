@@ -6,24 +6,28 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Register = () => {
+  //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const auth = useSelector((state: RootState) => state.auth);
 
+  //useState
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
+
+  //useEffect hooks
   useEffect(() => {
     if (auth._id) {
       navigate("/");
     }
   }, [auth._id, navigate]);
 
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  });
-
-  function handleSubmit(e: React.FormEvent) {
+  //helper function
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    dispatch(registerUser(user));
+    await dispatch(registerUser(user));
   }
 
   return (
@@ -37,6 +41,7 @@ const Register = () => {
             setUser({ ...user, username: e.target.value })
           }
         />
+
         <input
           type="password"
           placeholder="password"
@@ -44,12 +49,16 @@ const Register = () => {
             setUser({ ...user, password: e.target.value })
           }
         />
+
         <button>
           {auth.registerStatus === "pending" ? "Submitting..." : "Register"}
         </button>
-        {auth.registerStatus === "rejected" ? (
-          <p>{auth.registerError}</p>
-        ) : null}
+        {auth.registerStatus === "rejected"
+          ? // <p>{[...auth.registerError]}</p>
+            auth.registerError.map((error, i) => {
+              return <p key={i}>{error}</p>;
+            })
+          : null}
       </form>
     </RegisterWrapper>
   );

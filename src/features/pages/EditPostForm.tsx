@@ -1,31 +1,28 @@
 import { useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
+<<<<<<< HEAD
 import { AppDispatch } from "../../store";
+=======
+import { AppDispatch, RootState } from "../../store";
+>>>>>>> 56e462d7f393d4f40ce6d07a42c0d33ee107415e
 import { updatePost } from "../../store/postsSlice";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
+import { toggleEditPostForm } from "../../store/globalSlice";
+import { useSelector } from "react-redux";
 
-interface Info {
-  _id?: string;
-  title?: String;
-  description?: String;
-  tags?: [String];
-  latitude?: Number;
-  longitude?: Number;
-}
-
-interface Props {
-  setToggleEditPostForm: (toggle: boolean) => void;
-  info: Info;
-}
-
-const EditPostForm = (props: Props) => {
+const EditPostForm = () => {
+  //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
+  const global = useSelector((state: RootState) => state.global)
+
+  //useState
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   // const [tag, setTag] = useState("");
-  const toggleEditForm = () => props.setToggleEditPostForm(false);
-  // const navigate = useNavigate();
+
+  //useEffect hooks
+  //helper function
   function handleSubmit(id: string | undefined) {
     if (typeof id === "string") {
       dispatch(
@@ -35,25 +32,25 @@ const EditPostForm = (props: Props) => {
           description: description,
         })
       );
-      props.setToggleEditPostForm(false);
-      // window.location.reload();
+      dispatch(toggleEditPostForm());
     }
   }
 
+<<<<<<< HEAD
   // useEffect(() => {
   //   dispatch(fetchAllPosts());
   // }, [dispatch]);
   //please fix to fetchSinglePost(props.info.id?...)
 
+=======
+>>>>>>> 56e462d7f393d4f40ce6d07a42c0d33ee107415e
   return (
     <FormWrapper>
       <form
-        onSubmit={() => {
-          handleSubmit(props.info._id);
-        }}
+        onSubmit={() => handleSubmit(global.selectedPost!._id)}
       >
         <h2>Edit post</h2>
-        <button type="button" onClick={toggleEditForm}>
+        <button type="button" onClick={() => dispatch(toggleEditPostForm())}>
           <FaIcons.FaTimes />
         </button>
         <input

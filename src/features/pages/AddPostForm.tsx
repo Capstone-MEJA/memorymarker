@@ -1,46 +1,51 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { AddFormProps } from "../../interface";
 import { AppDispatch } from "../../store";
-import { newPost } from "../../store/postsSlice";
+import { fetchAllPosts, newPost } from "../../store/postsSlice";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { useEffect } from "react";
-import { fetchAllPosts } from "../../store/postsSlice";
+import { togglePostForm } from "../../store/globalSlice"
 
-const AddPostForm = (props: AddFormProps) => {
+
+const AddPostForm = () => {
+  //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
+  const auth = useSelector((state: RootState) => state.auth);
+  const global = useSelector((state: RootState) => state.global);
+
+  //useState
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const  togglePostForm = () => props.setTogglePostForm(false);
-  const auth = useSelector((state: RootState) => state.auth);
   // const [tag, setTag] = useState("");
 
+  //useEffect hooks
   useEffect(() => {
-    dispatch(fetchAllPosts());
-  }, [dispatch]);
+    dispatch(fetchAllPosts())
+  },[dispatch])
 
+  //helper function
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     dispatch(
       newPost({
         title: title,
         description: description,
-        latitude: props.lat,
-        longitude: props.long,
+        latitude: global.position.lat,
+        longitude: global.position.lng,
         user: auth._id,
       })
     );
-    props.setTogglePostForm(false);
+    dispatch(togglePostForm());
   }
+  
   return (
-    
+
     <FormWrapper>
       <form onSubmit={handleSubmit}>
-      <button type="button" onClick={togglePostForm}>
-        <FaIcons.FaTimes />
+        <button type="button" onClick={() => dispatch(togglePostForm())}>
+          <FaIcons.FaTimes />
         </button>
         <h2>Create post</h2>
         <input
@@ -49,14 +54,14 @@ const AddPostForm = (props: AddFormProps) => {
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setTitle(e.target.value)
           }
-          />
+        />
         <input
           type="textarea"
           placeholder="description"
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setDescription(e.target.value)
           }
-          />
+        />
         {/* <input
           type="text"
           placeholder="tag"
@@ -67,7 +72,7 @@ const AddPostForm = (props: AddFormProps) => {
         <button type="submit">Submit</button>
       </form>
     </FormWrapper>
-    );
+  );
 };
 
 export default AddPostForm;
