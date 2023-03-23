@@ -37,13 +37,17 @@ const EditAccount = () => {
       const updateObj: updateObj = { _id: loggedInUser._id };
       if (target.value.includes("Username")) {
         if (formValues.length < 5 || formValues.length > 20) {
-          return alert("Username must be between 5 and 20 characters in length :)");
+          return alert(
+            "Username must be between 5 and 20 characters in length :)"
+          );
         } else {
           updateObj.username = formValues;
         }
       } else {
         if (formValues.length < 8 || formValues.length > 20) {
-          return alert("Password must be between 8 and 20 characters in length :)")
+          return alert(
+            "Password must be between 8 and 20 characters in length :)"
+          );
         } else {
           updateObj.password = formValues;
         }

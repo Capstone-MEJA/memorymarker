@@ -23,8 +23,44 @@ const userSchema = new mongoose.Schema({
   // },
   posts: {
     type: [mongoose.Schema.Types.ObjectId],
-    ref: 'Post',
+    ref: "Post",
   },
+});
+
+userSchema.statics.findByToken = async function (token) {
+  try {
+    const { _id } = await jwt.verify(token, process.env.JWT_SECRET);
+    const user = await this.findById(_id);
+    if (!user) {
+      throw "nooo";
+    }
+    return user;
+  } catch (ex) {
+    const error = Error("bad token");
+    error.status = 401;
+    // throw error;
+    return null;
+  }
+};
+
+const User = mongoose.model("User", userSchema);
+
+// when you make a validation function, it needs to be attached to model, NOT schema
+// when you manipulate data, you are changing model, not schema
+User.schema.path("username").validate(function (value) {
+  if (value.length < 5 || value.length > 20) {
+    throw new Error("Username needs to be between 5 and 20 characters");
+  } else {
+    return true;
+  }
+});
+
+User.schema.path("password").validate(function (value) {
+  if (value.length < 8 || value.length > 20) {
+    throw new Error("Password needs to be between 8 and 20 characters");
+  } else {
+    return true;
+  }
 });
 
 // *** only needed for seeded users - start
@@ -64,20 +100,4 @@ const userSchema = new mongoose.Schema({
 //   return user.generateToken();
 // };
 
-userSchema.statics.findByToken = async function (token) {
-  try {
-    const { _id } = await jwt.verify(token, process.env.JWT_SECRET);
-    const user = await this.findById(_id);
-    if (!user) {
-      throw "nooo";
-    }
-    return user;
-  } catch (ex) {
-    const error = Error("bad token");
-    error.status = 401;
-    // throw error;
-    return null;
-  }
-};
-
-module.exports = mongoose.model("User", userSchema);
+module.exports = User;
