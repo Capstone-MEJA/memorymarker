@@ -1,10 +1,6 @@
 import { useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
-<<<<<<< HEAD
-import { AppDispatch } from "../../store";
-=======
 import { AppDispatch, RootState } from "../../store";
->>>>>>> 56e462d7f393d4f40ce6d07a42c0d33ee107415e
 import { updatePost } from "../../store/postsSlice";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
@@ -14,7 +10,7 @@ import { useSelector } from "react-redux";
 const EditPostForm = () => {
   //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
-  const global = useSelector((state: RootState) => state.global)
+  const global = useSelector((state: RootState) => state.global);
 
   //useState
   const [title, setTitle] = useState<string>("");
@@ -36,19 +32,9 @@ const EditPostForm = () => {
     }
   }
 
-<<<<<<< HEAD
-  // useEffect(() => {
-  //   dispatch(fetchAllPosts());
-  // }, [dispatch]);
-  //please fix to fetchSinglePost(props.info.id?...)
-
-=======
->>>>>>> 56e462d7f393d4f40ce6d07a42c0d33ee107415e
   return (
     <FormWrapper>
-      <form
-        onSubmit={() => handleSubmit(global.selectedPost!._id)}
-      >
+      <form onSubmit={() => handleSubmit(global.selectedPost!._id)}>
         <h2>Edit post</h2>
         <button type="button" onClick={() => dispatch(toggleEditPostForm())}>
           <FaIcons.FaTimes />
