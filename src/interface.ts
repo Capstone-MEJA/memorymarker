@@ -23,7 +23,7 @@ export interface AuthState {
   username: string;
   _id: string;
   registerStatus: string;
-  registerError: string;
+  registerError: string[];
   loginStatus: string;
   loginError: string;
   userLoaded: boolean;

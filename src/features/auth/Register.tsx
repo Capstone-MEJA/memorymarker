@@ -25,9 +25,9 @@ const Register = () => {
   }, [auth._id, navigate]);
 
   //helper function
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    dispatch(registerUser(user));
+    await dispatch(registerUser(user));
   }
 
   return (
@@ -41,6 +41,7 @@ const Register = () => {
             setUser({ ...user, username: e.target.value })
           }
         />
+
         <input
           type="password"
           placeholder="password"
@@ -48,12 +49,16 @@ const Register = () => {
             setUser({ ...user, password: e.target.value })
           }
         />
+
         <button>
           {auth.registerStatus === "pending" ? "Submitting..." : "Register"}
         </button>
-        {auth.registerStatus === "rejected" ? (
-          <p>{auth.registerError}</p>
-        ) : null}
+        {auth.registerStatus === "rejected"
+          ? // <p>{[...auth.registerError]}</p>
+            auth.registerError.map((error, i) => {
+              return <p key={i}>{error}</p>;
+            })
+          : null}
       </form>
     </RegisterWrapper>
   );

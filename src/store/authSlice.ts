@@ -8,7 +8,7 @@ const initialState = {
   username: "",
   _id: "",
   registerStatus: "",
-  registerError: "",
+  registerError: [],
   loginStatus: "",
   loginError: "",
   userLoaded: false,
@@ -26,6 +26,7 @@ export const registerUser = createAsyncThunk(
       return token.data;
     } catch (err) {
       const error = err as AxiosError<Error>;
+      console.log(error)
       return rejectWithValue(error.response?.data);
     }
   }
@@ -73,7 +74,7 @@ const authSlice = createSlice({
         username: "",
         _id: "",
         registerStatus: "",
-        registerError: "",
+        registerError: [],
         loginStatus: "",
         loginError: "",
         userLoaded: false,
@@ -103,7 +104,7 @@ const authSlice = createSlice({
       return {
         ...state,
         registerStatus: "rejected",
-        registerError: action.payload as string,
+        registerError: action.payload as [],
       };
     });
 
