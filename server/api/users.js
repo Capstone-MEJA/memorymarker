@@ -49,7 +49,16 @@ router.put("/", userVerification, async (req, res, next) => {
       req.body.password = await bcrypt.hash(req.body.password, salt);
     }
     console.log(req.body);
-    await User.updateOne({ _id: req.body._id }, req.body);
+    // by default, update validators are off, so you need to set as true
+    const opts = { runValidators: true }
+
+    try {
+      // pass in validator options
+      await User.updateOne({ _id: req.body._id }, req.body, opts);
+    } catch(e) {
+      console.log(e.errors)
+    }
+   
     const user = await User.findById(req.body._id);
     res.send(user);
   } catch (err) {
