@@ -13,8 +13,10 @@ const EditPostForm = () => {
   const global = useSelector((state: RootState) => state.global);
 
   //useState
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
+  const [title, setTitle] = useState<string>(global.selectedPost!.title);
+  const [description, setDescription] = useState<string>(
+    global.selectedPost!.description
+  );
   // const [tag, setTag] = useState("");
 
   //useEffect hooks
@@ -41,17 +43,17 @@ const EditPostForm = () => {
         </button>
         <input
           type="text"
-          placeholder="title"
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setTitle(e.target.value)
           }
+          value={title}
         />
         <input
           type="textarea"
-          placeholder="description"
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setDescription(e.target.value)
           }
+          value={description}
         />
         {/* <input
           type="text"
