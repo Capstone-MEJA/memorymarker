@@ -20,7 +20,7 @@ const SingleMarker = (props: singleMarkerProps) => {
         lat: Number(props.post.latitude),
         lng: Number(props.post.longitude),
       }}
-      onClick={async() => {
+      onClick={async () => {
         await dispatch(setLat(props.post.latitude));
         await dispatch(setLng(props.post.longitude));
         await dispatch(setSelectedPost(props.post));
