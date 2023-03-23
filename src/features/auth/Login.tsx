@@ -1,26 +1,30 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/authSlice";
-import { AppDispatch } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Login = () => {
+    //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const auth = useSelector((state: any) => state.auth);
+  const auth = useSelector((state: RootState) => state.auth);
 
+  //useState
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
+  
+  //useEffect hooks
   useEffect(() => {
     if (auth._id) {
       navigate("/");
     }
   }, [auth._id, navigate]);
 
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  });
-
+  //helper function
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 

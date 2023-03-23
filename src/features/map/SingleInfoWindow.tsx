@@ -1,37 +1,49 @@
 import { InfoWindow } from "@react-google-maps/api";
 import { deletePost } from "../../store/postsSlice";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store";
-// import { useState } from "react";
+import { AppDispatch, RootState } from "../../store";
+import { useSelector } from "react-redux";
+import { setSelectedPost, toggleEditPostForm } from "../../store/globalSlice";
 
-const SingleInfoWindow = (props: any) => {
+const SingleInfoWindow = () => {
+    //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
+  const auth = useSelector((state: RootState) => state.auth);
+  const global = useSelector((state: RootState) => state.global); 
 
-  const deleteSinglePost = (id: any) => {
+  //useState
+  //useEffect hooks
+  //helper function
+  const deleteSinglePost = (id: string) => {
     // closes info window
-    props.clickHandler();
+    dispatch(setSelectedPost(null));
     // deletes marker & post
     dispatch(deletePost(id));
   };
 
   return (
     <InfoWindow
-      position={{ lat: props.info.latitude, lng: props.info.longitude }}
-      onCloseClick={props.clickHandler}
+      position={{ lat: global.selectedPost!.latitude, lng: global.selectedPost!.longitude }}
+      onCloseClick={() => dispatch(setSelectedPost(null))}
     >
       <div>
-        <h2>{props.info.title}</h2>
-        <p>{props.info.description}</p>
-        <button onClick={(event) => props.toggleEditPostFormFunc(event)}>
-          Edit Post
-        </button>
-        <button
-          onClick={() => {
-            deleteSinglePost(props.info._id);
-          }}
-        >
-          Delete Post
-        </button>
+        <h2>{global.selectedPost!.title}</h2>
+        <p>{global.selectedPost!.description}</p>
+        <p>{global.selectedPost!.user.username}</p>
+        {auth._id === global.selectedPost!.user._id ?
+          <div>
+            <button onClick={() => dispatch(toggleEditPostForm())}>
+              Edit Post
+            </button>
+            <button
+              onClick={() => {
+                deleteSinglePost(global.selectedPost!._id);
+              }}
+            >
+              Delete Post
+            </button>
+          </div>
+          : null}
       </div>
     </InfoWindow>
   );

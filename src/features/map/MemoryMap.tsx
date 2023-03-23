@@ -1,67 +1,56 @@
 import { GoogleMap } from "@react-google-maps/api";
 import { fetchAllPosts, selectAllPosts } from "../../store/postsSlice";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { AppDispatch } from "../../store";
 import mapStyles from "./mapStyles";
 import SingleMarker from "./SingleMarker";
 import SingleInfoWindow from "./SingleInfoWindow";
 import styled from "styled-components";
 import AddPostForm from "../pages/AddPostForm";
+import { IsPost } from "../../interface";
+import { AppDispatch, RootState } from "../../store";
 import EditPostForm from "../pages/EditPostForm";
+import { togglePostForm, setSelectedPost, setLat, setLng } from "../../store/globalSlice";
 
 const MemoryMap = (): JSX.Element => {
-  //useDispatch need a type - define AppDispatch in the store
-  const auth = useSelector((state: any) => state.auth);
+  //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
-  const center = useRef({ lat: 40.7527277692752, lng: -73.97722734175942 });
+  const auth = useSelector((state: RootState) => state.auth);
+  const global = useSelector((state: RootState) => state.global);
+  const center = useRef(global.position);
 
-  const allPosts = useSelector(selectAllPosts);
-
-  //add a state that keep track of selected marker to render infoWindow
-  //need to specific typeof selected to either be ISelected interface or null
-  interface ISelected {
-    _id?: string;
-    title?: string;
-    description?: string;
-    tags?: [string];
-    latitude?: number;
-    longitude?: number;
-  }
-  const [selected, setSelected] = useState<ISelected | null>(null);
-  const [togglePostForm, setTogglePostForm] = useState<boolean>(false);
-  const [toggleEditPostForm, setToggleEditPostForm] = useState<boolean>(false);
-  const [lat, setLat] = useState<number | null>(null);
-  const [long, setLong] = useState<number | null>(null);
-
-  //fetch all post
+  //useState
+  //useEffect hooks
+  const allPosts: IsPost[] = useSelector(selectAllPosts);
   useEffect(() => {
     dispatch(fetchAllPosts());
   }, []);
 
   useEffect(() => {
-    const findEditedPost: Function = (): ISelected | undefined => {
-      if (selected) {
-        return allPosts.find((post: ISelected) => post._id === selected._id);
+    const findEditedPost: Function = (): IsPost | undefined => {
+      if (global.selectedPost) {
+        return allPosts.find((post: IsPost) => post._id === global.selectedPost?._id);
       }
       return undefined;
     };
     const editedPost = findEditedPost();
     if (editedPost) {
-      setSelected(editedPost);
+      dispatch(setSelectedPost(editedPost));
     }
   }, [allPosts]);
 
-  const togglePostFormFunc = (event: any) => {
-    const lat = event.latLng.lat();
-    const lng = event.latLng.lng();
-    setTogglePostForm(true);
-    setLat(lat);
-    setLong(lng);
-  };
+  //either this need to work or the center.current props need to be pass down
+  useEffect(() => {
+    center.current = global.position;
+  },[global.position])
 
-  const toggleEditPostFormFunc = (event: any) => {
-    setToggleEditPostForm(true);
+  //helper function
+  const togglePostFormFunc = async(event: google.maps.MapMouseEvent) => {
+    if (event !== null) {
+      await dispatch(setLat(event.latLng?.lat()))
+      await dispatch(setLng(event.latLng?.lng()))
+      await dispatch(togglePostForm());
+    }
   };
 
   const options = {
@@ -80,49 +69,31 @@ const MemoryMap = (): JSX.Element => {
         options={options}
         onClick={(event) => togglePostFormFunc(event)}
       >
-        {/* please change the any */}
-        {/* rendering all posts */}
-        {allPosts?.map((post: any) => {
+        {allPosts?.map((post: IsPost) => {
           return (
             <SingleMarker
               post={post}
               key={post._id}
-              // jessie wants this fixed!
-              clickHandler={() => {
-                center.current = { lat: post.latitude, lng: post.longitude };
-                setSelected(post);
-              }}
             />
           );
         })}
 
-        {/* conditional render the infoWindow based on selected post */}
-        {selected ? (
-          <SingleInfoWindow
-            info={selected}
-            clickHandler={() => {
-              setSelected(null);
-            }}
-            toggleEditPostFormFunc={toggleEditPostFormFunc}
-          />
+        {/* conditionally render the infoWindow based on selected post */}
+        {global.selectedPost ? (
+          <SingleInfoWindow/>
         ) : null}
 
-        {auth._id && togglePostForm ? (
+        {/* conditionally render the add post from when logged in and toggle is true */}
+        {auth._id && global.postForm ? (
           <Form>
-            <AddPostForm
-              lat={lat}
-              long={long}
-              setTogglePostForm={setTogglePostForm}
-            />
+            <AddPostForm/>
           </Form>
         ) : null}
 
-        {auth._id && toggleEditPostForm && selected ? (
+        {/* conditionally render the edit post from when logged in and toggle is true */}
+        {auth._id && global.editPostForm && global.selectedPost ? (
           <Form>
-            <EditPostForm
-              setToggleEditPostForm={setToggleEditPostForm}
-              info={selected}
-            />
+            <EditPostForm/>
           </Form>
         ) : null}
       </GoogleMap>

@@ -6,14 +6,21 @@ import * as FaIcons from "react-icons/fa";
 // import { SidebarData } from "./SideBarData";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 import { logoutUser } from "../../store/authSlice";
 
 const Sidebar: React.FC = () => {
-  const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
-  const auth = useSelector((state: any) => state.auth);
+  //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
+  const auth = useSelector((state: RootState) => state.auth);
+
+  //useState
+  const [sidebar, setSidebar] = useState(false);
+
+  //useEffect hooks
+  //helper function
+  const showSidebar = () => setSidebar(!sidebar);
+
   return (
     <>
       <Navbar>
@@ -85,7 +92,6 @@ const Sidebar: React.FC = () => {
               </MenuItemLink>
             </MenuItemLinks>
           )}
-
           {/* // if the user is logged in show */}
           {/* {SidebarData.map((item, index) => {
             return (

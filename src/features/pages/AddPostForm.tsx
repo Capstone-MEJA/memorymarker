@@ -1,36 +1,52 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
-import { newPost } from "../../store/postsSlice";
+import { fetchAllPosts, newPost } from "../../store/postsSlice";
 import styled from "styled-components";
+import * as FaIcons from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { togglePostForm } from "../../store/globalSlice"
 
-interface Props {
-  lat: number | null;
-  long: number | null;
-  setTogglePostForm: (toggle: boolean) => void;
-}
 
-const AddPostForm = (props: Props) => {
+const AddPostForm = () => {
+  //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
+  const auth = useSelector((state: RootState) => state.auth);
+  const global = useSelector((state: RootState) => state.global);
+
+  //useState
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   // const [tag, setTag] = useState("");
 
+  //useEffect hooks
+  useEffect(() => {
+    dispatch(fetchAllPosts())
+  },[dispatch])
+
+  //helper function
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     dispatch(
       newPost({
         title: title,
         description: description,
-        latitude: props.lat,
-        longitude: props.long,
+        latitude: global.position.lat,
+        longitude: global.position.lng,
+        user: auth._id,
       })
     );
-    props.setTogglePostForm(false);
+    dispatch(togglePostForm());
   }
+  
   return (
+
     <FormWrapper>
       <form onSubmit={handleSubmit}>
+        <button type="button" onClick={() => dispatch(togglePostForm())}>
+          <FaIcons.FaTimes />
+        </button>
         <h2>Create post</h2>
         <input
           type="text"
@@ -53,7 +69,7 @@ const AddPostForm = (props: Props) => {
             setTag(e.target.value)
           }
         /> */}
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </FormWrapper>
   );
@@ -73,3 +89,12 @@ const FormWrapper = styled.div`
   justify-content: center;
   height: auto;
 `;
+
+// const PostIconClose = styled.div`
+//   display: flex;
+//   justify-content: end;
+//   font-size: 1.5rem;
+//   margin-top: 0.75rem;
+//   margin-right: 1rem;
+//   color: #ffffff;
+// `;

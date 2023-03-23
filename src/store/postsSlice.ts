@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { isStore } from "./index";
+import { isStore } from "../store";
 
 export const fetchAllPosts = createAsyncThunk("allPosts", async () => {
   try {
@@ -30,11 +30,13 @@ export const newPost = createAsyncThunk(
     description,
     latitude,
     longitude,
+    user,
   }: {
     title: string;
     description: string;
     latitude: number | null;
     longitude: number | null;
+    user: string;
   }) => {
     try {
       const { data } = await axios.post(`/api/posts`, {
@@ -42,6 +44,7 @@ export const newPost = createAsyncThunk(
         description,
         latitude,
         longitude,
+        user,
       });
       return data;
     } catch (error) {
@@ -118,13 +121,13 @@ export const PostsSlice = createSlice({
         // update only that index
         // spread the rest of the array
 
-        return state.map(post => {
-          if(post._id === action.payload._id){
-            return action.payload
+        return state.map((post) => {
+          if (post._id === action.payload._id) {
+            return action.payload;
           } else {
-            return post
+            return post;
           }
-        })
+        });
         // return state;
         // return state.map((post) => {
         //   if (post._id !== action.payload._id) {

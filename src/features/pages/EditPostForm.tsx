@@ -1,50 +1,46 @@
 import { useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 import { updatePost } from "../../store/postsSlice";
 import styled from "styled-components";
+import * as FaIcons from "react-icons/fa";
+import { toggleEditPostForm } from "../../store/globalSlice";
+import { useSelector } from "react-redux";
 
-interface Info {
-  _id?: string;
-  title?: String;
-  description?: String;
-  tags?: [String];
-  latitude?: Number;
-  longitude?: Number;
-}
-
-interface Props {
-  setToggleEditPostForm: (toggle: boolean) => void;
-  info: Info;
-}
-
-const EditPostForm = (props: Props) => {
+const EditPostForm = () => {
+  //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
+  const global = useSelector((state: RootState) => state.global)
+
+  //useState
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   // const [tag, setTag] = useState("");
 
-  function handleSubmit(id: any) {
-    // e.preventDefault();
-    dispatch(
-      updatePost({
-        _id: id,
-        title: title,
-        description: description,
-      })
-    );
-    props.setToggleEditPostForm(false);
+  //useEffect hooks
+  //helper function
+  function handleSubmit(id: string | undefined) {
+    if (typeof id === "string") {
+      dispatch(
+        updatePost({
+          _id: id,
+          title: title,
+          description: description,
+        })
+      );
+      dispatch(toggleEditPostForm());
+    }
   }
 
-  console.log("props", props.info);
   return (
     <FormWrapper>
       <form
-        onSubmit={() => {
-          handleSubmit(props.info._id);
-        }}
+        onSubmit={() => handleSubmit(global.selectedPost!._id)}
       >
         <h2>Edit post</h2>
+        <button type="button" onClick={() => dispatch(toggleEditPostForm())}>
+          <FaIcons.FaTimes />
+        </button>
         <input
           type="text"
           placeholder="title"

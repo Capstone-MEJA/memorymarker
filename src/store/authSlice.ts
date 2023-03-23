@@ -1,13 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import jwtDecode from "jwt-decode";
+import { IsUser } from "../interface";
 
 const initialState = {
   token: localStorage.getItem("token"),
   username: "",
   _id: "",
   registerStatus: "",
-  registerError: "",
+  registerError: [],
   loginStatus: "",
   loginError: "",
   userLoaded: false,
@@ -23,9 +24,10 @@ export const registerUser = createAsyncThunk(
       });
       localStorage.setItem("token", token.data);
       return token.data;
-    } catch (err: any) {
-      console.log(err.response.data);
-      return rejectWithValue(err.response.data);
+    } catch (err) {
+      const error = err as AxiosError<Error>;
+      console.log(error)
+      return rejectWithValue(error.response?.data);
     }
   }
 );
@@ -40,9 +42,9 @@ export const loginUser = createAsyncThunk(
       });
       localStorage.setItem("token", token.data);
       return token.data;
-    } catch (err: any) {
-      console.log(err.response.data);
-      return rejectWithValue(err.response.data);
+    } catch (err) {
+      const error = err as AxiosError<Error>;
+      return rejectWithValue(error.response?.data);
     }
   }
 );
@@ -54,7 +56,7 @@ const authSlice = createSlice({
     loadUser(state, action) {
       const token = state.token;
       if (token) {
-        const user: any = jwtDecode(token);
+        const user: IsUser = jwtDecode(token);
         return {
           ...state,
           token: action.payload,
@@ -72,7 +74,7 @@ const authSlice = createSlice({
         username: "",
         _id: "",
         registerStatus: "",
-        registerError: "",
+        registerError: [],
         loginStatus: "",
         loginError: "",
         userLoaded: false,
@@ -85,7 +87,7 @@ const authSlice = createSlice({
     });
     builder.addCase(registerUser.fulfilled, (state, action) => {
       if (action.payload) {
-        const user: any = jwtDecode(action.payload);
+        const user: IsUser = jwtDecode(action.payload);
 
         return {
           ...state,
@@ -102,7 +104,7 @@ const authSlice = createSlice({
       return {
         ...state,
         registerStatus: "rejected",
-        registerError: action.payload as string,
+        registerError: action.payload as [],
       };
     });
 
@@ -111,8 +113,7 @@ const authSlice = createSlice({
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       if (action.payload) {
-        const user: any = jwtDecode(action.payload);
-
+        const user: IsUser = jwtDecode(action.payload);
         return {
           ...state,
           token: action.payload,
