@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { updateUser } from "../../store/usersSlice";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { logoutUser } from "../../store/authSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +21,7 @@ const EditAccount = () => {
   const [toggleForm, setToggleForm] = useState("");
   const [formValues, setFormValues] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormValues(e.target.value);
     console.log(formValues);
   };
