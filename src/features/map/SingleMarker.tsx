@@ -1,14 +1,10 @@
 import { Marker } from "@react-google-maps/api";
 import { useDispatch } from "react-redux";
 import { IsPost } from "../../interface";
-import { setSelectedPost } from "../../store/globalSlice";
+import { setLat, setLng, setSelectedPost } from "../../store/globalSlice";
 
 interface singleMarkerProps {
   post: IsPost;
-  // currentCenter: {
-  //   lat: number,
-  //   lng: number,
-  // }
 }
 
 const SingleMarker = (props: singleMarkerProps) => {
@@ -24,12 +20,10 @@ const SingleMarker = (props: singleMarkerProps) => {
         lat: Number(props.post.latitude),
         lng: Number(props.post.longitude),
       }}
-      onClick={() => {
-        // props.currentCenter = {
-        //   lat: Number(props.post.latitude),
-        //   lng: Number(props.post.longitude),
-        // }
-        dispatch(setSelectedPost(props.post));
+      onClick={async() => {
+        await dispatch(setLat(props.post.latitude));
+        await dispatch(setLng(props.post.longitude));
+        await dispatch(setSelectedPost(props.post));
       }}
     />
   );

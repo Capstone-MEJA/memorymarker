@@ -45,11 +45,11 @@ const MemoryMap = (): JSX.Element => {
   },[global.position])
 
   //helper function
-  const togglePostFormFunc = (event: google.maps.MapMouseEvent) => {
+  const togglePostFormFunc = async(event: google.maps.MapMouseEvent) => {
     if (event !== null) {
-      dispatch(togglePostForm());
-      dispatch(setLat(event.latLng?.lat()))
-      dispatch(setLng(event.latLng?.lng()))
+      await dispatch(setLat(event.latLng?.lat()))
+      await dispatch(setLng(event.latLng?.lng()))
+      await dispatch(togglePostForm());
     }
   };
 
@@ -74,7 +74,6 @@ const MemoryMap = (): JSX.Element => {
             <SingleMarker
               post={post}
               key={post._id}
-              // currentCenter={center.current}
             />
           );
         })}

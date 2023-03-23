@@ -1,7 +1,7 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
-import { newPost } from "../../store/postsSlice";
+import { fetchAllPosts, newPost } from "../../store/postsSlice";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
 import { useSelector } from "react-redux";
@@ -21,6 +21,10 @@ const AddPostForm = () => {
   // const [tag, setTag] = useState("");
 
   //useEffect hooks
+  useEffect(() => {
+    dispatch(fetchAllPosts())
+  },[dispatch])
+
   //helper function
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
