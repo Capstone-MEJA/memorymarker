@@ -1,26 +1,22 @@
 import { useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
-import { AddFormProps } from "../../interface";
 import { AppDispatch } from "../../store";
 import { newPost } from "../../store/postsSlice";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { useEffect } from "react";
-import { fetchAllPosts } from "../../store/postsSlice";
+import { togglePostForm } from "../../store/globalSlice"
 
-const AddPostForm = (props: AddFormProps) => {
+
+const AddPostForm = (props: {lat: number, long: number}) => {
   const dispatch = useDispatch<AppDispatch>();
+  const auth = useSelector((state: RootState) => state.auth);
+
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const  togglePostForm = () => props.setTogglePostForm(false);
-  const auth = useSelector((state: RootState) => state.auth);
   // const [tag, setTag] = useState("");
 
-  useEffect(() => {
-    dispatch(fetchAllPosts());
-  }, [dispatch]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -33,13 +29,13 @@ const AddPostForm = (props: AddFormProps) => {
         user: auth._id,
       })
     );
-    props.setTogglePostForm(false);
+    dispatch(togglePostForm());
   }
   return (
     
     <FormWrapper>
       <form onSubmit={handleSubmit}>
-      <button type="button" onClick={togglePostForm}>
+      <button type="button" onClick={() => dispatch(togglePostForm())}>
         <FaIcons.FaTimes />
         </button>
         <h2>Create post</h2>

@@ -25,9 +25,3 @@ export interface AuthState {
   loginError: string;
   userLoaded: boolean;
 }
-
-export interface AddFormProps {
-  lat: number | null;
-  long: number | null;
-  setTogglePostForm: (toggle: boolean) => void;
-}
