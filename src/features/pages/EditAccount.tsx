@@ -1,8 +1,7 @@
 // import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 import { updateUser } from "../../store/usersSlice";
-import { isStore } from "../../store";
 import { useState } from "react";
 import { logoutUser } from "../../store/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -16,8 +15,8 @@ export interface updateObj {
 const EditAccount = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const loggedInUser = useSelector<isStore>((state) => state.auth);
-  console.log(loggedInUser);
+  const loggedInUser = useSelector((state: RootState) => state.auth);
+  // console.log("logged in user", loggedInUser);
 
   const [toggleForm, setToggleForm] = useState("");
   const [formValues, setFormValues] = useState("");
