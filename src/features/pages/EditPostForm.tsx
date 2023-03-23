@@ -8,13 +8,17 @@ import { toggleEditPostForm } from "../../store/globalSlice";
 import { useSelector } from "react-redux";
 
 const EditPostForm = () => {
+  //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
   const global = useSelector((state: RootState) => state.global)
 
+  //useState
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   // const [tag, setTag] = useState("");
 
+  //useEffect hooks
+  //helper function
   function handleSubmit(id: string | undefined) {
     if (typeof id === "string") {
       dispatch(

@@ -1,3 +1,6 @@
+// Any reuseable interface are located here
+// Any 1 time use interface are located at their respecitive files for clarity sakes
+
 export interface IsPost {
   _id: string;
   title: string;

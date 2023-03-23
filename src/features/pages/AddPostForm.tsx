@@ -9,34 +9,39 @@ import { RootState } from "../../store";
 import { togglePostForm } from "../../store/globalSlice"
 
 
-const AddPostForm = (props: {lat: number, long: number}) => {
+const AddPostForm = () => {
+  //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
   const auth = useSelector((state: RootState) => state.auth);
+  const global = useSelector((state: RootState) => state.global);
 
+  //useState
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   // const [tag, setTag] = useState("");
 
-
+  //useEffect hooks
+  //helper function
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     dispatch(
       newPost({
         title: title,
         description: description,
-        latitude: props.lat,
-        longitude: props.long,
+        latitude: global.position.lat,
+        longitude: global.position.lng,
         user: auth._id,
       })
     );
     dispatch(togglePostForm());
   }
+  
   return (
-    
+
     <FormWrapper>
       <form onSubmit={handleSubmit}>
-      <button type="button" onClick={() => dispatch(togglePostForm())}>
-        <FaIcons.FaTimes />
+        <button type="button" onClick={() => dispatch(togglePostForm())}>
+          <FaIcons.FaTimes />
         </button>
         <h2>Create post</h2>
         <input
@@ -45,14 +50,14 @@ const AddPostForm = (props: {lat: number, long: number}) => {
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setTitle(e.target.value)
           }
-          />
+        />
         <input
           type="textarea"
           placeholder="description"
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setDescription(e.target.value)
           }
-          />
+        />
         {/* <input
           type="text"
           placeholder="tag"
@@ -63,7 +68,7 @@ const AddPostForm = (props: {lat: number, long: number}) => {
         <button type="submit">Submit</button>
       </form>
     </FormWrapper>
-    );
+  );
 };
 
 export default AddPostForm;

@@ -1,6 +1,6 @@
 import { GoogleMap } from "@react-google-maps/api";
 import { fetchAllPosts, selectAllPosts } from "../../store/postsSlice";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import mapStyles from "./mapStyles";
 import SingleMarker from "./SingleMarker";
@@ -10,25 +10,18 @@ import AddPostForm from "../pages/AddPostForm";
 import { IsPost } from "../../interface";
 import { AppDispatch, RootState } from "../../store";
 import EditPostForm from "../pages/EditPostForm";
-import { togglePostForm, setSelectedPost } from "../../store/globalSlice";
+import { togglePostForm, setSelectedPost, setLat, setLng } from "../../store/globalSlice";
 
 const MemoryMap = (): JSX.Element => {
-  //useDispatch need a type - define AppDispatch in the store
+  //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
   const auth = useSelector((state: RootState) => state.auth);
   const global = useSelector((state: RootState) => state.global);
+  const center = useRef(global.position);
 
-
-  const center = useRef({ lat: 40.7527277692752, lng: -73.97722734175942 });
-
-  //an array of objects
+  //useState
+  //useEffect hooks
   const allPosts: IsPost[] = useSelector(selectAllPosts);
-
-  //add a state that keep track of selected marker to render infoWindow
-  const [lat, setLat] = useState<number | null>(null);
-  const [long, setLong] = useState<number | null>(null);
-
-  //fetch all post
   useEffect(() => {
     dispatch(fetchAllPosts());
   }, []);
@@ -46,15 +39,17 @@ const MemoryMap = (): JSX.Element => {
     }
   }, [allPosts]);
 
+  //either this need to work or the center.current props need to be pass down
+  useEffect(() => {
+    center.current = global.position;
+  },[global.position])
+
+  //helper function
   const togglePostFormFunc = (event: google.maps.MapMouseEvent) => {
     if (event !== null) {
-      const lat = event.latLng?.lat();
-      const lng = event.latLng?.lng();
       dispatch(togglePostForm());
-      if (lat && lng) {
-        setLat(lat);
-        setLong(lng);
-      }
+      dispatch(setLat(event.latLng?.lat()))
+      dispatch(setLng(event.latLng?.lng()))
     }
   };
 
@@ -79,14 +74,7 @@ const MemoryMap = (): JSX.Element => {
             <SingleMarker
               post={post}
               key={post._id}
-              // jessie wants this fixed!
-              clickHandler={() => {
-                center.current = {
-                  lat: Number(post.latitude),
-                  lng: Number(post.longitude),
-                };
-                dispatch(setSelectedPost(post));
-              }}
+              // currentCenter={center.current}
             />
           );
         })}
@@ -99,10 +87,7 @@ const MemoryMap = (): JSX.Element => {
         {/* conditionally render the add post from when logged in and toggle is true */}
         {auth._id && global.postForm ? (
           <Form>
-            <AddPostForm
-              lat={Number(lat)}
-              long={Number(long)}
-            />
+            <AddPostForm/>
           </Form>
         ) : null}
 

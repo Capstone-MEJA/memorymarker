@@ -6,10 +6,14 @@ import { useSelector } from "react-redux";
 import { setSelectedPost, toggleEditPostForm } from "../../store/globalSlice";
 
 const SingleInfoWindow = () => {
+    //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
   const auth = useSelector((state: RootState) => state.auth);
   const global = useSelector((state: RootState) => state.global); 
 
+  //useState
+  //useEffect hooks
+  //helper function
   const deleteSinglePost = (id: string) => {
     // closes info window
     dispatch(setSelectedPost(null));
