@@ -11,7 +11,8 @@ interface isGlobal {
     position: {
         lat: number,
         lng: number,
-    }
+    },
+    sideBar: boolean;
 }
 
 let initialState: isGlobal = {
@@ -21,7 +22,8 @@ let initialState: isGlobal = {
     position: {
         lat: 40.7527277692752,
         lng: -73.97722734175942,
-    }
+    },
+    sideBar: false,
 };
 
 export const globalSlice = createSlice({
@@ -43,6 +45,9 @@ export const globalSlice = createSlice({
         setLng: (state, action) => {
             state.position.lng = action.payload;
         },
+        toggleSideBar: (state) => {
+            state.sideBar = !state.sideBar;
+        },
     }
 })
 
@@ -50,5 +55,5 @@ export const selectGlobal = (state: isStore) => {
     return state.global;
 };
   
-export const { togglePostForm, toggleEditPostForm, setSelectedPost, setLat, setLng } = globalSlice.actions;
+export const { togglePostForm, toggleEditPostForm, setSelectedPost, setLat, setLng, toggleSideBar } = globalSlice.actions;
 export default globalSlice.reducer;
