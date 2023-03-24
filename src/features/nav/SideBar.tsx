@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
 // import Nav from "../app/Navbar";
@@ -12,6 +12,7 @@ import { toggleSideBar } from "../../store/globalSlice";
 const Sidebar: React.FC = () => {
   //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const auth = useSelector((state: RootState) => state.auth);
   const global = useSelector((state: RootState) => state.global);
 
@@ -60,7 +61,8 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 onClick={() => {
                   dispatch(logoutUser(null));
-                  dispatch(toggleSideBar())
+                  dispatch(toggleSideBar());
+                  navigate("/");
                 }}
               >
                 Logout
