@@ -6,28 +6,45 @@ import { RootState } from "../../store";
 const About: React.FC = () => {
   const auth = useSelector((state: RootState) => state.auth);
   return (
-    <>
+    <AboutWrapper>
       <ImageWrapper src="logo.png"></ImageWrapper>
       <h1>Hey, {auth._id ? auth.username : "friend"} </h1>
       <DevsWrapper>
         <DevWrapper>
           <ImageWrapper src="alicia.png"></ImageWrapper>
-          <DevsText>Alicia</DevsText>
+          <DevsText>
+            Welcome to the world's most popular social media platform. Our
+            mission is to help you tell your story. Get ready to make your mark!
+          </DevsText>
         </DevWrapper>
         <DevWrapper>
-          <DevsText>Erica</DevsText>
+          <DevsText>
+            We all have memories we don't want to forget. Whether it be where
+            you had your first kiss or where you had your latest meal, mark it
+            on the map!
+          </DevsText>
           <ImageWrapper src="erica.png"></ImageWrapper>
         </DevWrapper>
         <DevWrapper>
           <ImageWrapper src="jessie.png"></ImageWrapper>
-          <DevsText>Jessie</DevsText>
+          <DevsText>
+            Start documenting your journey by creating your account! Have a
+            night you don't want to forget? Mark it on the map! Create a post
+            and journal your thoughts. Where was it? Who were you with? How did
+            you feel?
+          </DevsText>
         </DevWrapper>
         <DevWrapper>
-          <DevsText>Mandy</DevsText>
+          <DevsText>
+            Founded in 2023 by a team of makers, thinkers and explorers. We
+            wanted a place for people to gather, share their journies and see
+            other people's journies all over the map. We're committed to helping
+            you tell your story.
+          </DevsText>
           <ImageWrapper src="mandy.png"></ImageWrapper>
         </DevWrapper>
       </DevsWrapper>
-    </>
+    </AboutWrapper>
     // <AboutSection>
     //     <AboutTitle>
     //     About
@@ -59,6 +76,11 @@ const About: React.FC = () => {
 
 export default About;
 
+const AboutWrapper = styled.div`
+  height: 100%;
+  background-color: #f2cbac;
+`;
+
 const DevsWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -66,12 +88,14 @@ const DevsWrapper = styled.div`
 
 const DevWrapper = styled.div`
   display: flex;
+  gap: 1em;
 `;
 
 const DevsText = styled.div``;
 
 const ImageWrapper = styled.img`
   width: 20%;
+  height: 20%;
   border-radius: 50%;
 `;
 
