@@ -29,7 +29,7 @@ const Sidebar: React.FC = () => {
       </Navbar>
 
       <SidebarMenu sidebar={global.sideBar}>
-        <SidebarWrap>
+        {/* <SidebarWrap> */}
           <MenuIconClose to="#" onClick={() => dispatch(toggleSideBar())}>
             <FaIcons.FaTimes />
           </MenuIconClose>
@@ -110,28 +110,13 @@ const Sidebar: React.FC = () => {
               </MenuItems>
             );
           })} */}
-        </SidebarWrap>
+        {/* </SidebarWrap> */}
       </SidebarMenu>
     </>
   );
 };
 
 export default Sidebar;
-
-// const Navbar = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-self: center;
-//   align-items: center;
-//   height: 5rem;
-//   background-color: black;
-//   z-index: 1;
-//   position: absolute;
-//   border: 1px;
-//   border-radius: 1rem;
-//   margin-top: 1rem;
-//   margin-left: 1rem;
-// `;
 
 const MenuIconOpen = styled(Link)`
   display: flex;
@@ -157,16 +142,20 @@ const MenuIconClose = styled(Link)`
 const SidebarMenu = styled.div<{ sidebar: boolean }>`
   width: 250px;
   height: 100vh;
-  background-color: black;
+  background-color: #739cf0;
   position: fixed;
   top: 0px;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 0.6s;
   z-index: 1;
   // padding-top: 10px;
+  
+  @media ${device.mobileS} {
+    max-width: 800px;
+    width: 100%;
+  }
 `;
 
-const SidebarWrap = styled.div``;
 const LogoutButton = styled.div`
   margin: 0 2rem;
   border-radius: 5px;
@@ -196,7 +185,7 @@ const MenuItemLinks = styled.div`
 `;
 
 const MenuItemLink = styled(Link)`
-  margin: 0 2rem;
+  margin: 0 5rem;
   border-radius: 5px;
   width: 100%;
   text-align: center;
@@ -232,4 +221,10 @@ margin-left: 1rem;
 max-width: 800px;
 height: 3rem;
 width: 3rem;
+}
+
+@media ${device.laptopL} {
+  max-width: 1440px;
+  height: 5rem;
+  width: 5rem;
 }`;
