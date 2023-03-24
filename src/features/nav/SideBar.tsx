@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { logoutUser } from "../../store/authSlice";
 import { toggleSideBar } from "../../store/globalSlice";
+import { device } from "../../styles/global";
 
 const Sidebar: React.FC = () => {
   //setting based variables/functions
@@ -117,20 +118,20 @@ const Sidebar: React.FC = () => {
 
 export default Sidebar;
 
-const Navbar = styled.div`
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  align-items: center;
-  height: 5rem;
-  background-color: black;
-  z-index: 1;
-  position: absolute;
-  border: 1px;
-  border-radius: 1rem;
-  margin-top: 1rem;
-  margin-left: 1rem;
-`;
+// const Navbar = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-self: center;
+//   align-items: center;
+//   height: 5rem;
+//   background-color: black;
+//   z-index: 1;
+//   position: absolute;
+//   border: 1px;
+//   border-radius: 1rem;
+//   margin-top: 1rem;
+//   margin-left: 1rem;
+// `;
 
 const MenuIconOpen = styled(Link)`
   display: flex;
@@ -213,3 +214,22 @@ const MenuItemLink = styled(Link)`
     text-decoration: none;
   }
 `;
+
+const Navbar = styled.div`
+display: flex;
+justify-content: center;
+align-self: center;
+align-items: center;
+background-color: #739cf0;
+z-index: 1;
+position: absolute;
+// border: 1px;
+border-radius: 1rem;
+margin-top: 1rem;
+margin-left: 1rem;
+
+@media ${device.mobileS} {
+max-width: 800px;
+height: 3rem;
+width: 3rem;
+}`;
