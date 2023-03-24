@@ -7,11 +7,11 @@ const About: React.FC = () => {
   const auth = useSelector((state: RootState) => state.auth);
   return (
     <AboutWrapper>
-      <ImageWrapper src="logo.png"></ImageWrapper>
+      <LogoImageWrapper src="logo.png" />
       <h1>Hey, {auth._id ? auth.username : "friend"} </h1>
       <DevsWrapper>
         <DevWrapper>
-          <ImageWrapper src="alicia.png"></ImageWrapper>
+          <ImageWrapper src="alicia.png" />
           <DevsText>
             Welcome to the world's most popular social media platform. Our
             mission is to help you tell your story. Get ready to make your mark!
@@ -23,10 +23,10 @@ const About: React.FC = () => {
             you had your first kiss or where you had your latest meal, mark it
             on the map!
           </DevsText>
-          <ImageWrapper src="erica.png"></ImageWrapper>
+          <ImageWrapper src="erica.png" />
         </DevWrapper>
         <DevWrapper>
-          <ImageWrapper src="jessie.png"></ImageWrapper>
+          <ImageWrapper src="jessie.png" />
           <DevsText>
             Start documenting your journey by creating your account! Have a
             night you don't want to forget? Mark it on the map! Create a post
@@ -41,7 +41,7 @@ const About: React.FC = () => {
             other people's journies all over the map. We're committed to helping
             you tell your story.
           </DevsText>
-          <ImageWrapper src="mandy.png"></ImageWrapper>
+          <ImageWrapper src="mandy.png" />
         </DevWrapper>
       </DevsWrapper>
     </AboutWrapper>
@@ -77,13 +77,24 @@ const About: React.FC = () => {
 export default About;
 
 const AboutWrapper = styled.div`
-  height: 100%;
-  background-color: #f2cbac;
+  background-color: #ceece8;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+`;
+
+const LogoImageWrapper = styled.img`
+  width: 30%;
+  height: 30%;
 `;
 
 const DevsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 1em;
 `;
 
 const DevWrapper = styled.div`
@@ -91,7 +102,11 @@ const DevWrapper = styled.div`
   gap: 1em;
 `;
 
-const DevsText = styled.div``;
+const DevsText = styled.div`
+  background-color: white;
+  border-radius: 1em;
+  text-align: left;
+`;
 
 const ImageWrapper = styled.img`
   width: 20%;
