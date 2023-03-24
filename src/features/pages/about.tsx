@@ -77,6 +77,7 @@ const About: React.FC = () => {
 export default About;
 
 const AboutWrapper = styled.div`
+  min-height: 100vh;
   background-color: #ceece8;
   text-align: center;
   display: flex;
