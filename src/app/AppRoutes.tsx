@@ -5,6 +5,7 @@ import EditAccount from "../features/pages/EditAccount";
 import About from "../features/pages/about";
 import Register from "../features/auth/Register";
 import Login from "../features/auth/Login";
+import ManagePosts from "../features/pages/ManagePosts";
 
 const AppRoutes = () => {
   return (
@@ -15,9 +16,9 @@ const AppRoutes = () => {
         <Route path="/information" element={<EditAccount />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/account/myposts" element={<MyPosts />} /> */}
-        <Route path="*" element={<Map />} />
+        <Route path="/myposts" element={<ManagePosts />} />
         <Route path='/about' element={<About />} />
+        <Route path="*" element={<Map />} />
       </Routes>
     </div>
   );
