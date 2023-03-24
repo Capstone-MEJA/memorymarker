@@ -10,7 +10,7 @@ import AddPostForm from "../pages/AddPostForm";
 import { IsPost } from "../../interface";
 import { AppDispatch, RootState } from "../../store";
 import EditPostForm from "../pages/EditPostForm";
-import { togglePostForm, setSelectedPost, setLat, setLng } from "../../store/globalSlice";
+import { togglePostForm, setSelectedPost, setLat, setLng, toggleSideBar } from "../../store/globalSlice";
 
 const MemoryMap = (): JSX.Element => {
   //setting based variables/functions
@@ -46,6 +46,9 @@ const MemoryMap = (): JSX.Element => {
 
   //helper function
   const togglePostFormFunc = async(event: google.maps.MapMouseEvent) => {
+    if(global.sideBar){
+      await dispatch(toggleSideBar());
+    }
     if (event !== null) {
       await dispatch(setLat(event.latLng?.lat()))
       await dispatch(setLng(event.latLng?.lng()))

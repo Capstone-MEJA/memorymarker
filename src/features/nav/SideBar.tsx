@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
@@ -8,50 +7,52 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { logoutUser } from "../../store/authSlice";
+import { toggleSideBar } from "../../store/globalSlice";
 
 const Sidebar: React.FC = () => {
   //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
   const auth = useSelector((state: RootState) => state.auth);
+  const global = useSelector((state: RootState) => state.global);
 
   //useState
-  const [sidebar, setSidebar] = useState(false);
-
   //useEffect hooks
   //helper function
-  const showSidebar = () => setSidebar(!sidebar);
 
   return (
     <>
       <Navbar>
-        <MenuIconOpen to="#" onClick={showSidebar}>
+        <MenuIconOpen to="#" onClick={() => dispatch(toggleSideBar())}>
           <FaIcons.FaBars />
         </MenuIconOpen>
       </Navbar>
 
-      <SidebarMenu sidebar={sidebar}>
+      <SidebarMenu sidebar={global.sideBar}>
         <SidebarWrap>
-          <MenuIconClose to="#" onClick={showSidebar}>
+          <MenuIconClose to="#" onClick={() => dispatch(toggleSideBar())}>
             <FaIcons.FaTimes />
           </MenuIconClose>
 
           {auth._id ? (
             <MenuItemLinks>
               <MenuItemLink
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
                 Home
               </MenuItemLink>
               <MenuItemLink
-                to="/account"
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
+                to="/account"
               >
                 Hi, {auth.username}!
               </MenuItemLink>
               <MenuItemLink
-                to="/about"
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
+                to="/about"
               >
                 About
               </MenuItemLink>
@@ -59,6 +60,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 onClick={() => {
                   dispatch(logoutUser(null));
+                  dispatch(toggleSideBar())
                 }}
               >
                 Logout
@@ -67,24 +69,28 @@ const Sidebar: React.FC = () => {
           ) : (
             <MenuItemLinks>
               <MenuItemLink
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
                 Home
               </MenuItemLink>
               <MenuItemLink
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/Login"
               >
                 Login
               </MenuItemLink>
               <MenuItemLink
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/register"
               >
                 Sign-up
               </MenuItemLink>
               <MenuItemLink
+                onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
@@ -193,6 +199,8 @@ const MenuItemLink = styled(Link)`
   border-radius: 5px;
   width: 100%;
   text-align: center;
+  textDecoration: "none"
+  color: "whitesmoke"
   // border: 1px solid blue;
   padding: 1em;
 
