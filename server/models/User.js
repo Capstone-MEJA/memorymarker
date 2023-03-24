@@ -14,7 +14,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     min: 8,
-    max: 20,
   },
   // createdAt: {
   //   type: Date,
@@ -56,8 +55,8 @@ User.schema.path("username").validate(function (value) {
 });
 
 User.schema.path("password").validate(function (value) {
-  if (value.length < 8 || value.length > 20) {
-    throw new Error("Password needs to be between 8 and 20 characters");
+  if (value.length < 8) {
+    throw new Error("Password needs to be at least 8 characters in length");
   } else {
     return true;
   }
