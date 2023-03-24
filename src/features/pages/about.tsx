@@ -5,8 +5,6 @@ import { RootState } from "../../store";
 
 const About: React.FC = () => {
   const auth = useSelector((state: RootState) => state.auth);
-
-  console.log(auth);
   return (
     <>
       <ImageWrapper src="logo.png"></ImageWrapper>
