@@ -30,77 +30,84 @@ const Sidebar: React.FC = () => {
 
       <SidebarMenu sidebar={global.sideBar}>
         {/* <SidebarWrap> */}
-          <MenuIconClose to="#" onClick={() => dispatch(toggleSideBar())}>
-            <FaIcons.FaTimes />
-          </MenuIconClose>
+        <MenuIconClose to="#" onClick={() => dispatch(toggleSideBar())}>
+          <FaIcons.FaTimes />
+        </MenuIconClose>
 
-          {auth._id ? (
-            <MenuItemLinks>
-              <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
-                to="/"
-              >
-                Home
-              </MenuItemLink>
-              <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
-                to="/account"
-              >
-                Hi, {auth.username}!
-              </MenuItemLink>
-              <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
-                to="/about"
-              >
-                About
-              </MenuItemLink>
-              <LogoutButton
-                style={{ textDecoration: "none", color: "whitesmoke" }}
-                onClick={() => {
-                  dispatch(logoutUser(null));
-                  dispatch(toggleSideBar())
-                }}
-              >
-                Logout
-              </LogoutButton>
-            </MenuItemLinks>
-          ) : (
-            <MenuItemLinks>
-              <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
-                to="/"
-              >
-                Home
-              </MenuItemLink>
-              <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
-                to="/Login"
-              >
-                Login
-              </MenuItemLink>
-              <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
-                to="/register"
-              >
-                Sign-up
-              </MenuItemLink>
-              <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
-                to="/about"
-              >
-                About
-              </MenuItemLink>
-            </MenuItemLinks>
-          )}
-          {/* // if the user is logged in show */}
-          {/* {SidebarData.map((item, index) => {
+        {auth._id ? (
+          <MenuItemLinks>
+            <MenuItemLink
+              onClick={() => dispatch(toggleSideBar())}
+              style={{ textDecoration: "none", color: "whitesmoke" }}
+              to="/"
+            >
+              Home
+            </MenuItemLink>
+            <MenuItemLink
+              onClick={() => dispatch(toggleSideBar())}
+              style={{ textDecoration: "none", color: "whitesmoke" }}
+              to="/account"
+            >
+              Hi, {auth.username}!
+            </MenuItemLink>
+            <MenuItemLink
+              onClick={() => dispatch(toggleSideBar())}
+              style={{ textDecoration: "none", color: "whitesmoke" }}
+              to="/about"
+            >
+              About
+            </MenuItemLink>
+            <LogoutButton
+              style={{ textDecoration: "none", color: "whitesmoke" }}
+              onClick={() => {
+                dispatch(logoutUser(null));
+                dispatch(toggleSideBar());
+              }}
+            >
+              Logout
+            </LogoutButton>
+          </MenuItemLinks>
+        ) : (
+          <MenuItemLinks>
+            <MenuItemLink
+              onClick={() => dispatch(toggleSideBar())}
+              style={{ textDecoration: "none", color: "whitesmoke" }}
+              to="/"
+            >
+              Home
+            </MenuItemLink>
+            <MenuItemLink
+              onClick={() => dispatch(toggleSideBar())}
+              style={{ textDecoration: "none", color: "whitesmoke" }}
+              to="/Login"
+            >
+              Login
+            </MenuItemLink>
+            <MenuItemLink
+              onClick={() => dispatch(toggleSideBar())}
+              style={{ textDecoration: "none", color: "whitesmoke" }}
+              to="/register"
+            >
+              Sign-up
+            </MenuItemLink>
+            <MenuItemLink
+              onClick={() => dispatch(toggleSideBar())}
+              style={{ textDecoration: "none", color: "whitesmoke" }}
+              to="/about"
+            >
+              About
+            </MenuItemLink>
+            <MenuItemLink
+              onClick={() => dispatch(toggleSideBar())}
+              style={{ textDecoration: "none", color: "whitesmoke" }}
+              to="/team"
+            >
+              Team
+            </MenuItemLink>
+          </MenuItemLinks>
+        )}
+        {/* // if the user is logged in show */}
+        {/* {SidebarData.map((item, index) => {
             return (
               <MenuItems key={index}>
                 <MenuItemLinks to={item.path}>
@@ -149,7 +156,7 @@ const SidebarMenu = styled.div<{ sidebar: boolean }>`
   transition: 0.6s;
   z-index: 1;
   // padding-top: 10px;
-  
+
   @media ${device.mobileS} {
     max-width: 800px;
     width: 100%;
@@ -205,26 +212,27 @@ const MenuItemLink = styled(Link)`
 `;
 
 const Navbar = styled.div`
-display: flex;
-justify-content: center;
-align-self: center;
-align-items: center;
-background-color: #739cf0;
-z-index: 1;
-position: absolute;
-// border: 1px;
-border-radius: 1rem;
-margin-top: 1rem;
-margin-left: 1rem;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  background-color: #739cf0;
+  z-index: 1;
+  position: absolute;
+  // border: 1px;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
 
-@media ${device.mobileS} {
-max-width: 800px;
-height: 3rem;
-width: 3rem;
-}
+  @media ${device.mobileS} {
+    max-width: 800px;
+    height: 3rem;
+    width: 3rem;
+  }
 
-@media ${device.laptopL} {
-  max-width: 1440px;
-  height: 5rem;
-  width: 5rem;
-}`;
+  @media ${device.laptopL} {
+    max-width: 1440px;
+    height: 5rem;
+    width: 5rem;
+  }
+`;
