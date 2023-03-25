@@ -10,7 +10,7 @@ router.post("/", async (req, res, next) => {
     // validate the schema
     const schema = Joi.object({
       username: Joi.string().required().min(5).max(20),
-      password: Joi.string().required().min(8).max(20),
+      password: Joi.string().required().min(8),
     });
     const { error } = schema.validate(req.body, { abortEarly: false });
 

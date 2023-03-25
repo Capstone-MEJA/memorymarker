@@ -16,6 +16,7 @@ export const fetchAllUsers = createAsyncThunk("allUsers", async () => {
 
 export const fetchSingleUser = createAsyncThunk("singleUser", async (_id) => {
   try {
+    console.log(_id)
     const { data } = await axios.get(`/api/users/${_id}`);
     return data;
   } catch (error) {

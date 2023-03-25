@@ -14,17 +14,18 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     min: 8,
-    max: 20,
   },
   // createdAt: {
   //   type: Date,
   //   immutable: true,
   //   default: () => Date.now(),
   // },
-  posts: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: "Post",
-  },
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Post",
+    },
+  ],
 });
 
 userSchema.statics.findByToken = async function (token) {
@@ -56,7 +57,7 @@ User.schema.path("username").validate(function (value) {
 });
 
 User.schema.path("password").validate(function (value) {
-  if (value.length < 8 || value.length > 20) {
+  if (value.length < 8) {
     throw new Error("Password needs to be between 8 and 20 characters");
   } else {
     return true;

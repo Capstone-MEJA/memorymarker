@@ -17,7 +17,9 @@ router.get("/", async (req, res, next) => {
 // GET single user
 router.get("/:_id", async (req, res, next) => {
   try {
-    const user = await User.findById(req.params._id);
+    console.log(req.params._id)
+    const user = await User.findById(req.params._id).populate("posts");
+    console.log(user.posts, "HI")
     res.send(user);
   } catch (err) {
     next(err);
@@ -49,16 +51,7 @@ router.put("/", userVerification, async (req, res, next) => {
       req.body.password = await bcrypt.hash(req.body.password, salt);
     }
     console.log(req.body);
-    // by default, update validators are off, so you need to set as true
-    const opts = { runValidators: true }
-
-    try {
-      // pass in validator options
-      await User.updateOne({ _id: req.body._id }, req.body, opts);
-    } catch(e) {
-      console.log(e.errors)
-    }
-   
+    await User.updateOne({ _id: req.body._id }, req.body);
     const user = await User.findById(req.body._id);
     res.send(user);
   } catch (err) {
