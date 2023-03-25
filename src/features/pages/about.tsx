@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { device } from "../../styles/global";
 
 const About: React.FC = () => {
   const auth = useSelector((state: RootState) => state.auth);
   return (
     <AboutWrapper>
       <LogoImageWrapper src="logo.png" />
-      <h1>Hey, {auth._id ? auth.username : "friend"} </h1>
+      <Title>Hey, {auth._id ? auth.username : "friend"} </Title>
       <DevsWrapper>
         <DevWrapper>
           <ImageWrapper src="alicia.png" />
@@ -88,25 +89,35 @@ const AboutWrapper = styled.div`
 `;
 
 const LogoImageWrapper = styled.img`
-  width: 30%;
-  height: 30%;
+  width: 100px;
+  height: 100px;
+`;
+
+const Title = styled.h1`
+  padding-bottom: 1em;
 `;
 
 const DevsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
+
+  @media ${device.mobileL} {
+    max-width: 425px;
+    padding: 0.5em;
 `;
 
 const DevWrapper = styled.div`
   display: flex;
-  gap: 1em;
+  gap: 0.5em;
 `;
 
 const DevsText = styled.div`
+  font-size: 12px;
   background-color: white;
   border-radius: 1em;
   text-align: left;
+  padding: 1em;
 `;
 
 const ImageWrapper = styled.img`
