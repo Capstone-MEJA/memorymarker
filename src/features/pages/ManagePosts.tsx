@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { useState, useEffect } from "react";
-import { fetchAllPosts, deletePost, selectAllPosts, updatePost } from "../../store/postsSlice";
+import {
+  fetchAllPosts,
+  deletePost,
+  selectAllPosts,
+  updatePost,
+} from "../../store/postsSlice";
 import { IsPost } from "../../interface";
 
 const ManagePosts = () => {
@@ -10,7 +15,7 @@ const ManagePosts = () => {
   const posts = useSelector(selectAllPosts);
 
   const [editMode, setEditMode] = useState(false);
-  const [formValue, setFormValue] = useState({});
+  const [formValue, setFormValue] = useState<formValue>({});
   const [change, setChange] = useState(false);
 
   useEffect(() => {
@@ -110,7 +115,7 @@ const ManagePosts = () => {
                           className="btn primary-btn"
                           onClick={(event) => {
                             onClickHandler({
-                              method: event.target.value,
+                              method: (event.target as HTMLInputElement).value,
                               _id: post._id,
                               title: post.title,
                               description: post.description,

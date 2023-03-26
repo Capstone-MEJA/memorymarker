@@ -60,9 +60,9 @@ export const updatePost = createAsyncThunk(
     title,
     description,
   }: {
-    _id: string;
-    title: string;
-    description: string;
+    _id?: string;
+    title?: string;
+    description?: string;
     // latitude: number | null;
     // longitude: number | null;
   }) => {

@@ -11,7 +11,6 @@ import { IsPost } from "../../interface";
 import { AppDispatch, RootState } from "../../store";
 import EditPostForm from "../pages/EditPostForm";
 import { togglePostForm, setSelectedPost, setLat, setLng, toggleSideBar } from "../../store/globalSlice";
-import { fetchSingleUser } from "../../store/usersSlice";
 
 const MemoryMap = (): JSX.Element => {
   //setting based variables/functions
