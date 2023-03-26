@@ -13,7 +13,9 @@ const AboutTeam: React.FC = () => {
           <DevsText>
             <Bold>Alicia Hetrick</Bold>
             <div>
-              <a href="https://www.linkedin.com/in/alicia-hetrick/">LinkedIn</a>
+              <LinkedIn href="https://www.linkedin.com/in/alicia-hetrick/">
+                LinkedIn
+              </LinkedIn>
             </div>
             <div>
               Hi! 👋 I'm Alicia, a former laboratory scientist who has turned
@@ -26,7 +28,9 @@ const AboutTeam: React.FC = () => {
           <DevsText>
             <Bold>Erica Young</Bold>
             <div>
-              <a href="https://www.linkedin.com/in/youngerica/">LinkedIn</a>
+              <LinkedIn href="https://www.linkedin.com/in/youngerica/">
+                LinkedIn
+              </LinkedIn>
             </div>
             <div>
               Hello, my name is Erica Young! I'm easily excited over math
@@ -42,7 +46,9 @@ const AboutTeam: React.FC = () => {
           <DevsText>
             <Bold>Jessie Chiu</Bold>
             <div>
-              <a href="https://www.linkedin.com/in/jessiechiu12/">LinkedIn</a>
+              <LinkedIn href="https://www.linkedin.com/in/jessiechiu12/">
+                LinkedIn
+              </LinkedIn>
             </div>
             <div>
               Full Stack software engineer with prior experience in finance.
@@ -56,7 +62,9 @@ const AboutTeam: React.FC = () => {
           <DevsText>
             <Bold>Mandy Chin</Bold>
             <div>
-              <a href="https://www.linkedin.com/in/mandy-chin/">LinkedIn</a>
+              <LinkedIn href="https://www.linkedin.com/in/mandy-chin/">
+                LinkedIn
+              </LinkedIn>
             </div>
             <div>
               Hi, I'm Mandy! I am a software engineer with experience in
@@ -125,6 +133,11 @@ const DevsText = styled.div`
 const Bold = styled.p`
   font-size: 16px;
   font-weight: 800;
+`;
+
+const LinkedIn = styled.a`
+  text-decoration: none;
+  color: #739cf0;
 `;
 
 const ImageWrapper = styled.img`
