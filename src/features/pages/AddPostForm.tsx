@@ -6,8 +6,7 @@ import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { togglePostForm } from "../../store/globalSlice"
-
+import { togglePostForm } from "../../store/globalSlice";
 
 const AddPostForm = () => {
   //setting based variables/functions
@@ -22,26 +21,29 @@ const AddPostForm = () => {
 
   //useEffect hooks
   useEffect(() => {
-    dispatch(fetchAllPosts())
-  },[dispatch])
+    dispatch(fetchAllPosts());
+  }, [dispatch]);
 
   //helper function
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    dispatch(
-      newPost({
-        title: title,
-        description: description,
-        latitude: global.position.lat,
-        longitude: global.position.lng,
-        user: auth._id,
-      })
-    );
-    dispatch(togglePostForm());
+    if (title.length === 0 || description.length === 0) {
+      alert("Please fill in both fields beforing submitting :)");
+    } else {
+      dispatch(
+        newPost({
+          title: title,
+          description: description,
+          latitude: global.position.lat,
+          longitude: global.position.lng,
+          user: auth._id,
+        })
+      );
+      dispatch(togglePostForm());
+    }
   }
-  
-  return (
 
+  return (
     <FormWrapper>
       <form onSubmit={handleSubmit}>
         <button type="button" onClick={() => dispatch(togglePostForm())}>
