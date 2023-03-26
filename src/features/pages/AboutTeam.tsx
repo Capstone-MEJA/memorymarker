@@ -15,7 +15,11 @@ const AboutTeam: React.FC = () => {
             <div>
               <a href="https://www.linkedin.com/in/alicia-hetrick/">LinkedIn</a>
             </div>
-            <div>Hi! 👋 I'm Alicia.</div>
+            <div>
+              Hi! 👋 I'm Alicia, a former laboratory scientist who has turned
+              her love of analytical investigation into a passion for life-long
+              learning and technical problem solving.
+            </div>
           </DevsText>
         </DevWrapper>
         <DevWrapper>
@@ -24,7 +28,12 @@ const AboutTeam: React.FC = () => {
             <div>
               <a href="https://www.linkedin.com/in/youngerica/">LinkedIn</a>
             </div>
-            <div>Hello, my name is Erica Young!</div>
+            <div>
+              Hello, my name is Erica Young! I'm easily excited over math
+              problems in the sense that there can only be a right and wrong
+              answer. Similar to code, there are many ways to approach a problem
+              but there will always be a correct answer.
+            </div>
           </DevsText>
           <ImageWrapper src="erica.png" />
         </DevWrapper>
