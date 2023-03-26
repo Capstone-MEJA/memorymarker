@@ -28,11 +28,11 @@ router.post("/", async (req, res, next) => {
     // create new post
     const post = await Post.create(req.body);
     //find user associated with this post
-    const user = await User.findById(req.body.user)
+    const user = await User.findById(req.body.user);
     // push postId into user object and save
-    user.posts.push(post._id)
-    user.save()
-    res.send(post)
+    user.posts.push(post._id);
+    user.save();
+    res.send(post);
   } catch (err) {
     console.log(err);
     next(err);
@@ -53,9 +53,14 @@ router.put("/:_id", async (req, res, next) => {
 
 router.delete("/:_id", async (req, res, next) => {
   try {
-    const post = await Post.findById(req.params._id);
+    const deletePost = await Post.findById(req.params._id);
+    const user = await User.findById(deletePost.user);
+    user.posts = user.posts.filter(
+      (post) => post._id.toString() !== deletePost._id.toString()
+    );
+    await user.save();
     await Post.deleteOne({ _id: req.params._id });
-    res.send(post);
+    res.send(deletePost);
   } catch (err) {
     console.log(err);
     next(err);

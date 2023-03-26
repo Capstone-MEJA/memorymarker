@@ -9,6 +9,8 @@ export interface IsPost {
   latitude: number;
   longitude: number;
   user: IsUser;
+  createdAt: number;
+  timeStamp: string
 }
 
 export interface IsUser {

@@ -14,7 +14,7 @@ export const fetchAllUsers = createAsyncThunk("allUsers", async () => {
   }
 });
 
-export const fetchSingleUser = createAsyncThunk("singleUser", async (_id) => {
+export const fetchSingleUser = createAsyncThunk("singleUser", async (_id: string) => {
   try {
     console.log(_id)
     const { data } = await axios.get(`/api/users/${_id}`);
@@ -58,7 +58,7 @@ export const deleteUser = createAsyncThunk("deleteUser", async (_id) => {
   }
 });
 
-let initialState: IsUser[] = [];
+let initialState: IsUser | IsUser[] = [];
 
 export const UsersSlice = createSlice({
   name: "users",
@@ -76,16 +76,20 @@ export const UsersSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         console.log(action.payload);
-        return state.map((user) => {
-          if (user._id !== action.payload._id) {
-            return user;
-          } else {
-            return action.payload;
-          }
-        });
+        if(Array.isArray(state)){
+          return state.map((user) => {
+            if (user._id !== action.payload._id) {
+              return user;
+            } else {
+              return action.payload;
+            }
+          });
+        }
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
-        return state.filter((user) => user._id !== action.payload);
+        if(Array.isArray(state)){
+          return state.filter((user) => user._id !== action.payload);
+        }
       });
   },
   reducers: {},

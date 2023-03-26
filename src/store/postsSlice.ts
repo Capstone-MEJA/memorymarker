@@ -95,6 +95,7 @@ interface isPost {
   _id: string;
   title: string;
   description: string;
+  user: object;
   tags: [String];
   latitude: Number;
   longitude: Number;
