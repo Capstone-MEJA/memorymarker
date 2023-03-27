@@ -50,6 +50,7 @@ const MemoryMap = (): JSX.Element => {
       await dispatch(toggleSideBar());
     }
     if (event !== null) {
+      await dispatch(setSelectedPost(null))
       await dispatch(setLat(event.latLng?.lat()))
       await dispatch(setLng(event.latLng?.lng()))
       await dispatch(togglePostForm());
