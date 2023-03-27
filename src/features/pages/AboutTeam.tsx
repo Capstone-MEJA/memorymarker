@@ -191,9 +191,9 @@ const Wrapper = styled.div`
 const LogoImage = styled.img`
   width: 100px;
 
-  @media (min-width: 850px) {
-    margin-top: -5em;
-  }
+  // @media (min-width: 850px) {
+  //   margin-top: -5em;
+  // }
 `;
 
 const PageTitle = styled.h1`
@@ -214,6 +214,8 @@ const DevsWrapper = styled.div`
     display: flex;
     flex-direction: row;
     border: 1px solid red;
+    justify-content: center;
+    gap: 0.5em;
   }
 
   // @media (min-width: 850px) {
@@ -240,11 +242,15 @@ const DevWrapper = styled.div`
   // justify-content: center;
   gap: 1em;
   margin-bottom: 1em;
-  border: 10px solid pink;
+  // border: 10px solid pink;
 
   @media ${device.tablet} {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    height: auto;
+    border: 1px solid pink;
+    gap: 0.5em;
   }
 
   // @media (min-width: 425px) {
@@ -280,7 +286,7 @@ const ProfileImageLaptop = styled.img`
   display: none;
   @media ${device.tablet} {
     display: block;
-    width: 100%;
+    width: 160px;
     height: auto;
   }
 `;
@@ -298,12 +304,16 @@ const ProfileImageMobile = styled.img`
 `;
 
 const DevContent = styled.div`
-  // background-color: white;
   // border: 1px solid pink;
   padding: 1em;
   border-radius: 1em;
   background-color: white;
   // min-width: 300px;
+
+  @media ${device.tablet} {
+    width: 170px;
+    height: 180px;
+  }
 
   // @media (min-width: 425px) {
   //   min-width: auto;
@@ -356,6 +366,9 @@ const DevBlurb = styled.div`
   text-align: center;
   color: #486572;
   // padding-top: 1em;
+  @media ${device.tablet} {
+    padding-top: 1em;
+  }
 `;
 
 const LinkedInSVG = styled.svg`
