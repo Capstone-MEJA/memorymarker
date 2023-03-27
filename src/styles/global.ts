@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         font-family: 'Open Sans', sans-serif;
     }
+}
 `;
 const size = {
   mobileS: "320px",

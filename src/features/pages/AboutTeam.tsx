@@ -157,9 +157,13 @@ const AboutTeam: React.FC = () => {
         </DevWrapper>
       </DevsWrapper>
       <a href="https://github.com/Capstone-MEJA/memorymarker">
-        <GithubSVG xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+        <GithubRepoSVG
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+        >
           <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-        </GithubSVG>
+        </GithubRepoSVG>
       </a>
     </Wrapper>
   );
@@ -168,28 +172,20 @@ const AboutTeam: React.FC = () => {
 export default AboutTeam;
 
 const Wrapper = styled.div`
-  background-color: #white;
   background-color: #ceebec;
-  min-height: 100vh;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 1em;
-
-  // @media ${device.laptopL} {
-  //   background-color: #ceebec;
-  //   min-height: 100vh;
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   justify-content: center;
-  //   gap: 1em;
-  // }
+  padding-left: 1em;
+  padding-right: 1em;
+  // border: 2px solid red;
 `;
 
 const LogoImage = styled.img`
-  width: 150px;
+  width: 100px;
 
   @media (min-width: 850px) {
     margin-top: -5em;
@@ -198,73 +194,87 @@ const LogoImage = styled.img`
 
 const PageTitle = styled.h1`
   color: #486572;
+  margin-top: 0px;
+  margin-bottom: 0px;
 `;
 
 const DevsWrapper = styled.div`
-  display: flex;
-  border: 10px solid black;
+  // display: flex;
+  // border: 10px solid black;
   flex-direction: column;
   align-items: center;
   width: 100%;
   max-width: 800px;
 
-  @media (min-width: 850px) {
+  @media ${device.tablet} {
+    display: flex;
     flex-direction: row;
-    gap: 1em;
-    max-width: 850px;
-    border: 10px solid red;
+    border: 1px solid red;
   }
 
-  @media (min-width: 1100px) {
-    flex-direction: row;
-    gap: 1em;
-    max-width: 1100px;
-    border: 10px solid red;
-  }
+  // @media (min-width: 850px) {
+  //   flex-direction: row;
+  //   gap: 1em;
+  //   max-width: 850px;
+  //   border: 10px solid red;
+  // }
+
+  // @media (min-width: 1100px) {
+  //   flex-direction: row;
+  //   gap: 1em;
+  //   max-width: 1100px;
+  //   border: 10px solid red;
+  // }
 `;
 
 const DevWrapper = styled.div`
   //   border: 1px solid red;
-  width: 75%;
+  // width: 75%;
   // max-width: 250px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  // justify-content: center;
   gap: 1em;
-  border: 10px solid pink;
+  margin-bottom: 1em;
+  // border: 10px solid pink;
 
-  @media (min-width: 425px) {
-    border: 10px solid green;
-    height: 100%;
-    // min-height: 600px;
-    max-height: 600px;
-  }
-
-  @media (min-width: 850px) {
+  @media ${device.tablet} {
+    display: flex;
     flex-direction: column;
-    border: 10px solid blue;
-    // height: 100%;
-    // min-height: 600px;
-    max-height: 600px;
-    // overflow: auto;
   }
 
-  @media (min-width: 1100px) {
-    // flex-direction: column;
-    border: 10px solid orange;
-    // height: 100%;
-    // max-height: 600px;
-    // // overflow: auto;
-  }
+  // @media (min-width: 425px) {
+  //   // border: 10px solid green;
+  //   height: 100%;
+  //   // min-height: 600px;
+  //   max-height: 600px;
+  // }
+
+  // @media (min-width: 850px) {
+  //   flex-direction: column;
+  //   border: 10px solid blue;
+  //   // height: 100%;
+  //   // min-height: 600px;
+  //   max-height: 600px;
+  //   // overflow: auto;
+  // }
+
+  // @media (min-width: 1100px) {
+  //   // flex-direction: column;
+  //   border: 10px solid orange;
+  //   // height: 100%;
+  //   // max-height: 600px;
+  //   // // overflow: auto;
+  // }
 `;
 
 const ProfileImageLaptop = styled.img`
   width: 30%;
   height: 30%;
   border-radius: 1em;
-  border: 1px solid green;
+  // border: 1px solid green;
   display: none;
-  @media (min-width: 850px) {
+  @media ${device.tablet} {
     display: block;
     width: 100%;
     height: auto;
@@ -273,11 +283,11 @@ const ProfileImageLaptop = styled.img`
 
 const ProfileImageMobile = styled.img`
   //   visibility: visible;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 
-  @media (min-width: 850px) {
+  @media ${device.tablet} {
     visibility: hidden;
     display: none;
   }
@@ -285,10 +295,11 @@ const ProfileImageMobile = styled.img`
 
 const DevContent = styled.div`
   // background-color: white;
+  // border: 1px solid pink;
   padding: 1em;
   border-radius: 1em;
   background-color: white;
-  min-width: 300px;
+  // min-width: 300px;
 
   // @media (min-width: 425px) {
   //   min-width: auto;
@@ -314,28 +325,35 @@ const DevContent = styled.div`
 `;
 
 const DevHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: none;
+  // justify-content: space-between;
 `;
 
 const Name = styled.p`
   font-weight: 800;
-  text-align: center;
+  // text-align: left;
   color: #486572;
   font-size: 0.9em;
 `;
 
 const DevBlurb = styled.div`
   border-radius: 1em;
+  font-size: 10px;
   text-align: center;
   color: #486572;
-  padding-top: 1em;
+  // padding-top: 1em;
 `;
 
 const LinkedInSVG = styled.svg`
+  display: none;
   fill: #0e76a8;
 `;
 
 const GithubSVG = styled.svg`
+  display: none;
+  fill: black;
+`;
+
+const GithubRepoSVG = styled.svg`
   fill: black;
 `;
