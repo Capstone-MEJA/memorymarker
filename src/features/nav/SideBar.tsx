@@ -25,16 +25,16 @@ const Sidebar: React.FC = () => {
     <>
       <Navbar>
         <MenuIconOpen to="#" onClick={() => dispatch(toggleSideBar())}>
-            <FaIcons.FaBars />
+          <FaIcons.FaBars />
         </MenuIconOpen>
       </Navbar>
 
       <SidebarMenu sidebar={global.sideBar}>
-            <MenuIconClose to="#" onClick={() => dispatch(toggleSideBar())}>
+        <MenuIconClose to="#" onClick={() => dispatch(toggleSideBar())}>
           <FaIcons.FaTimes />
-          </MenuIconClose>
+        </MenuIconClose>
         <SidebarWrap>
-          <ImageWrapper src='logo.png'/>
+          <ImageWrapper src="logo.png" />
 
           {auth._id ? (
             <MenuItemLinks>
@@ -154,7 +154,7 @@ const SidebarMenu = styled.div<{ sidebar: boolean }>`
   transition: 0.6s;
   z-index: 1;
   // padding-top: 10px;
-  
+
   @media ${device.mobileS} {
     max-width: 800px;
     width: 100%;
@@ -182,7 +182,7 @@ const LogoutButton = styled.div`
   justify-content: center;
 
   &:hover {
-    background-color: #F2CBAC;
+    background-color: #f2cbac;
     color: #000080;
     flex-direction: column;
     align-items: center;
@@ -198,9 +198,7 @@ const MenuItemLinks = styled.div`
   font-size: 20px;
   text-decoration: none;
   margin: 10px;
-  justify-content: center
-
-  @media ${device.mobileS} {
+  justify-content: center @media ${device.mobileS} {
     max-width: 800px;
     width: 100%;
   }
@@ -209,7 +207,6 @@ const MenuItemLinks = styled.div`
     max-width: 1441px;
     width: 20%;
   }
-
 `;
 
 const MenuItemLink = styled(Link)`
@@ -238,29 +235,30 @@ const MenuItemLink = styled(Link)`
 `;
 
 const Navbar = styled.div`
-display: flex;
-justify-content: center;
-align-self: center;
-align-items: center;
-background-color: #739cf0;
-z-index: 1;
-position: absolute;
-border: 2px solid #739cf0;
-border-radius: 1rem;
-margin-top: 1rem;
-margin-left: 1rem;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  background-color: #739cf0;
+  z-index: 1;
+  position: absolute;
+  border: 2px solid #739cf0;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
 
-@media ${device.mobileS} {
-max-width: 800px;
-height: 3rem;
-width: 3rem;
-}
+  @media ${device.mobileS} {
+    max-width: 800px;
+    height: 3rem;
+    width: 3rem;
+  }
 
-@media ${device.laptopL} {
-  max-width: 1440px;
-  height: 5rem;
-  width: 5rem;
-}`;
+  @media ${device.laptopL} {
+    max-width: 1440px;
+    height: 5rem;
+    width: 5rem;
+  }
+`;
 
 const ImageWrapper = styled.img`
   height: 7rem;
@@ -268,7 +266,7 @@ const ImageWrapper = styled.img`
 `;
 
 const SidebarWrap = styled.div`
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   // border: 5px solid blue;
