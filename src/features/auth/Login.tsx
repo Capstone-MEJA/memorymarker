@@ -4,6 +4,7 @@ import { loginUser } from "../../store/authSlice";
 import { AppDispatch, RootState } from "../../store";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { device } from "../../styles/global";
 
 const Login = () => {
     //setting based variables/functions
@@ -65,4 +66,13 @@ const LoginWrapper = styled.div`
   justify-content: center;
   font-size: 50px;
   height: 70vh;
+  background-color: #ceebec;
+
+  @media ${device.mobileS} {
+    max-width: 800px;
+  }
+
+  @media ${device.laptopL} {
+    max-width: 1441px;
+  }
 `;
