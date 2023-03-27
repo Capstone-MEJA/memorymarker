@@ -235,9 +235,18 @@ const DevWrapper = styled.div`
   @media (min-width: 850px) {
     flex-direction: column;
     border: 10px solid blue;
-    height: 100%;
+    // height: 100%;
+    // min-height: 600px;
     max-height: 600px;
     // overflow: auto;
+  }
+
+  @media (min-width: 1100px) {
+    // flex-direction: column;
+    border: 10px solid orange;
+    // height: 100%;
+    // max-height: 600px;
+    // // overflow: auto;
   }
 `;
 
@@ -281,6 +290,14 @@ const DevContent = styled.div`
 
   @media (min-width: 850px) {
     min-width: auto;
+    min-height: 350px;
+    max-height: 400px;
+
+    overflow: auto;
+  }
+
+  @media (min-width: 1100px) {
+    min-width: auto;
     min-height: 250px;
     max-height: 400px;
 
@@ -297,7 +314,7 @@ const Name = styled.p`
   font-weight: 800;
   text-align: center;
   color: #486572;
-  font-size: 1em;
+  font-size: 0.9em;
 `;
 
 const DevBlurb = styled.div`
