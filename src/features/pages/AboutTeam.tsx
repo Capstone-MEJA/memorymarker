@@ -177,20 +177,23 @@ const Wrapper = styled.div`
   justify-content: center;
   gap: 1em;
 
-  @media ${device.laptopL} {
-    background-color: #ceebec;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1em;
-  }
+  // @media ${device.laptopL} {
+  //   background-color: #ceebec;
+  //   min-height: 100vh;
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   justify-content: center;
+  //   gap: 1em;
+  // }
 `;
 
 const LogoImage = styled.img`
-  margin-top: -5em;
   width: 150px;
+
+  @media (min-width: 850px) {
+    margin-top: -5em;
+  }
 `;
 
 const PageTitle = styled.h1`
