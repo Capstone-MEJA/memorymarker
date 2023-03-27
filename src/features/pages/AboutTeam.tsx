@@ -190,12 +190,14 @@ const DevsWrapper = styled.div`
   display: flex;
   border: 10px solid black;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
 
   @media (min-width: 850px) {
     flex-direction: row;
     gap: 1em;
     border: 10px solid red;
-    max-width: 800px;
   }
 `;
 
