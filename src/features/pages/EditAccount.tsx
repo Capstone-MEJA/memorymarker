@@ -55,7 +55,7 @@ const EditAccount = () => {
       await dispatch(updateUser(updateObj));
       setToggleForm("");
       await dispatch(logoutUser(null));
-      navigate("/home");
+      navigate("/login");
     }
   };
 
