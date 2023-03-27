@@ -9,6 +9,7 @@ const AboutTeam: React.FC = () => {
       <PageTitle>Memory Makers</PageTitle>
       <DevsWrapper>
         <DevWrapper>
+          <ProfileImageMobile src="alicia.png" />
           <ProfileImageLaptop src="alicia.png" />
           <DevContent>
             <DevHeader>
@@ -216,12 +217,22 @@ const ProfileImageLaptop = styled.img`
   height: 30%;
   border-radius: 1em;
   border: 1px solid green;
-  visibility: hidden;
-
+  display: none;
   @media (min-width: 850px) {
-    visibility: visible;
+    display: block;
     width: 100%;
     height: auto;
+  }
+`;
+
+const ProfileImageMobile = styled.img`
+  //   visibility: visible;
+  width: 30%;
+  height: 30%;
+
+  @media (min-width: 850px) {
+    visibility: hidden;
+    display: none;
   }
 `;
 
