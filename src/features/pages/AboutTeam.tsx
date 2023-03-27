@@ -227,8 +227,9 @@ const ProfileImageLaptop = styled.img`
 
 const ProfileImageMobile = styled.img`
   //   visibility: visible;
-  width: 30%;
-  height: 30%;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
 
   @media (min-width: 850px) {
     visibility: hidden;
