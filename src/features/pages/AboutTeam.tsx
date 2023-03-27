@@ -182,6 +182,10 @@ const Wrapper = styled.div`
   padding-left: 1em;
   padding-right: 1em;
   // border: 2px solid red;
+
+  @media ${device.mobileM} {
+    height: 100vh;
+  }
 `;
 
 const LogoImage = styled.img`
@@ -236,7 +240,7 @@ const DevWrapper = styled.div`
   // justify-content: center;
   gap: 1em;
   margin-bottom: 1em;
-  // border: 10px solid pink;
+  border: 10px solid pink;
 
   @media ${device.tablet} {
     display: flex;
@@ -307,26 +311,32 @@ const DevContent = styled.div`
   //   max-height: 400px;
   // }
 
-  @media (min-width: 850px) {
-    min-width: auto;
-    min-height: 350px;
-    max-height: 400px;
+  // @media (min-width: 850px) {
+  //   min-width: auto;
+  //   min-height: 350px;
+  //   max-height: 400px;
 
-    overflow: auto;
-  }
+  //   overflow: auto;
+  // }
 
-  @media (min-width: 1100px) {
-    min-width: auto;
-    min-height: 250px;
-    max-height: 400px;
+  // @media (min-width: 1100px) {
+  //   min-width: auto;
+  //   min-height: 250px;
+  //   max-height: 400px;
 
-    // overflow: auto;
-  }
+  //   // overflow: auto;
+  // }
 `;
 
 const DevHeader = styled.div`
   display: none;
-  // justify-content: space-between;
+
+  @media ${device.tablet} {
+    display: inline-block;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid blue;
+  }
 `;
 
 const Name = styled.p`
@@ -334,6 +344,10 @@ const Name = styled.p`
   // text-align: left;
   color: #486572;
   font-size: 0.9em;
+
+  @media ${device.tablet} {
+    font-size: 0.5em;
+  }
 `;
 
 const DevBlurb = styled.div`
@@ -347,11 +361,19 @@ const DevBlurb = styled.div`
 const LinkedInSVG = styled.svg`
   display: none;
   fill: #0e76a8;
+
+  @media ${device.tablet} {
+    display: block;
+  }
 `;
 
 const GithubSVG = styled.svg`
   display: none;
   fill: black;
+
+  @media ${device.tablet} {
+    display: block;
+  }
 `;
 
 const GithubRepoSVG = styled.svg`
