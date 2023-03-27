@@ -25,15 +25,16 @@ const Sidebar: React.FC = () => {
     <>
       <Navbar>
         <MenuIconOpen to="#" onClick={() => dispatch(toggleSideBar())}>
-          <FaIcons.FaBars />
+            <FaIcons.FaBars />
         </MenuIconOpen>
       </Navbar>
 
       <SidebarMenu sidebar={global.sideBar}>
-        {/* <SidebarWrap> */}
-          <MenuIconClose to="#" onClick={() => dispatch(toggleSideBar())}>
-            <FaIcons.FaTimes />
+            <MenuIconClose to="#" onClick={() => dispatch(toggleSideBar())}>
+          <FaIcons.FaTimes />
           </MenuIconClose>
+        <SidebarWrap>
+          <ImageWrapper src='logo.png'/>
 
           {auth._id ? (
             <MenuItemLinks>
@@ -42,21 +43,21 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
-                Home
+                HOME
               </MenuItemLink>
               <MenuItemLink
                 onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/account"
               >
-                Hi, {auth.username}!
+                HI, {auth.username}!
               </MenuItemLink>
               <MenuItemLink
                 onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
-                About
+                ABOUT
               </MenuItemLink>
               <LogoutButton
                 style={{ textDecoration: "none", color: "whitesmoke" }}
@@ -66,7 +67,7 @@ const Sidebar: React.FC = () => {
                   navigate("/");
                 }}
               >
-                Logout
+                LOG OUT
               </LogoutButton>
             </MenuItemLinks>
           ) : (
@@ -76,28 +77,28 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
-                Home
+                HOME
               </MenuItemLink>
               <MenuItemLink
                 onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/Login"
               >
-                Login
+                LOGIN
               </MenuItemLink>
               <MenuItemLink
                 onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/register"
               >
-                Sign-up
+                SIGN-UP
               </MenuItemLink>
               <MenuItemLink
                 onClick={() => dispatch(toggleSideBar())}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
-                About
+                ABOUT
               </MenuItemLink>
             </MenuItemLinks>
           )}
@@ -112,7 +113,7 @@ const Sidebar: React.FC = () => {
               </MenuItems>
             );
           })} */}
-        {/* </SidebarWrap> */}
+        </SidebarWrap>
       </SidebarMenu>
     </>
   );
@@ -142,10 +143,12 @@ const MenuIconClose = styled(Link)`
 `;
 
 const SidebarMenu = styled.div<{ sidebar: boolean }>`
+  // border: 5px solid yellow;
   width: 250px;
-  height: 100vh;
+  height: 100%;
   background-color: #739cf0;
   position: fixed;
+  justify-content: center
   top: 0px;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 0.6s;
@@ -156,6 +159,16 @@ const SidebarMenu = styled.div<{ sidebar: boolean }>`
     max-width: 800px;
     width: 100%;
   }
+  
+  @media ${device.tablet} {
+    max-width: 1440px;
+    width: 20%;
+  }
+  
+  @media ${device.laptopL} {
+    max-width: 1440px;
+    width: 20%;
+  }
 `;
 
 const LogoutButton = styled.div`
@@ -163,11 +176,13 @@ const LogoutButton = styled.div`
   border-radius: 5px;
   width: 100%;
   text-align: center;
-  // border: 1px solid blue;
-  padding: 1em;
+  padding: 2em;
+  font: monsterrat;
+  display: flex;
+  justify-content: center;
 
   &:hover {
-    background-color: #ff0000;
+    background-color: #F2CBAC;
     color: #000080;
     flex-direction: column;
     align-items: center;
@@ -183,21 +198,37 @@ const MenuItemLinks = styled.div`
   font-size: 20px;
   text-decoration: none;
   margin: 10px;
-  // border: 1px solid green;
+  justify-content: center
+
+  @media ${device.mobileS} {
+    max-width: 800px;
+    width: 100%;
+  }
+
+  @media ${device.laptopL} {
+    max-width: 1441px;
+    width: 20%;
+  }
+
 `;
 
 const MenuItemLink = styled(Link)`
-  margin: 0 5rem;
+  margin: 0 2rem;
   border-radius: 5px;
-  width: 100%;
   text-align: center;
   textDecoration: "none"
   color: "whitesmoke"
-  // border: 1px solid blue;
-  padding: 1em;
+  width: 100%;
+  padding: 2em;
+  font: monsterrat;
+  // border: 5px solid red;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 
+  
   &:hover {
-    background-color: #ff0000;
+    background-color: #F2CBAC;
     color: #000080;
     flex-direction: column;
     align-items: center;
@@ -214,7 +245,7 @@ align-items: center;
 background-color: #739cf0;
 z-index: 1;
 position: absolute;
-// border: 1px;
+border: 2px solid #739cf0;
 border-radius: 1rem;
 margin-top: 1rem;
 margin-left: 1rem;
@@ -230,3 +261,17 @@ width: 3rem;
   height: 5rem;
   width: 5rem;
 }`;
+
+const ImageWrapper = styled.img`
+  height: 7rem;
+  width: 7rem;
+`;
+
+const SidebarWrap = styled.div`
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  // border: 5px solid blue;
+  width: 100%;
+  flex-direction: column;
+`;
