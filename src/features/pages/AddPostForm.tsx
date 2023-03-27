@@ -6,7 +6,9 @@ import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { togglePostForm } from "../../store/globalSlice";
+import { togglePostForm } from "../../store/globalSlice"
+import { device } from "../../styles/global";
+
 
 const AddPostForm = () => {
   //setting based variables/functions
@@ -21,8 +23,8 @@ const AddPostForm = () => {
 
   //useEffect hooks
   useEffect(() => {
-    dispatch(fetchAllPosts());
-  }, [dispatch]);
+    dispatch(fetchAllPosts())
+  }, [dispatch])
 
   //helper function
   function handleSubmit(e: React.FormEvent) {
@@ -44,54 +46,142 @@ const AddPostForm = () => {
   }
 
   return (
-    <FormWrapper>
-      <form onSubmit={handleSubmit}>
-        <button type="button" onClick={() => dispatch(togglePostForm())}>
-          <FaIcons.FaTimes />
-        </button>
-        <h2>Create post</h2>
-        <input
-          type="text"
-          placeholder="title"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setTitle(e.target.value)
-          }
-        />
-        <input
-          type="textarea"
-          placeholder="description"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setDescription(e.target.value)
-          }
-        />
-        {/* <input
+
+    <FormWrapper onSubmit={handleSubmit}>
+      <HeaderContainer>
+        <div className="headerItem"></div>
+        <img className="headerItem logo" src="logo.png" />
+        <div className="headerItem">
+          <ClosedButton type="button" onClick={() => dispatch(togglePostForm())}>
+            <FaIcons.FaTimes className="icon"/>
+          </ClosedButton>
+        </div>
+      </HeaderContainer>
+      <h2 className="title">Mark Your Memory</h2>
+      <input
+        type="text"
+        placeholder="title"
+        className="inputField"
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setTitle(e.target.value)
+        }
+      />
+      <textarea
+        placeholder="description"
+        className="inputField description"
+        onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+          setDescription(e.target.value)
+        }
+      />
+      {/* <input
           type="text"
           placeholder="tag"
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setTag(e.target.value)
           }
         /> */}
-        <button type="submit">Submit</button>
-      </form>
+      <div className="submitButtonContainer">
+        <SubmitButton type="submit">Submit</SubmitButton>
+      </div>
     </FormWrapper>
   );
 };
 
 export default AddPostForm;
 
-const FormWrapper = styled.div`
+const FormWrapper = styled.form`
   text-align: center;
-  font-size: 50px;
   position: relative;
-  background-color: white;
-  width: auto;
-  padding: 0.5em;
-  border-radius: 8px;
+  background-color: #C2E4CB;
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  height: auto;
+  align-item: space-evenly;
+  
+  .title {
+    font-size: 3rem;
+    font-family: "Playfair Display", serif;
+  }
+
+  .inputField {
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    font-family: "Cormorant Garamond", serif;
+  }
+
+  .description {
+    height: 7rem;
+  }
+
+  .submitButtonContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media ${device.tablet}{
+    height: auto;
+    width: auto;
+    align-item: center;
+
+    .title {
+      font-size: 2rem;
+    }
+    
+    .description {
+      height: 5rem;
+    }
+  }
+
 `;
 
+const HeaderContainer = styled.div`
+  display: flex;
+  width: 100%;
+
+  .headerItem {
+    width: 33%;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+`
+
+const ClosedButton = styled.button`
+  width: 3rem;
+  height: 3rem;
+  background-color: #739CF0;
+  border-width: 0px;
+
+  .icon {
+    color: white;
+    font-size: 2rem;
+  }
+
+  @media ${device.tablet}{
+    width: 1rem;
+    height: 1rem;
+
+    .icon {
+      font-size: 1rem;
+    }
+  }
+`
+
+const SubmitButton = styled.button`
+  background-color: #739CF0;
+  color: white;
+  padding: 0.5rem;
+  font-size: 2rem;
+  border-width: 0px;
+  font-family: "Montserrat", sans-serif;
+
+  @media ${device.tablet} {
+    font-size: 1rem;
+  }
+`
 // const PostIconClose = styled.div`
 //   display: flex;
 //   justify-content: end;
