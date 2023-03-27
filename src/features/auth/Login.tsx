@@ -33,9 +33,11 @@ const Login = () => {
   }
   return (
     <LoginWrapper>
-      <FormWrapper onSubmit={handleSubmit}>
-        <LogoTitleWrap>
-        <ImageWrapper src='logo.png'/>
+      <LogoWrapper>
+        <Logo src="logo.png" />
+      </LogoWrapper>
+
+      <form onSubmit={handleSubmit}>
         <FormTitle>Log In</FormTitle>
           </LogoTitleWrap>
         <LoginCredsWrapper>
@@ -68,36 +70,22 @@ export default Login;
 const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  // justify-content: center;
-  // font-size: 50px;
-  height: 100vh;
-  width: 100vw;
   background-color: #ceebec;
-  // border: 2px solid black;
-
-  @media ${device.mobileS} {
-    max-width: 800px;
-  }
+  height: 100vh;
+  width: 100%;
 `;
 
-const ImageWrapper = styled.img`
+const LogoWrapper = styled.section`
   display: flex;
-  align-items: center;
   justify-content: center;
-  border: 5px solid blue;
-  width: 10rem;
-  height: 10rem;
+  margin: 0px;
+`;
 
-  @media ${device.mobileS} {
-    max-width: 800px;
-    height: 5rem;
-    width: 5rem;
-    justify-content: center;
-  }
-  @media ${device.laptopL} {
-    max-width: 1440px;
-    justify-content: center;
+const Logo = styled.img`
+  width: 20rem;
+
+  @media ${device.laptop} {
+    width: 30rem;
   }
 `;
 
@@ -105,47 +93,66 @@ const FormTitle = styled.h2`
   display: flex;
   justify-content: center;
   font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+
+  @media ${device.laptop} {
+    font-size: 4rem;
+  }
 `;
+
 const Input = styled.input`
   font-family: "Cormorant Garamond", serif;
   text-align: center;
   border-radius: 5px;
   font-size: 20px;
-  margin: 20px 10px 20px 15px;
+  margin: 10px 10px 10px 15px;
   border: none;
+  width: 13rem;
+  padding: 5px;
   &::placeholder {
     font-size: 20px;
+  }
+
+  @media ${device.laptop} {
+    height: 3rem;
+    &::placeholder {
+      font-size: 23px;
+    }
   }
 `;
 
 const Button = styled.button`
   background-color: #739cf0;
   font-family: "Montserrat", sans-serif;
-  font-size: 20px;
-  padding: 10px;
-  margin: 20px 10px 20px 15px;
   border-radius: 5px;
   border: none;
-  cursor: pointer
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px;
+  margin: 10px 2rem 20px 2rem;
+  width: 13rem;
+
+  @media ${device.laptop} {
+    margin: 20px 10px 20px 15px;
+    height: 3rem;
+    width: 10rem;
+  }
 `;
 
 const LoginCredsWrapper = styled.section`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: #ceebec;
-  border: 2px solid green;
+  align-items: center;
+  // align-content: center;
+  // width: 50vw;
 
-  @media ${device.mobileS} {
-    max-width: 800px;
-    flex-direction: column;    
-  }
-
-  @media ${device.laptopL} {
-    max-width: 1441px;
+  @media ${device.laptop} {
+    display: flex;
     flex-direction: row;
+    justify-content: center;
+
   }
 `;
 
