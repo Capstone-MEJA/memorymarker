@@ -78,8 +78,10 @@ const AboutTeam: React.FC = () => {
               learning and technical problem solving.
             </DevBlurb>
           </DevContent>
+          <ProfileImageMobile src="alicia.png" />
         </DevWrapper>
         <DevWrapper>
+          <ProfileImageMobile src="alicia.png" />
           <ProfileImageLaptop src="alicia.png" />
           <DevContent>
             <DevHeader>
@@ -148,6 +150,7 @@ const AboutTeam: React.FC = () => {
               learning and technical problem solving.
             </DevBlurb>
           </DevContent>
+          <ProfileImageMobile src="alicia.png" />
         </DevWrapper>
       </DevsWrapper>
     </Wrapper>
@@ -204,10 +207,12 @@ const DevsWrapper = styled.div`
 const DevWrapper = styled.div`
   //   border: 1px solid red;
   width: 50%;
-  max-width: 250px;
+  // max-width: 250px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 1em;
+  border: 10px solid pink;
 
   @media (min-width: 850px) {
     flex-direction: column;
@@ -229,8 +234,8 @@ const ProfileImageLaptop = styled.img`
 
 const ProfileImageMobile = styled.img`
   //   visibility: visible;
-  width: 50%;
-  height: 50%;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
 
   @media (min-width: 850px) {
@@ -240,9 +245,18 @@ const ProfileImageMobile = styled.img`
 `;
 
 const DevContent = styled.div`
-  background-color: white;
+  // background-color: white;
   padding: 1em;
   border-radius: 1em;
+  background-color: white;
+  min-width: 300px;
+
+  @media (min-width: 850px) {
+    background-color: white;
+    padding: 1em;
+    border-radius: 1em;
+    min-width: auto;
+  }
 `;
 
 const DevHeader = styled.div`
