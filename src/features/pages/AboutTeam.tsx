@@ -173,17 +173,10 @@ const LogoImage = styled.img`
 `;
 
 const PageTitle = styled.h1`
-  //   padding-bottom: 1em;
-  //   color: #739cf0;
   color: #486572;
 `;
 
 const DevsWrapper = styled.div`
-  //   display: flex;
-  //   gap: 1em;
-  //   border: 10px solid red;
-  //   max-width: 800px;
-
   display: flex;
   border: 10px solid black;
   flex-direction: column;
@@ -194,16 +187,6 @@ const DevsWrapper = styled.div`
     border: 10px solid red;
     max-width: 800px;
   }
-
-  //   @media ${device.mobileL} {
-  //   border: 1px solid blue;
-  //   flex-direction: column;
-  //     display: flex;
-  //   flex-direction: column;
-  //     gap: 1em;
-  //     border: 1px solid green;
-  //     max-width: 1100px;
-  //   }
 `;
 
 const DevWrapper = styled.div`
@@ -220,7 +203,6 @@ const DevWrapper = styled.div`
 `;
 
 const ProfileImage = styled.img`
-  //   width: 100%;
   width: 30%;
   height: 30%;
   border-radius: 1em;
@@ -229,8 +211,6 @@ const ProfileImage = styled.img`
   @media (min-width: 850px) {
     width: 100%;
     height: auto;
-    // width: 150px;
-    // height: 200px;
   }
 `;
 
@@ -246,9 +226,7 @@ const DevHeader = styled.div`
 `;
 
 const Name = styled.p`
-  //   font-size: 16px;
   font-weight: 800;
-
   text-align: center;
   color: #486572;
   font-size: 1em;
