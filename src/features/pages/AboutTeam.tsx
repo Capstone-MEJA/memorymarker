@@ -179,40 +179,47 @@ const PageTitle = styled.h1`
 `;
 
 const DevsWrapper = styled.div`
-  display: flex;
-  gap: 1em;
-  border: 1px solid red;
-  max-width: 800px;
+  //   display: flex;
+  //   gap: 1em;
+  //   border: 10px solid red;
+  //   max-width: 800px;
 
-  @media ${device.laptopL} {
-    display: flex;
+  display: flex;
+  border: 10px solid black;
+  flex-direction: column;
+  //   min-width: 20%;
+  @media (min-width: 850px) {
+    flex-direction: row;
     gap: 1em;
-    border: 1px solid green;
-    max-width: 1100px;
+    border: 10px solid red;
+    max-width: 800px;
   }
+
+  //   @media ${device.mobileL} {
+  //   border: 1px solid blue;
+  //   flex-direction: column;
+  //     display: flex;
+  //   flex-direction: column;
+  //     gap: 1em;
+  //     border: 1px solid green;
+  //     max-width: 1100px;
+  //   }
 `;
 
 const DevWrapper = styled.div`
   //   border: 1px solid red;
   width: 50%;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
   @media ${device.laptopL} {
-    max-width: 250px;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
   }
 `;
 
 const ProfileImage = styled.img`
-  //   border: 1px solid red;
-  //   width: 200%;
   width: 100%;
-
-  @media ${device.laptopL} {
-    border-radius: 1em;
-  }
-
-  //   max-width: 200px;
+  border-radius: 1em;
 `;
 
 const DevContent = styled.div`
