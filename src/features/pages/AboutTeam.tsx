@@ -274,6 +274,7 @@ const Name = styled.p`
 
   @media ${device.tablet} {
     font-size: 0.5em;
+    padding-top: 1em;
   }
 `;
 
@@ -284,7 +285,7 @@ const DevBlurb = styled.div`
   color: #486572;
 
   @media ${device.tablet} {
-    padding-top: 1em;
+    padding-top: 2em;
   }
 `;
 
