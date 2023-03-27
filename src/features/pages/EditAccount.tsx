@@ -120,20 +120,20 @@ const EditAccount = () => {
         </CredentialContainer>
 
         <CancelButtonContainer>
-          <Button
+          <CancelButton
             onClick={() => {
               setToggleForm("");
             }}
           >
             Cancel
-          </Button>
-          <Button
+          </CancelButton>
+          <CancelButton
             onClick={() => {
               navigate("/account");
             }}
           >
             Back to Account Dashboard
-          </Button>
+          </CancelButton>
         </CancelButtonContainer>
       </Wrapper>
     </>
@@ -281,11 +281,20 @@ const Button = styled.button`
 const CancelButtonContainer = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   margin: 10px 36px 10px 36px;
 
   @media ${device.laptop} {
     flex-direction: row;
+    justify-content: center;
     margin: 0px;
   }
 `;
+
+const CancelButton = styled(Button)`
+width: 15rem;
+
+@media ${device.laptop} {
+  width: fit-content;
+}
+`
