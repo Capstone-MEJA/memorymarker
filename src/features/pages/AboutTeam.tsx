@@ -45,11 +45,11 @@ const AboutTeam: React.FC = () => {
           </DevContent>
         </DevWrapper>
         <DevWrapper>
-          <ProfileImageLaptop src="alicia.png" />
+          <ProfileImageLaptop src="erica.png" />
           <DevContent>
             <DevHeader>
-              <a href="https://www.linkedin.com/in/alicia-hetrick/">
-                <a href="https://www.linkedin.com/in/alicia-hetrick-659179ba/">
+              <a href="https://www.linkedin.com/in/youngerica/">
+                <a href="https://www.linkedin.com/in/youngerica/">
                   <LinkedInSVG
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -60,8 +60,8 @@ const AboutTeam: React.FC = () => {
                   </LinkedInSVG>
                 </a>
               </a>
-              <Name>Alicia Hetrick</Name>
-              <a href="https://github.com/aliciahetrick">
+              <Name>Erica Young</Name>
+              <a href="https://github.com/eyounginnn">
                 <GithubSVG
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -73,20 +73,21 @@ const AboutTeam: React.FC = () => {
             </DevHeader>
 
             <DevBlurb>
-              Hi! 👋 I'm Alicia, a former laboratory scientist who has turned
-              her love of analytical investigation into a passion for life-long
-              learning and technical problem solving.
+              Hello, my name is Erica Young! I'm easily excited over math
+              problems in the sense that there can only be a right and wrong
+              answer. Similar to code, there are many ways to approach a problem
+              but there will always be a correct answer.
             </DevBlurb>
           </DevContent>
-          <ProfileImageMobile src="alicia.png" />
+          <ProfileImageMobile src="erica.png" />
         </DevWrapper>
         <DevWrapper>
-          <ProfileImageMobile src="alicia.png" />
-          <ProfileImageLaptop src="alicia.png" />
+          <ProfileImageMobile src="jessie.png" />
+          <ProfileImageLaptop src="jessie.png" />
           <DevContent>
             <DevHeader>
-              <a href="https://www.linkedin.com/in/alicia-hetrick/">
-                <a href="https://www.linkedin.com/in/alicia-hetrick-659179ba/">
+              <a href="https://www.linkedin.com/in/jessiechiu12/">
+                <a href="https://www.linkedin.com/in/jessiechiu12/">
                   <LinkedInSVG
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -97,8 +98,8 @@ const AboutTeam: React.FC = () => {
                   </LinkedInSVG>
                 </a>
               </a>
-              <Name>Alicia Hetrick</Name>
-              <a href="https://github.com/aliciahetrick">
+              <Name>Jessie Chiu</Name>
+              <a href="https://github.com/JessieChiu1">
                 <GithubSVG
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -110,18 +111,19 @@ const AboutTeam: React.FC = () => {
             </DevHeader>
 
             <DevBlurb>
-              Hi! 👋 I'm Alicia, a former laboratory scientist who has turned
-              her love of analytical investigation into a passion for life-long
-              learning and technical problem solving.
+              Full Stack software engineer with prior experience in finance.
+              Enjoy learning new things and solving interesting problems.
+              Currently listening to Myth and Legend Podcast, and following
+              financial and economical news.
             </DevBlurb>
           </DevContent>
         </DevWrapper>
         <DevWrapper>
-          <ProfileImageLaptop src="alicia.png" />
+          <ProfileImageLaptop src="mandy.png" />
           <DevContent>
             <DevHeader>
-              <a href="https://www.linkedin.com/in/alicia-hetrick/">
-                <a href="https://www.linkedin.com/in/alicia-hetrick-659179ba/">
+              <a href="https://www.linkedin.com/in/mandy-chin/">
+                <a href="https://www.linkedin.com/in/mandy-chin/">
                   <LinkedInSVG
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -132,7 +134,7 @@ const AboutTeam: React.FC = () => {
                   </LinkedInSVG>
                 </a>
               </a>
-              <Name>Alicia Hetrick</Name>
+              <Name>Mandy Chin</Name>
               <a href="https://github.com/aliciahetrick">
                 <GithubSVG
                   xmlns="http://www.w3.org/2000/svg"
@@ -145,12 +147,13 @@ const AboutTeam: React.FC = () => {
             </DevHeader>
 
             <DevBlurb>
-              Hi! 👋 I'm Alicia, a former laboratory scientist who has turned
-              her love of analytical investigation into a passion for life-long
-              learning and technical problem solving.
+              Hi, I'm Mandy! I am a software engineer with experience in
+              full-stack web development and a background in education. When I’m
+              not coding, you can find me reading, cooking, snapping pictures,
+              and strolling through Central Park.
             </DevBlurb>
           </DevContent>
-          <ProfileImageMobile src="alicia.png" />
+          <ProfileImageMobile src="mandy.png" />
         </DevWrapper>
       </DevsWrapper>
     </Wrapper>
@@ -216,6 +219,7 @@ const DevWrapper = styled.div`
 
   @media (min-width: 850px) {
     flex-direction: column;
+    border: 10px solid blue;
   }
 `;
 
