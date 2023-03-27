@@ -37,7 +37,7 @@ const Login = () => {
         <Logo src="logo.png" />
       </LogoWrapper>
 
-      <FormWrapper onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <FormTitle>Log In</FormTitle>
         <LoginCredsWrapper>
           <Input
@@ -59,7 +59,7 @@ const Login = () => {
           </Button>
         </LoginCredsWrapper>
         {auth.loginStatus === "rejected" ? <p>{auth.loginError}</p> : null}
-      </FormWrapper>
+      </form>
     </LoginWrapper>
   );
 };
@@ -72,9 +72,6 @@ const LoginWrapper = styled.div`
   background-color: #ceebec;
   height: 100vh;
   width: 100%;
-
-  @media ${device.laptopL} {
-  }
 `;
 
 const LogoWrapper = styled.section`
@@ -86,7 +83,7 @@ const LogoWrapper = styled.section`
 const Logo = styled.img`
   width: 20rem;
 
-  @media ${device.laptopL} {
+  @media ${device.laptop} {
     width: 30rem;
   }
 `;
@@ -98,7 +95,7 @@ const FormTitle = styled.h2`
   font-size: 2rem;
   margin-bottom: 1rem;
 
-  @media ${device.laptopL} {
+  @media ${device.laptop} {
     font-size: 4rem;
   }
 `;
@@ -114,6 +111,13 @@ const Input = styled.input`
   &::placeholder {
     font-size: 20px;
   }
+
+  @media ${device.laptop} {
+    height: 3rem;
+    &::placeholder {
+      font-size: 23px;
+    }
+  }
 `;
 
 const Button = styled.button`
@@ -126,18 +130,25 @@ const Button = styled.button`
   padding: 5px;
   margin: 10px 2rem 20px 2rem;
   width: 13rem;
+
+  @media ${device.laptop} {
+    margin: 20px 10px 20px 15px;
+    height: 3rem;
+    width: 10rem;
+  }
 `;
 
 const LoginCredsWrapper = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
   align-items: center;
+  // align-content: center;
   // width: 50vw;
 
-  @media ${device.laptopL} {
-
+  @media ${device.laptop} {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 `;
-
-const FormWrapper = styled.form``;
