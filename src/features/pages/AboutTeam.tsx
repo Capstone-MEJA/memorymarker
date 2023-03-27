@@ -10,7 +10,7 @@ const AboutTeam: React.FC = () => {
       <DevsWrapper>
         <DevWrapper>
           <ProfileImageMobile src="alicia.png" />
-          <ProfileImageLaptop src="alicia.png" />
+          <ProfileImageTablet src="alicia.png" />
           <DevContent>
             <DevHeader>
               <a href="https://www.linkedin.com/in/alicia-hetrick/">
@@ -19,7 +19,6 @@ const AboutTeam: React.FC = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
-                    // viewbox="0 0 24 24"
                   >
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                   </LinkedInSVG>
@@ -45,7 +44,7 @@ const AboutTeam: React.FC = () => {
           </DevContent>
         </DevWrapper>
         <DevWrapper>
-          <ProfileImageLaptop src="erica.png" />
+          <ProfileImageTablet src="erica.png" />
           <DevContent>
             <DevHeader>
               <a href="https://www.linkedin.com/in/youngerica/">
@@ -54,7 +53,6 @@ const AboutTeam: React.FC = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
-                    // viewbox="0 0 24 24"
                   >
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                   </LinkedInSVG>
@@ -83,7 +81,7 @@ const AboutTeam: React.FC = () => {
         </DevWrapper>
         <DevWrapper>
           <ProfileImageMobile src="jessie.png" />
-          <ProfileImageLaptop src="jessie.png" />
+          <ProfileImageTablet src="jessie.png" />
           <DevContent>
             <DevHeader>
               <a href="https://www.linkedin.com/in/jessiechiu12/">
@@ -92,7 +90,6 @@ const AboutTeam: React.FC = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
-                    // viewbox="0 0 24 24"
                   >
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                   </LinkedInSVG>
@@ -119,7 +116,7 @@ const AboutTeam: React.FC = () => {
           </DevContent>
         </DevWrapper>
         <DevWrapper>
-          <ProfileImageLaptop src="mandy.png" />
+          <ProfileImageTablet src="mandy.png" />
           <DevContent>
             <DevHeader>
               <a href="https://www.linkedin.com/in/mandy-chin/">
@@ -128,7 +125,6 @@ const AboutTeam: React.FC = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
-                    // viewbox="0 0 24 24"
                   >
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                   </LinkedInSVG>
@@ -181,7 +177,6 @@ const Wrapper = styled.div`
   gap: 1em;
   padding-left: 1em;
   padding-right: 1em;
-  // border: 2px solid red;
 
   @media ${device.mobileM} {
     height: 100vh;
@@ -190,10 +185,6 @@ const Wrapper = styled.div`
 
 const LogoImage = styled.img`
   width: 100px;
-
-  // @media (min-width: 850px) {
-  //   margin-top: -5em;
-  // }
 `;
 
 const PageTitle = styled.h1`
@@ -203,8 +194,6 @@ const PageTitle = styled.h1`
 `;
 
 const DevsWrapper = styled.div`
-  // display: flex;
-  // border: 10px solid black;
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -213,86 +202,40 @@ const DevsWrapper = styled.div`
   @media ${device.tablet} {
     display: flex;
     flex-direction: row;
-    border: 1px solid red;
     justify-content: center;
     gap: 0.5em;
   }
-
-  // @media (min-width: 850px) {
-  //   flex-direction: row;
-  //   gap: 1em;
-  //   max-width: 850px;
-  //   border: 10px solid red;
-  // }
-
-  // @media (min-width: 1100px) {
-  //   flex-direction: row;
-  //   gap: 1em;
-  //   max-width: 1100px;
-  //   border: 10px solid red;
-  // }
 `;
 
 const DevWrapper = styled.div`
-  //   border: 1px solid red;
-  // width: 75%;
-  // max-width: 250px;
   display: flex;
   flex-direction: row;
-  // justify-content: center;
   gap: 1em;
   margin-bottom: 1em;
-  // border: 10px solid pink;
 
   @media ${device.tablet} {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: auto;
-    border: 1px solid pink;
     gap: 0.5em;
   }
-
-  // @media (min-width: 425px) {
-  //   // border: 10px solid green;
-  //   height: 100%;
-  //   // min-height: 600px;
-  //   max-height: 600px;
-  // }
-
-  // @media (min-width: 850px) {
-  //   flex-direction: column;
-  //   border: 10px solid blue;
-  //   // height: 100%;
-  //   // min-height: 600px;
-  //   max-height: 600px;
-  //   // overflow: auto;
-  // }
-
-  // @media (min-width: 1100px) {
-  //   // flex-direction: column;
-  //   border: 10px solid orange;
-  //   // height: 100%;
-  //   // max-height: 600px;
-  //   // // overflow: auto;
-  // }
 `;
 
-const ProfileImageLaptop = styled.img`
+const ProfileImageTablet = styled.img`
   width: 30%;
   height: 30%;
   border-radius: 1em;
-  // border: 1px solid green;
   display: none;
+
   @media ${device.tablet} {
     display: block;
-    width: 160px;
+    width: 170px;
     height: auto;
   }
 `;
 
 const ProfileImageMobile = styled.img`
-  //   visibility: visible;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -304,38 +247,14 @@ const ProfileImageMobile = styled.img`
 `;
 
 const DevContent = styled.div`
-  // border: 1px solid pink;
   padding: 1em;
   border-radius: 1em;
   background-color: white;
-  // min-width: 300px;
 
   @media ${device.tablet} {
     width: 170px;
     height: 180px;
   }
-
-  // @media (min-width: 425px) {
-  //   min-width: auto;
-  //   min-height: 250px;
-  //   max-height: 400px;
-  // }
-
-  // @media (min-width: 850px) {
-  //   min-width: auto;
-  //   min-height: 350px;
-  //   max-height: 400px;
-
-  //   overflow: auto;
-  // }
-
-  // @media (min-width: 1100px) {
-  //   min-width: auto;
-  //   min-height: 250px;
-  //   max-height: 400px;
-
-  //   // overflow: auto;
-  // }
 `;
 
 const DevHeader = styled.div`
@@ -345,13 +264,11 @@ const DevHeader = styled.div`
     display: inline-block;
     display: flex;
     justify-content: space-between;
-    border: 1px solid blue;
   }
 `;
 
 const Name = styled.p`
   font-weight: 800;
-  // text-align: left;
   color: #486572;
   font-size: 0.9em;
 
@@ -365,7 +282,7 @@ const DevBlurb = styled.div`
   font-size: 10px;
   text-align: center;
   color: #486572;
-  // padding-top: 1em;
+
   @media ${device.tablet} {
     padding-top: 1em;
   }
