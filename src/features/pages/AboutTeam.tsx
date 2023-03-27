@@ -206,6 +206,10 @@ const DevsWrapper = styled.div`
     justify-content: center;
     gap: 0.5em;
   }
+
+  @media ${device.laptop} {
+    gap: 1.5em;
+  }
 `;
 
 const DevWrapper = styled.div`
@@ -220,6 +224,10 @@ const DevWrapper = styled.div`
     align-items: center;
     height: auto;
     gap: 0.5em;
+  }
+
+  @media ${device.laptop} {
+    gap: 1.5em;
   }
 `;
 
