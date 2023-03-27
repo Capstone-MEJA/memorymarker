@@ -99,6 +99,7 @@ const FormTitle = styled.h2`
     font-size: 4rem;
   }
 `;
+
 const Input = styled.input`
   font-family: "Cormorant Garamond", serif;
   text-align: center;
