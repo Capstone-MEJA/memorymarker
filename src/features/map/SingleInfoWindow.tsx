@@ -6,10 +6,10 @@ import { useSelector } from "react-redux";
 import { setSelectedPost, toggleEditPostForm } from "../../store/globalSlice";
 
 const SingleInfoWindow = () => {
-    //setting based variables/functions
+  //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
   const auth = useSelector((state: RootState) => state.auth);
-  const global = useSelector((state: RootState) => state.global); 
+  const global = useSelector((state: RootState) => state.global);
 
   //useState
   //useEffect hooks
@@ -23,14 +23,18 @@ const SingleInfoWindow = () => {
 
   return (
     <InfoWindow
-      position={{ lat: global.selectedPost!.latitude, lng: global.selectedPost!.longitude }}
+      position={{
+        lat: global.selectedPost!.latitude,
+        lng: global.selectedPost!.longitude,
+      }}
       onCloseClick={() => dispatch(setSelectedPost(null))}
     >
       <div>
         <h2>{global.selectedPost!.title}</h2>
+        <p>Posted by: {global.selectedPost!.user.username}</p>
         <p>{global.selectedPost!.description}</p>
-        <p>{global.selectedPost!.user.username}</p>
-        {auth._id === global.selectedPost!.user._id ?
+
+        {auth._id === global.selectedPost!.user._id ? (
           <div>
             <button onClick={() => dispatch(toggleEditPostForm())}>
               Edit Post
@@ -43,7 +47,7 @@ const SingleInfoWindow = () => {
               Delete Post
             </button>
           </div>
-          : null}
+        ) : null}
       </div>
     </InfoWindow>
   );
