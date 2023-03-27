@@ -187,7 +187,7 @@ const DevsWrapper = styled.div`
   display: flex;
   border: 10px solid black;
   flex-direction: column;
-  //   min-width: 20%;
+
   @media (min-width: 850px) {
     flex-direction: row;
     gap: 1em;
@@ -211,15 +211,27 @@ const DevWrapper = styled.div`
   width: 50%;
   max-width: 250px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1em;
-  @media ${device.laptopL} {
+
+  @media (min-width: 850px) {
+    flex-direction: column;
   }
 `;
 
 const ProfileImage = styled.img`
-  width: 100%;
+  //   width: 100%;
+  width: 30%;
+  height: 30%;
   border-radius: 1em;
+  border: 1px solid green;
+
+  @media (min-width: 850px) {
+    width: 100%;
+    height: auto;
+    // width: 150px;
+    // height: 200px;
+  }
 `;
 
 const DevContent = styled.div`
