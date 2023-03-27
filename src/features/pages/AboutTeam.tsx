@@ -291,13 +291,13 @@ const Name = styled.p`
 
 const DevBlurb = styled.div`
   border-radius: 1em;
-  font-size: 10px;
+  font-size: 11px;
   text-align: center;
   color: #486572;
   font-family: "Cormorant Garamond", serif;
 
   @media ${device.tablet} {
-    padding-top: 2em;
+    padding-top: 1em;
   }
 `;
 
