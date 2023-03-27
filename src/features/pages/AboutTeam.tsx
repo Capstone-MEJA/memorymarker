@@ -148,6 +148,13 @@ export default AboutTeam;
 
 const Wrapper = styled.div`
   background-color: #white;
+  background-color: #ceebec;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
 
   @media ${device.laptopL} {
     background-color: #ceebec;
@@ -172,6 +179,11 @@ const PageTitle = styled.h1`
 `;
 
 const DevsWrapper = styled.div`
+  display: flex;
+  gap: 1em;
+  border: 1px solid red;
+  max-width: 800px;
+
   @media ${device.laptopL} {
     display: flex;
     gap: 1em;
@@ -182,16 +194,23 @@ const DevsWrapper = styled.div`
 
 const DevWrapper = styled.div`
   //   border: 1px solid red;
-
-  max-width: 250px;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
+  width: 50%;
+  @media ${device.laptopL} {
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
 `;
 
 const ProfileImage = styled.img`
   //   border: 1px solid red;
-  border-radius: 1em;
+  //   width: 200%;
+  width: 100%;
+
+  @media ${device.laptopL} {
+    border-radius: 1em;
+  }
 
   //   max-width: 200px;
 `;
