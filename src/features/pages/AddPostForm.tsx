@@ -29,16 +29,20 @@ const AddPostForm = () => {
   //helper function
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    dispatch(
-      newPost({
-        title: title,
-        description: description,
-        latitude: global.position.lat,
-        longitude: global.position.lng,
-        user: auth._id,
-      })
-    );
-    dispatch(togglePostForm());
+    if (title.length === 0 || description.length === 0) {
+      alert("Please fill in both fields beforing submitting :)");
+    } else {
+      dispatch(
+        newPost({
+          title: title,
+          description: description,
+          latitude: global.position.lat,
+          longitude: global.position.lng,
+          user: auth._id,
+        })
+      );
+      dispatch(togglePostForm());
+    }
   }
 
   return (

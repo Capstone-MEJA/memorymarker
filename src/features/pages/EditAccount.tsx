@@ -5,6 +5,7 @@ import { updateUser } from "../../store/usersSlice";
 import { ChangeEvent, MouseEvent, useState } from "react";
 import { logoutUser } from "../../store/authSlice";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 export interface updateObj {
   _id: string;
@@ -55,63 +56,162 @@ const EditAccount = () => {
       await dispatch(updateUser(updateObj));
       setToggleForm("");
       await dispatch(logoutUser(null));
-      navigate("/home");
+      navigate("/login");
     }
   };
 
   return (
     <>
-      <div className="wrapper">
-        <section className="container">
-          <h1>Edit Account Information</h1>
-          <p>
+      <Wrapper>
+        <Logo>
+          <img src="logo.png" />
+        </Logo>
+        <TitleContainer>
+          <Title>Edit Account Information</Title>
+          <Reminder>
             Friendly Reminder: After editing your account information, you will
-            be asked to sign in again with your newly updated credentials.
-          </p>
-        </section>
+            be asked to sign in again with your newly updated credentials :)
+          </Reminder>
+        </TitleContainer>
 
-        <section>
-          <p>Username:</p>
+        <CredentialContainer>
+          <CredsLabels>Username:</CredsLabels>
           {toggleForm !== "username" ? (
-            <p>{loggedInUser.username}</p>
+            <Creds>{loggedInUser.username}</Creds>
           ) : (
-            <input
+            <Input
               type="text"
               name="username"
               onChange={handleChange}
               value={formValues}
             />
           )}
-          <button
+          <Button
             onClick={editInfo}
             value={toggleForm !== "username" ? "username" : "updateUsername"}
           >
             {toggleForm !== "username" ? "Edit Username" : "Update Username"}
-          </button>
-        </section>
+          </Button>
+        </CredentialContainer>
 
-        <section>
-          <p>Password:</p>
+        <CredentialContainer>
+          <CredsLabels>Password:</CredsLabels>
           {toggleForm !== "password" ? (
-            <p>********</p>
+            <Creds>********</Creds>
           ) : (
-            <input
+            <Input
               type="text"
               name="password"
               onChange={handleChange}
               value={formValues}
             />
           )}
-          <button
+          <Button
             onClick={editInfo}
             value={toggleForm !== "password" ? "password" : "updatePassword"}
           >
             {toggleForm !== "password" ? "Edit Password" : "Update Password"}
-          </button>
-        </section>
-      </div>
+          </Button>
+        </CredentialContainer>
+
+        <CancelButtonContainer>
+          <Button
+            onClick={() => {
+              setToggleForm("");
+            }}
+          >
+            Cancel
+          </Button>
+        </CancelButtonContainer>
+      </Wrapper>
     </>
   );
 };
 
 export default EditAccount;
+
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  background-color: #ceebec;
+`;
+
+const Logo = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  margin-top: 30px;
+`;
+
+const TitleContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Title = styled.h1`
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  font-family: "Playfair Display", serif;
+`;
+
+const Reminder = styled.p`
+  display: flex;
+  justify-content: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
+const CredentialContainer = styled.section`
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const CredsLabels = styled(CredentialContainer)`
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  margin-right: 10px;
+`;
+
+const Creds = styled(CredentialContainer)`
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  margin-right: 10px;
+`;
+
+const Input = styled.input`
+  font-family: "Cormorant Garamond", serif;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 20px;
+  margin: 20px 10px 20px 15px;
+  border: none;
+  height: 50%;
+  &::placeholder {
+    font-size: 20px;
+  }
+`;
+
+const Button = styled.button`
+  background-color: #739cf0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  padding: 10px;
+  margin: 20px 10px 20px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+`;
+
+const CancelButtonContainer = styled.section`
+  display: flex;
+  justify-content: center;
+`;

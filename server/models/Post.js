@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
   title: {
@@ -10,7 +10,7 @@ const postSchema = new mongoose.Schema({
     required: true,
   },
   tags: {
-    type: [String]
+    type: [String],
   },
   latitude: {
     type: Number,
@@ -22,8 +22,18 @@ const postSchema = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  } 
-})
-
-module.exports = mongoose.model('Post', postSchema)
+    ref: "User",
+  },
+  createdAt: {
+    type: Number,
+    immutable: true,
+    default: () => Date.now()
+  },
+  timeStamp: {
+    type: String,
+    immutable: true,
+    default: () => Date()
+  }
+});
+const Post = mongoose.model("Post", postSchema);
+module.exports = Post;
