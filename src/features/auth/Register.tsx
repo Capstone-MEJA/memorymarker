@@ -82,7 +82,7 @@ const RegisterWrapper = styled.div`
   background-color: #ceebec;
 `;
 
-const Logo = styled.image`
+const Logo = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,6 +114,7 @@ const Button = styled.button`
   margin: 20px 10px 20px 15px;
   border-radius: 5px;
   border: none;
+  cursor: pointer
 `;
 
 const RegisterCredsWrapper = styled.section`
