@@ -58,7 +58,7 @@ User.schema.path("username").validate(function (value) {
 
 User.schema.path("password").validate(function (value) {
   if (value.length < 8) {
-    throw new Error("Password needs to be between 8 and 20 characters");
+    throw new Error("Password needs to be at least 8 characters in length");
   } else {
     return true;
   }
