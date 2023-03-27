@@ -39,7 +39,6 @@ const Login = () => {
 
       <form onSubmit={handleSubmit}>
         <FormTitle>Log In</FormTitle>
-          </LogoTitleWrap>
         <LoginCredsWrapper>
           <Input
             type="text"
@@ -60,7 +59,7 @@ const Login = () => {
           </Button>
         </LoginCredsWrapper>
         {auth.loginStatus === "rejected" ? <p>{auth.loginError}</p> : null}
-      </FormWrapper>
+      </form>
     </LoginWrapper>
   );
 };
@@ -152,22 +151,5 @@ const LoginCredsWrapper = styled.section`
     display: flex;
     flex-direction: row;
     justify-content: center;
-
   }
-`;
-
-const FormWrapper = styled.form`
-  display: flex;
-  flex-direction: column;
-  height: 50%;
-  border: 2px solid red;
-`;
-
-const LogoTitleWrap = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid yellow;
-  height: 50%;
 `;
