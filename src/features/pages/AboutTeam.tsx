@@ -203,13 +203,21 @@ const DevsWrapper = styled.div`
   @media (min-width: 850px) {
     flex-direction: row;
     gap: 1em;
+    max-width: 850px;
+    border: 10px solid red;
+  }
+
+  @media (min-width: 1100px) {
+    flex-direction: row;
+    gap: 1em;
+    max-width: 1100px;
     border: 10px solid red;
   }
 `;
 
 const DevWrapper = styled.div`
   //   border: 1px solid red;
-  width: 50%;
+  width: 75%;
   // max-width: 250px;
   display: flex;
   flex-direction: row;
@@ -217,9 +225,19 @@ const DevWrapper = styled.div`
   gap: 1em;
   border: 10px solid pink;
 
+  @media (min-width: 425px) {
+    border: 10px solid green;
+    height: 100%;
+    // min-height: 600px;
+    max-height: 600px;
+  }
+
   @media (min-width: 850px) {
     flex-direction: column;
     border: 10px solid blue;
+    height: 100%;
+    max-height: 600px;
+    // overflow: auto;
   }
 `;
 
@@ -255,11 +273,18 @@ const DevContent = styled.div`
   background-color: white;
   min-width: 300px;
 
+  // @media (min-width: 425px) {
+  //   min-width: auto;
+  //   min-height: 250px;
+  //   max-height: 400px;
+  // }
+
   @media (min-width: 850px) {
-    background-color: white;
-    padding: 1em;
-    border-radius: 1em;
     min-width: auto;
+    min-height: 250px;
+    max-height: 400px;
+
+    // overflow: auto;
   }
 `;
 
