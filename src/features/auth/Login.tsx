@@ -33,12 +33,11 @@ const Login = () => {
   }
   return (
     <LoginWrapper>
-      <Logo>
-        <img src="logo.png" />
-      </Logo>
-
-      <form onSubmit={handleSubmit}>
+      <FormWrapper onSubmit={handleSubmit}>
+        <LogoTitleWrap>
+        <ImageWrapper src='logo.png'/>
         <FormTitle>Log In</FormTitle>
+          </LogoTitleWrap>
         <LoginCredsWrapper>
           <Input
             type="text"
@@ -59,7 +58,7 @@ const Login = () => {
           </Button>
         </LoginCredsWrapper>
         {auth.loginStatus === "rejected" ? <p>{auth.loginError}</p> : null}
-      </form>
+      </FormWrapper>
     </LoginWrapper>
   );
 };
@@ -70,17 +69,36 @@ const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: 50px;
+  // justify-content: center;
+  // font-size: 50px;
   height: 100vh;
+  width: 100vw;
   background-color: #ceebec;
+  // border: 2px solid black;
+
+  @media ${device.mobileS} {
+    max-width: 800px;
+  }
 `;
 
-const Logo = styled.section`
+const ImageWrapper = styled.img`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50%
+  border: 5px solid blue;
+  width: 10rem;
+  height: 10rem;
+
+  @media ${device.mobileS} {
+    max-width: 800px;
+    height: 5rem;
+    width: 5rem;
+    justify-content: center;
+  }
+  @media ${device.laptopL} {
+    max-width: 1440px;
+    justify-content: center;
+  }
 `;
 
 const FormTitle = styled.h2`
@@ -115,15 +133,34 @@ const LoginCredsWrapper = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 80vw;
-  height: 70vh;
+  width: 100vw;
+  height: 100vh;
   background-color: #ceebec;
+  border: 2px solid green;
 
   @media ${device.mobileS} {
     max-width: 800px;
+    flex-direction: column;    
   }
 
   @media ${device.laptopL} {
     max-width: 1441px;
+    flex-direction: row;
   }
+`;
+
+const FormWrapper = styled.form`
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  border: 2px solid red;
+`;
+
+const LogoTitleWrap = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid yellow;
+  height: 50%;
 `;
