@@ -94,6 +94,7 @@ const Input = styled.input`
   border-radius: 5px;
   font-size: 20px;
   margin: 20px 10px 20px 15px;
+  border: none;
   &::placeholder {
     font-size: 20px;
   }

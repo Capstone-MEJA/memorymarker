@@ -32,27 +32,33 @@ const Register = () => {
 
   return (
     <RegisterWrapper>
+      <Logo>
+        <img src="logo.png" />
+      </Logo>
+
       <form onSubmit={handleSubmit}>
-        <h2>Register</h2>
-        <input
-          type="text"
-          placeholder="username"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setUser({ ...user, username: e.target.value })
-          }
-        />
+        <FormTitle>Register</FormTitle>
+        <RegisterCredsWrapper>
+          <Input
+            type="text"
+            placeholder="username"
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setUser({ ...user, username: e.target.value })
+            }
+          />
 
-        <input
-          type="password"
-          placeholder="password"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setUser({ ...user, password: e.target.value })
-          }
-        />
+          <Input
+            type="password"
+            placeholder="password"
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setUser({ ...user, password: e.target.value })
+            }
+          />
 
-        <button>
-          {auth.registerStatus === "pending" ? "Submitting..." : "Register"}
-        </button>
+          <Button>
+            {auth.registerStatus === "pending" ? "Submitting..." : "Register"}
+          </Button>
+        </RegisterCredsWrapper>
         {auth.registerStatus === "rejected"
           ? // <p>{[...auth.registerError]}</p>
             auth.registerError.map((error, i) => {
@@ -68,8 +74,51 @@ export default Register;
 
 const RegisterWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 50px;
-  height: 70vh;
+  height: 100vh;
+  background-color: #ceebec;
+`;
+
+const Logo = styled.image`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+`;
+
+const FormTitle = styled.h2`
+  display: flex;
+  justify-content: center;
+  font-family: "Playfair Display", serif;
+`;
+const Input = styled.input`
+  font-family: "Cormorant Garamond", serif;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 20px;
+  margin: 20px 10px 20px 15px;
+  border: none;
+  &::placeholder {
+    font-size: 20px;
+  }
+`;
+
+const Button = styled.button`
+  background-color: #739cf0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  padding: 10px;
+  margin: 20px 10px 20px 15px;
+  border-radius: 5px;
+  border: none;
+`;
+
+const RegisterCredsWrapper = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 80vw;
 `;
