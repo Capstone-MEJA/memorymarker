@@ -92,12 +92,13 @@ const FormWrapper = styled.form`
   
   .title {
     font-size: 3rem;
-    color: white;
+    font-family: "Playfair Display", serif;
   }
 
   .inputField {
     margin: 0.5rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    font-family: "Cormorant Garamond", serif;
   }
 
   .description {
@@ -117,11 +118,7 @@ const FormWrapper = styled.form`
     .title {
       font-size: 2rem;
     }
-
-    .inputField {
-      font-size: 1rem;
-    }
-
+    
     .description {
       height: 5rem;
     }
@@ -168,6 +165,7 @@ const SubmitButton = styled.button`
   padding: 0.5rem;
   font-size: 2rem;
   border-width: 0px;
+  font-family: "Montserrat", sans-serif;
 
   @media ${device.tablet} {
     font-size: 1rem;
