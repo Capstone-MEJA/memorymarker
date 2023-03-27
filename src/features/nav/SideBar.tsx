@@ -143,7 +143,6 @@ const MenuIconClose = styled(Link)`
 `;
 
 const SidebarMenu = styled.div<{ sidebar: boolean }>`
-  // border: 5px solid yellow;
   width: 250px;
   height: 100%;
   background-color: #739cf0;
@@ -161,8 +160,8 @@ const SidebarMenu = styled.div<{ sidebar: boolean }>`
   }
   
   @media ${device.tablet} {
-    max-width: 1440px;
-    width: 20%;
+    max-width: 1100px;
+    width: 30%;
   }
   
   @media ${device.laptopL} {
@@ -176,7 +175,7 @@ const LogoutButton = styled.div`
   border-radius: 5px;
   width: 100%;
   text-align: center;
-  padding: 2em;
+  padding: 1em;
   font: monsterrat;
   display: flex;
   justify-content: center;
@@ -198,7 +197,7 @@ const MenuItemLinks = styled.div`
   font-size: 20px;
   text-decoration: none;
   margin: 10px;
-  justify-content: center
+  justify-content: center;
 
   @media ${device.mobileS} {
     max-width: 800px;
@@ -206,10 +205,9 @@ const MenuItemLinks = styled.div`
   }
 
   @media ${device.laptopL} {
-    max-width: 1441px;
-    width: 20%;
+    max-width: 1440px;
+    width: 90%;
   }
-
 `;
 
 const MenuItemLink = styled(Link)`
@@ -217,16 +215,14 @@ const MenuItemLink = styled(Link)`
   border-radius: 5px;
   text-align: center;
   textDecoration: "none"
-  color: "whitesmoke"
+  color: "whitesmoke";
   width: 100%;
-  padding: 2em;
+  padding: 1em;
   font: monsterrat;
-  // border: 5px solid red;
   display: flex;
   justify-content: center;
-  width: 100%;
+  // min-width: 100px;
 
-  
   &:hover {
     background-color: #F2CBAC;
     color: #000080;
@@ -271,7 +267,6 @@ const SidebarWrap = styled.div`
   display:flex;
   justify-content: center;
   align-items: center;
-  // border: 5px solid blue;
   width: 100%;
   flex-direction: column;
 `;
