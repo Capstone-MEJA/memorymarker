@@ -192,6 +192,7 @@ const PageTitle = styled.h1`
   color: #486572;
   margin-top: 0px;
   margin-bottom: 0px;
+  font-family: "Playfair Display", serif;
 `;
 
 const DevsWrapper = styled.div`
@@ -280,10 +281,11 @@ const Name = styled.p`
   font-weight: 800;
   color: #486572;
   font-size: 0.9em;
+  font-family: "Playfair Display", serif;
 
   @media ${device.tablet} {
-    font-size: 0.5em;
-    padding-top: 1em;
+    font-size: 0.8em;
+    padding-top: 0.5em;
   }
 `;
 
@@ -292,6 +294,7 @@ const DevBlurb = styled.div`
   font-size: 10px;
   text-align: center;
   color: #486572;
+  font-family: "Cormorant Garamond", serif;
 
   @media ${device.tablet} {
     padding-top: 2em;
