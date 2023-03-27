@@ -180,6 +180,7 @@ const Wrapper = styled.div`
 
   @media ${device.mobileM} {
     height: 100vh;
+    justify-content: center;
   }
 `;
 
