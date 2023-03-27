@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { useSelector } from "react-redux";
 import { setSelectedPost, toggleEditPostForm } from "../../store/globalSlice";
+import styled from "styled-components";
 
 const SingleInfoWindow = () => {
   //setting based variables/functions
@@ -29,28 +30,56 @@ const SingleInfoWindow = () => {
       }}
       onCloseClick={() => dispatch(setSelectedPost(null))}
     >
-      <div>
-        <h2>{global.selectedPost!.title}</h2>
-        <p>Posted by: {global.selectedPost!.user.username}</p>
-        <p>{global.selectedPost!.description}</p>
+      <InfoWindowWrapper>
+        <PostTitle>{global.selectedPost!.title}</PostTitle>
+        <PostText>Posted by: {global.selectedPost!.user.username}</PostText>
+        <PostText>{global.selectedPost!.description}</PostText>
 
         {auth._id === global.selectedPost!.user._id ? (
-          <div>
-            <button onClick={() => dispatch(toggleEditPostForm())}>
-              Edit Post
-            </button>
-            <button
+          <ButtonWrapper>
+            <Button onClick={() => dispatch(toggleEditPostForm())}>Edit</Button>
+            <Button
               onClick={() => {
                 deleteSinglePost(global.selectedPost!._id);
               }}
             >
-              Delete Post
-            </button>
-          </div>
+              Delete
+            </Button>
+          </ButtonWrapper>
         ) : null}
-      </div>
+      </InfoWindowWrapper>
     </InfoWindow>
   );
 };
 
 export default SingleInfoWindow;
+
+const InfoWindowWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+`;
+
+const PostTitle = styled.h2`
+  font-family: "Playfair Display", serif;
+`;
+
+const PostText = styled.p`
+  font-family: "Cormorant Garamond", serif;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 1em;
+`;
+
+const Button = styled.button`
+  font-family: "Montserrat", sans-serif;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  width: 60px;
+`;
