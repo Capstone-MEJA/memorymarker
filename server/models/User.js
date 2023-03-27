@@ -20,10 +20,12 @@ const userSchema = new mongoose.Schema({
   //   immutable: true,
   //   default: () => Date.now(),
   // },
-  posts: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: "Post",
-  },
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Post",
+    },
+  ],
 });
 
 userSchema.statics.findByToken = async function (token) {

@@ -4,6 +4,7 @@ import { registerUser } from "../../store/authSlice";
 import { AppDispatch, RootState } from "../../store";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { device } from "../../styles/global";
 
 const Register = () => {
   //setting based variables/functions
@@ -32,27 +33,33 @@ const Register = () => {
 
   return (
     <RegisterWrapper>
+      <LogoWrapper>
+        <Logo src="logo.png" />
+      </LogoWrapper>
+
       <form onSubmit={handleSubmit}>
-        <h2>Register</h2>
-        <input
-          type="text"
-          placeholder="username"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setUser({ ...user, username: e.target.value })
-          }
-        />
+        <FormTitle>Register</FormTitle>
+        <RegisterCredsWrapper>
+          <Input
+            type="text"
+            placeholder="username"
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setUser({ ...user, username: e.target.value })
+            }
+          />
 
-        <input
-          type="password"
-          placeholder="password"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setUser({ ...user, password: e.target.value })
-          }
-        />
+          <Input
+            type="password"
+            placeholder="password"
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setUser({ ...user, password: e.target.value })
+            }
+          />
 
-        <button>
-          {auth.registerStatus === "pending" ? "Submitting..." : "Register"}
-        </button>
+          <Button>
+            {auth.registerStatus === "pending" ? "Submitting..." : "Register"}
+          </Button>
+        </RegisterCredsWrapper>
         {auth.registerStatus === "rejected"
           ? // <p>{[...auth.registerError]}</p>
             auth.registerError.map((error, i) => {
@@ -68,8 +75,88 @@ export default Register;
 
 const RegisterWrapper = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  background-color: #ceebec;
+  height: 100vh;
+  width: 100%;
+`;
+
+const LogoWrapper = styled.section`
+display: flex;
+justify-content: center;
+margin: 0px;
+`;
+
+const Logo = styled.img`
+  width: 20rem;
+
+  @media ${device.laptop} {
+    width: 30rem;
+  }
+`;
+
+const FormTitle = styled.h2`
+display: flex;
+justify-content: center;
+font-family: "Playfair Display", serif;
+font-size: 2rem;
+margin-bottom: 1rem;
+
+@media ${device.laptop} {
+  font-size: 4rem;
+}
+`;
+
+const Input = styled.input`
+font-family: "Cormorant Garamond", serif;
+text-align: center;
+border-radius: 5px;
+font-size: 20px;
+margin: 10px 10px 10px 15px;
+border: none;
+width: 13rem;
+padding: 5px;
+&::placeholder {
+  font-size: 20px;
+}
+
+@media ${device.laptop} {
+  height: 3rem;
+  &::placeholder {
+    font-size: 23px;
+  }
+}
+`;
+
+const Button = styled.button`
+background-color: #739cf0;
+font-family: "Montserrat", sans-serif;
+border-radius: 5px;
+border: none;
+cursor: pointer;
+font-size: 20px;
+padding: 5px;
+margin: 10px 2rem 20px 2rem;
+width: 13rem;
+
+@media ${device.laptop} {
+  margin: 20px 10px 20px 15px;
+  height: 3rem;
+  width: 10rem;
+}
+`;
+
+const RegisterCredsWrapper = styled.section`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+// align-content: center;
+// width: 50vw;
+
+@media ${device.laptop} {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  font-size: 50px;
-  height: 70vh;
+}
 `;
