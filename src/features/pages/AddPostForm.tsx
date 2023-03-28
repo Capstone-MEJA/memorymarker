@@ -99,7 +99,7 @@ const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-item: center;
+  align-item: space-evenly;
   
   .title {
     font-size: 3rem;

@@ -59,18 +59,20 @@ const AboutWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1em;
   padding-left: 1em;
   padding-right: 1em;
+  gap: 1em;
 
   @media ${device.mobileM} {
-    height: 100vh;
+    height: 120vh;
     justify-content: center;
   }
 `;
 
 const LogoImageWrapper = styled.img`
   width: 10rem;
+  margin-bottom: -1rem;
+  margin-top: 1rem;
 
   @media ${device.tablet} {
     width: 15rem;
@@ -119,4 +121,5 @@ const ImageWrapper = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  margin: 0.5rem;
 `;
