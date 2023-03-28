@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { logoutUser } from "../../store/authSlice";
-import { toggleSideBar } from "../../store/globalSlice";
+import { setSelectedPost, toggleSideBar } from "../../store/globalSlice";
 import { device } from "../../styles/global";
 
 const Sidebar: React.FC = () => {
@@ -21,16 +21,21 @@ const Sidebar: React.FC = () => {
   //useEffect hooks
   //helper function
 
+  const handleNav = () => {
+    dispatch(toggleSideBar());
+    dispatch(setSelectedPost(null));
+  }
+
   return (
     <>
       <Navbar>
-        <MenuIconOpen to="#" onClick={() => dispatch(toggleSideBar())}>
+        <MenuIconOpen to="#" onClick={() => {handleNav()}}>
           <FaIcons.FaBars />
         </MenuIconOpen>
       </Navbar>
 
       <SidebarMenu sidebar={global.sideBar}>
-        <MenuIconClose to="#" onClick={() => dispatch(toggleSideBar())}>
+        <MenuIconClose to="#" onClick={() => {handleNav()}}>
           <FaIcons.FaTimes />
         </MenuIconClose>
         <SidebarWrap>
@@ -39,21 +44,21 @@ const Sidebar: React.FC = () => {
           {auth._id ? (
             <MenuItemLinks>
               <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
+                onClick={() => {handleNav()}}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
                 HOME
               </MenuItemLink>
               <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
+                onClick={() => {handleNav()}}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/account"
               >
                 HI, {auth.username}!
               </MenuItemLink>
               <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
+                onClick={() => {handleNav()}}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
@@ -61,7 +66,7 @@ const Sidebar: React.FC = () => {
               </MenuItemLink>
 
               <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
+                onClick={() => {handleNav()}}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/team"
               >
@@ -72,6 +77,7 @@ const Sidebar: React.FC = () => {
                 onClick={() => {
                   dispatch(logoutUser(null));
                   dispatch(toggleSideBar());
+                  dispatch(setSelectedPost(null));
                   navigate("/");
                 }}
               >
@@ -81,35 +87,35 @@ const Sidebar: React.FC = () => {
           ) : (
             <MenuItemLinks>
               <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
+                onClick={() => {handleNav()}}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
                 HOME
               </MenuItemLink>
               <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
+                onClick={() => {handleNav()}}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/Login"
               >
                 LOGIN
               </MenuItemLink>
               <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
+                onClick={() => {handleNav()}}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/register"
               >
                 SIGN-UP
               </MenuItemLink>
               <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
+                onClick={() => {handleNav()}}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
                 ABOUT
               </MenuItemLink>
               <MenuItemLink
-                onClick={() => dispatch(toggleSideBar())}
+                onClick={() => {handleNav()}}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/team"
               >

@@ -131,6 +131,7 @@ const Button = styled.button`
   padding: 5px;
   margin: 10px 2rem 20px 2rem;
   width: 13rem;
+  color: whitesmoke;
 
   @media ${device.laptop} {
     margin: 20px 10px 20px 15px;
