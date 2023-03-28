@@ -72,7 +72,7 @@ const AboutWrapper = styled.div`
 const LogoImageWrapper = styled.img`
   width: 10rem;
   margin-bottom: -1rem;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
 
   @media ${device.tablet} {
     width: 15rem;
