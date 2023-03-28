@@ -59,15 +59,16 @@ const InfoWindowWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 0.5rem;
 `;
 
 const PostTitle = styled.h2`
   font-family: "Playfair Display", serif;
+  padding: 0.5rem;
 `;
 
-const PostText = styled.p`
+const PostText = styled.p`s
   font-family: "Cormorant Garamond", serif;
+  padding: 0.5rem;
 `;
 
 const ButtonWrapper = styled.div`
