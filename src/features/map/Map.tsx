@@ -4,6 +4,7 @@ import MemoryMap from "./MemoryMap";
 // initialize map using API Key
 const Map = (): JSX.Element => {
   const { isLoaded, loadError } = useLoadScript({
+    // googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`,
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY!,
   });
 
