@@ -83,6 +83,14 @@ const Button = styled(Link)`
   text-decoration: none;
   text-align: center;
   color: whitesmoke;
+
+  @media (min-width: 800px) {
+    margin: 20px 10px 20px 15px;
+    height: 2.5rem;
+    width: 15rem;
+    font-size: 20px;
+    padding-top: 0.5rem;
+  }
 `;
 
 const Paragraph = styled.p`
