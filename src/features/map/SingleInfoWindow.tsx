@@ -32,8 +32,8 @@ const SingleInfoWindow = () => {
     >
       <InfoWindowWrapper>
         <PostTitle>{global.selectedPost!.title}</PostTitle>
-        <PostText>Posted by: {global.selectedPost!.user.username}</PostText>
         <PostText>{global.selectedPost!.description}</PostText>
+        <PostText>Posted by: {global.selectedPost!.user.username}</PostText>
 
         {auth._id === global.selectedPost!.user._id ? (
           <ButtonWrapper>
@@ -59,6 +59,7 @@ const InfoWindowWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
+  padding: 0.5rem;
 `;
 
 const PostTitle = styled.h2`
@@ -82,4 +83,6 @@ const Button = styled.button`
   cursor: pointer;
   text-align: center;
   width: 60px;
+  background-color: #739CF0;
+  color: white;
 `;

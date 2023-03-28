@@ -100,6 +100,10 @@ const FormWrapper = styled.form`
   flex-direction: column;
   justify-content: center;
   align-item: space-evenly;
+  border-radius: 25%;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #95c4a1;
   
   .title {
     font-size: 3rem;
@@ -154,6 +158,7 @@ const ClosedButton = styled.button`
   height: 3rem;
   background-color: #739CF0;
   border-width: 0px;
+  border-radius: 25%;
 
   .icon {
     color: white;
@@ -177,16 +182,9 @@ const SubmitButton = styled.button`
   font-size: 2rem;
   border-width: 0px;
   font-family: "Montserrat", sans-serif;
+  border-radius: 25%;
 
   @media ${device.tablet} {
     font-size: 1rem;
   }
 `
-// const PostIconClose = styled.div`
-//   display: flex;
-//   justify-content: end;
-//   font-size: 1.5rem;
-//   margin-top: 0.75rem;
-//   margin-right: 1rem;
-//   color: #ffffff;
-// `;
