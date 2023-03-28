@@ -103,6 +103,7 @@ const FormWrapper = styled.form`
     margin: 0.5rem;
     font-size: 1.5rem;
     font-family: "Cormorant Garamond", serif;
+    border-radius: 5px;
   }
 
   .description {
