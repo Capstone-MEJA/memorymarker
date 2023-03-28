@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 // const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
-const Dotenv = require("dotenv-webpack");
+// const Dotenv = require("dotenv-webpack");
 // const fs = require('fs');
 // const os = require('os');
 
@@ -16,7 +16,7 @@ module.exports = {
       patterns: [{ from: "src/icons" }],
     }),
     // new NodePolyfillPlugin(),
-    new Dotenv(),
+    // new Dotenv(),
   ],
   module: {
     rules: [
