@@ -71,8 +71,8 @@ const ManagePosts = () => {
                 <Th>Description</Th>
                 {/* <Th>Tags</Th> */}
                 <Th>Date</Th>
-                <Th>Edit Post</Th>
-                <Th>Delete Post</Th>
+                <Th>Edit</Th>
+                <Th>Delete</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -86,7 +86,7 @@ const ManagePosts = () => {
                       <Tr key={post._id}>
                         <Td>
                           {editMode && formValue._id === post._id ? (
-                            <input
+                            <Input
                               onChange={changeHandler}
                               name="title"
                               value={formValue.title}
@@ -97,7 +97,7 @@ const ManagePosts = () => {
                         </Td>
                         <Td>
                           {editMode && formValue._id === post._id ? (
-                            <input
+                            <Input
                               onChange={changeHandler}
                               name="description"
                               value={formValue.description}
@@ -120,7 +120,7 @@ const ManagePosts = () => {
 
                         <Td>{post.timeStamp.slice(0, -32)}</Td>
                         <Td>
-                          <button
+                          <Button
                             className="btn primary-btn"
                             onClick={(event) => {
                               onClickHandler({
@@ -135,17 +135,17 @@ const ManagePosts = () => {
                             value={!editMode ? "Edit" : "Save Changes"}
                           >
                             {!editMode ? "Edit" : "Save Changes"}
-                          </button>
+                          </Button>
                         </Td>
                         <Td>
-                          <button
+                          <Button
                             className="btn delete-btn"
                             onClick={() => {
                               handleDelete(post._id);
                             }}
                           >
                             Delete
-                          </button>
+                          </Button>
                         </Td>
                       </Tr>
                     ))}
@@ -162,8 +162,13 @@ export default ManagePosts;
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   padding: 1rem;
+  background-color: #ceebec;
+  height: 100vh;
+
+  @media only screen and ${device.mobileLMax}{
+    height: 100%;
+  }
 `;
 const LogoWrapper = styled.section`
   display: flex;
@@ -175,8 +180,8 @@ const Logo = styled.img`
   width: 10rem;
 
   @media ${device.laptop} {
-    width: 18rem;
-    height: 18rem;
+    width: 20rem;
+    height: 20rem;
   }
 `;
 
@@ -201,9 +206,12 @@ const Table = styled.table`
 `;
 
 const Tr = styled.tr`
-  :nth-of-type(odd) {
-    background: #eee;
-  }
+  // :nth-of-type(odd) {
+  //   background: #eee;
+  // }
+
+  background: white;
+
   @media only screen and ${device.mobileLMax}{
     display: block;
 
@@ -216,13 +224,14 @@ const Tr = styled.tr`
 `;
 
 const Th = styled.th`
-  background: #333;
-  color: white;
+  background: #739cf0;
+  color: whitesmoke;
   font-weight: bold;
+  font-family: "Montserrat", sans-serif;
 
   padding: 6px;
   border: 1px solid #ccc;
-  text-align: left;
+  text-align: center;
 
   @media only screen and ${device.mobileLMax}{
     display: block;
@@ -237,6 +246,7 @@ const Td = styled.td`
   padding: 6px;
   border: 1px solid #ccc;
   text-align: left;
+  font-family: "Cormorant Garamond", serif;
 
   @media only screen and ${device.mobileLMax}{
     display: block;
@@ -287,3 +297,23 @@ const Tbody = styled.tbody`
     display: block;
   }
 `;
+
+const Button = styled.button`
+  background-color: #739cf0;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: whitesmoke;
+  font-size: 0.8rem;
+  padding: 0.3rem;
+
+  @media only screen and ${device.mobileLMax}{
+    
+  }
+`;
+
+const Input = styled.textarea`
+height: 3rem;
+width: 100%;
+`
