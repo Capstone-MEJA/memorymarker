@@ -71,8 +71,8 @@ const ManagePosts = () => {
                 <Th>Description</Th>
                 {/* <Th>Tags</Th> */}
                 <Th>Date</Th>
-                <Th>Edit</Th>
-                <Th>Delete</Th>
+                <Th></Th>
+                <Th></Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -166,7 +166,7 @@ const Wrapper = styled.section`
   background-color: #ceebec;
   height: 100vh;
 
-  @media only screen and ${device.mobileLMax}{
+  @media only screen and ${device.mobileLMax} {
     height: 100%;
   }
 `;
@@ -191,7 +191,7 @@ const Title = styled.p`
   text-align: center;
   margin-bottom: 1rem;
 
-  @media only screen and ${device.mobileLMax}{
+  @media only screen and ${device.mobileLMax} {
     font-size: 3.5rem;
   }
 `;
@@ -200,7 +200,7 @@ const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
 
-  @media only screen and ${device.mobileLMax}{
+  @media only screen and ${device.mobileLMax} {
     display: block;
   }
 `;
@@ -212,7 +212,7 @@ const Tr = styled.tr`
 
   background: white;
 
-  @media only screen and ${device.mobileLMax}{
+  @media only screen and ${device.mobileLMax} {
     display: block;
 
     // position: absolute;
@@ -233,7 +233,7 @@ const Th = styled.th`
   border: 1px solid #ccc;
   text-align: center;
 
-  @media only screen and ${device.mobileLMax}{
+  @media only screen and ${device.mobileLMax} {
     display: block;
 
     position: absolute;
@@ -248,7 +248,7 @@ const Td = styled.td`
   text-align: left;
   font-family: "Cormorant Garamond", serif;
 
-  @media only screen and ${device.mobileLMax}{
+  @media only screen and ${device.mobileLMax} {
     display: block;
 
     border: none;
@@ -287,13 +287,13 @@ const Td = styled.td`
 `;
 
 const Thead = styled.thead`
-  @media only screen and ${device.mobileLMax}{
+  @media only screen and ${device.mobileLMax} {
     display: block;
   }
 `;
 
 const Tbody = styled.tbody`
-  @media only screen and ${device.mobileLMax}{
+  @media only screen and ${device.mobileLMax} {
     display: block;
   }
 `;
@@ -305,15 +305,15 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   color: whitesmoke;
-  font-size: 0.8rem;
+  font-size: 1rem;
   padding: 0.3rem;
 
-  @media only screen and ${device.mobileLMax}{
-    
+  @media only screen and ${device.mobileLMax} {
+    font-size: 0.8rem;
   }
 `;
 
 const Input = styled.textarea`
-height: 3rem;
-width: 100%;
-`
+  height: 3rem;
+  width: 100%;
+`;
