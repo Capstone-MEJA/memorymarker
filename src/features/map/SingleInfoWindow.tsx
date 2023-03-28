@@ -33,7 +33,7 @@ const SingleInfoWindow = () => {
       <InfoWindowWrapper>
         <PostTitle>{global.selectedPost!.title}</PostTitle>
         <PostText>{global.selectedPost!.description}</PostText>
-        <PostText>Posted by: {global.selectedPost!.user.username}</PostText>
+        <PostText>Posted By: {global.selectedPost!.user.username}</PostText>
 
         {auth._id === global.selectedPost!.user._id ? (
           <ButtonWrapper>
