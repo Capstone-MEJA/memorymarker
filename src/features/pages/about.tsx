@@ -72,6 +72,7 @@ const AboutWrapper = styled.div`
 const LogoImageWrapper = styled.img`
   width: 10rem;
   margin-bottom: -1rem;
+  margin-top: 0.5rem;
 
   @media ${device.tablet} {
     width: 15rem;
@@ -123,7 +124,7 @@ const ImageWrapper = styled.img`
   margin: 0.5rem;
 
   @media ${device.tablet} {
-    width: 150px;
-    height: 150px;
+    width: 125px;
+    height: 125px;
   }
 `;
