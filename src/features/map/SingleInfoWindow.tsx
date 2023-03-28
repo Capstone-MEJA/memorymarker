@@ -4,12 +4,13 @@ import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { useSelector } from "react-redux";
 import { setSelectedPost, toggleEditPostForm } from "../../store/globalSlice";
+import styled from "styled-components";
 
 const SingleInfoWindow = () => {
-    //setting based variables/functions
+  //setting based variables/functions
   const dispatch = useDispatch<AppDispatch>();
   const auth = useSelector((state: RootState) => state.auth);
-  const global = useSelector((state: RootState) => state.global); 
+  const global = useSelector((state: RootState) => state.global);
 
   //useState
   //useEffect hooks
@@ -23,30 +24,62 @@ const SingleInfoWindow = () => {
 
   return (
     <InfoWindow
-      position={{ lat: global.selectedPost!.latitude, lng: global.selectedPost!.longitude }}
+      position={{
+        lat: global.selectedPost!.latitude,
+        lng: global.selectedPost!.longitude,
+      }}
       onCloseClick={() => dispatch(setSelectedPost(null))}
     >
-      <div>
-        <h2>{global.selectedPost!.title}</h2>
-        <p>{global.selectedPost!.description}</p>
-        <p>{global.selectedPost!.user.username}</p>
-        {auth._id === global.selectedPost!.user._id ?
-          <div>
-            <button onClick={() => dispatch(toggleEditPostForm())}>
-              Edit Post
-            </button>
-            <button
+      <InfoWindowWrapper>
+        <PostTitle>{global.selectedPost!.title}</PostTitle>
+        <PostText>Posted by: {global.selectedPost!.user.username}</PostText>
+        <PostText>{global.selectedPost!.description}</PostText>
+
+        {auth._id === global.selectedPost!.user._id ? (
+          <ButtonWrapper>
+            <Button onClick={() => dispatch(toggleEditPostForm())}>Edit</Button>
+            <Button
               onClick={() => {
                 deleteSinglePost(global.selectedPost!._id);
               }}
             >
-              Delete Post
-            </button>
-          </div>
-          : null}
-      </div>
+              Delete
+            </Button>
+          </ButtonWrapper>
+        ) : null}
+      </InfoWindowWrapper>
     </InfoWindow>
   );
 };
 
 export default SingleInfoWindow;
+
+const InfoWindowWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+`;
+
+const PostTitle = styled.h2`
+  font-family: "Playfair Display", serif;
+`;
+
+const PostText = styled.p`
+  font-family: "Cormorant Garamond", serif;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 1em;
+`;
+
+const Button = styled.button`
+  font-family: "Montserrat", sans-serif;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  width: 60px;
+`;

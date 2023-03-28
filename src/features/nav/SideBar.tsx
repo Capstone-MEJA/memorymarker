@@ -59,6 +59,14 @@ const Sidebar: React.FC = () => {
               >
                 ABOUT
               </MenuItemLink>
+
+              <MenuItemLink
+                onClick={() => dispatch(toggleSideBar())}
+                style={{ textDecoration: "none", color: "whitesmoke" }}
+                to="/team"
+              >
+                MEET THE MAKERS
+              </MenuItemLink>
               <LogoutButton
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 onClick={() => {
@@ -99,6 +107,13 @@ const Sidebar: React.FC = () => {
                 to="/about"
               >
                 ABOUT
+              </MenuItemLink>
+              <MenuItemLink
+                onClick={() => dispatch(toggleSideBar())}
+                style={{ textDecoration: "none", color: "whitesmoke" }}
+                to="/team"
+              >
+                MEET THE MAKERS
               </MenuItemLink>
             </MenuItemLinks>
           )}
