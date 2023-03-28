@@ -108,6 +108,13 @@ const Sidebar: React.FC = () => {
               >
                 ABOUT
               </MenuItemLink>
+              <MenuItemLink
+                onClick={() => dispatch(toggleSideBar())}
+                style={{ textDecoration: "none", color: "whitesmoke" }}
+                to="/team"
+              >
+                MEET THE MAKERS
+              </MenuItemLink>
             </MenuItemLinks>
           )}
           {/* // if the user is logged in show */}
