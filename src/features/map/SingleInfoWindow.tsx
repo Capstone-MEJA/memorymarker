@@ -64,11 +64,13 @@ const InfoWindowWrapper = styled.div`
 const PostTitle = styled.h2`
   font-family: "Playfair Display", serif;
   padding: 0.5rem;
+  word-wrap:break-word
 `;
 
 const PostText = styled.p`s
   font-family: "Cormorant Garamond", serif;
   padding: 0.5rem;
+  word-wrap:break-word
 `;
 
 const ButtonWrapper = styled.div`
