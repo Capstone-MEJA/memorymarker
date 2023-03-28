@@ -45,21 +45,18 @@ const Sidebar: React.FC = () => {
             <MenuItemLinks>
               <MenuItemLink
                 onClick={() => {handleNav()}}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
                 HOME
               </MenuItemLink>
               <MenuItemLink
                 onClick={() => {handleNav()}}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/account"
               >
                 HI, {auth.username}!
               </MenuItemLink>
               <MenuItemLink
                 onClick={() => {handleNav()}}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
                 ABOUT
@@ -67,13 +64,11 @@ const Sidebar: React.FC = () => {
 
               <MenuItemLink
                 onClick={() => {handleNav()}}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/team"
               >
                 MEET THE MAKERS
               </MenuItemLink>
               <LogoutButton
-                style={{ textDecoration: "none", color: "whitesmoke" }}
                 onClick={() => {
                   dispatch(logoutUser(null));
                   dispatch(toggleSideBar());
@@ -88,35 +83,30 @@ const Sidebar: React.FC = () => {
             <MenuItemLinks>
               <MenuItemLink
                 onClick={() => {handleNav()}}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
                 HOME
               </MenuItemLink>
               <MenuItemLink
                 onClick={() => {handleNav()}}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/Login"
               >
                 LOGIN
               </MenuItemLink>
               <MenuItemLink
                 onClick={() => {handleNav()}}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/register"
               >
                 SIGN-UP
               </MenuItemLink>
               <MenuItemLink
                 onClick={() => {handleNav()}}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
                 ABOUT
               </MenuItemLink>
               <MenuItemLink
                 onClick={() => {handleNav()}}
-                style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/team"
               >
                 MEET THE MAKERS

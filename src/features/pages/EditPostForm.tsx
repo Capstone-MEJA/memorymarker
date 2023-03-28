@@ -46,7 +46,7 @@ const EditPostForm = () => {
           </ClosedButton>
         </div>
       </HeaderContainer>
-      <h2 className="title">Edit post</h2>
+      <h2 className="title">Edit Post</h2>
       <input
         type="text"
         className="inputField"
