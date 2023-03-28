@@ -16,7 +16,7 @@ module.exports = {
       patterns: [{ from: "src/icons" }],
     }),
     // new NodePolyfillPlugin(),
-    new Dotenv({ systemvars: true }),
+    new Dotenv(),
   ],
   module: {
     rules: [
