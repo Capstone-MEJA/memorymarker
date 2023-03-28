@@ -8,11 +8,13 @@ import {
   updatePost,
 } from "../../store/postsSlice";
 import { IsPost } from "../../interface";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { device } from "../../styles/global";
 
 const ManagePosts = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const loggedInUser = useSelector((state: RootState) => state.auth);
   const posts = useSelector(selectAllPosts);
 
@@ -121,7 +123,6 @@ const ManagePosts = () => {
                         <Td>{post.timeStamp.slice(0, -32)}</Td>
                         <Td>
                           <Button
-                            className="btn primary-btn"
                             onClick={(event) => {
                               onClickHandler({
                                 method: (event.target as HTMLInputElement)
@@ -153,6 +154,15 @@ const ManagePosts = () => {
           </Table>
         )}
       </section>
+      <BackButtonContainer>
+        <BackButton
+          onClick={() => {
+            navigate("/account");
+          }}
+        >
+          Back to Account Dashboard
+        </BackButton>
+      </BackButtonContainer>
     </Wrapper>
   );
 };
@@ -164,7 +174,7 @@ const Wrapper = styled.section`
   flex-direction: column;
   padding: 1rem;
   background-color: #ceebec;
-  height: 100vh;
+  height: fit-content;
 
   @media only screen and ${device.mobileLMax} {
     height: 100%;
@@ -247,9 +257,12 @@ const Td = styled.td`
   border: 1px solid #ccc;
   text-align: left;
   font-family: "Cormorant Garamond", serif;
+  word-break: keep-all;
+  font-size: 1.2rem;
 
   @media only screen and ${device.mobileLMax} {
     display: block;
+    overflow-wrap: break-word;
 
     border: none;
     border-bottom: 1px solid #eee;
@@ -307,6 +320,10 @@ const Button = styled.button`
   color: whitesmoke;
   font-size: 1rem;
   padding: 0.3rem;
+  margin-left: 2px;
+  margin-right: 2px;
+  width: 5rem;
+  word-break: keep-all;
 
   @media only screen and ${device.mobileLMax} {
     font-size: 0.8rem;
@@ -316,4 +333,20 @@ const Button = styled.button`
 const Input = styled.textarea`
   height: 3rem;
   width: 100%;
+  font-size: 1rem;
+`;
+
+const BackButtonContainer = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+`;
+
+const BackButton = styled(Button)`
+  width: fit-content;
+  padding: 0.5rem;
+
+  @media ${device.laptop} {
+    font-size: 1.2rem;
+  }
 `;
