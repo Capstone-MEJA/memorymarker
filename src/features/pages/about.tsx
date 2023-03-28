@@ -72,7 +72,6 @@ const AboutWrapper = styled.div`
 const LogoImageWrapper = styled.img`
   width: 10rem;
   margin-bottom: -1rem;
-  margin-top: 1rem;
 
   @media ${device.tablet} {
     width: 15rem;
@@ -118,8 +117,13 @@ const DevsText = styled.div`
 `;
 
 const ImageWrapper = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   margin: 0.5rem;
+
+  @media ${device.tablet} {
+    width: 150px;
+    height: 150px;
+  }
 `;
