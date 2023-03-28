@@ -8,6 +8,7 @@ import {
   updatePost,
 } from "../../store/postsSlice";
 import { IsPost } from "../../interface";
+import styled from "styled-components";
 
 const ManagePosts = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -57,14 +58,14 @@ const ManagePosts = () => {
         .length === 0 ? (
         "No posts yet. Go out and make some new memories! :)"
       ) : (
-        <table className="inventory-table">
+        <Table>
           <thead>
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Tags</th>
-              <th>Date</th>
-            </tr>
+            <Tr>
+              <Th>Title</Th>
+              <Th>Description</Th>
+              <Th>Tags</Th>
+              <Th>Date</Th>
+            </Tr>
           </thead>
           <tbody>
             {posts.length < 0
@@ -74,8 +75,8 @@ const ManagePosts = () => {
                     (individual) => individual.user._id === loggedInUser._id
                   )
                   .map((post: IsPost) => (
-                    <tr key={post._id}>
-                      <td>
+                    <Tr key={post._id}>
+                      <Td>
                         {editMode && formValue._id === post._id ? (
                           <input
                             onChange={changeHandler}
@@ -85,8 +86,8 @@ const ManagePosts = () => {
                         ) : (
                           post.title
                         )}
-                      </td>
-                      <td>
+                      </Td>
+                      <Td>
                         {editMode && formValue._id === post._id ? (
                           <input
                             onChange={changeHandler}
@@ -96,8 +97,8 @@ const ManagePosts = () => {
                         ) : (
                           post.description
                         )}
-                      </td>
-                      <td>
+                      </Td>
+                      <Td>
                         {editMode && formValue._id === post._id ? (
                           <input
                             onChange={changeHandler}
@@ -107,10 +108,10 @@ const ManagePosts = () => {
                         ) : (
                           post.tags
                         )}
-                      </td>
+                      </Td>
 
-                      <td>{post.timeStamp.slice(0, -32)}</td>
-                      <td>
+                      <Td>{post.timeStamp.slice(0, -32)}</Td>
+                      <Td>
                         <button
                           className="btn primary-btn"
                           onClick={(event) => {
@@ -126,8 +127,8 @@ const ManagePosts = () => {
                         >
                           {!editMode ? "Edit" : "Save Changes"}
                         </button>
-                      </td>
-                      <td>
+                      </Td>
+                      <Td>
                         <button
                           className="btn delete-btn"
                           onClick={() => {
@@ -136,14 +137,41 @@ const ManagePosts = () => {
                         >
                           Delete
                         </button>
-                      </td>
-                    </tr>
+                      </Td>
+                    </Tr>
                   ))}
           </tbody>
-        </table>
+        </Table>
       )}
     </section>
   );
 };
 
 export default ManagePosts;
+
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+`;
+
+const Tr = styled.tr`
+  $:nth-of-type(odd) {
+    background: #eee;
+  }
+`;
+
+const Th = styled.th`
+  background: #333;
+  color: white;
+  font-weight: bold;
+
+  padding: 6px;
+  border: 1px solid #ccc;
+  text-align: left;
+`;
+
+const Td = styled.td`
+  padding: 6px;
+  border: 1px solid #ccc;
+  text-align: left;
+`;
