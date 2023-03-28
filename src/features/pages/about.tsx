@@ -64,7 +64,7 @@ const AboutWrapper = styled.div`
   gap: 1em;
 
   @media ${device.mobileM} {
-    height: 120vh;
+    height: 100vh;
     justify-content: center;
   }
 `;
@@ -108,7 +108,7 @@ const DevsText = styled.div`
   background-color: white;
   border-radius: 1rem;
   text-align: left;
-  padding: 0.5rem;
+  padding: 0.75rem;
   font-family: "Cormorant Garamond", serif;
   width: 80%;
 
