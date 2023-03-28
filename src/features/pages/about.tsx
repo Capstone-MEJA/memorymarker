@@ -38,8 +38,8 @@ const About: React.FC = () => {
         <DevWrapper>
           <DevsText>
             Founded in 2023 by a team of makers, thinkers and explorers. We
-            wanted a place for people to gather, share their journies and see
-            other people's journies all over the map. We're committed to helping
+            wanted a place for people to gather, share their journeys and see
+            other people's journeys all over the map. We're committed to helping
             you tell your story.
           </DevsText>
           <ImageWrapper src="mandy.png" />
@@ -52,20 +52,21 @@ const About: React.FC = () => {
 export default About;
 
 const AboutWrapper = styled.div`
-background-color: #ceebec;
-height: 100%;
-width: 100%;
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 1em;
-padding-left: 1em;
-padding-right: 1em;
-
-@media ${device.mobileM} {
-  height: 100vh;
+  background-color: #ceebec;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-}
+  gap: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+
+  @media ${device.mobileM} {
+    height: 100vh;
+    justify-content: center;
+  }
 `;
 
 const LogoImageWrapper = styled.img`
@@ -75,18 +76,24 @@ const LogoImageWrapper = styled.img`
 const Title = styled.h1`
   color: #486572;
   margin: 2rem;
+  font-family: "Playfair Display", serif;
+
+  @media ${device.tablet} {
+    font-size: 2.5rem;
+  }
 `;
 
 const DevsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-item: center;
+  align-items: center;
 `;
 
 const DevWrapper = styled.div`
   display: flex;
-  align-item: center;
+  align-items: center;
+  justify-content: center;
   margin: 1rem;
 `;
 
@@ -96,8 +103,16 @@ const DevsText = styled.div`
   border-radius: 1rem;
   text-align: left;
   padding: 0.5rem;
+  font-family: "Cormorant Garamond", serif;
+  width: 80%;
+
+  @media ${device.tablet} {
+    font-size: 1.5rem;
+  }
 `;
 
 const ImageWrapper = styled.img`
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 `;
