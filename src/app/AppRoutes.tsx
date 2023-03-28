@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import Map from "../features/map/Map";
@@ -27,10 +27,9 @@ const AppRoutes = () => {
         <Route path="/home" element={<Map />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/account/myposts" element={<MyPosts />} /> */}
-        <Route path="*" element={<Map />} />
         <Route path="/about" element={<About />} />
         <Route path="/team" element={<AboutTeam />} />
+        <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
     </div>
   );

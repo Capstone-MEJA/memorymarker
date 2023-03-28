@@ -172,12 +172,15 @@ export default ManagePosts;
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   background-color: #ceebec;
   height: fit-content;
+  width: fit-content;
 
   @media only screen and ${device.mobileLMax} {
     height: 100%;
+    padding: 1rem;
   }
 `;
 const LogoWrapper = styled.section`
