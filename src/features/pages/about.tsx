@@ -70,12 +70,16 @@ const AboutWrapper = styled.div`
 `;
 
 const LogoImageWrapper = styled.img`
-  width: 100px;
+  width: 10rem;
+
+  @media ${device.tablet} {
+    width: 15rem;
+  }
 `;
 
 const Title = styled.h1`
   color: #486572;
-  margin: 2rem;
+  margin: 1rem;
   font-family: "Playfair Display", serif;
 
   @media ${device.tablet} {
