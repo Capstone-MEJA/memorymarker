@@ -64,7 +64,6 @@ const AboutWrapper = styled.div`
   gap: 1em;
 
   @media ${device.mobileM} {
-    height: 100vh;
     justify-content: center;
   }
 `;
@@ -81,7 +80,7 @@ const LogoImageWrapper = styled.img`
 
 const Title = styled.h1`
   color: #486572;
-  margin: 1rem;
+  margin: 0.5rem;
   font-family: "Playfair Display", serif;
 
   @media ${device.tablet} {
