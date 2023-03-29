@@ -9,8 +9,8 @@ const AboutTeam: React.FC = () => {
       <PageTitle>Memory Makers</PageTitle>
       <DevsWrapper>
         <DevWrapper>
-          <ProfileImageMobile src="/public/alicia.png" />
-          <ProfileImageTablet src="/public/alicia.png" />
+          <ProfileImageMobile src="../../../public/alicia.png" />
+          <ProfileImageTablet src="../../../public/alicia.png" />
           <DevContent>
             <DevHeader>
               <a href="https://www.linkedin.com/in/alicia-hetrick/">
