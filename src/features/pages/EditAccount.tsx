@@ -270,6 +270,7 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   margin-bottom: 10px;
+  color: whitesmoke;
 
   @media ${device.laptop} {
     font-size: 20px;

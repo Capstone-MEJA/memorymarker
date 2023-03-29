@@ -38,106 +38,92 @@ const About: React.FC = () => {
         <DevWrapper>
           <DevsText>
             Founded in 2023 by a team of makers, thinkers and explorers. We
-            wanted a place for people to gather, share their journies and see
-            other people's journies all over the map. We're committed to helping
+            wanted a place for people to gather, share their journeys and see
+            other people's journeys all over the map. We're committed to helping
             you tell your story.
           </DevsText>
           <ImageWrapper src="mandy.png" />
         </DevWrapper>
       </DevsWrapper>
     </AboutWrapper>
-    // <AboutSection>
-    //     <AboutTitle>
-    //     About
-    //     </AboutTitle>
-    //     <AboutText>
-    //         Welcome to the world's most popular social media platform. Our mission is to help you tell your story.
-    //     </AboutText>
-    //     <Paragraph>
-    //         Mark the Memories you Make
-    //     </Paragraph>
-    //     <Paragraph>
-    //         We are a story-driven platform.  We all have memories we don't want to forget. Our page is a place where people and experiences come together.  Whether it be where you had your first kiss or where you had your latest meal, mark it on the map! This is a site that fits you and your journey on this earth along with all 7.5+ billion of us.
-    //     </Paragraph>
-    //     <Paragraph>
-    //         Get Started: Marking your Memories or Make your Mark?
-    //     </Paragraph>
-    //     <Paragraph>
-    //         Start documenting your journey by creating your account! Have a night you don't want to forget? Mark it on the map! Create a post and journal your thoughts.  It could be as long as you want or as short.  Where was it? Who were you with? How did you feel? Share your voice, express yourself.
-    //     </Paragraph>
-    //     <Paragraph>
-    //         About: The Memory Makers
-    //     </Paragraph>
-    //     <Paragraph>
-    //         Founded in 2023 by a team of makers, thinkers, explorers.  We wanted a place for people to gather, share their journies and see other people's journies all over the map.  Making this big world feel a little smaller.  Everyone has memories and they grow as we all grow together. We're committed to helping you tell your story.
-    //     </Paragraph>
-    // </AboutSection>
   );
 };
 
 export default About;
 
 const AboutWrapper = styled.div`
-  min-height: 100vh;
-  background-color: #ceece8;
-  text-align: center;
+  background-color: #ceebec;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 1em;
+  justify-content: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  gap: 1em;
+
+  @media ${device.mobileM} {
+    justify-content: center;
+  }
 `;
 
 const LogoImageWrapper = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 10rem;
+  margin-bottom: -1rem;
+  margin-top: 0.75rem;
+
+  @media ${device.tablet} {
+    width: 15rem;
+  }
 `;
 
 const Title = styled.h1`
-  padding-bottom: 1em;
+  color: #486572;
+  margin: 0.5rem;
+  font-family: "Playfair Display", serif;
+
+  @media ${device.tablet} {
+    font-size: 2.5rem;
+  }
 `;
 
 const DevsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1em;
-
-  @media ${device.mobileL} {
-    max-width: 425px;
-    padding: 0.5em;
+  justify-content: center;
+  align-items: center;
 `;
 
 const DevWrapper = styled.div`
   display: flex;
-  gap: 0.5em;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
 `;
 
 const DevsText = styled.div`
-  font-size: 12px;
+  font-size: 1rem;
   background-color: white;
-  border-radius: 1em;
+  border-radius: 1rem;
   text-align: left;
-  padding: 1em;
+  padding: 0.75rem;
+  font-family: "Cormorant Garamond", serif;
+  width: 80%;
+
+  @media ${device.tablet} {
+    font-size: 1.5rem;
+  }
 `;
 
 const ImageWrapper = styled.img`
-  width: 20%;
-  height: 20%;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
-`;
+  margin: 0.5rem;
 
-// const AboutTitle = styled.div`
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     font-size: 50px;
-//     height: 50vh;
-// `
-// const AboutSection = styled.div``
-// const Paragraph = styled.div`
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     font-size: 30px;
-//     height: 50vh;
-// `
+  @media ${device.tablet} {
+    width: 125px;
+    height: 125px;
+  }
+`;

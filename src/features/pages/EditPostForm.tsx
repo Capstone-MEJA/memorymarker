@@ -46,7 +46,7 @@ const EditPostForm = () => {
           </ClosedButton>
         </div>
       </HeaderContainer>
-      <h2 className="title">Edit post</h2>
+      <h2 className="title">Edit Post</h2>
       <input
         type="text"
         className="inputField"
@@ -89,6 +89,10 @@ const FormWrapper = styled.form`
   flex-direction: column;
   justify-content: center;
   align-item: space-evenly;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #95c4a1;
   
   .title {
     font-size: 3rem;
@@ -99,6 +103,7 @@ const FormWrapper = styled.form`
     margin: 0.5rem;
     font-size: 1.5rem;
     font-family: "Cormorant Garamond", serif;
+    border-radius: 5px;
   }
 
   .description {
@@ -143,6 +148,7 @@ const ClosedButton = styled.button`
   height: 3rem;
   background-color: #739CF0;
   border-width: 0px;
+  border-radius: 5px;
 
   .icon {
     color: white;
@@ -166,6 +172,7 @@ const SubmitButton = styled.button`
   font-size: 2rem;
   border-width: 0px;
   font-family: "Montserrat", sans-serif;
+  border-radius: 5px;
 
   @media ${device.tablet} {
     font-size: 1rem;
