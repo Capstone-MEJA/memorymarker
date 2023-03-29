@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import Map from "../features/map/Map";
@@ -12,7 +12,6 @@ import About from "../features/pages/about";
 
 const AppRoutes = () => {
   const auth = useSelector((state: RootState) => state.auth);
-  const Navigate = useNavigate();
   return (
     <div>
       <Routes>
