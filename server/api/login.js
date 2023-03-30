@@ -9,8 +9,8 @@ const genAuthToken = require("../utils/genAuthToken");
  * Route serving login form to /api/login
  * @name post/login
  * @param {string} path - Express path
- * @param {callback} middleware - Express middleware.
- * @return {number} JSON web token
+ * @param {callback} middleware - Express middleware
+ * @returns {number} JSON web token
  */
 
 router.post("/", async (req, res, next) => {
