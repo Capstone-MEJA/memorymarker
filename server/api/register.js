@@ -7,7 +7,7 @@ const genAuthToken = require("../utils/genAuthToken");
 
 /**
  * Route serving register form to /api/register
- * @name post/login
+ * @name post/register
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware
  * @returns {number} JSON web token
