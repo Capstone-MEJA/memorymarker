@@ -1,10 +1,18 @@
+const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
+
 const User = require("../models/User");
 const genAuthToken = require("../utils/genAuthToken");
-const router = require("express").Router();
 
-// POST route to /api/register
+/**
+ * Route serving register form to /api/register
+ * @name post/login
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ * @returns {number} JSON web token
+ */
+
 router.post("/", async (req, res, next) => {
   try {
     // validate the schema
