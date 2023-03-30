@@ -79,6 +79,18 @@ export const updatePost = createAsyncThunk(
   }
 );
 
+export const favoritePost = createAsyncThunk(
+  "favoritePost",
+  async (_id: string) => {
+    try {
+      const { data } = await axios.put(`/api/posts/${_id}`, {like: 1});
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const deletePost = createAsyncThunk(
   "deletePost",
   async (_id: string) => {
@@ -96,10 +108,14 @@ interface isPost {
   title: string;
   description: string;
   user: object;
-  tags: [String];
-  latitude: Number;
-  longitude: Number;
+  tags: [string];
+  latitude: number;
+  longitude: number;
+  createdAt: number;
+  timeStamp: string;
+  favorite: number;
 }
+
 let initialState: isPost[] = [];
 
 export const PostsSlice = createSlice({
@@ -138,6 +154,15 @@ export const PostsSlice = createSlice({
         //   }
         // });
         // return [...state, action.payload];
+      })
+      .addCase(favoritePost.fulfilled, (state, action) => {
+        return state.map((post) => {
+          if (post._id === action.payload._id) {
+            return action.payload;
+          } else {
+            return post;
+          }
+        });
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         return state.filter((post) => post._id !== action.payload._id);

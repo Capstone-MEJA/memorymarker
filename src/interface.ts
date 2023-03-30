@@ -10,7 +10,7 @@ export interface IsPost {
   longitude: number;
   user: IsUser;
   createdAt: number;
-  timeStamp: string
+  timeStamp: string;
 }
 
 export interface IsUser {

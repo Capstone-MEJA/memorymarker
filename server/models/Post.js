@@ -33,6 +33,10 @@ const postSchema = new mongoose.Schema({
     type: String,
     immutable: true,
     default: () => Date()
+  },
+  favorite: {
+    type: Number,
+    default: 0
   }
 });
 const Post = mongoose.model("Post", postSchema);

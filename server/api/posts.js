@@ -41,9 +41,31 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:_id", async (req, res, next) => {
   try {
-    await Post.updateOne({ _id: req.params._id }, req.body);
+    
     const post = await Post.findById(req.params._id);
+
+    if (req.body.like) {
+      post.favorite = post.favorite + req.body.like;
+      // await post.save();
+      // res.send(post);
+    } else {
+      if (req.body.title !== post.title) {
+        post.title = req.body.title;
+        // await post.save();
+      }
+
+      if (req.body.description !== post.description) {
+        post.description = req.body.description;
+        // await post.save();
+      }
+      // await Post.updateOne({ _id: req.params._id }, req.body);
+      // const post = await Post.findById(req.params._id);
+      // await post.populate("user");
+      // res.send(post);
+    }
+    await post.save();
     await post.populate("user");
+    console.log(post);
     res.send(post);
   } catch (err) {
     console.log(err);

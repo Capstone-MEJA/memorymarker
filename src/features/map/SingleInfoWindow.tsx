@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from "../../store";
 import { useSelector } from "react-redux";
 import { setSelectedPost, toggleEditPostForm } from "../../store/globalSlice";
 import styled from "styled-components";
+import UpVote from "./UpVote";
 
 const SingleInfoWindow = () => {
   //setting based variables/functions
@@ -34,6 +35,8 @@ const SingleInfoWindow = () => {
         <PostTitle>{global.selectedPost!.title}</PostTitle>
         <PostText>{global.selectedPost!.description}</PostText>
         <PostText>Posted By: {global.selectedPost!.user.username}</PostText>
+
+        <UpVote />
 
         {auth._id === global.selectedPost!.user._id ? (
           <ButtonWrapper>
