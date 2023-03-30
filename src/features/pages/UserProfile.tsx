@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { RootState } from "../../store";
+import { device } from "../../styles/global";
 // import authentication
 
 const UserProfile = () => {
@@ -49,24 +50,25 @@ h1{
   font-family: "Playfair Display", serif;
   text-transform: uppercase;
   padding: 10px;
+  font-size: 2rem;
 }
 `;
 
 const ImageWrapper = styled.img`
-  height: 8rem;
-  width: 8rem;
+  height: 10rem;
+  width: 10rem;
 
-  @media (min-width: 425px) {
-    height: 10rem;
-    width: 10rem;
-  }
-  @media (min-width: 800px) {
+  @media ${device.tablet} {
     height: 12rem;
     width: 12rem;
   }
-  @media (min-width: 1100px) {
+  @media ${device.laptop} {
     height: 14rem;
     width: 14rem;
+  }
+  @media ${device.desktop} {
+    height: 16rem;
+    width: 16rem;
   }
 `;
 

@@ -73,8 +73,8 @@ const ManagePosts = () => {
                 <Th>Description</Th>
                 {/* <Th>Tags</Th> */}
                 <Th>Date</Th>
-                <Th></Th>
-                <Th></Th>
+                <Th>See a Typo?</Th>
+                <Th>Lets Erase</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -175,11 +175,12 @@ const Wrapper = styled.section`
   padding-left: 2rem;
   padding-right: 2rem;
   background-color: #ceebec;
-  height: fit-content;
-  width: fit-content;
+  height: 100vh;
+  width: 100vw;
 
   @media only screen and ${device.mobileLMax} {
     height: 100%;
+    width: 100vw;
     padding: 1rem;
   }
 `;
@@ -191,6 +192,7 @@ const LogoWrapper = styled.section`
 
 const Logo = styled.img`
   width: 10rem;
+  height: 10rem;
 
   @media ${device.laptop} {
     width: 20rem;
@@ -227,7 +229,6 @@ const Tr = styled.tr`
 
   @media only screen and ${device.mobileLMax} {
     display: block;
-
     // position: absolute;
     // top: -9999px;
     // left: -9999px;
@@ -248,10 +249,11 @@ const Th = styled.th`
 
   @media only screen and ${device.mobileLMax} {
     display: block;
-
     position: absolute;
     top: -9999px;
     left: -9999px;
+    background: #739cf0;
+    color: whitesmoke;
   }
 `;
 
@@ -277,8 +279,12 @@ const Td = styled.td`
       top: 6px;
       left: 6px;
       width: 45%;
+      //this is where you left off
       padding-right: 10px;
       white-space: nowrap;
+      background: #739cf0;
+      color: whitesmoke;
+      font-family: "Cormorant Garamond", serif;
     }
 
     :nth-of-type(1):before {
@@ -294,10 +300,10 @@ const Td = styled.td`
       content: "Date";
     }
     :nth-of-type(4):before {
-      content: "Edit Post";
+      content: "See a Typo?";
     }
     :nth-of-type(5):before {
-      content: "Delete Post";
+      content: "Lets Erase";
     }
   }
 `;
@@ -327,6 +333,8 @@ const Button = styled.button`
   margin-right: 2px;
   width: 5rem;
   word-break: keep-all;
+  justify-content: center;
+  display:flex;
 
   @media only screen and ${device.mobileLMax} {
     font-size: 0.8rem;
