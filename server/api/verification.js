@@ -1,48 +1,40 @@
 const User = require("../models/User");
 
+/**
+ * * Custom middleware that checks to see if the user trying to update account information is the same user that owns that account they are attempting to update
+ * @param {Express.Request} req
+ * @param {Express.Response} res
+ * @param {Express.NextFunction} next
+ */
+
 const userVerification = async (req, res, next) => {
   try {
-    //token comes from headers, which we sent inside the corresponding thunk
-    //so if you aren't sure, check your user slice
+    // set token to the header sent from the updateUser() thunk in userSlice.tsx
     const token = req.headers.authorization;
-    //findByToken will give us back either null, or an object
-    //with the requester's information
-    let {_id} = await User.findByToken(token);
-    //_id by default is an OBJECT not a string, so we have to use
-    //.toString() to make it into a string
-    _id = _id.toString()
-    //dbId can come from two different places
-    // req.body if you are using put or post
-    // req.params if you are using delete or get
-    let dbId = ""
-    if(req.method === "PUT" || req.method === "POST"){
-       dbId = req.body._id
+    // find the user object using their token
+    // destructure out the user's id
+    let { _id } = await User.findByToken(token);
+    // convert the id to a string
+    _id = _id.toString();
+    // if method is POST or PUT, set dbId to id from the request body
+    // if method is GET or DELETE, set dbId to id from the request params
+    let dbId = "";
+    if (req.method === "PUT" || req.method === "POST") {
+      dbId = req.body._id;
     } else {
-        dbId = req.params._id
+      dbId = req.params._id;
     }
-    // dbId is the id of the account you are trying to change
-    //_id is the YOUR (REQUESTER's) id
-    if(dbId === _id){
-        next()
+    // if the dbId (requested account to change) is the _id (requester's id)
+    // continue on with the request
+    // otherwise throw an error
+    if (dbId === _id) {
+      next();
     } else {
-        throw new Error("Unauthorized")
+      throw new Error("Unauthorized");
     }
-
   } catch (err) {
     next(err);
   }
 };
 
 module.exports = userVerification;
-
-// token = window.localStorage.getItem()
-
-// parameter1 = url  parameter 2 = req.headers
-// axios.get("endpoint_url", {headers: {authorization: token}})
-// axios.delete("endpoint_url", {headers: {authorization: token})
-
-// parameters1 = url parameter2 = req.body paramter3 = req.headers
-// axios.post("endpoint_url", {username: username, password: password}, {headers:{authorization:token}})
-// axios.put("endpoint_url", {username: username, password: password}, {headers: {authorization: token}})
-
-
