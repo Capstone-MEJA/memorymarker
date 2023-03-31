@@ -18,14 +18,18 @@ import {
   toggleSideBar,
 } from "../../store/globalSlice";
 
+/**
+ * Component for loading google map
+ * @returns The google map with markers for every post in the database and options to create or edit a post if logged in
+ */
+
 const MemoryMap = (): JSX.Element => {
-  //setting based variables/functions
+  // setting base variables
   const dispatch = useDispatch<AppDispatch>();
   const auth = useSelector((state: RootState) => state.auth);
   const global = useSelector((state: RootState) => state.global);
   const center = useRef(global.position);
 
-  //useState
   //useEffect hooks
   const allPosts: IPost[] = useSelector(selectAllPosts);
   useEffect(() => {
@@ -47,12 +51,11 @@ const MemoryMap = (): JSX.Element => {
     }
   }, [allPosts]);
 
-  //either this need to work or the center.current props need to be pass down
   useEffect(() => {
     center.current = global.position;
   }, [global.position]);
 
-  //helper function
+  // helper function
   const togglePostFormFunc = async (event: google.maps.MapMouseEvent) => {
     if (global.sideBar) {
       await dispatch(toggleSideBar());
@@ -65,6 +68,7 @@ const MemoryMap = (): JSX.Element => {
     }
   };
 
+  // typescript single use interface
   const options = {
     styles: mapStyles,
     disableDefaultUI: true,
@@ -85,17 +89,17 @@ const MemoryMap = (): JSX.Element => {
           return <SingleMarker post={post} key={post._id} />;
         })}
 
-        {/* conditionally render the infoWindow based on selected post */}
+        {/* conditionally render an infoWindow based on selected post */}
         {global.selectedPost ? <SingleInfoWindow /> : null}
 
-        {/* conditionally render the add post from when logged in and toggle is true */}
+        {/* conditionally render the add post form when logged in and toggle is set to true */}
         {auth._id && global.postForm ? (
           <Form>
             <AddPostForm />
           </Form>
         ) : null}
 
-        {/* conditionally render the edit post from when logged in and toggle is true */}
+        {/* conditionally render the edit post from when logged in and toggle is set to true */}
         {auth._id && global.editPostForm && global.selectedPost ? (
           <Form>
             <EditPostForm />
