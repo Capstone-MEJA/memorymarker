@@ -15,12 +15,8 @@ const uri = `mongodb+srv://makers:${password}@memory-marker.sdm16jf.mongodb.net/
 
 const init = async () => {
   try {
-<<<<<<< HEAD
     await mongoose.connect(uri);
     // start listening (and create a 'server' object representing our server)
-=======
-    await mongoose.connect("mongodb://127.0.0.1:27017/memorymarker");
->>>>>>> main
     app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`));
   } catch (ex) {
     console.log(ex);
