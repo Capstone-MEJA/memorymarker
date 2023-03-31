@@ -1,4 +1,5 @@
-//This file manages all the variables that might be useful to keep as global variables instead of props because of their frequency of use
+// This file manages state as global variables
+// this keeps the application DRY so that props do not have to be passed down many levels
 
 import { createSlice } from "@reduxjs/toolkit";
 import { isStore } from "../store";
@@ -30,21 +31,27 @@ export const globalSlice = createSlice({
   name: "global",
   initialState,
   reducers: {
+    // a redux reducer that will toggle the create post form when dispatched
     togglePostForm: (state) => {
       state.postForm = !state.postForm;
     },
+    // a redux reducer that will toggle the edit post form when dispatched
     toggleEditPostForm: (state) => {
       state.editPostForm = !state.editPostForm;
     },
+    // a redux reducer that will set a post as selected when dispatched
     setSelectedPost: (state, action) => {
       state.selectedPost = action.payload;
     },
+    // a redux reducer that will set a latitude when dispatched
     setLat: (state, action) => {
       state.position.lat = action.payload;
     },
+    // a redux reducer that will set a longitude when dispatched
     setLng: (state, action) => {
       state.position.lng = action.payload;
     },
+    // a redux reducer that will toggle the sidebar view when dispatched
     toggleSideBar: (state) => {
       state.sideBar = !state.sideBar;
     },
