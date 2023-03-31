@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { device } from "../../styles/global";
+
 /**
  * Component for the devs to introduce themselves
  * @returns A speech bubble for every dev about their coding journey
