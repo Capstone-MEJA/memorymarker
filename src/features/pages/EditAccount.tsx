@@ -1,4 +1,3 @@
-// import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { updateUser } from "../../store/usersSlice";
@@ -14,11 +13,18 @@ export interface updateObj {
   password?: string;
 }
 
+/**
+ * Component for a user to edit their account info
+ * @returns A form for a logged in user to edit their account username or password
+ */
+
 const EditAccount = () => {
+  // setting base variables
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const loggedInUser = useSelector((state: RootState) => state.auth);
 
+  // useState
   const [toggleForm, setToggleForm] = useState("");
   const [formValues, setFormValues] = useState("");
 
@@ -27,6 +33,7 @@ const EditAccount = () => {
     console.log(formValues);
   };
 
+  // helper functions
   const editInfo = async (e: MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLButtonElement;
     if (target.value === "username") {
@@ -309,9 +316,9 @@ const CancelButtonContainer = styled.section`
 `;
 
 const CancelButton = styled(Button)`
-width: 15rem;
+  width: 15rem;
 
-@media ${device.laptop} {
-  width: fit-content;
-}
-`
+  @media ${device.laptop} {
+    width: fit-content;
+  }
+`;

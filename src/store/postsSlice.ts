@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { isStore } from "../store";
 
+// a redux thunk that fetches all posts from the database
 export const fetchAllPosts = createAsyncThunk("allPosts", async () => {
   try {
     const { data } = await axios.get(`/api/posts`);
@@ -11,6 +12,7 @@ export const fetchAllPosts = createAsyncThunk("allPosts", async () => {
   }
 });
 
+// a redux thunk that fetches a single post from the database
 export const fetchSinglePost = createAsyncThunk(
   "singlePost",
   async (_id: string) => {
@@ -23,6 +25,7 @@ export const fetchSinglePost = createAsyncThunk(
   }
 );
 
+// a redux thunk that creates a new post and saves it to the database
 export const newPost = createAsyncThunk(
   "newPost",
   async ({
@@ -53,6 +56,7 @@ export const newPost = createAsyncThunk(
   }
 );
 
+// a redux thunk that updates a single post and saves it to the database
 export const updatePost = createAsyncThunk(
   "updatePost",
   async ({
@@ -63,8 +67,6 @@ export const updatePost = createAsyncThunk(
     _id?: string;
     title?: string;
     description?: string;
-    // latitude: number | null;
-    // longitude: number | null;
   }) => {
     try {
       const { data } = await axios.put(`/api/posts/${_id}`, {
@@ -79,6 +81,20 @@ export const updatePost = createAsyncThunk(
   }
 );
 
+export const favoritePost = createAsyncThunk(
+  "favoritePost",
+  async ({ id, userId, like }: { id: string; userId: string; like: number }) => {
+    try {
+      const { data } = await axios.put(`/api/posts/${id}`, { like, userId });
+      // console.log(data)
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+// a redux thunk that deletes a single post from the database
 export const deletePost = createAsyncThunk(
   "deletePost",
   async (_id: string) => {
@@ -96,32 +112,37 @@ interface isPost {
   title: string;
   description: string;
   user: object;
-  tags: [String];
-  latitude: Number;
-  longitude: Number;
+  tags: [string];
+  latitude: number;
+  longitude: number;
+  createdAt: number;
+  timeStamp: string;
+  favoriteCount: number;
+  favoritedUsers: [string];
 }
+
 let initialState: isPost[] = [];
 
 export const PostsSlice = createSlice({
   name: "posts",
   initialState: initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
+      // when the fetchAllPosts thunk is fulfilled, set the state to an array of all posts
       .addCase(fetchAllPosts.fulfilled, (state, action) => {
         return action.payload;
       })
+      // when the fetchSinglePost thunk is fulfilled, set the state to that single post being requested
       .addCase(fetchSinglePost.fulfilled, (state, action) => {
         return action.payload;
       })
+      // when the newPost thunk is fulfilled, spread the state and add the new post
       .addCase(newPost.fulfilled, (state, action) => {
         return [...state, action.payload];
       })
+      // when the updatePost thunk is fulfilled, return the state with the updated post
       .addCase(updatePost.fulfilled, (state, action) => {
-        console.log("payload", action.payload);
-        // find the index of the post you are updating
-        // update only that index
-        // spread the rest of the array
-
         return state.map((post) => {
           if (post._id === action.payload._id) {
             return action.payload;
@@ -129,21 +150,21 @@ export const PostsSlice = createSlice({
             return post;
           }
         });
-        // return state;
-        // return state.map((post) => {
-        //   if (post._id !== action.payload._id) {
-        //     return post;
-        //   } else {
-        //     return action.payload;
-        //   }
-        // });
-        // return [...state, action.payload];
       })
+      .addCase(favoritePost.fulfilled, (state, action) => {
+        return state.map((post) => {
+          if (post._id === action.payload._id) {
+            return action.payload;
+          } else {
+            return post;
+          }
+        });
+      })
+      // when the deletePost thunk is fulfilled, return the state without the deleted post
       .addCase(deletePost.fulfilled, (state, action) => {
         return state.filter((post) => post._id !== action.payload._id);
       });
   },
-  reducers: {},
 });
 
 export const selectAllPosts = (state: isStore) => {

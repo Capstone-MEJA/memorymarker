@@ -1,21 +1,25 @@
-// import "./app.css";
-// import Map from "../Map";
-import AppRoutes from "./AppRoutes";
 import React from "react";
-import Sidebar from "../features/nav/SideBar";
-// import Nav from "./Navbar";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
 import { loadUser } from "../store/authSlice";
 
+import Sidebar from "../features/nav/SideBar";
+import AppRoutes from "./AppRoutes";
+
+/**
+ * Component for main app
+ * Loads app as logged in user if they have a token saved in localStorage
+ * @returns Sidebar and AppRoutes components
+ */
+
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   dispatch(loadUser(null));
+
   return (
     <div>
       <Sidebar />
       <AppRoutes />
-      {/* <Map /> */}
     </div>
   );
 };

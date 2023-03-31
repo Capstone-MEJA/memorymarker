@@ -7,25 +7,34 @@ import {
   selectAllPosts,
   updatePost,
 } from "../../store/postsSlice";
-import { IsPost } from "../../interface";
+import { IPost } from "../../interface";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { device } from "../../styles/global";
 
+/**
+ * Component a user to manage all their posts
+ * @returns A table where a user can view all their posts and edit or delete a specific post
+ */
+
 const ManagePosts = () => {
+  // setting base variables
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const loggedInUser = useSelector((state: RootState) => state.auth);
   const posts = useSelector(selectAllPosts);
 
+  // useState
   const [editMode, setEditMode] = useState(false);
   const [formValue, setFormValue] = useState<formValue>({});
   const [change, setChange] = useState(false);
 
+  // useEffect hook
   useEffect(() => {
     dispatch(fetchAllPosts());
   }, []);
 
+  // helper functions
   const handleDelete = (id: string) => {
     dispatch(deletePost(id));
     setChange(!change);
@@ -47,6 +56,7 @@ const ManagePosts = () => {
     setFormValue({ ...formValue, [event.target.name]: event.target.value });
   };
 
+  // typescript interface
   interface formValue {
     method?: string;
     _id?: string;
@@ -84,7 +94,7 @@ const ManagePosts = () => {
                     .filter(
                       (individual) => individual.user._id === loggedInUser._id
                     )
-                    .map((post: IsPost) => (
+                    .map((post: IPost) => (
                       <Tr key={post._id}>
                         <Td>
                           {editMode && formValue._id === post._id ? (
@@ -120,7 +130,7 @@ const ManagePosts = () => {
                           )}
                         </Td> */}
 
-                        <Td>{post.timeStamp.slice(0, -32)}</Td>
+                        <Td>{post.timeStamp?.slice(0, -32)}</Td>
                         <Td>
                           <Button
                             onClick={(event) => {
@@ -229,10 +239,6 @@ const Table = styled.table`
 `;
 
 const Tr = styled.tr`
-  // :nth-of-type(odd) {
-  //   background: #eee;
-  // }
-
   background: white;
 
   @media only screen and ${device.mobileLMax} {
@@ -302,9 +308,6 @@ const Td = styled.td`
     :nth-of-type(2):before {
       content: "Description";
     }
-    // :nth-of-type(3):before {
-    //   content: "Tags";
-    // }
     :nth-of-type(3):before {
       content: "Date";
     }

@@ -1,23 +1,25 @@
-// Any reuseable interface are located here
-// Any 1 time use interface are located at their respecitive files for clarity sakes
+// All reusable interfaces
+// Any single use interfaces are defined in their respective components
 
-export interface IsPost {
+export interface IPost {
   _id: string;
   title: string;
   description: string;
   tags: [string];
   latitude: number;
   longitude: number;
-  user: IsUser;
+  user: IUser;
   createdAt: number;
-  timeStamp: string
+  timeStamp: string;
+  favoriteCount: number;
+  favoritedUsers: [string]
 }
 
-export interface IsUser {
+export interface IUser {
   _id: string;
   username: string;
   password: string;
-  posts: [IsPost];
+  posts: [IPost];
 }
 
 export interface AuthState {

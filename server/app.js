@@ -1,42 +1,32 @@
-const path = require("path");
 const express = require("express");
-const morgan = require("morgan");
-const User = require("./models/User");
 const app = express();
+const path = require("path");
+const morgan = require("morgan");
 require("dotenv").config();
-module.exports = app;
 
-// logging middleware
+// Morgan intercepts all requests & responses
+// and logs the request & response information
 app.use(morgan("dev"));
 
-// body parsing middleware
+// Parses incoming requests with JSON payloads
 app.use(express.json());
 
-// testing compared passwords:
-// const test = async (username, password) => {
-//   const user = await User.findOne({ username: username });
-//   const result = await user.comparePassword(password);
-//   console.log(result);
-// };
-// test("alicia", "123"); // true
-// test("alicia", "1234"); // false
-
-// api routes
+// All API routes are mounted on /api
 app.use("/api", require("./api"));
 
+// All GET requests to / will render /public/index.html
 app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "..", "public/index.html"))
 );
 
-// static file-serving middleware
+// Static file-serving middleware for rendering images in /public folder
 app.use(express.static(path.join(__dirname, "..", "public")));
 
-// any remaining requests with an extension (.js, .css, etc.) send 404
+// Any remaining requests will send 404
 app.use((req, res, next) => {
   if (path.extname(req.path).length) {
     console.log("path name", req.path);
     const err = new Error("Not found");
-
     err.status = 404;
     next(err);
   } else {
@@ -44,14 +34,16 @@ app.use((req, res, next) => {
   }
 });
 
-// sends index.html
+// Sends /public/index.html
 app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public/index.html"));
 });
 
-// error handling endware
-app.use((err, req, res, next) => {
+// Error handling endware
+app.use((err, req, res) => {
   console.error(err);
   console.error(err.stack);
   res.status(err.status || 500).send(err.message || "Internal server error.");
 });
+
+module.exports = app;

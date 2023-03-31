@@ -1,7 +1,16 @@
 const router = require("express").Router();
-module.exports = router;
+
 const Post = require("../models/Post");
 const User = require("../models/User");
+const mongoose = require("mongoose");
+
+/**
+ * Route serving all posts to /api/posts
+ * @name get/posts
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ * @returns {Object[]} Array of all posts in database
+ */
 
 router.get("/", async (req, res, next) => {
   try {
@@ -13,6 +22,14 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+/**
+ * Route serving a single post to /api/posts/<id>
+ * @name get/post
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ * @returns {Object} Returns a single post based on the id passed into the request params
+ */
+
 router.get("/:_id", async (req, res, next) => {
   try {
     const post = await Post.findById(req.params._id);
@@ -23,13 +40,20 @@ router.get("/:_id", async (req, res, next) => {
   }
 });
 
+/**
+ * Route to add a single post to /api/posts
+ * @name post/post
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ * @returns {Object} Returns the post created
+ */
+
 router.post("/", async (req, res, next) => {
   try {
-    // create new post
+    req.body.user = new mongoose.Types.ObjectId(req.body.user);
     const post = await Post.create(req.body);
-    //find user associated with this post
+    await post.populate("user");
     const user = await User.findById(req.body.user);
-    // push postId into user object and save
     user.posts.push(post._id);
     user.save();
     res.send(post);
@@ -39,10 +63,46 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+/**
+ * Route to update a single post to /api/posts/<id>
+ * @name put/post
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ * @returns {Object} Returns the updated post
+ */
+
 router.put("/:_id", async (req, res, next) => {
   try {
-    await Post.updateOne({ _id: req.params._id }, req.body);
     const post = await Post.findById(req.params._id);
+
+    if (req.body.like) {
+      post.favoriteCount = post.favoriteCount + req.body.like;
+      if (req.body.like === 1) {
+        post.favoritedUsers.push(req.body.userId);
+      } else {
+        post.favoritedUsers = post.favoritedUsers.filter(
+          (user) => user !== req.body.userId
+        );
+      }
+
+      // await post.save();
+      // res.send(post);
+    } else {
+      if (req.body.title !== post.title) {
+        post.title = req.body.title;
+        // await post.save();
+      }
+
+      if (req.body.description !== post.description) {
+        post.description = req.body.description;
+        // await post.save();
+      }
+      // await Post.updateOne({ _id: req.params._id }, req.body);
+      // const post = await Post.findById(req.params._id);
+      // await post.populate("user");
+      // res.send(post);
+    }
+    await post.save();
     await post.populate("user");
     res.send(post);
   } catch (err) {
@@ -50,6 +110,14 @@ router.put("/:_id", async (req, res, next) => {
     next(err);
   }
 });
+
+/**
+ * Route to delete a single post to /api/posts/<id>
+ * @name delete/post
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ * @returns {Object} Returns the deleted post
+ */
 
 router.delete("/:_id", async (req, res, next) => {
   try {
@@ -66,3 +134,5 @@ router.delete("/:_id", async (req, res, next) => {
     next(err);
   }
 });
+
+module.exports = router;

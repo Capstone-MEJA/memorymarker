@@ -4,8 +4,15 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { device } from "../../styles/global";
 
+/**
+ * Component for explaining how to use memory marker
+ * @returns A speech bubble for every dev explaining how to use the site
+ */
+
 const About: React.FC = () => {
+  // setting base variables
   const auth = useSelector((state: RootState) => state.auth);
+
   return (
     <AboutWrapper>
       <LogoImageWrapper src="logo.png" />

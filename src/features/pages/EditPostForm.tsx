@@ -8,20 +8,23 @@ import { toggleEditPostForm } from "../../store/globalSlice";
 import { useSelector } from "react-redux";
 import { device } from "../../styles/global";
 
+/**
+ * Component for editing a post
+ * @returns A form for a logged in user to edit a post they have previously made
+ */
+
 const EditPostForm = () => {
-  //setting based variables/functions
+  // setting base variables
   const dispatch = useDispatch<AppDispatch>();
   const global = useSelector((state: RootState) => state.global);
 
-  //useState
+  // useState
   const [title, setTitle] = useState<string>(global.selectedPost!.title);
   const [description, setDescription] = useState<string>(
     global.selectedPost!.description
   );
-  // const [tag, setTag] = useState("");
 
-  //useEffect hooks
-  //helper function
+  // helper function
   function handleSubmit(id: string | undefined) {
     if (typeof id === "string") {
       dispatch(
@@ -41,7 +44,10 @@ const EditPostForm = () => {
         <div className="headerItem"></div>
         <img className="headerItem" src="logo.png"></img>
         <div className="headerItem">
-          <ClosedButton type="button" onClick={() => dispatch(toggleEditPostForm())}>
+          <ClosedButton
+            type="button"
+            onClick={() => dispatch(toggleEditPostForm())}
+          >
             <FaIcons.FaTimes className="icon" />
           </ClosedButton>
         </div>
@@ -62,13 +68,6 @@ const EditPostForm = () => {
         }
         value={description}
       />
-      {/* <input
-          type="text"
-          placeholder="tag"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setTag(e.target.value)
-          }
-        /> */}
       <div className="submitButtonContainer">
         <SubmitButton type="submit">Submit</SubmitButton>
       </div>
@@ -81,7 +80,7 @@ export default EditPostForm;
 const FormWrapper = styled.form`
   text-align: center;
   position: relative;
-  background-color: #C2E4CB;
+  background-color: #c2e4cb;
   height: 100%;
   width: 100%;
   padding: 2rem;
@@ -93,7 +92,7 @@ const FormWrapper = styled.form`
   border-width: 2px;
   border-style: solid;
   border-color: #95c4a1;
-  
+
   .title {
     font-size: 3rem;
     font-family: "Playfair Display", serif;
@@ -115,7 +114,7 @@ const FormWrapper = styled.form`
     justify-content: center;
   }
 
-  @media ${device.tablet}{
+  @media ${device.tablet} {
     height: auto;
     width: auto;
     align-item: center;
@@ -123,12 +122,11 @@ const FormWrapper = styled.form`
     .title {
       font-size: 2rem;
     }
-    
+
     .description {
       height: 5rem;
     }
   }
-
 `;
 
 const HeaderContainer = styled.div`
@@ -141,12 +139,12 @@ const HeaderContainer = styled.div`
     display: flex;
     justify-content: flex-end;
   }
-`
+`;
 
 const ClosedButton = styled.button`
   width: 3rem;
   height: 3rem;
-  background-color: #739CF0;
+  background-color: #739cf0;
   border-width: 0px;
   border-radius: 5px;
 
@@ -155,7 +153,7 @@ const ClosedButton = styled.button`
     font-size: 2rem;
   }
 
-  @media ${device.tablet}{
+  @media ${device.tablet} {
     width: 1rem;
     height: 1rem;
 
@@ -163,10 +161,10 @@ const ClosedButton = styled.button`
       font-size: 1rem;
     }
   }
-`
+`;
 
 const SubmitButton = styled.button`
-  background-color: #739CF0;
+  background-color: #739cf0;
   color: white;
   padding: 0.5rem;
   font-size: 2rem;
@@ -177,4 +175,4 @@ const SubmitButton = styled.button`
   @media ${device.tablet} {
     font-size: 1rem;
   }
-`
+`;
