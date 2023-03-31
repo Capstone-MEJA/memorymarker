@@ -1,8 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
-// import Nav from "../app/Navbar";
-// import { SidebarData } from "./SideBarData";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
@@ -10,32 +8,44 @@ import { logoutUser } from "../../store/authSlice";
 import { setSelectedPost, toggleSideBar } from "../../store/globalSlice";
 import { device } from "../../styles/global";
 
+/**
+ * Component for the main sidebar/navbar
+ * @returns A sidebar/navbar for a user to navigate through the site that conditionally renders links based on whether the user is a guest or logged in
+ */
+
 const Sidebar: React.FC = () => {
-  //setting based variables/functions
+  // setting base variables
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const auth = useSelector((state: RootState) => state.auth);
   const global = useSelector((state: RootState) => state.global);
 
-  //useState
-  //useEffect hooks
-  //helper function
-
+  // helper function
   const handleNav = () => {
     dispatch(toggleSideBar());
     dispatch(setSelectedPost(null));
-  }
+  };
 
   return (
     <>
       <Navbar>
-        <MenuIconOpen to="#" onClick={() => {handleNav()}}>
+        <MenuIconOpen
+          to="#"
+          onClick={() => {
+            handleNav();
+          }}
+        >
           <FaIcons.FaBars />
         </MenuIconOpen>
       </Navbar>
 
       <SidebarMenu sidebar={global.sideBar}>
-        <MenuIconClose to="#" onClick={() => {handleNav()}}>
+        <MenuIconClose
+          to="#"
+          onClick={() => {
+            handleNav();
+          }}
+        >
           <FaIcons.FaTimes />
         </MenuIconClose>
         <SidebarWrap>
@@ -44,21 +54,27 @@ const Sidebar: React.FC = () => {
           {auth._id ? (
             <MenuItemLinks>
               <MenuItemLink
-                onClick={() => {handleNav()}}
+                onClick={() => {
+                  handleNav();
+                }}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
                 HOME
               </MenuItemLink>
               <MenuItemLink
-                onClick={() => {handleNav()}}
+                onClick={() => {
+                  handleNav();
+                }}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/account"
               >
                 HI, {auth.username}!
               </MenuItemLink>
               <MenuItemLink
-                onClick={() => {handleNav()}}
+                onClick={() => {
+                  handleNav();
+                }}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
@@ -66,7 +82,9 @@ const Sidebar: React.FC = () => {
               </MenuItemLink>
 
               <MenuItemLink
-                onClick={() => {handleNav()}}
+                onClick={() => {
+                  handleNav();
+                }}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/team"
               >
@@ -87,35 +105,45 @@ const Sidebar: React.FC = () => {
           ) : (
             <MenuItemLinks>
               <MenuItemLink
-                onClick={() => {handleNav()}}
+                onClick={() => {
+                  handleNav();
+                }}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
                 HOME
               </MenuItemLink>
               <MenuItemLink
-                onClick={() => {handleNav()}}
+                onClick={() => {
+                  handleNav();
+                }}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/Login"
               >
                 LOGIN
               </MenuItemLink>
               <MenuItemLink
-                onClick={() => {handleNav()}}
+                onClick={() => {
+                  handleNav();
+                }}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/register"
               >
                 SIGN-UP
               </MenuItemLink>
               <MenuItemLink
-                onClick={() => {handleNav()}}
+                onClick={() => {
+                  handleNav();
+                }}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
                 ABOUT
               </MenuItemLink>
               <MenuItemLink
-                onClick={() => {handleNav()}}
+                onClick={() => {
+                  handleNav();
+                }}
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/team"
               >
@@ -123,17 +151,6 @@ const Sidebar: React.FC = () => {
               </MenuItemLink>
             </MenuItemLinks>
           )}
-          {/* // if the user is logged in show */}
-          {/* {SidebarData.map((item, index) => {
-            return (
-              <MenuItems key={index}>
-                <MenuItemLinks to={item.path}>
-                  {item.icon}
-                  <span style={{ marginLeft: "16px" }}>{item.title}</span>
-                </MenuItemLinks>
-              </MenuItems>
-            );
-          })} */}
         </SidebarWrap>
       </SidebarMenu>
     </>
