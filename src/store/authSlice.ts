@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import jwtDecode from "jwt-decode";
-import { IsUser } from "../interface";
+import { IUser } from "../interface";
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -26,7 +26,7 @@ export const registerUser = createAsyncThunk(
       return token.data;
     } catch (err) {
       const error = err as AxiosError<Error>;
-      console.log(error)
+      console.log(error);
       return rejectWithValue(error.response?.data);
     }
   }
@@ -56,7 +56,7 @@ const authSlice = createSlice({
     loadUser(state, action) {
       const token = state.token;
       if (token) {
-        const user: IsUser = jwtDecode(token);
+        const user: IUser = jwtDecode(token);
         return {
           ...state,
           token: action.payload,
@@ -87,7 +87,7 @@ const authSlice = createSlice({
     });
     builder.addCase(registerUser.fulfilled, (state, action) => {
       if (action.payload) {
-        const user: IsUser = jwtDecode(action.payload);
+        const user: IUser = jwtDecode(action.payload);
 
         return {
           ...state,
@@ -113,7 +113,7 @@ const authSlice = createSlice({
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       if (action.payload) {
-        const user: IsUser = jwtDecode(action.payload);
+        const user: IUser = jwtDecode(action.payload);
         return {
           ...state,
           token: action.payload,

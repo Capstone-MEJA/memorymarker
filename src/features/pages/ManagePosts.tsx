@@ -7,7 +7,7 @@ import {
   selectAllPosts,
   updatePost,
 } from "../../store/postsSlice";
-import { IsPost } from "../../interface";
+import { IPost } from "../../interface";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { device } from "../../styles/global";
@@ -84,7 +84,7 @@ const ManagePosts = () => {
                     .filter(
                       (individual) => individual.user._id === loggedInUser._id
                     )
-                    .map((post: IsPost) => (
+                    .map((post: IPost) => (
                       <Tr key={post._id}>
                         <Td>
                           {editMode && formValue._id === post._id ? (

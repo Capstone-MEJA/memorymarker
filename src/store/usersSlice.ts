@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { IsUser } from "../interface";
+import { IUser } from "../interface";
 import { isStore } from "../store";
 import { updateObj } from "../features/pages/EditAccount";
 import { loadUser } from "./authSlice";
@@ -14,15 +14,18 @@ export const fetchAllUsers = createAsyncThunk("allUsers", async () => {
   }
 });
 
-export const fetchSingleUser = createAsyncThunk("singleUser", async (_id: string) => {
-  try {
-    console.log(_id)
-    const { data } = await axios.get(`/api/users/${_id}`);
-    return data;
-  } catch (error) {
-    console.log(error);
+export const fetchSingleUser = createAsyncThunk(
+  "singleUser",
+  async (_id: string) => {
+    try {
+      console.log(_id);
+      const { data } = await axios.get(`/api/users/${_id}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
 export const newUser = createAsyncThunk("newUser", async (postObj) => {
   try {
@@ -58,7 +61,7 @@ export const deleteUser = createAsyncThunk("deleteUser", async (_id) => {
   }
 });
 
-let initialState: IsUser | IsUser[] = [];
+let initialState: IUser | IUser[] = [];
 
 export const UsersSlice = createSlice({
   name: "users",
@@ -76,7 +79,7 @@ export const UsersSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         console.log(action.payload);
-        if(Array.isArray(state)){
+        if (Array.isArray(state)) {
           return state.map((user) => {
             if (user._id !== action.payload._id) {
               return user;
@@ -87,7 +90,7 @@ export const UsersSlice = createSlice({
         }
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
-        if(Array.isArray(state)){
+        if (Array.isArray(state)) {
           return state.filter((user) => user._id !== action.payload);
         }
       });
