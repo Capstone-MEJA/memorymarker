@@ -1,3 +1,4 @@
+// root redux store
 import { configureStore } from "@reduxjs/toolkit";
 import { IPost, IUser } from "../interface";
 import authSlice from "./authSlice";
@@ -18,7 +19,7 @@ export default store;
 
 export type RootState = ReturnType<typeof store.getState>;
 
-//define the type of useDispatch and export to Map
+// define the type of useDispatch()
 export type AppDispatch = typeof store.dispatch;
 
 export interface isStore {
