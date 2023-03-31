@@ -30,7 +30,7 @@ const MemoryMap = (): JSX.Element => {
   const global = useSelector((state: RootState) => state.global);
   const center = useRef(global.position);
 
-  //useEffect hooks
+  // useEffect hooks
   const allPosts: IPost[] = useSelector(selectAllPosts);
   useEffect(() => {
     dispatch(fetchAllPosts());
