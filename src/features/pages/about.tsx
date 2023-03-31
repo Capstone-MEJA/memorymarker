@@ -21,25 +21,24 @@ const About: React.FC = () => {
         <DevWrapper>
           <ImageWrapper src="alicia.png" />
           <DevsText>
-            Welcome to the world's most popular social media platform. Our
-            mission is to help you tell your story. Get ready to make your mark!
+            Welcome to Memory Marker, a twist on the average social media
+            platform! Our mission is to help you tell your story.
           </DevsText>
         </DevWrapper>
         <DevWrapper>
           <DevsText>
-            We all have memories we don't want to forget. Whether it be where
-            you had your first kiss or where you had your latest meal, mark it
-            on the map!
+            We all have memories we don't want to forget, whether it be where
+            you had your first kiss or where you had your latest meal. Start
+            documenting your journey by creating an account!
           </DevsText>
           <ImageWrapper src="erica.png" />
         </DevWrapper>
         <DevWrapper>
           <ImageWrapper src="jessie.png" />
           <DevsText>
-            Start documenting your journey by creating your account! Have a
-            night you don't want to forget? Mark it on the map! Create a post
-            and journal your thoughts. Where was it? Who were you with? How did
-            you feel?
+            Have a adventure you don't want to forget? Where was it? Who were
+            you with? How did you feel? Create a post and write down your
+            thoughts. Are you ready to make your mark?
           </DevsText>
         </DevWrapper>
         <DevWrapper>
@@ -47,7 +46,7 @@ const About: React.FC = () => {
             Founded in 2023 by a team of makers, thinkers and explorers. We
             wanted a place for people to gather, share their journeys and see
             other people's journeys all over the map. We're committed to helping
-            you tell your story.
+            you tell your story :)
           </DevsText>
           <ImageWrapper src="mandy.png" />
         </DevWrapper>
