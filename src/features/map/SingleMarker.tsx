@@ -1,22 +1,29 @@
 import { Marker } from "@react-google-maps/api";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { IsPost } from "../../interface";
+import { IPost } from "../../interface";
 import { RootState } from "../../store";
-import { setLat, setLng, setSelectedPost, toggleSideBar } from "../../store/globalSlice";
+import {
+  setLat,
+  setLng,
+  setSelectedPost,
+  toggleSideBar,
+} from "../../store/globalSlice";
 
 interface singleMarkerProps {
-  post: IsPost;
+  post: IPost;
 }
 
-const SingleMarker = (props: singleMarkerProps) => {
-  //setting based variables/functions
-  const dispatch = useDispatch();
-  const global = useSelector((state: RootState) => state.global)
+/**
+ * Component for a single marker on the map
+ * @returns A single marker on the map based on latitude and longitude location in the database for a post
+ */
 
-  //useState
-  //useEffect hooks
-  //helper function
+const SingleMarker = (props: singleMarkerProps) => {
+  // setting base variables
+  const dispatch = useDispatch();
+  const global = useSelector((state: RootState) => state.global);
+
   return (
     <Marker
       position={{
@@ -24,7 +31,7 @@ const SingleMarker = (props: singleMarkerProps) => {
         lng: Number(props.post.longitude),
       }}
       onClick={async () => {
-        if(global.sideBar){
+        if (global.sideBar) {
           await dispatch(toggleSideBar());
         }
         await dispatch(setLat(props.post.latitude));

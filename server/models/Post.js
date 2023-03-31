@@ -27,13 +27,21 @@ const postSchema = new mongoose.Schema({
   createdAt: {
     type: Number,
     immutable: true,
-    default: () => Date.now()
+    default: () => Date.now(),
   },
   timeStamp: {
     type: String,
     immutable: true,
-    default: () => Date()
-  }
+    default: () => Date(),
+  },
+  favoriteCount: {
+    type: Number,
+    default: 0,
+  },
+  favoritedUsers: [{
+    type: String
+  }],
 });
+
 const Post = mongoose.model("Post", postSchema);
 module.exports = Post;

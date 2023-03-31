@@ -2,7 +2,11 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { RootState } from "../../store";
-// import authentication
+
+/**
+ * Component for a landing page where a user can view their account info
+ * @returns A user's account dashboard where they can navigate to their account information or all their posts
+ */
 
 const UserProfile = () => {
   const auth = useSelector((state: RootState) => state.auth);
@@ -10,7 +14,7 @@ const UserProfile = () => {
     <>
       <Section>
         <TextWrapper>
-        <ImageWrapper src='logo.png'/>
+          <ImageWrapper src="logo.png" />
           <h1>Hi, {auth.username}</h1>
           <Paragraph>
             From your account dashboard, you can view and manage your posts, and
@@ -18,8 +22,8 @@ const UserProfile = () => {
           </Paragraph>
         </TextWrapper>
         <ButtonWrapper>
-        <Button to={`/information`}>Information</Button>
-        <Button to={`/myposts`}>Posts</Button>
+          <Button to={`/information`}>Information</Button>
+          <Button to={`/myposts`}>Posts</Button>
         </ButtonWrapper>
       </Section>
     </>
@@ -111,7 +115,7 @@ const Paragraph = styled.p`
   }
 `;
 
-const ButtonWrapper = styled.div` 
+const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   @media (min-width: 800px) {
