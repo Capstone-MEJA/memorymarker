@@ -60,6 +60,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
+                <FaIcons.FaHome />
                 HOME
               </MenuItemLink>
               <MenuItemLink
@@ -262,7 +263,6 @@ const MenuItemLink = styled(Link)`
   font: monsterrat;
   display: flex;
   justify-content: center;
-  // min-width: 100px;
 
   &:hover {
     background-color: #F2CBAC;
