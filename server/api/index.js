@@ -6,6 +6,7 @@ router.use("/posts", require("./posts"));
 router.use("/maps", require("./maps"));
 router.use("/register", require("./register"));
 router.use("/login", require("./login"));
+router.use("/images", require("./images"));
 
 // If there is a request to an endpoint that had not been defined
 // return a 404 error
