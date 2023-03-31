@@ -1,15 +1,13 @@
 const router = require("express").Router();
-const bodyParser = require("body-parser");
 const imgSchema = require("../models/Image");
 const path = require("path");
 const fs = require("fs");
-// const { upload } = require("../app");
 
 const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads");
+    cb(null, "server/api/uploads");
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + "-" + Date.now());
@@ -27,12 +25,7 @@ router.get("/", (req, res) => {
   });
 });
 
-// console.log("test");
-// console.log(path);
-
 router.post("/", upload.single("image"), (req, res, next) => {
-  console.log(__dirname);
-  //   console.log(path.__dirname());
   console.log("test");
   const obj = {
     name: req.body.name,
@@ -44,14 +37,16 @@ router.post("/", upload.single("image"), (req, res, next) => {
       contentType: "image/png",
     },
   };
-  imgSchema.create(obj).then((err, item) => {
-    if (err) {
-      console.log(err);
-      //   res.sendStatus(500);
-    } else {
-      // item.save();
-      res.send(obj);
-    }
+  imgSchema.create(obj).then((item) => {
+    //     if (err) {
+    //       console.log(err);
+    //       //   res.sendStatus(500);
+    //     } else {
+    //       item.save();
+    //       res.send(item);
+    //     }
+    //   });
+    res.send(item);
   });
 });
 

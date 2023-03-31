@@ -2,9 +2,6 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const morgan = require("morgan");
-// const bodyParser = require("body-parser");
-// const imgSchema = require("./models/Image");
-// const fs = require("fs");
 require("dotenv").config();
 
 // Morgan intercepts all requests & responses
