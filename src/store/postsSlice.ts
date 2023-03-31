@@ -79,6 +79,19 @@ export const updatePost = createAsyncThunk(
   }
 );
 
+export const favoritePost = createAsyncThunk(
+  "favoritePost",
+  async ({ id, userId, like }: { id: string; userId: string; like: number }) => {
+    try {
+      const { data } = await axios.put(`/api/posts/${id}`, { like, userId });
+      // console.log(data)
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const deletePost = createAsyncThunk(
   "deletePost",
   async (_id: string) => {
@@ -96,10 +109,15 @@ interface isPost {
   title: string;
   description: string;
   user: object;
-  tags: [String];
-  latitude: Number;
-  longitude: Number;
+  tags: [string];
+  latitude: number;
+  longitude: number;
+  createdAt: number;
+  timeStamp: string;
+  favoriteCount: number;
+  favoritedUsers: [string];
 }
+
 let initialState: isPost[] = [];
 
 export const PostsSlice = createSlice({
@@ -117,7 +135,7 @@ export const PostsSlice = createSlice({
         return [...state, action.payload];
       })
       .addCase(updatePost.fulfilled, (state, action) => {
-        console.log("payload", action.payload);
+        // console.log("payload", action.payload);
         // find the index of the post you are updating
         // update only that index
         // spread the rest of the array
@@ -138,6 +156,15 @@ export const PostsSlice = createSlice({
         //   }
         // });
         // return [...state, action.payload];
+      })
+      .addCase(favoritePost.fulfilled, (state, action) => {
+        return state.map((post) => {
+          if (post._id === action.payload._id) {
+            return action.payload;
+          } else {
+            return post;
+          }
+        });
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         return state.filter((post) => post._id !== action.payload._id);
