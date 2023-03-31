@@ -31,5 +31,6 @@ Mandy Chin: [LinkedIn](https://www.linkedin.com/in/mandy-chin/) | [Github](https
 
 Note: Memory marker runs on a mongodb database, please make sure to install mongodb and start the service
 
-1. `npm run seed`
-2. `npm run start:dev`
+1. `npm install`
+2. `npm run seed`
+3. `npm run start:dev`
