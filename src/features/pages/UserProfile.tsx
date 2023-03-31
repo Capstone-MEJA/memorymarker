@@ -60,19 +60,15 @@ h1{
 `;
 
 const ImageWrapper = styled.img`
-  height: 10rem;
   width: 10rem;
 
   @media ${device.tablet} {
-    height: 12rem;
     width: 12rem;
   }
   @media ${device.laptop} {
-    height: 14rem;
     width: 14rem;
   }
   @media ${device.desktop} {
-    height: 16rem;
     width: 16rem;
   }
 `;
