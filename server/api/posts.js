@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const Post = require("../models/Post");
 const User = require("../models/User");
+const mongoose = require("mongoose");
 
 /**
  * Route serving all posts to /api/posts
@@ -49,7 +50,9 @@ router.get("/:_id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
+    req.body.user = new mongoose.Types.ObjectId(req.body.user);
     const post = await Post.create(req.body);
+    await post.populate("user");
     const user = await User.findById(req.body.user);
     user.posts.push(post._id);
     user.save();
@@ -70,8 +73,36 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:_id", async (req, res, next) => {
   try {
-    await Post.updateOne({ _id: req.params._id }, req.body);
     const post = await Post.findById(req.params._id);
+
+    if (req.body.like) {
+      post.favoriteCount = post.favoriteCount + req.body.like;
+      if (req.body.like === 1) {
+        post.favoritedUsers.push(req.body.userId);
+      } else {
+        post.favoritedUsers = post.favoritedUsers.filter(
+          (user) => user !== req.body.userId
+        );
+      }
+
+      // await post.save();
+      // res.send(post);
+    } else {
+      if (req.body.title !== post.title) {
+        post.title = req.body.title;
+        // await post.save();
+      }
+
+      if (req.body.description !== post.description) {
+        post.description = req.body.description;
+        // await post.save();
+      }
+      // await Post.updateOne({ _id: req.params._id }, req.body);
+      // const post = await Post.findById(req.params._id);
+      // await post.populate("user");
+      // res.send(post);
+    }
+    await post.save();
     await post.populate("user");
     res.send(post);
   } catch (err) {

@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from "../../store";
 import { useSelector } from "react-redux";
 import { setSelectedPost, toggleEditPostForm } from "../../store/globalSlice";
 import styled from "styled-components";
+import UpVote from "./UpVote";
 
 /**
  * Component for loading a single info window when a marker is clicked
@@ -24,7 +25,7 @@ const SingleInfoWindow = () => {
     // deletes marker & post
     dispatch(deletePost(id));
   };
-
+  
   return (
     <InfoWindow
       position={{
@@ -37,6 +38,8 @@ const SingleInfoWindow = () => {
         <PostTitle>{global.selectedPost!.title}</PostTitle>
         <PostText>{global.selectedPost!.description}</PostText>
         <PostText>Posted By: {global.selectedPost!.user.username}</PostText>
+
+        <UpVote />
 
         {auth._id === global.selectedPost!.user._id ? (
           <ButtonWrapper>
