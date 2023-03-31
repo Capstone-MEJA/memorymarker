@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useRef } from "react";
 import { AppDispatch, RootState } from "../../store";
 import { useSelector } from "react-redux";
 import { favoritePost } from "../../store/postsSlice";
@@ -8,9 +9,16 @@ const UpVote = () => {
   const dispatch = useDispatch<AppDispatch>();
   const global = useSelector((state: RootState) => state.global);
   const auth = useSelector((state: RootState) => state.auth);
+  const likeStatus = useRef<null | HTMLButtonElement>(null);
 
   const likePost = (id: string, userId: string) => {
-    dispatch(favoritePost({id, userId}));
+    const likeObj = { id, userId, like: 0 };
+    if (likeStatus.current!.textContent === "♡") {
+      likeObj.like = 1;
+    } else {
+      likeObj.like = -1;
+    }
+    dispatch(favoritePost(likeObj));
   };
 
   return (
@@ -19,10 +27,16 @@ const UpVote = () => {
         onClick={() => {
           likePost(global.selectedPost!._id, auth._id);
         }}
+        ref={likeStatus}
       >
-      {global.selectedPost!.favoritedUsers.includes(auth._id) ? "Liked!" : "♡" }
+        {global.selectedPost!.favoritedUsers.includes(auth._id)
+          ? "Liked!"
+          : "♡"}
       </Button>
-      <LikeCount>{global.selectedPost!.favoriteCount} {global.selectedPost!.favoriteCount === 1 ? "Like" : "Likes"} </LikeCount>
+      <LikeCount>
+        {global.selectedPost!.favoriteCount}{" "}
+        {global.selectedPost!.favoriteCount === 1 ? "Like" : "Likes"}{" "}
+      </LikeCount>
     </Wrapper>
   );
 };
@@ -30,11 +44,11 @@ const UpVote = () => {
 export default UpVote;
 
 const Wrapper = styled.section`
-display: flex;
-margin-bottom: 0.5rem;
-align-content: center;
-align-items: center;
-`
+  display: flex;
+  margin-bottom: 0.5rem;
+  align-content: center;
+  align-items: center;
+`;
 
 const Button = styled.button`
   font-family: "Montserrat", sans-serif;
@@ -45,13 +59,12 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   text-align: center;
-  background-color: #739CF0;
+  background-color: #739cf0;
   color: white;
   height: 2rem;
 `;
 
 const LikeCount = styled.p`
-margin-left: 1rem;
-font-family: "Montserrat", sans-serif;
-
-`
+  margin-left: 1rem;
+  font-family: "Montserrat", sans-serif;
+`;

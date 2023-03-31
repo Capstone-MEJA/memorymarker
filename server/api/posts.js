@@ -49,7 +49,14 @@ router.put("/:_id", async (req, res, next) => {
 
     if (req.body.like) {
       post.favoriteCount = post.favoriteCount + req.body.like;
-      post.favoritedUsers.push(req.body.userId);
+      if (req.body.like === 1) {
+        post.favoritedUsers.push(req.body.userId);
+      } else {
+        post.favoritedUsers = post.favoritedUsers.filter(
+          (user) => user !== req.body.userId
+        );
+      }
+
       // await post.save();
       // res.send(post);
     } else {

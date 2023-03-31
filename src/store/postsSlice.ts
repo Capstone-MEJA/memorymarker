@@ -81,9 +81,9 @@ export const updatePost = createAsyncThunk(
 
 export const favoritePost = createAsyncThunk(
   "favoritePost",
-  async ({ id, userId }: { id: string; userId: string }) => {
+  async ({ id, userId, like }: { id: string; userId: string; like: number }) => {
     try {
-      const { data } = await axios.put(`/api/posts/${id}`, { like: 1, userId });
+      const { data } = await axios.put(`/api/posts/${id}`, { like, userId });
       // console.log(data)
       return data;
     } catch (error) {
