@@ -184,16 +184,16 @@ const Wrapper = styled.div`
   @media ${device.mobileM} {
     justify-content: center;
     width: 100%;
-    height: 100vh;
   }
   @media ${device.tablet} {
-    height: 100vh;
+    height: fit-content;
   }
-  @media ${device.laptop} {
-    height: 100vh;
+  @media ${device.tablet} {
+    height: fit-content;
   }
   @media (min-width:1500px) {
     height: fit-content;
+
   }
 `;
 
