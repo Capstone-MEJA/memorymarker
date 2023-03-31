@@ -191,10 +191,9 @@ const Wrapper = styled.div`
   // @media ${device.laptop} {
   //   height: fit-content;
   // }
-  // @media (min-width:1500px) {
-  //   height: fit-content;
-
-  // }
+  @media (min-width:1500px) {
+    height: 100vh;
+  }
 `;
 
 const LogoImage = styled.img`
