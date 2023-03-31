@@ -223,6 +223,7 @@ const Title = styled.p`
   font-size: 4rem;
   text-align: center;
   margin-bottom: 1rem;
+  color: #486572;
 
   @media only screen and ${device.mobileLMax} {
     font-size: 3rem;

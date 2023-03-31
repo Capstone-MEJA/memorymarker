@@ -44,7 +44,7 @@ const AboutTeam: React.FC = () => {
             <DevBlurb>
               Hi! 👋 I'm Alicia, a former laboratory scientist who has turned
               her love of analytical investigation into a passion for life-long
-              learning and technical problem solving.
+              learning and technical problem solving. When I'm not coding, you can find me on various hiking trails around Virginia with my adorable toy Australian Shepherd or covered in sawdust working on renovating.
             </DevBlurb>
           </DevContent>
         </DevWrapper>
@@ -76,10 +76,8 @@ const AboutTeam: React.FC = () => {
             </DevHeader>
 
             <DevBlurb>
-              Hello, my name is Erica Young! I'm easily excited over math
-              problems in the sense that there can only be a right and wrong
-              answer. Similar to code, there are many ways to approach a problem
-              but there will always be a correct answer.
+              Hello, Erica here! Software engineer by day and real estate agent by weekend. Easily excited over math problems and similar to code, there are many ways to approach a problem
+              but there will always be a right and wrong answer. Avid problem solver and memory maker. 
             </DevBlurb>
           </DevContent>
           <ProfileImageMobile src="erica.png" />
@@ -174,8 +172,8 @@ export default AboutTeam;
 
 const Wrapper = styled.div`
   background-color: #ceebec;
-  height: 100%;
-  width: 100%;
+  height: fit-content;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -184,13 +182,29 @@ const Wrapper = styled.div`
   padding-right: 1em;
 
   @media ${device.mobileM} {
-    height: 100vh;
     justify-content: center;
+    width: 100%;
+  }
+  @media ${device.tablet} {
+    height: fit-content;
+  }
+  @media (min-width) {
+    height: 100vh;
   }
 `;
 
 const LogoImage = styled.img`
-  width: 100px;
+  width: 10rem;
+  padding-top: 10px;
+  @media ${device.tablet} {
+    width: 12rem;
+  }
+  @media ${device.laptop} {
+    width: 14rem;
+  }
+  @media ${device.desktop} {
+    width: 16rem;
+  }
 `;
 
 const PageTitle = styled.h1`
@@ -198,6 +212,15 @@ const PageTitle = styled.h1`
   margin-top: 0px;
   margin-bottom: 0px;
   font-family: "Playfair Display", serif;
+  @media ${device.tablet} {
+    font-size: 2.5rem
+  }
+  @media ${device.laptop} {
+    font-size: 3.5rem
+  }
+  @media ${device.desktop} {
+    font-size: 4.5rem
+  }
 `;
 
 const DevsWrapper = styled.div`
@@ -205,12 +228,13 @@ const DevsWrapper = styled.div`
   align-items: center;
   width: 100%;
   max-width: 800px;
-
+  
   @media ${device.tablet} {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 0.5em;
+    align-items: start;
   }
 
   @media ${device.laptop} {
@@ -248,6 +272,16 @@ const ProfileImageTablet = styled.img`
     width: 170px;
     height: auto;
   }
+  @media ${device.laptop} {
+    display: block;
+    width: 210px;
+    height: auto;
+  }
+  @media (min-width: 1500px) {
+    display: block: 
+    width: 300px;
+    height: auto;
+  }
 `;
 
 const ProfileImageMobile = styled.img`
@@ -267,9 +301,18 @@ const DevContent = styled.div`
   background-color: white;
 
   @media ${device.tablet} {
-    width: 170px;
-    height: 180px;
+    width: 175px;
+    height: 370px;
   }
+  @media ${device.laptop} {
+    width: 210px;
+    height: 525px;
+  }
+  @media (min-width: 1500px) {
+    width: 300px;
+    height: 735px;
+  }
+
 `;
 
 const DevHeader = styled.div`
@@ -285,23 +328,41 @@ const DevHeader = styled.div`
 const Name = styled.p`
   font-weight: 800;
   color: #486572;
-  font-size: 0.9em;
+  font-size: 20px;
   font-family: "Playfair Display", serif;
 
   @media ${device.tablet} {
-    font-size: 0.8em;
+    font-size: 15px;
     padding-top: 0.5em;
+  }
+  @media ${device.laptop} {
+    font-size: 20px;
+    padding-top: 0.23em;
+  }
+  @media (min-width: 1500px) {
+    font-size: 30px;
+    padding-top: 0.3em;
   }
 `;
 
 const DevBlurb = styled.div`
   border-radius: 1em;
-  font-size: 11px;
+  font-size: 15px;
   text-align: center;
   color: #486572;
   font-family: "Cormorant Garamond", serif;
+  padding-top: .5em;
 
   @media ${device.tablet} {
+    padding-top: 1em;
+    font-size: 15px;
+  }
+  @media ${device.laptop} {
+    padding-top: 1em;
+    font-size: 20px;
+  }
+  @media (min-width: 1500px) {
+    font-size: 30px;
     padding-top: 1em;
   }
 `;
@@ -326,4 +387,5 @@ const GithubSVG = styled.svg`
 
 const GithubRepoSVG = styled.svg`
   fill: black;
+  margin-bottom: 20px;
 `;

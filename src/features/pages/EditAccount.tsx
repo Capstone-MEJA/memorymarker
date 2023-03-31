@@ -197,8 +197,9 @@ const Title = styled.h1`
   display: flex;
   justify-content: center;
   text-align: center;
-  font-size: 2rem;
   font-family: "Playfair Display", serif;
+  color: #486572;
+  font-size: 2rem;
 
   @media ${device.laptop} {
     font-size: 4rem;
@@ -247,6 +248,7 @@ const CredsLabels = styled(CredentialContainer)`
   font-weight: bold;
   font-family: "Montserrat", sans-serif;
   margin-bottom: 5px;
+  color: #486572;
 
   @media ${device.laptop} {
     font-size: 20px;

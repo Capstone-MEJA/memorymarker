@@ -55,7 +55,7 @@ h1{
   font-family: "Playfair Display", serif;
   text-transform: uppercase;
   padding: 10px;
-  font-size: 2rem;
+  color: #486572;
 }
 `;
 
