@@ -25,7 +25,7 @@ export const fetchSinglePost = createAsyncThunk(
   }
 );
 
-// a redux thunk that creates a single post and saves it to the database
+// a redux thunk that creates a new post and saves it to the database
 export const newPost = createAsyncThunk(
   "newPost",
   async ({
@@ -116,7 +116,7 @@ export const PostsSlice = createSlice({
       .addCase(fetchAllPosts.fulfilled, (state, action) => {
         return action.payload;
       })
-      // when the fetchSinglePost thunk is fulfilled, set the state that single post being requested
+      // when the fetchSinglePost thunk is fulfilled, set the state to that single post being requested
       .addCase(fetchSinglePost.fulfilled, (state, action) => {
         return action.payload;
       })

@@ -5,6 +5,7 @@ import { isStore } from "../store";
 import { updateObj } from "../features/pages/EditAccount";
 import { loadUser } from "./authSlice";
 
+// a redux thunk that fetches all users from the database
 export const fetchAllUsers = createAsyncThunk("allUsers", async () => {
   try {
     const { data } = await axios.get(`/api/users`);
@@ -14,6 +15,7 @@ export const fetchAllUsers = createAsyncThunk("allUsers", async () => {
   }
 });
 
+// a redux thunk that fetches a single user from the database
 export const fetchSingleUser = createAsyncThunk(
   "singleUser",
   async (_id: string) => {
@@ -27,6 +29,7 @@ export const fetchSingleUser = createAsyncThunk(
   }
 );
 
+// a redux thunk that creates a new post and saves it to the database
 export const newUser = createAsyncThunk("newUser", async (postObj) => {
   try {
     const { data } = await axios.post(`/api/users`, postObj);
@@ -36,6 +39,7 @@ export const newUser = createAsyncThunk("newUser", async (postObj) => {
   }
 });
 
+// a redux thunk that updates a single user and saves it to the database
 export const updateUser = createAsyncThunk(
   "updateUser",
   async (updateObj: updateObj, thunkAPI) => {
@@ -52,6 +56,7 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+// a redux thunk that deletes a single user from the database
 export const deleteUser = createAsyncThunk("deleteUser", async (_id) => {
   try {
     const { data } = await axios.delete(`/api/users/${_id}`);
@@ -68,17 +73,20 @@ export const UsersSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
+      // when the fetchAllUsers thunk is fulfilled, set the state to an array of all users
       .addCase(fetchAllUsers.fulfilled, (state, action) => {
         return action.payload;
       })
+      // when the fetchSingleUser thunk is fulfilled, set the state that single user being requested
       .addCase(fetchSingleUser.fulfilled, (state, action) => {
         return action.payload;
       })
+      // when the newUser thunk is fulfilled, return the new user
       .addCase(newUser.fulfilled, (state, action) => {
         return action.payload;
       })
+      // when the updateUser thunk is fulfilled, if the requested user's id to update matches the requester's user id, return the updated user
       .addCase(updateUser.fulfilled, (state, action) => {
-        console.log(action.payload);
         if (Array.isArray(state)) {
           return state.map((user) => {
             if (user._id !== action.payload._id) {
@@ -89,6 +97,7 @@ export const UsersSlice = createSlice({
           });
         }
       })
+      // when the deleteUser thunk is fulfilled, return the state without the deleted post
       .addCase(deleteUser.fulfilled, (state, action) => {
         if (Array.isArray(state)) {
           return state.filter((user) => user._id !== action.payload);
