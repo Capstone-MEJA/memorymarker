@@ -3,34 +3,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/authSlice";
 import { AppDispatch, RootState } from "../../store";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { device } from "../../styles/global";
+import styled from "styled-components";
+
+/**
+ * Component for user login page
+ * @returns A form for a user to login in that conditionally displays an error message on submit if the user's credentials don't match the database
+ */
 
 const Login = () => {
-  //setting based variables/functions
+  //setting base variables
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const auth = useSelector((state: RootState) => state.auth);
 
-  //useState
+  // useState
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
 
-  //useEffect hooks
+  // useEffect hooks
   useEffect(() => {
     if (auth._id) {
       navigate("/");
     }
   }, [auth._id, navigate]);
 
-  //helper function
+  // helper function
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
     dispatch(loginUser(user));
   }
+
   return (
     <LoginWrapper>
       <LogoWrapper>
