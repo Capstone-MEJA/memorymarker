@@ -172,7 +172,7 @@ export default AboutTeam;
 
 const Wrapper = styled.div`
   background-color: #ceebec;
-  height: 100vh;
+  height: fit-content;
   width: 100vw;
   display: flex;
   flex-direction: column;
