@@ -7,15 +7,18 @@ import { setSelectedPost, toggleEditPostForm } from "../../store/globalSlice";
 import styled from "styled-components";
 import UpVote from "./UpVote";
 
+/**
+ * Component for loading a single info window when a marker is clicked
+ * @returns A single info window with the option to edit or delete that post if the user owns the post
+ */
+
 const SingleInfoWindow = () => {
-  //setting based variables/functions
+  // setting base variables
   const dispatch = useDispatch<AppDispatch>();
   const auth = useSelector((state: RootState) => state.auth);
   const global = useSelector((state: RootState) => state.global);
 
-  //useState
-  //useEffect hooks
-  //helper function
+  // helper function
   const deleteSinglePost = (id: string) => {
     // closes info window
     dispatch(setSelectedPost(null));
@@ -87,6 +90,6 @@ const Button = styled.button`
   cursor: pointer;
   text-align: center;
   width: 60px;
-  background-color: #739CF0;
+  background-color: #739cf0;
   color: white;
 `;

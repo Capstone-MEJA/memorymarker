@@ -1,8 +1,16 @@
 const router = require("express").Router();
-module.exports = router;
+
 const Post = require("../models/Post");
 const User = require("../models/User");
 const mongoose = require("mongoose");
+
+/**
+ * Route serving all posts to /api/posts
+ * @name get/posts
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ * @returns {Object[]} Array of all posts in database
+ */
 
 router.get("/", async (req, res, next) => {
   try {
@@ -14,6 +22,14 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+/**
+ * Route serving a single post to /api/posts/<id>
+ * @name get/post
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ * @returns {Object} Returns a single post based on the id passed into the request params
+ */
+
 router.get("/:_id", async (req, res, next) => {
   try {
     const post = await Post.findById(req.params._id);
@@ -24,16 +40,20 @@ router.get("/:_id", async (req, res, next) => {
   }
 });
 
+/**
+ * Route to add a single post to /api/posts
+ * @name post/post
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ * @returns {Object} Returns the post created
+ */
+
 router.post("/", async (req, res, next) => {
   try {
     req.body.user = new mongoose.Types.ObjectId(req.body.user);
-    console.log(req.body.user);
-    // create new post
     const post = await Post.create(req.body);
     await post.populate("user");
-    //find user associated with this post
     const user = await User.findById(req.body.user);
-    // push postId into user object and save
     user.posts.push(post._id);
     user.save();
     res.send(post);
@@ -42,6 +62,14 @@ router.post("/", async (req, res, next) => {
     next(err);
   }
 });
+
+/**
+ * Route to update a single post to /api/posts/<id>
+ * @name put/post
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ * @returns {Object} Returns the updated post
+ */
 
 router.put("/:_id", async (req, res, next) => {
   try {
@@ -83,6 +111,14 @@ router.put("/:_id", async (req, res, next) => {
   }
 });
 
+/**
+ * Route to delete a single post to /api/posts/<id>
+ * @name delete/post
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ * @returns {Object} Returns the deleted post
+ */
+
 router.delete("/:_id", async (req, res, next) => {
   try {
     const deletePost = await Post.findById(req.params._id);
@@ -98,3 +134,5 @@ router.delete("/:_id", async (req, res, next) => {
     next(err);
   }
 });
+
+module.exports = router;

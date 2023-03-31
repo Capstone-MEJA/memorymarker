@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
@@ -15,11 +14,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     min: 8,
   },
-  // createdAt: {
-  //   type: Date,
-  //   immutable: true,
-  //   default: () => Date.now(),
-  // },
   posts: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -28,6 +22,11 @@ const userSchema = new mongoose.Schema({
   ]
 });
 
+/**
+ * * Finds and returns a single user object based on the requested token
+ * @param {string} token
+ * @returns {Object} user object
+ */
 userSchema.statics.findByToken = async function (token) {
   try {
     const { _id } = await jwt.verify(token, process.env.JWT_SECRET);
@@ -39,15 +38,16 @@ userSchema.statics.findByToken = async function (token) {
   } catch (ex) {
     const error = Error("bad token");
     error.status = 401;
-    // throw error;
     return null;
   }
 };
 
 const User = mongoose.model("User", userSchema);
 
-// when you make a validation function, it needs to be attached to model, NOT schema
-// when you manipulate data, you are changing model, not schema
+// When you make a validation function, it needs to be attached to model, NOT schema
+// When you manipulate data, you are changing model, not schema
+
+// Checks to make sure username is between 5 and 20 characters
 User.schema.path("username").validate(function (value) {
   if (value.length < 5 || value.length > 20) {
     throw new Error("Username needs to be between 5 and 20 characters");
@@ -56,6 +56,7 @@ User.schema.path("username").validate(function (value) {
   }
 });
 
+// Checks to make sure password is at least 8 characters
 User.schema.path("password").validate(function (value) {
   if (value.length < 8) {
     throw new Error("Password needs to be at least 8 characters in length");
@@ -63,42 +64,5 @@ User.schema.path("password").validate(function (value) {
     return true;
   }
 });
-
-// *** only needed for seeded users - start
-// before the user's password is saved to the database,
-// hash the password with 5 salt rounds
-// userSchema.pre("save", function (next) {
-//   if (this.isModified("password")) {
-//     bcrypt.hash(this.password, 5, (err, hash) => {
-//       if (err) return next(err);
-//       this.password = hash;
-//       next();
-//     });
-//   }
-// });
-
-// // compares user's password with hashed password
-// // returns true only if the passwords match
-// userSchema.methods.comparePassword = async function (password) {
-//   if (!password) throw new Error("Password is missing, cannot compare");
-//   try {
-//     const result = await bcrypt.compare(password, this.password);
-//     return result;
-//   } catch (err) {
-//     console.log("Error while comparing password", err.message);
-//   }
-// };
-// *** only needed for seeded users - end
-
-// class methods
-// userSchema.statics.authenticate = async function ({ username, password }) {
-//   const user = await this.findOne({ where: { username } });
-//   if (!user || !(await user.correctPassword(password))) {
-//     const error = Error("Incorrect username/password");
-//     error.status = 401;
-//     throw error;
-//   }
-//   return user.generateToken();
-// };
 
 module.exports = User;

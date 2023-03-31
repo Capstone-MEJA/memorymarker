@@ -42,5 +42,6 @@ const postSchema = new mongoose.Schema({
     type: String
   }],
 });
+
 const Post = mongoose.model("Post", postSchema);
 module.exports = Post;

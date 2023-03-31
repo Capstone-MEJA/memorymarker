@@ -6,27 +6,30 @@ import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { togglePostForm } from "../../store/globalSlice"
+import { togglePostForm } from "../../store/globalSlice";
 import { device } from "../../styles/global";
 
+/**
+ * Component for adding a post
+ * @returns A form for a logged in user to create a new post when/where the map is clicked
+ */
 
 const AddPostForm = () => {
-  //setting based variables/functions
+  // setting base variables
   const dispatch = useDispatch<AppDispatch>();
   const auth = useSelector((state: RootState) => state.auth);
   const global = useSelector((state: RootState) => state.global);
 
-  //useState
+  // useState
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  // const [tag, setTag] = useState("");
 
-  //useEffect hooks
+  // useEffect hooks
   useEffect(() => {
-    dispatch(fetchAllPosts())
-  }, [dispatch])
+    dispatch(fetchAllPosts());
+  }, [dispatch]);
 
-  //helper function
+  // helper function
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (title.length === 0 || description.length === 0) {
@@ -46,14 +49,16 @@ const AddPostForm = () => {
   }
 
   return (
-
     <FormWrapper onSubmit={handleSubmit}>
       <HeaderContainer>
         <div className="headerItem"></div>
         <img className="headerItem logo" src="logo.png" />
         <div className="headerItem">
-          <ClosedButton type="button" onClick={() => dispatch(togglePostForm())}>
-            <FaIcons.FaTimes className="icon"/>
+          <ClosedButton
+            type="button"
+            onClick={() => dispatch(togglePostForm())}
+          >
+            <FaIcons.FaTimes className="icon" />
           </ClosedButton>
         </div>
       </HeaderContainer>
@@ -73,13 +78,6 @@ const AddPostForm = () => {
           setDescription(e.target.value)
         }
       />
-      {/* <input
-          type="text"
-          placeholder="tag"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setTag(e.target.value)
-          }
-        /> */}
       <div className="submitButtonContainer">
         <SubmitButton type="submit">Submit</SubmitButton>
       </div>
@@ -92,7 +90,7 @@ export default AddPostForm;
 const FormWrapper = styled.form`
   text-align: center;
   position: relative;
-  background-color: #C2E4CB;
+  background-color: #c2e4cb;
   height: 100%;
   width: 100%;
   padding: 2rem;
@@ -104,7 +102,7 @@ const FormWrapper = styled.form`
   border-width: 2px;
   border-style: solid;
   border-color: #95c4a1;
-  
+
   .title {
     font-size: 3rem;
     font-family: "Playfair Display", serif;
@@ -126,7 +124,7 @@ const FormWrapper = styled.form`
     justify-content: center;
   }
 
-  @media ${device.tablet}{
+  @media ${device.tablet} {
     height: auto;
     width: auto;
     align-item: center;
@@ -134,12 +132,11 @@ const FormWrapper = styled.form`
     .title {
       font-size: 2rem;
     }
-    
+
     .description {
       height: 5rem;
     }
   }
-
 `;
 
 const HeaderContainer = styled.div`
@@ -152,12 +149,12 @@ const HeaderContainer = styled.div`
     display: flex;
     justify-content: flex-end;
   }
-`
+`;
 
 const ClosedButton = styled.button`
   width: 3rem;
   height: 3rem;
-  background-color: #739CF0;
+  background-color: #739cf0;
   border-width: 0px;
   border-radius: 5px;
 
@@ -166,7 +163,7 @@ const ClosedButton = styled.button`
     font-size: 2rem;
   }
 
-  @media ${device.tablet}{
+  @media ${device.tablet} {
     width: 1rem;
     height: 1rem;
 
@@ -174,10 +171,10 @@ const ClosedButton = styled.button`
       font-size: 1rem;
     }
   }
-`
+`;
 
 const SubmitButton = styled.button`
-  background-color: #739CF0;
+  background-color: #739cf0;
   color: white;
   padding: 0.5rem;
   font-size: 2rem;
@@ -188,4 +185,4 @@ const SubmitButton = styled.button`
   @media ${device.tablet} {
     font-size: 1rem;
   }
-`
+`;
