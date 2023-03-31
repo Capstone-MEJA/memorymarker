@@ -60,7 +60,7 @@ export default About;
 
 const AboutWrapper = styled.div`
   background-color: #ceebec;
-  height: 100vh;
+  height: fit-content;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -72,6 +72,9 @@ const AboutWrapper = styled.div`
 
   @media ${device.mobileM} {
     justify-content: center;
+  }
+  @media ${device.laptop} {
+    height: fit-content;
   }
 `;
 

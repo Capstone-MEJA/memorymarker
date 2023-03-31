@@ -149,7 +149,7 @@ const AboutTeam: React.FC = () => {
               Hi, I'm Mandy! I am a software engineer with experience in
               full-stack web development and a background in education. When I’m
               not coding, you can find me reading, cooking, snapping pictures,
-              and strolling through Central Park.
+              and strolling through Central Park.  My fondest memories are from Taiwan. Check them out on the map! :)
             </DevBlurb>
           </DevContent>
           <ProfileImageMobile src="mandy.png" />
