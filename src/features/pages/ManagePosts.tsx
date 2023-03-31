@@ -194,9 +194,17 @@ const Logo = styled.img`
   width: 10rem;
   height: 10rem;
 
+  @media ${device.tablet} {
+    width: 12rem;
+    height: 12rem;
+  }
   @media ${device.laptop} {
-    width: 20rem;
-    height: 20rem;
+    width: 14rem;
+    height: 14rem;
+  }
+  @media ${device.desktop} {
+    width: 16rem;
+    height: 16rem;
   }
 `;
 
@@ -207,7 +215,7 @@ const Title = styled.p`
   margin-bottom: 1rem;
 
   @media only screen and ${device.mobileLMax} {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
 `;
 
@@ -276,14 +284,15 @@ const Td = styled.td`
 
     :before {
       position: absolute;
-      top: 6px;
-      left: 6px;
+      top: 1px;
+      left: 1px;
+      bottom: 1px;
       width: 45%;
-      //this is where you left off
-      padding-right: 10px;
+      padding: 5px;
       white-space: nowrap;
       background: #739cf0;
       color: whitesmoke;
+      font-weight: 750;
       font-family: "Cormorant Garamond", serif;
     }
 
@@ -355,9 +364,11 @@ const BackButtonContainer = styled.section`
 
 const BackButton = styled(Button)`
   width: fit-content;
-  padding: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
 
   @media ${device.laptop} {
     font-size: 1.2rem;
   }
 `;
+

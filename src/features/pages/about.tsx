@@ -74,7 +74,13 @@ const LogoImageWrapper = styled.img`
   margin-top: 0.75rem;
 
   @media ${device.tablet} {
-    width: 15rem;
+    width: 12rem;
+  }
+  @media ${device.laptop} {
+    width: 14rem;
+  }
+  @media ${device.desktop} {
+    width: 16rem;
   }
 `;
 
@@ -85,6 +91,12 @@ const Title = styled.h1`
 
   @media ${device.tablet} {
     font-size: 2.5rem;
+  }
+  @media ${device.laptop} {
+    font-size: 3.5rem;
+  }
+  @media ${device.desktop} {
+    font-size: 4.5rem;
   }
 `;
 
@@ -112,7 +124,13 @@ const DevsText = styled.div`
   width: 80%;
 
   @media ${device.tablet} {
+    font-size: 1.25rem;
+  }
+  @media ${device.laptop} {
     font-size: 1.5rem;
+  }
+  @media ${device.desktop} {
+    font-size: 1.75rem;
   }
 `;
 
