@@ -106,12 +106,17 @@ const Paragraph = styled.p`
   font-family: "Cormorant Garamond", serif;
   font-size: 15px;
 
-  @media (min-width: 425px) {
+  @media ${device.tablet} {
     font-size: 20px;
     width: 70%;
     padding: 10px;
   }
-  @media (min-width: 800px) {
+  @media ${device.laptop} {
+    font-size: 25px;
+    width: 70%;
+    padding: 10px;
+  }
+  @media ${device.desktop} {
     font-size: 30px;
     width: 70%;
     padding: 10px;

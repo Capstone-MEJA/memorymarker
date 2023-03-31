@@ -296,9 +296,9 @@ const Td = styled.td`
       width: 45%;
       padding: 5px;
       white-space: nowrap;
-      background: #739cf0;
-      color: whitesmoke;
-      font-weight: 750;
+      background: #efefea;
+      color: black;
+      font-weight: 600;
       font-family: "Cormorant Garamond", serif;
     }
 

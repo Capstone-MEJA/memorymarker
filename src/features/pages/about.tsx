@@ -122,22 +122,22 @@ const DevWrapper = styled.div`
 `;
 
 const DevsText = styled.div`
-  font-size: 1rem;
+  font-size: 15px;
   background-color: white;
   border-radius: 1rem;
   text-align: left;
   padding: 0.75rem;
   font-family: "Cormorant Garamond", serif;
   width: 80%;
-
   @media ${device.tablet} {
-    font-size: 1.25rem;
+    font-size: 20px;
   }
   @media ${device.laptop} {
-    font-size: 1.5rem;
+    font-size: 25px;
   }
-  @media ${device.desktop} {
-    font-size: 1.75rem;
+  @media (min-width: 1600px) {
+    font-size: 30px;
+    width: 70%;
   }
 `;
 
