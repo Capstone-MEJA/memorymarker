@@ -60,7 +60,7 @@ export default About;
 
 const AboutWrapper = styled.div`
   background-color: #ceebec;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -112,6 +112,9 @@ const DevsWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (min-width: 1500px) {
+    max-width: 60%;
+  }
 `;
 
 const DevWrapper = styled.div`
@@ -135,9 +138,9 @@ const DevsText = styled.div`
   @media ${device.laptop} {
     font-size: 25px;
   }
-  @media (min-width: 1600px) {
-    font-size: 30px;
-    width: 70%;
+  // @media (min-width: 1600px) {
+  //   font-size: 30px;
+  //   width: 70%;
   }
 `;
 
