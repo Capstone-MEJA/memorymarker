@@ -14,14 +14,16 @@ interface singleMarkerProps {
   post: IPost;
 }
 
+/**
+ * Component for a single marker on the map
+ * @returns A single marker on the map based on latitude and longitude location in the database for a post
+ */
+
 const SingleMarker = (props: singleMarkerProps) => {
-  //setting based variables/functions
+  // setting base variables
   const dispatch = useDispatch();
   const global = useSelector((state: RootState) => state.global);
 
-  //useState
-  //useEffect hooks
-  //helper function
   return (
     <Marker
       position={{
