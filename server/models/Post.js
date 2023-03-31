@@ -27,13 +27,14 @@ const postSchema = new mongoose.Schema({
   createdAt: {
     type: Number,
     immutable: true,
-    default: () => Date.now()
+    default: () => Date.now(),
   },
   timeStamp: {
     type: String,
     immutable: true,
-    default: () => Date()
-  }
+    default: () => Date(),
+  },
 });
+
 const Post = mongoose.model("Post", postSchema);
 module.exports = Post;
