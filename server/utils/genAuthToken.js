@@ -1,5 +1,11 @@
 const JWT = require("jsonwebtoken");
 
+/**
+ * * Creates a token for a user that is signed using a secret key to verify the integrity of the request
+ * @param {Object} user
+ * @returns {string} token
+ */
+
 const genAuthToken = (user) => {
   const secretKey = process.env.JWT_SECRET;
 
