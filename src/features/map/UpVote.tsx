@@ -9,18 +9,18 @@ const UpVote = () => {
   const global = useSelector((state: RootState) => state.global);
   const auth = useSelector((state: RootState) => state.auth);
 
-  const likePost = (id: string) => {
-    dispatch(favoritePost(id));
+  const likePost = (id: string, userId: string) => {
+    dispatch(favoritePost({id, userId}));
   };
 
   return (
     <Wrapper>
       <Button
         onClick={() => {
-          likePost(global.selectedPost!._id);
+          likePost(global.selectedPost!._id, auth._id);
         }}
       >
-      ♡
+      {global.selectedPost!.favoritedUsers.includes(auth._id) ? "Liked!" : "♡" }
       </Button>
       <LikeCount>{global.selectedPost!.favoriteCount} {global.selectedPost!.favoriteCount === 1 ? "Like" : "Likes"} </LikeCount>
     </Wrapper>
@@ -39,14 +39,15 @@ align-items: center;
 const Button = styled.button`
   font-family: "Montserrat", sans-serif;
   padding: 0.5rem;
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
   border-radius: 5px;
   border: none;
   cursor: pointer;
   text-align: center;
   background-color: #739CF0;
   color: white;
+  height: 2rem;
 `;
 
 const LikeCount = styled.p`

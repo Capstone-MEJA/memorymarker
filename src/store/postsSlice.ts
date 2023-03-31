@@ -44,7 +44,7 @@ export const newPost = createAsyncThunk(
         description,
         latitude,
         longitude,
-        user
+        user,
       });
       return data;
     } catch (error) {
@@ -81,9 +81,9 @@ export const updatePost = createAsyncThunk(
 
 export const favoritePost = createAsyncThunk(
   "favoritePost",
-  async (_id: string) => {
+  async ({ id, userId }: { id: string; userId: string }) => {
     try {
-      const { data } = await axios.put(`/api/posts/${_id}`, { like: 1 });
+      const { data } = await axios.put(`/api/posts/${id}`, { like: 1, userId });
       // console.log(data)
       return data;
     } catch (error) {
