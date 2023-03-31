@@ -65,8 +65,7 @@ const Register = () => {
           </Button>
         </RegisterCredsWrapper>
         {auth.registerStatus === "rejected"
-          ? // <p>{[...auth.registerError]}</p>
-            auth.registerError.map((error, i) => {
+          ? auth.registerError.map((error, i) => {
               return <p key={i}>{error}</p>;
             })
           : null}
