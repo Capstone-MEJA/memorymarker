@@ -12,7 +12,7 @@ import styled from "styled-components";
  */
 
 const Login = () => {
-  //setting base variables
+  // setting base variables
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const auth = useSelector((state: RootState) => state.auth);
