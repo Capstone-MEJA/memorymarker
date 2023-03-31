@@ -3,29 +3,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../store/authSlice";
 import { AppDispatch, RootState } from "../../store";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { device } from "../../styles/global";
+import styled from "styled-components";
+
+/**
+ * Component for user register page
+ * @returns A form for a user to register that conditionally displays an error message on submit if the user's credentials do not pass validation
+ */
 
 const Register = () => {
-  //setting based variables/functions
+  // setting base variables
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const auth = useSelector((state: RootState) => state.auth);
 
-  //useState
+  // useState
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
 
-  //useEffect hooks
+  // useEffect hooks
   useEffect(() => {
     if (auth._id) {
       navigate("/");
     }
   }, [auth._id, navigate]);
 
-  //helper function
+  // helper function
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     await dispatch(registerUser(user));
@@ -47,7 +52,6 @@ const Register = () => {
               setUser({ ...user, username: e.target.value })
             }
           />
-
           <Input
             type="password"
             placeholder="password"
@@ -82,9 +86,9 @@ const RegisterWrapper = styled.div`
 `;
 
 const LogoWrapper = styled.section`
-display: flex;
-justify-content: center;
-margin: 0px;
+  display: flex;
+  justify-content: center;
+  margin: 0px;
 `;
 
 const Logo = styled.img`
@@ -96,68 +100,68 @@ const Logo = styled.img`
 `;
 
 const FormTitle = styled.h2`
-display: flex;
-justify-content: center;
-font-family: "Playfair Display", serif;
-font-size: 2rem;
-margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 
-@media ${device.laptop} {
-  font-size: 4rem;
-}
+  @media ${device.laptop} {
+    font-size: 4rem;
+  }
 `;
 
 const Input = styled.input`
-font-family: "Cormorant Garamond", serif;
-text-align: center;
-border-radius: 5px;
-font-size: 20px;
-margin: 10px 10px 10px 15px;
-border: none;
-width: 13rem;
-padding: 5px;
-&::placeholder {
+  font-family: "Cormorant Garamond", serif;
+  text-align: center;
+  border-radius: 5px;
   font-size: 20px;
-}
-
-@media ${device.laptop} {
-  height: 3rem;
+  margin: 10px 10px 10px 15px;
+  border: none;
+  width: 13rem;
+  padding: 5px;
   &::placeholder {
-    font-size: 23px;
+    font-size: 20px;
   }
-}
+
+  @media ${device.laptop} {
+    height: 3rem;
+    &::placeholder {
+      font-size: 23px;
+    }
+  }
 `;
 
 const Button = styled.button`
-background-color: #739cf0;
-font-family: "Montserrat", sans-serif;
-border-radius: 5px;
-border: none;
-cursor: pointer;
-font-size: 20px;
-padding: 5px;
-margin: 10px 2rem 20px 2rem;
-width: 13rem;
-color: whitesmoke;
+  background-color: #739cf0;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px;
+  margin: 10px 2rem 20px 2rem;
+  width: 13rem;
+  color: whitesmoke;
 
-@media ${device.laptop} {
-  margin: 20px 10px 20px 15px;
-  height: 3rem;
-  width: 10rem;
-}
+  @media ${device.laptop} {
+    margin: 20px 10px 20px 15px;
+    height: 3rem;
+    width: 10rem;
+  }
 `;
 
 const RegisterCredsWrapper = styled.section`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-// align-content: center;
-// width: 50vw;
-
-@media ${device.laptop} {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-}
+  align-items: center;
+  // align-content: center;
+  // width: 50vw;
+
+  @media ${device.laptop} {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 `;
