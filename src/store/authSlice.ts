@@ -14,6 +14,7 @@ const initialState = {
   userLoaded: false,
 };
 
+// a redux thunk that registers a new user into the database, and sets their unique token into localStorage
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (user: { username: string; password: string }, { rejectWithValue }) => {
@@ -32,6 +33,7 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+// a redux thunk that logs in a user, and sets their unique token into localStorage
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (user: { username: string; password: string }, { rejectWithValue }) => {
@@ -53,6 +55,7 @@ const authSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
+    // a redux reducer that will load a user's information on login/register when dispatched
     loadUser(state, action) {
       const token = state.token;
       if (token) {
@@ -66,6 +69,7 @@ const authSlice = createSlice({
         };
       }
     },
+    // a redux reducer that will logout a user when dispatched
     logoutUser(state, action) {
       localStorage.removeItem("token");
       return {
@@ -82,13 +86,14 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // when the registerUser thunk is pending, set the registerStatus state to "pending"
     builder.addCase(registerUser.pending, (state, action) => {
       return { ...state, registerStatus: "pending" };
     });
+    // when the registerUser thunk is fulfilled, set state with the user's details
     builder.addCase(registerUser.fulfilled, (state, action) => {
       if (action.payload) {
         const user: IUser = jwtDecode(action.payload);
-
         return {
           ...state,
           token: action.payload,
@@ -100,6 +105,7 @@ const authSlice = createSlice({
         return state;
       }
     });
+    // when the registerUser thunk is rejected, set the registerStatus state to "rejected"
     builder.addCase(registerUser.rejected, (state, action) => {
       return {
         ...state,
@@ -107,10 +113,11 @@ const authSlice = createSlice({
         registerError: action.payload as [],
       };
     });
-
+    // when the loginUser thunk is pending, set the loginStatus state to "pending"
     builder.addCase(loginUser.pending, (state, action) => {
       return { ...state, loginStatus: "pending" };
     });
+    // when the loginUser thunk is fulfilled, set state with the user's details
     builder.addCase(loginUser.fulfilled, (state, action) => {
       if (action.payload) {
         const user: IUser = jwtDecode(action.payload);
@@ -125,6 +132,7 @@ const authSlice = createSlice({
         return state;
       }
     });
+    // when the loginUser thunk is rejected, set the loginStatus state to "rejected"
     builder.addCase(loginUser.rejected, (state, action) => {
       return {
         ...state,
