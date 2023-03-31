@@ -2,6 +2,7 @@ const router = require("express").Router();
 module.exports = router;
 const Post = require("../models/Post");
 const User = require("../models/User");
+const mongoose = require("mongoose")
 
 router.get("/", async (req, res, next) => {
   try {
@@ -25,8 +26,11 @@ router.get("/:_id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
+    req.body.user = new mongoose.Types.ObjectId(req.body.user)
+    console.log(req.body.user)
     // create new post
     const post = await Post.create(req.body);
+    await post.populate("user")
     //find user associated with this post
     const user = await User.findById(req.body.user);
     // push postId into user object and save
@@ -45,7 +49,7 @@ router.put("/:_id", async (req, res, next) => {
     const post = await Post.findById(req.params._id);
 
     if (req.body.like) {
-      post.favorite = post.favorite + req.body.like;
+      post.favoriteCount = post.favoriteCount + req.body.like;
       // await post.save();
       // res.send(post);
     } else {
@@ -65,7 +69,6 @@ router.put("/:_id", async (req, res, next) => {
     }
     await post.save();
     await post.populate("user");
-    console.log(post);
     res.send(post);
   } catch (err) {
     console.log(err);

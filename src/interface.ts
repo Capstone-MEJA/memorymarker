@@ -11,6 +11,8 @@ export interface IsPost {
   user: IsUser;
   createdAt: number;
   timeStamp: string;
+  favoriteCount: number;
+  favoritedUsers: [string]
 }
 
 export interface IsUser {

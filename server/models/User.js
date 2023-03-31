@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Post",
     },
-  ],
+  ]
 });
 
 userSchema.statics.findByToken = async function (token) {

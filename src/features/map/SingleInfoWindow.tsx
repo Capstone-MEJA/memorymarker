@@ -22,7 +22,7 @@ const SingleInfoWindow = () => {
     // deletes marker & post
     dispatch(deletePost(id));
   };
-
+  
   return (
     <InfoWindow
       position={{

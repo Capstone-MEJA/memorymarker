@@ -44,7 +44,7 @@ export const newPost = createAsyncThunk(
         description,
         latitude,
         longitude,
-        user,
+        user
       });
       return data;
     } catch (error) {
@@ -83,7 +83,8 @@ export const favoritePost = createAsyncThunk(
   "favoritePost",
   async (_id: string) => {
     try {
-      const { data } = await axios.put(`/api/posts/${_id}`, {like: 1});
+      const { data } = await axios.put(`/api/posts/${_id}`, { like: 1 });
+      // console.log(data)
       return data;
     } catch (error) {
       console.log(error);
@@ -113,7 +114,8 @@ interface isPost {
   longitude: number;
   createdAt: number;
   timeStamp: string;
-  favorite: number;
+  favoriteCount: number;
+  favoritedUsers: [string];
 }
 
 let initialState: isPost[] = [];
@@ -133,7 +135,7 @@ export const PostsSlice = createSlice({
         return [...state, action.payload];
       })
       .addCase(updatePost.fulfilled, (state, action) => {
-        console.log("payload", action.payload);
+        // console.log("payload", action.payload);
         // find the index of the post you are updating
         // update only that index
         // spread the rest of the array
