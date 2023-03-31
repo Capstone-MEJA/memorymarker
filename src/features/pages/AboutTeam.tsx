@@ -172,7 +172,7 @@ export default AboutTeam;
 
 const Wrapper = styled.div`
   background-color: #ceebec;
-  height: fit-content;
+  height: 100%;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -181,20 +181,20 @@ const Wrapper = styled.div`
   padding-left: 1em;
   padding-right: 1em;
 
-  @media ${device.mobileM} {
-    justify-content: center;
-    width: 100%;
-  }
-  @media ${device.tablet} {
-    height: fit-content;
-  }
-  @media ${device.tablet} {
-    height: fit-content;
-  }
-  @media (min-width:1500px) {
-    height: fit-content;
+  // @media ${device.mobileM} {
+  //   justify-content: center;
+  //   width: 100%;
+  // }
+  // @media ${device.tablet} {
+  //   height: fit-content;
+  // }
+  // @media ${device.laptop} {
+  //   height: fit-content;
+  // }
+  // @media (min-width:1500px) {
+  //   height: fit-content;
 
-  }
+  // }
 `;
 
 const LogoImage = styled.img`
