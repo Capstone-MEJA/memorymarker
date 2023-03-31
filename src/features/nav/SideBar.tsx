@@ -169,6 +169,9 @@ const MenuIconOpen = styled(Link)`
   margin-right: 2rem;
   color: #ffffff;
   border: 1px;
+  @media (min-width: 800px) {
+    font-size: 2.25rem;
+  }
 `;
 
 const MenuIconClose = styled(Link)`
@@ -202,7 +205,7 @@ const SidebarMenu = styled.div<{ sidebar: boolean }>`
     width: 30%;
   }
   
-  @media ${device.laptopL} {
+  @media ${device.laptop} {
     max-width: 1440px;
     width: 20%;
   }
@@ -290,10 +293,9 @@ const Navbar = styled.div`
     width: 3rem;
   }
 
-  @media ${device.laptopL} {
-    max-width: 1440px;
-    height: 5rem;
-    width: 5rem;
+  @media ${device.laptop} {
+    height: 4rem;
+    width: 4rem;
   }
 `;
 
