@@ -10,7 +10,7 @@ import { device } from "../../styles/global";
 
 /**
  * Component for editing a post
- * @returns A form for a logged in user to edit a post they haeve previously made
+ * @returns A form for a logged in user to edit a post they have previously made
  */
 
 const EditPostForm = () => {

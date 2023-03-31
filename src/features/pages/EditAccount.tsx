@@ -14,8 +14,8 @@ export interface updateObj {
 }
 
 /**
- * Component for editing a post
- * @returns A form for a logged in user to edit a post they haeve previously made
+ * Component for a user to edit their account info
+ * @returns A form for a logged in user to edit their account username or password
  */
 
 const EditAccount = () => {
