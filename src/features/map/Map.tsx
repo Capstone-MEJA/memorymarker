@@ -2,7 +2,7 @@ import { useLoadScript } from "@react-google-maps/api";
 import MemoryMap from "./MemoryMap";
 
 /**
- * Component for loading fetching map by api key
+ * Component for fetching map by api key
  * @returns A map, loading message, or an error
  */
 
