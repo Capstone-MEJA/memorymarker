@@ -130,7 +130,7 @@ const ManagePosts = () => {
                           )}
                         </Td> */}
 
-                        <Td>{post.timeStamp.slice(0, -32)}</Td>
+                        <Td>{post.timeStamp?.slice(0, -32)}</Td>
                         <Td>
                           <Button
                             onClick={(event) => {
