@@ -172,7 +172,7 @@ export default AboutTeam;
 
 const Wrapper = styled.div`
   background-color: #ceebec;
-  height: 100%;
+  height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -181,18 +181,18 @@ const Wrapper = styled.div`
   padding-left: 1em;
   padding-right: 1em;
 
-  // @media ${device.mobileM} {
-  //   justify-content: center;
-  //   width: 100%;
-  // }
-  // @media ${device.tablet} {
-  //   height: fit-content;
-  // }
-  // @media ${device.laptop} {
-  //   height: fit-content;
-  // }
+  @media ${device.mobileM} {
+    justify-content: center;
+    width: 100%;
+  }
+  @media ${device.tablet} {
+    height: fit-content;
+  }
+  @media ${device.laptop} {
+    height: fit-content;
+  }
   @media (min-width:1500px) {
-    height: 100vh;
+    height: fit-content;
   }
 `;
 
@@ -365,7 +365,7 @@ const DevBlurb = styled.div`
     font-size: 20px;
   }
   @media (min-width: 1500px) {
-    font-size: 30px;
+    font-size: 25px;
     padding-top: 1em;
   }
 `;
