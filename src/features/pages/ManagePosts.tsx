@@ -12,20 +12,29 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { device } from "../../styles/global";
 
+/**
+ * Component a user to manage all their posts
+ * @returns A table where a user can view all their posts and edit or delete a specific post
+ */
+
 const ManagePosts = () => {
+  // setting base variables
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const loggedInUser = useSelector((state: RootState) => state.auth);
   const posts = useSelector(selectAllPosts);
 
+  // useState
   const [editMode, setEditMode] = useState(false);
   const [formValue, setFormValue] = useState<formValue>({});
   const [change, setChange] = useState(false);
 
+  // useEffect hook
   useEffect(() => {
     dispatch(fetchAllPosts());
   }, []);
 
+  // helper functions
   const handleDelete = (id: string) => {
     dispatch(deletePost(id));
     setChange(!change);
@@ -47,6 +56,7 @@ const ManagePosts = () => {
     setFormValue({ ...formValue, [event.target.name]: event.target.value });
   };
 
+  // typescript interface
   interface formValue {
     method?: string;
     _id?: string;
@@ -219,19 +229,10 @@ const Table = styled.table`
 `;
 
 const Tr = styled.tr`
-  // :nth-of-type(odd) {
-  //   background: #eee;
-  // }
-
   background: white;
 
   @media only screen and ${device.mobileLMax} {
     display: block;
-
-    // position: absolute;
-    // top: -9999px;
-    // left: -9999px;
-
     border: 1px solid #ccc;
   }
 `;
@@ -287,9 +288,6 @@ const Td = styled.td`
     :nth-of-type(2):before {
       content: "Description";
     }
-    // :nth-of-type(3):before {
-    //   content: "Tags";
-    // }
     :nth-of-type(3):before {
       content: "Date";
     }

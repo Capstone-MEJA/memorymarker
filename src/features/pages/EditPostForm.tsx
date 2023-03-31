@@ -24,7 +24,7 @@ const EditPostForm = () => {
     global.selectedPost!.description
   );
 
-  //helper function
+  // helper function
   function handleSubmit(id: string | undefined) {
     if (typeof id === "string") {
       dispatch(
