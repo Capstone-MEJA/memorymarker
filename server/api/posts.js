@@ -1,5 +1,5 @@
 const router = require("express").Router();
-
+const fs = require("fs")
 const Post = require("../models/Post");
 const User = require("../models/User");
 const mongoose = require("mongoose");
@@ -14,7 +14,10 @@ const mongoose = require("mongoose");
 
 router.get("/", async (req, res, next) => {
   try {
-    const posts = await Post.find({}).populate("user");
+    const posts = await Post.find({}).populate("user").populate("imageId");
+    posts.forEach(post => {
+      post.convertImage()
+    })
     res.json(posts);
   } catch (err) {
     console.log(err);
@@ -51,8 +54,15 @@ router.get("/:_id", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     req.body.user = new mongoose.Types.ObjectId(req.body.user);
+    if(req.body.imageId){
+      req.body.imageId = new mongoose.Types.ObjectId(req.body.imageId)
+    }
     const post = await Post.create(req.body);
     await post.populate("user");
+    if(post.imageId){
+      await post.populate("imageId")
+      await post.convertImage()
+    }
     const user = await User.findById(req.body.user);
     user.posts.push(post._id);
     user.save();

@@ -25,7 +25,12 @@ const SingleInfoWindow = () => {
     // deletes marker & post
     dispatch(deletePost(id));
   };
-  
+
+  let source;
+  if (global.selectedPost!.imageString) {
+    source = "data:image/png;base64," + global.selectedPost!.imageString;
+  }
+
   return (
     <InfoWindow
       position={{
@@ -35,6 +40,7 @@ const SingleInfoWindow = () => {
       onCloseClick={() => dispatch(setSelectedPost(null))}
     >
       <InfoWindowWrapper>
+        {global.selectedPost!.imageString ? <img src={source} /> : ""}
         <PostTitle>{global.selectedPost!.title}</PostTitle>
         <PostText>{global.selectedPost!.description}</PostText>
         <PostText>Posted By: {global.selectedPost!.user.username}</PostText>

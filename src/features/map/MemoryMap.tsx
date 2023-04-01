@@ -76,6 +76,8 @@ const MemoryMap = (): JSX.Element => {
     clickableIcons: false,
   };
 
+  console.log(allPosts)
+
   return (
     <div>
       <GoogleMap

@@ -12,7 +12,8 @@ export interface IPost {
   createdAt: number;
   timeStamp: string;
   favoriteCount: number;
-  favoritedUsers: [string]
+  favoritedUsers: [string];
+  imageString: string;
 }
 
 export interface IUser {

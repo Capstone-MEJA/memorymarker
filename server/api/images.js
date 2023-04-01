@@ -28,8 +28,8 @@ router.get("/", (req, res) => {
 router.post("/", upload.single("image"), (req, res, next) => {
   console.log("test");
   const obj = {
-    name: req.body.name,
-    desc: req.body.desc,
+    // name: req.body.name,
+    // desc: req.body.desc,
     img: {
       data: fs.readFileSync(
         path.join(__dirname + "/uploads/" + req.file.filename)
@@ -46,7 +46,7 @@ router.post("/", upload.single("image"), (req, res, next) => {
     //       res.send(item);
     //     }
     //   });
-    res.send(item);
+    res.send(item._id);
   });
 });
 

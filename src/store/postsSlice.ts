@@ -28,27 +28,25 @@ export const fetchSinglePost = createAsyncThunk(
 // a redux thunk that creates a new post and saves it to the database
 export const newPost = createAsyncThunk(
   "newPost",
-  async ({
-    title,
-    description,
-    latitude,
-    longitude,
-    user,
-  }: {
-    title: string;
-    description: string;
-    latitude: number | null;
-    longitude: number | null;
-    user: string;
-  }) => {
+  async ( postObj: object
+  //   {
+  //   title,
+  //   description,
+  //   latitude,
+  //   longitude,
+  //   user,
+  //   imageId
+  // }: {
+  //   title: string;
+  //   description: string;
+  //   latitude: number | null;
+  //   longitude: number | null;
+  //   user: string;
+  //   imageId?: string;
+  // }
+  ) => {
     try {
-      const { data } = await axios.post(`/api/posts`, {
-        title,
-        description,
-        latitude,
-        longitude,
-        user,
-      });
+      const { data } = await axios.post(`/api/posts`, postObj);
       return data;
     } catch (error) {
       console.log(error);
