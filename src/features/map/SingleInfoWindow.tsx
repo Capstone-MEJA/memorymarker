@@ -122,6 +122,11 @@ const PostTitle = styled.h2`
 const PostText = styled.p`s
   font-family: "Cormorant Garamond", serif;
   padding: 0.5rem;
+  font-size: 1rem;
+
+  @media ${device.tablet} {
+    font-size: 1.2rem;
+  }
 `;
 
 const ButtonWrapper = styled.div`
