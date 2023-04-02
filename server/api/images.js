@@ -2,8 +2,8 @@ const router = require("express").Router();
 const imgSchema = require("../models/Image");
 const path = require("path");
 const fs = require("fs");
-const Post = require("../models/Post")
-const Image = require("../models/Image")
+const Post = require("../models/Post");
+const Image = require("../models/Image");
 
 const multer = require("multer");
 
@@ -18,15 +18,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// router.get("/", (req, res) => {
-//   imgSchema.find({}).then((data, err) => {
-//     if (err) {
-//       console.log(err);
-//     }
-//     res.render("imagepage", { items: data });
-//   });
-// });
-
 /* 
 When you submit image, it hits this route;
 
@@ -40,25 +31,15 @@ contentType specifies what kind of image file
 Mongo turns the Buffer into a string
 */
 router.post("/", upload.single("image"), async (req, res, next) => {
-  const post = await Post.findById(req.body.postId)
+  if (req.body.postId) {
+    const post = await Post.findById(req.body.postId);
 
-  if(post.imageId){
-    await Image.deleteOne({_id: post.imageId})
+    if (post.imageId) {
+      await Image.deleteOne({ _id: post.imageId });
+    }
   }
-//delete from post
-    //delete from object
-    //create new object
-    //send newobject id
-
-    //update object
-    //
 
   const obj = {
-    // get post
-    // get object
-
-    
-
     img: {
       data: fs.readFileSync(
         path.join(__dirname + "/uploads/" + req.file.filename)
@@ -67,61 +48,14 @@ router.post("/", upload.single("image"), async (req, res, next) => {
     },
   };
   imgSchema.create(obj).then((item) => {
-    //     if (err) {
-    //       console.log(err);
-    //       //   res.sendStatus(500);
-    //     } else {
-    //       item.save();
-    //       res.send(item);
-    //     }
-    //   });
-    console.log(item._id, typeof item._id)
+    // console.log(item._id, typeof item._id)
     res.send(item._id);
   });
 });
 
-// router.put("/", upload.single("image"), async (req, res, next) => {
-//   const post = await Post.findOne({_id: req.body.postId})
-//   const image = await Image.findOne({_id: post.imageId})
-
-//   image._doc.img.data = fs.readFileSync(
-//           path.join(__dirname + "/uploads/" + req.file.filename)
-//         ),
-    
-//   image.save()
-
-//   res.send(image._id)
-//   // const obj = {
-//   //   // get post
-//   //   // get object
-
-//   //   //delete from post
-//   //   //delete from object
-//   //   //create new object
-//   //   //send newobject id
-
-//   //   //update object
-//   //   //
-
-//   //   img: {
-//   //     data: fs.readFileSync(
-//   //       path.join(__dirname + "/uploads/" + req.file.filename)
-//   //     ),
-//   //     contentType: "image/png",
-//   //   },
-//   // };
-//   // imgSchema.create(obj).then((item) => {
-//   //   //     if (err) {
-//   //   //       console.log(err);
-//   //   //       //   res.sendStatus(500);
-//   //   //     } else {
-//   //   //       item.save();
-//   //   //       res.send(item);
-//   //   //     }
-//   //   //   });
-//   //   console.log(item._id, typeof item._id)
-//   //   res.send(item._id);
-//   // });
-// });
+router.delete("/:id", async (req, res, next) => {
+  await Image.deleteOne({ _id: req.params.id });
+  res.sendStatus(200);
+});
 
 module.exports = router;

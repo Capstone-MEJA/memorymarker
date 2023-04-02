@@ -8,7 +8,7 @@ import { toggleEditPostForm } from "../../store/globalSlice";
 import { useSelector } from "react-redux";
 import { device } from "../../styles/global";
 import e from "express";
-import axios from "axios"
+import axios from "axios";
 
 /**
  * Component for editing a post
@@ -30,8 +30,13 @@ const EditPostForm = () => {
 
   // helper function
   function handleSubmit(event: React.FormEvent) {
-    event.preventDefault()
-    const updateObj: {_id: string, title: string, description: string, imageId?: object} = {
+    event.preventDefault();
+    const updateObj: {
+      _id: string;
+      title: string;
+      description: string;
+      imageId?: object;
+    } = {
       _id: global.selectedPost!._id,
       title: title,
       description: description,
@@ -39,7 +44,7 @@ const EditPostForm = () => {
 
     if (event.target.image) {
       const submitImage = async () => {
-       const {data} = await axios.postForm("/api/images", {
+        const { data } = await axios.postForm("/api/images", {
           postId: global.selectedPost!._id,
           image: event.target.image.files[0],
         });
@@ -47,11 +52,18 @@ const EditPostForm = () => {
         updateObj.imageId = data;
         dispatch(updatePost(updateObj));
       };
-      submitImage()
+      submitImage();
     } else {
-      console.log(updateObj)
+      // console.log(updateObj)
       dispatch(updatePost(updateObj));
     }
+  }
+
+  function handleDelete() {
+    const deleteImage = async () => {
+      await axios.delete(`/api/images/${global.selectedPost?.imageId._id}`);
+      dispatch(updatePost({_id: global.selectedPost?._id, imageId: {delete: true}}))
+    };
   }
 
   return (
@@ -89,6 +101,7 @@ const EditPostForm = () => {
           <input type="file" name="image" />
         ) : (
           <SubmitButton
+            type="button"
             onClick={() => {
               setChangePhoto(true);
             }}
@@ -97,7 +110,11 @@ const EditPostForm = () => {
             Change Photo{" "}
           </SubmitButton>
         )}
-        <SubmitButton> Delete Photo </SubmitButton>
+      </div>
+      <div>
+        <SubmitButton type="button" onClick={handleDelete}>
+          Delete Photo
+        </SubmitButton>
       </div>
       <div className="submitButtonContainer">
         <SubmitButton type="submit">Submit</SubmitButton>

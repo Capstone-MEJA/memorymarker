@@ -33,14 +33,15 @@ const AddPostForm = () => {
   // helper function
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    
+
     if (title.length === 0 || description.length === 0) {
       alert("Please fill in both fields before submitting :)");
     } else {
-
-      if(e.target.image.files.length !== 0){
+      if (e.target.image.files.length !== 0) {
         const submitImage = async () => {
-          const {data} = await axios.postForm("/api/images", {image: e.target.image.files[0]} )
+          const { data } = await axios.postForm("/api/images", {
+            image: e.target.image.files[0],
+          });
           dispatch(
             newPost({
               title: title,
@@ -48,12 +49,12 @@ const AddPostForm = () => {
               latitude: global.position.lat,
               longitude: global.position.lng,
               user: auth._id,
-              imageId: data 
+              imageId: data,
             })
           );
           dispatch(togglePostForm());
-        }
-        submitImage()
+        };
+        submitImage();
       } else {
         dispatch(
           newPost({
@@ -66,13 +67,11 @@ const AddPostForm = () => {
         );
         dispatch(togglePostForm());
       }
-
-      
     }
   }
 
   return (
-    <FormWrapper onSubmit={handleSubmit} >
+    <FormWrapper onSubmit={handleSubmit}>
       <HeaderContainer>
         <div className="headerItem"></div>
         <img className="headerItem logo" src="logo.png" />
@@ -101,7 +100,8 @@ const AddPostForm = () => {
           setDescription(e.target.value)
         }
       />
-      <input type="file" name="image"/>
+      <UploadImage type="file" name="image" accept="image/png, image/jpeg" />
+
       <div className="submitButtonContainer">
         <SubmitButton type="submit">Submit</SubmitButton>
       </div>
@@ -196,6 +196,10 @@ const ClosedButton = styled.button`
     }
   }
 `;
+
+const UploadImage = styled.input`
+margin: 8px;
+`
 
 const SubmitButton = styled.button`
   background-color: #739cf0;
