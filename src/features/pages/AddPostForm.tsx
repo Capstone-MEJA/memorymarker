@@ -35,7 +35,7 @@ const AddPostForm = () => {
     e.preventDefault();
     
     if (title.length === 0 || description.length === 0) {
-      alert("Please fill in both fields beforing submitting :)");
+      alert("Please fill in both fields before submitting :)");
     } else {
 
       if(e.target.image.files.length !== 0){

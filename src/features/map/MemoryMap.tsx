@@ -77,7 +77,6 @@ const MemoryMap = (): JSX.Element => {
   };
 
   console.log(allPosts)
-
   return (
     <div>
       <GoogleMap

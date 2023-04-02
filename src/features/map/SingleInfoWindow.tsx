@@ -26,10 +26,25 @@ const SingleInfoWindow = () => {
     dispatch(deletePost(id));
   };
 
-  let source;
-  if (global.selectedPost!.imageString) {
-    source = "data:image/png;base64," + global.selectedPost!.imageString;
-  }
+  /*
+  When you get the buffer string from Mongo, it's an array of numbers inside a nested object;
+  
+  Convert the array of numbers to a typed array using the Uint8Array method. This will return an array of 8-bit unsigned integers.
+  
+  Use the String.fromCharCode() method to convert the Unicode values into a string of characters. 
+
+  Now, to obtain the base64 string, pass the string of characters to window.btoa() method which will return a base-64 encoded ASCII string.
+
+  Reference: https://medium.com/@koteswar.meesala/convert-array-buffer-to-base64-string-to-display-images-in-angular-7-4c443db242cd
+  */
+
+  const createImageString = (array: ArrayBufferLike) => {
+    const typedArray = new Uint8Array(array);
+    const stringChar = typedArray.reduce((data, byte) => {
+      return data + String.fromCharCode(byte);
+    }, "");
+    return window.btoa(stringChar);
+  };
 
   return (
     <InfoWindow
@@ -40,7 +55,16 @@ const SingleInfoWindow = () => {
       onCloseClick={() => dispatch(setSelectedPost(null))}
     >
       <InfoWindowWrapper>
-        {global.selectedPost!.imageString ? <img src={source} /> : ""}
+        {global.selectedPost!.imageId ? (
+          <img
+            src={
+              "data:image/png;base64," +
+              createImageString(global.selectedPost!.imageId.img.data.data)
+            }
+          />
+        ) : (
+          ""
+        )}
         <PostTitle>{global.selectedPost!.title}</PostTitle>
         <PostText>{global.selectedPost!.description}</PostText>
         <PostText>Posted By: {global.selectedPost!.user.username}</PostText>

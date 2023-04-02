@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const fs = require("fs")
 const Post = require("../models/Post");
 const User = require("../models/User");
 const mongoose = require("mongoose");
@@ -15,9 +14,18 @@ const mongoose = require("mongoose");
 router.get("/", async (req, res, next) => {
   try {
     const posts = await Post.find({}).populate("user").populate("imageId");
-    posts.forEach(post => {
-      post.convertImage()
-    })
+    // posts.forEach(post => {
+    //   const convertImage = () => {
+    //     console.log(this)
+    //     if(this.imageId){
+    //       return Buffer.from(this.imageId.img.data.buffer, 'binary').toString("base64")
+    //       }
+    //   }
+    //   console.log(convertImage.apply))
+    //   post.convertImage = convertImage
+
+    // })
+
     res.json(posts);
   } catch (err) {
     console.log(err);
@@ -54,14 +62,13 @@ router.get("/:_id", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     req.body.user = new mongoose.Types.ObjectId(req.body.user);
-    if(req.body.imageId){
-      req.body.imageId = new mongoose.Types.ObjectId(req.body.imageId)
+    if (req.body.imageId) {
+      req.body.imageId = new mongoose.Types.ObjectId(req.body.imageId);
     }
     const post = await Post.create(req.body);
     await post.populate("user");
-    if(post.imageId){
-      await post.populate("imageId")
-      await post.convertImage()
+    if (post.imageId) {
+      await post.populate("imageId");
     }
     const user = await User.findById(req.body.user);
     user.posts.push(post._id);
@@ -94,26 +101,25 @@ router.put("/:_id", async (req, res, next) => {
           (user) => user !== req.body.userId
         );
       }
-
-      // await post.save();
-      // res.send(post);
     } else {
       if (req.body.title !== post.title) {
         post.title = req.body.title;
-        // await post.save();
       }
 
       if (req.body.description !== post.description) {
         post.description = req.body.description;
-        // await post.save();
       }
-      // await Post.updateOne({ _id: req.params._id }, req.body);
-      // const post = await Post.findById(req.params._id);
-      // await post.populate("user");
-      // res.send(post);
+      if (post.imageId) {
+        if (req.body.imageId.toString() !== post.imageId.toString()) {
+          post.imageId = req.body.imageId;
+        }
+      }
     }
     await post.save();
     await post.populate("user");
+    if (post.imageId) {
+      await post.populate("imageId");
+    }
     res.send(post);
   } catch (err) {
     console.log(err);

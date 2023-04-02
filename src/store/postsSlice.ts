@@ -61,16 +61,20 @@ export const updatePost = createAsyncThunk(
     _id,
     title,
     description,
+    imageId
   }: {
     _id?: string;
     title?: string;
     description?: string;
+    imageId?: object;
   }) => {
     try {
+      console.log("is there an image?", imageId)
       const { data } = await axios.put(`/api/posts/${_id}`, {
         _id,
         title,
         description,
+        imageId
       });
       return data;
     } catch (error) {
@@ -141,6 +145,7 @@ export const PostsSlice = createSlice({
       })
       // when the updatePost thunk is fulfilled, return the state with the updated post
       .addCase(updatePost.fulfilled, (state, action) => {
+        console.log(action.payload)
         return state.map((post) => {
           if (post._id === action.payload._id) {
             return action.payload;

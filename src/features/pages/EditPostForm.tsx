@@ -7,6 +7,8 @@ import * as FaIcons from "react-icons/fa";
 import { toggleEditPostForm } from "../../store/globalSlice";
 import { useSelector } from "react-redux";
 import { device } from "../../styles/global";
+import e from "express";
+import axios from "axios"
 
 /**
  * Component for editing a post
@@ -24,22 +26,36 @@ const EditPostForm = () => {
     global.selectedPost!.description
   );
 
+  const [changePhoto, setChangePhoto] = useState(false);
+
   // helper function
-  function handleSubmit(id: string | undefined) {
-    if (typeof id === "string") {
-      dispatch(
-        updatePost({
-          _id: id,
-          title: title,
-          description: description,
-        })
-      );
-      dispatch(toggleEditPostForm());
+  function handleSubmit(event: React.FormEvent) {
+    event.preventDefault()
+    const updateObj: {_id: string, title: string, description: string, imageId?: object} = {
+      _id: global.selectedPost!._id,
+      title: title,
+      description: description,
+    };
+
+    if (event.target.image) {
+      const submitImage = async () => {
+       const {data} = await axios.postForm("/api/images", {
+          postId: global.selectedPost!._id,
+          image: event.target.image.files[0],
+        });
+
+        updateObj.imageId = data;
+        dispatch(updatePost(updateObj));
+      };
+      submitImage()
+    } else {
+      console.log(updateObj)
+      dispatch(updatePost(updateObj));
     }
   }
 
   return (
-    <FormWrapper onSubmit={() => handleSubmit(global.selectedPost!._id)}>
+    <FormWrapper onSubmit={handleSubmit}>
       <HeaderContainer>
         <div className="headerItem"></div>
         <img className="headerItem" src="logo.png"></img>
@@ -68,6 +84,21 @@ const EditPostForm = () => {
         }
         value={description}
       />
+      <div>
+        {changePhoto ? (
+          <input type="file" name="image" />
+        ) : (
+          <SubmitButton
+            onClick={() => {
+              setChangePhoto(true);
+            }}
+          >
+            {" "}
+            Change Photo{" "}
+          </SubmitButton>
+        )}
+        <SubmitButton> Delete Photo </SubmitButton>
+      </div>
       <div className="submitButtonContainer">
         <SubmitButton type="submit">Submit</SubmitButton>
       </div>
