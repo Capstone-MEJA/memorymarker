@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from "../../store";
 import { useSelector } from "react-redux";
 import { setSelectedPost, toggleEditPostForm } from "../../store/globalSlice";
 import styled from "styled-components";
+import { device } from "../../styles/global";
 import UpVote from "./UpVote";
 
 /**
@@ -98,9 +99,20 @@ const InfoWindowWrapper = styled.div`
 `;
 
 const Image = styled.img`
-display: flex;
-width: 30rem;
-`
+  width: 10rem;
+
+  @media ${device.mobileM} {
+    width: 13rem;
+  }
+
+  @media ${device.mobileL} {
+    width: 16rem;
+  }
+
+  @media ${device.tablet} {
+    width: 30rem;
+  }
+`;
 
 const PostTitle = styled.h2`
   font-family: "Playfair Display", serif;
