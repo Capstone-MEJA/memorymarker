@@ -14,18 +14,6 @@ const mongoose = require("mongoose");
 router.get("/", async (req, res, next) => {
   try {
     const posts = await Post.find({}).populate("user").populate("imageId");
-    // posts.forEach(post => {
-    //   const convertImage = () => {
-    //     console.log(this)
-    //     if(this.imageId){
-    //       return Buffer.from(this.imageId.img.data.buffer, 'binary').toString("base64")
-    //       }
-    //   }
-    //   console.log(convertImage.apply))
-    //   post.convertImage = convertImage
-
-    // })
-
     res.json(posts);
   } catch (err) {
     console.log(err);
@@ -92,6 +80,7 @@ router.put("/:_id", async (req, res, next) => {
   try {
     const post = await Post.findById(req.params._id);
 
+    /** liking/disliking a post */
     if (req.body.like) {
       post.favoriteCount = post.favoriteCount + req.body.like;
       if (req.body.like === 1) {
@@ -111,21 +100,23 @@ router.put("/:_id", async (req, res, next) => {
       }
 
       if (post.imageId) {
+        /** updating image */
         if (req.body.imageId.toString() !== post.imageId.toString()) {
           post.imageId = req.body.imageId;
         }
-
-        if (req.body.imageId.delete){
-          post.imageId = null
+        /** deleting image */
+        if (req.body.imageId.delete) {
+          post.imageId = null;
         }
-      } else{
-        if(req.body.imageId){
-          post.imageId = req.body.imageId
+      } else {
+        /** adding image to post that did not originally have one */
+        if (req.body.imageId) {
+          post.imageId = req.body.imageId;
         }
-      } 
+      }
     }
 
-    console.log(post)
+    console.log(post);
     await post.save();
     await post.populate("user");
     if (post.imageId) {

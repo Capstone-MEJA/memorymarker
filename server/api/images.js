@@ -48,7 +48,6 @@ router.post("/", upload.single("image"), async (req, res, next) => {
     },
   };
   imgSchema.create(obj).then((item) => {
-    // console.log(item._id, typeof item._id)
     res.send(item._id);
   });
 });
