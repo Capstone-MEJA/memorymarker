@@ -29,7 +29,7 @@ const EditPostForm = () => {
 
   // helper function
   function handleSubmit(event: React.FormEvent) {
-    event.preventDefault();
+    event.preventDefault()
     const updateObj: {
       _id: string;
       title: string;
@@ -49,20 +49,26 @@ const EditPostForm = () => {
         });
 
         updateObj.imageId = data;
+        console.log(updateObj)
         dispatch(updatePost(updateObj));
+        dispatch(toggleEditPostForm())
       };
       submitImage();
     } else {
       // console.log(updateObj)
       dispatch(updatePost(updateObj));
+      dispatch(toggleEditPostForm())
     }
   }
 
   function handleDelete() {
+    console.log("HIT HELLO")
     const deleteImage = async () => {
       await axios.delete(`/api/images/${global.selectedPost?.imageId._id}`);
       dispatch(updatePost({_id: global.selectedPost?._id, imageId: {delete: true}}))
+      dispatch(toggleEditPostForm())
     };
+    deleteImage()
   }
 
   return (

@@ -102,19 +102,27 @@ router.put("/:_id", async (req, res, next) => {
         );
       }
     } else {
-      if (req.body.title !== post.title) {
+      if (req.body.title && req.body.title !== post.title) {
         post.title = req.body.title;
       }
 
-      if (req.body.description !== post.description) {
+      if (req.body.description && req.body.description !== post.description) {
         post.description = req.body.description;
       }
+
+      if (req.body.imageId.delete){
+        console.log("DEOETE")
+        post.imageId = null
+      }
+
       if (post.imageId) {
         if (req.body.imageId.toString() !== post.imageId.toString()) {
           post.imageId = req.body.imageId;
         }
       }
     }
+
+    console.log(post)
     await post.save();
     await post.populate("user");
     if (post.imageId) {
