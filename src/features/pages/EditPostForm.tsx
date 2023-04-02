@@ -31,7 +31,7 @@ const EditPostForm = () => {
   );
 
   // helper function
-  function handleSubmit(event: React.FormEvent) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const updateObj: {
       _id: string;
@@ -121,8 +121,7 @@ const EditPostForm = () => {
               setChangePhoto(true);
             }}
           >
-            {" "}
-            Change Photo{" "}
+            Change or Add Photo
           </SubmitButton>
         )}
       </div>

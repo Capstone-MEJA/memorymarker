@@ -56,7 +56,7 @@ const SingleInfoWindow = () => {
     >
       <InfoWindowWrapper>
         {global.selectedPost!.imageId ? (
-          <img
+          <Image
             src={
               "data:image/png;base64," +
               createImageString(global.selectedPost!.imageId.img.data.data)
@@ -96,6 +96,11 @@ const InfoWindowWrapper = styled.div`
   align-items: center;
   text-align: center;
 `;
+
+const Image = styled.img`
+display: flex;
+width: 30rem;
+`
 
 const PostTitle = styled.h2`
   font-family: "Playfair Display", serif;

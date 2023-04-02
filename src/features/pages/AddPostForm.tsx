@@ -65,7 +65,7 @@ const AddPostForm = () => {
             user: auth._id,
           })
         );
-       dispatch(togglePostForm())
+        dispatch(togglePostForm());
       }
     }
   }
@@ -198,8 +198,8 @@ const ClosedButton = styled.button`
 `;
 
 const UploadImage = styled.input`
-margin: 8px;
-`
+  margin: 8px;
+`;
 
 const SubmitButton = styled.button`
   background-color: #739cf0;
