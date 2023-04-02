@@ -65,7 +65,7 @@ const AddPostForm = () => {
             user: auth._id,
           })
         );
-        dispatch(togglePostForm());
+       " dispatch(togglePostForm());"
       }
     }
   }

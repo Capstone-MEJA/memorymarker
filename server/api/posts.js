@@ -110,16 +110,19 @@ router.put("/:_id", async (req, res, next) => {
         post.description = req.body.description;
       }
 
-      if (req.body.imageId.delete){
-        console.log("DEOETE")
-        post.imageId = null
-      }
-
       if (post.imageId) {
         if (req.body.imageId.toString() !== post.imageId.toString()) {
           post.imageId = req.body.imageId;
         }
-      }
+
+        if (req.body.imageId.delete){
+          post.imageId = null
+        }
+      } else{
+        if(req.body.imageId){
+          post.imageId = req.body.imageId
+        }
+      } 
     }
 
     console.log(post)

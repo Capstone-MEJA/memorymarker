@@ -26,10 +26,13 @@ const EditPostForm = () => {
   );
 
   const [changePhoto, setChangePhoto] = useState(false);
+  const [toggleDelete, setToggleDelete] = useState(
+    global.selectedPost!.imageId ? "delete" : ""
+  );
 
   // helper function
   function handleSubmit(event: React.FormEvent) {
-    event.preventDefault()
+    event.preventDefault();
     const updateObj: {
       _id: string;
       title: string;
@@ -42,33 +45,40 @@ const EditPostForm = () => {
     };
 
     if (event.target.image) {
-      const submitImage = async () => {
-        const { data } = await axios.postForm("/api/images", {
-          postId: global.selectedPost!._id,
-          image: event.target.image.files[0],
-        });
+      if (event.target.image.files.length > 0) {
+        const submitImage = async () => {
+          const { data } = await axios.postForm("/api/images", {
+            postId: global.selectedPost!._id,
+            image: event.target.image.files[0],
+          });
 
-        updateObj.imageId = data;
-        console.log(updateObj)
+          updateObj.imageId = data;
+          console.log(updateObj);
+          dispatch(updatePost(updateObj));
+          dispatch(toggleEditPostForm());
+        };
+        submitImage();
+      } else {
         dispatch(updatePost(updateObj));
-        dispatch(toggleEditPostForm())
-      };
-      submitImage();
+        dispatch(toggleEditPostForm());
+      }
     } else {
       // console.log(updateObj)
       dispatch(updatePost(updateObj));
-      dispatch(toggleEditPostForm())
+      dispatch(toggleEditPostForm());
     }
   }
 
   function handleDelete() {
-    console.log("HIT HELLO")
+    console.log("HIT HELLO");
     const deleteImage = async () => {
       await axios.delete(`/api/images/${global.selectedPost?.imageId._id}`);
-      dispatch(updatePost({_id: global.selectedPost?._id, imageId: {delete: true}}))
-      dispatch(toggleEditPostForm())
+      dispatch(
+        updatePost({ _id: global.selectedPost?._id, imageId: { delete: true } })
+      );
+      setToggleDelete("deleted");
     };
-    deleteImage()
+    deleteImage();
   }
 
   return (
@@ -117,9 +127,15 @@ const EditPostForm = () => {
         )}
       </div>
       <div>
-        <SubmitButton type="button" onClick={handleDelete}>
-          Delete Photo
-        </SubmitButton>
+        {!toggleDelete ? (
+          ""
+        ) : toggleDelete === "delete" ? (
+          <SubmitButton type="button" onClick={handleDelete}>
+            Delete Photo
+          </SubmitButton>
+        ) : (
+          <SubmitButton type="button">Deleted!</SubmitButton>
+        )}
       </div>
       <div className="submitButtonContainer">
         <SubmitButton type="submit">Submit</SubmitButton>
