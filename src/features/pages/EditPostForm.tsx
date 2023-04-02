@@ -7,7 +7,6 @@ import * as FaIcons from "react-icons/fa";
 import { toggleEditPostForm } from "../../store/globalSlice";
 import { useSelector } from "react-redux";
 import { device } from "../../styles/global";
-import e from "express";
 import axios from "axios";
 
 /**

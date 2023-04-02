@@ -13,7 +13,7 @@ export interface IPost {
   timeStamp: string;
   favoriteCount: number;
   favoritedUsers: [string];
-  imageId: object;
+  imageId: {_id: string | object, img: {data: {data: ArrayBufferLike}}};
 }
 
 export interface IUser {
