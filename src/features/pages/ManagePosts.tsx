@@ -74,7 +74,14 @@ const ManagePosts = () => {
       <section>
         {posts.filter((individual) => individual.user._id === loggedInUser._id)
           .length === 0 ? (
-          "No posts yet. Go out and make some new memories! :)"
+          <MessageWrapper>
+            <NoPosts>
+              No posts yet.
+            </NoPosts>
+            <NoPosts>
+              Go out and make some new memories! :)
+            </NoPosts>
+          </MessageWrapper>
         ) : (
           <Table>
             <Thead>
@@ -188,8 +195,12 @@ const Wrapper = styled.section`
   height: 100vh;
   width: 100vw;
 
+  align-items: center;
+  justify-content: center;
+  
+
   @media only screen and ${device.mobileLMax} {
-    height: 100%;
+    height: 100vh;
     width: 100vw;
     padding: 1rem;
   }
@@ -228,6 +239,24 @@ const Title = styled.p`
   @media only screen and ${device.mobileLMax} {
     font-size: 3rem;
   }
+`;
+
+const MessageWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: solid #486572;
+  border-width: 2px;
+  border-radius: 5px;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+`;
+
+const NoPosts = styled.p`
+  color: #486572;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.5rem;
 `;
 
 const Table = styled.table`
@@ -347,7 +376,7 @@ const Button = styled.button`
   width: 5rem;
   word-break: keep-all;
   justify-content: center;
-  display:flex;
+  display: flex;
 
   @media only screen and ${device.mobileLMax} {
     font-size: 0.8rem;
@@ -375,4 +404,3 @@ const BackButton = styled(Button)`
     font-size: 1.2rem;
   }
 `;
-
