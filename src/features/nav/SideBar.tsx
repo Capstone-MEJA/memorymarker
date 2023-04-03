@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from "../../store";
 import { logoutUser } from "../../store/authSlice";
 import { setSelectedPost, toggleSideBar } from "../../store/globalSlice";
 import { device } from "../../styles/global";
+import SearchBar from "./SearchBar";
 
 /**
  * Component for the main sidebar/navbar
@@ -151,6 +152,7 @@ const Sidebar: React.FC = () => {
               </MenuItemLink>
             </MenuItemLinks>
           )}
+            <SearchBar/>
         </SidebarWrap>
       </SidebarMenu>
     </>
