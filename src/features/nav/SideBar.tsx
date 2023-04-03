@@ -234,7 +234,7 @@ const LogoutButton = styled.div`
   &:hover {
     background-color: #f2cbac;
     color: #000080;
-    flex-direction: column;
+    // flex-direction: column;
     align-items: center;
     font-size: 20px;
     text-decoration: none;
