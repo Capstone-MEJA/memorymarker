@@ -228,6 +228,7 @@ const LogoutButton = styled.div`
   font-family: "Montserrat", sans-serif;
   display: flex;
   justify-content: center;
+  gap: 1em;
 
   &:hover {
     background-color: #f2cbac;
