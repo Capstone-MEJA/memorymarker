@@ -139,6 +139,7 @@ const FormWrapper = styled.form`
     font-size: 1rem;
     font-family: "Cormorant Garamond", serif;
     border-radius: 5px;
+    // border: none;
   }
 
   .description {
