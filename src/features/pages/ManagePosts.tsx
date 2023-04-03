@@ -195,12 +195,12 @@ const Wrapper = styled.section`
   height: 100vh;
   width: 100vw;
 
-  align-items: center;
-  justify-content: center;
+  // align-items: center;
+  // justify-content: center;
   
 
   @media only screen and ${device.mobileLMax} {
-    height: 100vh;
+    height: fit-content;
     width: 100vw;
     padding: 1rem;
   }
@@ -250,6 +250,10 @@ const MessageWrapper = styled.section`
   border-radius: 5px;
   margin-bottom: 2rem;
   margin-top: 2rem;
+
+  @media only screen and ${device.mobileLMax} {
+  margin-bottom: 8.5rem;
+  }
 `;
 
 const NoPosts = styled.p`
@@ -270,6 +274,7 @@ const Table = styled.table`
 
 const Tr = styled.tr`
   background: white;
+  color: #486572;
 
   @media only screen and ${device.mobileLMax} {
     display: block;
@@ -327,7 +332,7 @@ const Td = styled.td`
       padding: 5px;
       white-space: nowrap;
       background: #efefea;
-      color: black;
+      color: #486572;;
       font-weight: 600;
       font-family: "Cormorant Garamond", serif;
     }
