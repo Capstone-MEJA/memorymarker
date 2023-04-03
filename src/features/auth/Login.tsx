@@ -63,7 +63,18 @@ const Login = () => {
             {auth.loginStatus === "pending" ? "Submitting..." : "Login"}
           </Button>
         </LoginCredsWrapper>
-        {auth.loginStatus === "rejected" ? <p>{auth.loginError}</p> : null}
+
+        {/* {auth.loginStatus === "rejected" ? <p>{auth.loginError}</p> : null} */}
+
+        <ErrorWrapper>
+          {auth.loginStatus === "rejected" ? (
+            auth.loginError.includes("empty") ? (
+              <Error>Username and password fields cannot be empty</Error>
+            ) : (
+              <Error> Username or password is invalid</Error>
+            )
+          ) : null}
+        </ErrorWrapper>
       </form>
     </LoginWrapper>
   );
@@ -77,6 +88,8 @@ const LoginWrapper = styled.div`
   background-color: #ceebec;
   height: 100vh;
   width: 100%;
+
+  justify-content: center;
 `;
 
 const LogoWrapper = styled.section`
@@ -88,13 +101,13 @@ const LogoWrapper = styled.section`
 const Logo = styled.img`
   width: 10rem;
   @media ${device.tablet} {
-    width:12rem;
+    width: 12rem;
   }
   @media ${device.laptop} {
-    width:14rem;
+    width: 14rem;
   }
   @media ${device.desktop} {
-    width:16rem;
+    width: 16rem;
   }
 `;
 
@@ -165,4 +178,22 @@ const LoginCredsWrapper = styled.section`
     flex-direction: row;
     justify-content: center;
   }
+`;
+
+const Error = styled.p`
+  text-align: center;
+  color: #486572;
+  margin-bottom: 1rem;
+
+  @media ${device.tablet} {
+    font-size: 1.5rem;
+  }
+`;
+
+const ErrorWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
 `;
