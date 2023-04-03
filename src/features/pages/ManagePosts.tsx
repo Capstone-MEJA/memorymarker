@@ -75,12 +75,8 @@ const ManagePosts = () => {
         {posts.filter((individual) => individual.user._id === loggedInUser._id)
           .length === 0 ? (
           <MessageWrapper>
-            <NoPosts>
-              No posts yet.
-            </NoPosts>
-            <NoPosts>
-              Go out and make some new memories! :)
-            </NoPosts>
+            <NoPosts>No posts yet.</NoPosts>
+            <NoPosts>Go out and make some new memories! :)</NoPosts>
           </MessageWrapper>
         ) : (
           <Table>
@@ -91,7 +87,7 @@ const ManagePosts = () => {
                 {/* <Th>Tags</Th> */}
                 <Th>Date</Th>
                 <Th>See a Typo?</Th>
-                <Th>Lets Erase</Th>
+                <Th>Let's Erase</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -139,31 +135,35 @@ const ManagePosts = () => {
 
                         <Td>{post.timeStamp?.slice(0, -32)}</Td>
                         <Td>
-                          <Button
-                            onClick={(event) => {
-                              onClickHandler({
-                                method: (event.target as HTMLInputElement)
-                                  .value,
-                                _id: post._id,
-                                title: post.title,
-                                description: post.description,
-                                // tags: post.tags,
-                              });
-                            }}
-                            value={!editMode ? "Edit" : "Save Changes"}
-                          >
-                            {!editMode ? "Edit" : "Save Changes"}
-                          </Button>
+                          <ButtonWrapper>
+                            <Button
+                              onClick={(event) => {
+                                onClickHandler({
+                                  method: (event.target as HTMLInputElement)
+                                    .value,
+                                  _id: post._id,
+                                  title: post.title,
+                                  description: post.description,
+                                  // tags: post.tags,
+                                });
+                              }}
+                              value={!editMode ? "Edit" : "Save Changes"}
+                            >
+                              {!editMode ? "Edit" : "Save Changes"}
+                            </Button>
+                          </ButtonWrapper>
                         </Td>
                         <Td>
-                          <Button
-                            className="btn delete-btn"
-                            onClick={() => {
-                              handleDelete(post._id);
-                            }}
-                          >
-                            Delete
-                          </Button>
+                          <ButtonWrapper>
+                            <Button
+                              className="btn delete-btn"
+                              onClick={() => {
+                                handleDelete(post._id);
+                              }}
+                            >
+                              Delete
+                            </Button>
+                          </ButtonWrapper>
                         </Td>
                       </Tr>
                     ))}
@@ -195,9 +195,10 @@ const Wrapper = styled.section`
   height: 100vh;
   width: 100vw;
 
-  // align-items: center;
-  // justify-content: center;
-  
+  // @media only screen and (min-width: 425px) {
+  //   align-items: center;
+  //   justify-content: center;
+  // }
 
   @media only screen and ${device.mobileLMax} {
     height: fit-content;
@@ -252,7 +253,7 @@ const MessageWrapper = styled.section`
   margin-top: 2rem;
 
   @media only screen and ${device.mobileLMax} {
-  margin-bottom: 8.5rem;
+    margin-bottom: 8.5rem;
   }
 `;
 
@@ -332,7 +333,7 @@ const Td = styled.td`
       padding: 5px;
       white-space: nowrap;
       background: #efefea;
-      color: #486572;;
+      color: #486572;
       font-weight: 600;
       font-family: "Cormorant Garamond", serif;
     }
@@ -365,6 +366,11 @@ const Tbody = styled.tbody`
   @media only screen and ${device.mobileLMax} {
     display: block;
   }
+`;
+
+const ButtonWrapper = styled.section`
+  display: flex;
+  justify-content: center;
 `;
 
 const Button = styled.button`
