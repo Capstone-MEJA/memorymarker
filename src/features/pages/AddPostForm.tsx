@@ -145,7 +145,7 @@ const AddPostForm = () => {
         <TagsInput
           onKeyDown={handleKeyDown}
           type="text"
-          placeholder="Add Tags to Your Post!"
+          placeholder="Hit Enter to Add Tag!"
         />
       </TagsInputContainer>
       <UploadImage type="file" name="image" accept="image/png, image/jpeg" />

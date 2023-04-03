@@ -156,7 +156,7 @@ const EditPostForm = () => {
         <TagsInput
           onKeyDown={handleKeyDown}
           type="text"
-          placeholder="Add Tags to Your Post!"
+          placeholder="Hit Enter to Add Tag!"
         />
       </TagsInputContainer>
 
