@@ -79,6 +79,8 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
+              <FaIcons.FaInfoCircle />
+
                 ABOUT
               </MenuItemLink>
 
@@ -89,6 +91,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/team"
               >
+                <FaIcons.FaUsers />
                 MEET THE MAKERS
               </MenuItemLink>
               <LogoutButton
@@ -100,6 +103,7 @@ const Sidebar: React.FC = () => {
                   navigate("/");
                 }}
               >
+                <FaIcons.FaSignOutAlt />
                 LOG OUT
               </LogoutButton>
             </MenuItemLinks>
@@ -112,6 +116,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
+                <FaIcons.FaHome />
                 HOME
               </MenuItemLink>
               <MenuItemLink
@@ -121,6 +126,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/Login"
               >
+                <FaIcons.FaSignInAlt />
                 LOGIN
               </MenuItemLink>
               <MenuItemLink
@@ -130,6 +136,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/register"
               >
+                <FaIcons.FaUserPlus />
                 SIGN-UP
               </MenuItemLink>
               <MenuItemLink
@@ -139,6 +146,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
+                <FaIcons.FaInfoCircle />
                 ABOUT
               </MenuItemLink>
               <MenuItemLink
@@ -148,6 +156,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/team"
               >
+                <FaIcons.FaUsers />
                 MEET THE MAKERS
               </MenuItemLink>
             </MenuItemLinks>
@@ -194,7 +203,6 @@ const SidebarMenu = styled.div<{ sidebar: boolean }>`
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 0.6s;
   z-index: 1;
-  // padding-top: 10px;
 
   @media ${device.mobileS} {
     max-width: 800px;
@@ -267,7 +275,6 @@ const MenuItemLink = styled(Link)`
   &:hover {
     background-color: #F2CBAC;
     color: #000080;
-    flex-direction: column;
     align-items: center;
     font-size: 20px;
     text-decoration: none;
