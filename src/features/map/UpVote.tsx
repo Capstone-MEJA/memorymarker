@@ -57,8 +57,8 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   text-align: center;
-  background-color: #739cf0;
-  color: white;
+  // background-color: #739cf0;
+  color: black;
   height: 2rem;
 `;
 
