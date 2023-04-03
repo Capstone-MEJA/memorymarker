@@ -87,14 +87,14 @@ const AddPostForm = () => {
       <h2 className="title">Mark Your Memory</h2>
       <input
         type="text"
-        placeholder="title"
+        placeholder="Title"
         className="inputField"
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setTitle(e.target.value)
         }
       />
       <textarea
-        placeholder="description"
+        placeholder="Description"
         className="inputField description"
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
           setDescription(e.target.value)
@@ -139,7 +139,7 @@ const FormWrapper = styled.form`
     font-size: 1rem;
     font-family: "Cormorant Garamond", serif;
     border-radius: 5px;
-    // border: none;
+    border: 1px solid grey;
   }
 
   .description {
@@ -220,7 +220,7 @@ const ClosedButton = styled.button`
 
   .icon {
     color: whitesmoke;
-    font-size: 1.5rem;  
+    font-size: 1.5rem;
     margin-top: 0.25rem;
   }
 

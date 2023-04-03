@@ -79,8 +79,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
-              <FaIcons.FaInfoCircle />
-
+                <FaIcons.FaInfoCircle />
                 ABOUT
               </MenuItemLink>
 
@@ -92,7 +91,7 @@ const Sidebar: React.FC = () => {
                 to="/team"
               >
                 <FaIcons.FaUsers />
-                MEET THE MAKERS
+                THE MAKERS
               </MenuItemLink>
               <LogoutButton
                 style={{ textDecoration: "none", color: "whitesmoke" }}
@@ -157,7 +156,7 @@ const Sidebar: React.FC = () => {
                 to="/team"
               >
                 <FaIcons.FaUsers />
-                MEET THE MAKERS
+                THE MAKERS
               </MenuItemLink>
             </MenuItemLinks>
           )}
@@ -229,6 +228,7 @@ const LogoutButton = styled.div`
   font-family: "Montserrat", sans-serif;
   display: flex;
   justify-content: center;
+  gap: 0.5em;
 
   &:hover {
     background-color: #f2cbac;
@@ -271,6 +271,8 @@ const MenuItemLink = styled(Link)`
   font: monsterrat;
   display: flex;
   justify-content: center;
+  display: flex;
+  gap: 0.5em;
 
   &:hover {
     background-color: #F2CBAC;
