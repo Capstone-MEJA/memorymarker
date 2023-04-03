@@ -83,8 +83,8 @@ const ManagePosts = () => {
                 <Th>Description</Th>
                 {/* <Th>Tags</Th> */}
                 <Th>Date</Th>
-                <Th></Th>
-                <Th></Th>
+                <Th>See a Typo?</Th>
+                <Th>Lets Erase</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -190,6 +190,7 @@ const Wrapper = styled.section`
 
   @media only screen and ${device.mobileLMax} {
     height: 100%;
+    width: 100vw;
     padding: 1rem;
   }
 `;
@@ -201,10 +202,19 @@ const LogoWrapper = styled.section`
 
 const Logo = styled.img`
   width: 10rem;
+  height: 10rem;
 
+  @media ${device.tablet} {
+    width: 12rem;
+    height: 12rem;
+  }
   @media ${device.laptop} {
-    width: 20rem;
-    height: 20rem;
+    width: 14rem;
+    height: 14rem;
+  }
+  @media ${device.desktop} {
+    width: 16rem;
+    height: 16rem;
   }
 `;
 
@@ -213,9 +223,10 @@ const Title = styled.p`
   font-size: 4rem;
   text-align: center;
   margin-bottom: 1rem;
+  color: #486572;
 
   @media only screen and ${device.mobileLMax} {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
 `;
 
@@ -233,6 +244,10 @@ const Tr = styled.tr`
 
   @media only screen and ${device.mobileLMax} {
     display: block;
+    // position: absolute;
+    // top: -9999px;
+    // left: -9999px;
+
     border: 1px solid #ccc;
   }
 `;
@@ -249,10 +264,11 @@ const Th = styled.th`
 
   @media only screen and ${device.mobileLMax} {
     display: block;
-
     position: absolute;
     top: -9999px;
     left: -9999px;
+    background: #739cf0;
+    color: whitesmoke;
   }
 `;
 
@@ -275,11 +291,16 @@ const Td = styled.td`
 
     :before {
       position: absolute;
-      top: 6px;
-      left: 6px;
+      top: 1px;
+      left: 1px;
+      bottom: 1px;
       width: 45%;
-      padding-right: 10px;
+      padding: 5px;
       white-space: nowrap;
+      background: #efefea;
+      color: black;
+      font-weight: 600;
+      font-family: "Cormorant Garamond", serif;
     }
 
     :nth-of-type(1):before {
@@ -292,10 +313,10 @@ const Td = styled.td`
       content: "Date";
     }
     :nth-of-type(4):before {
-      content: "Edit Post";
+      content: "See a Typo?";
     }
     :nth-of-type(5):before {
-      content: "Delete Post";
+      content: "Lets Erase";
     }
   }
 `;
@@ -325,6 +346,8 @@ const Button = styled.button`
   margin-right: 2px;
   width: 5rem;
   word-break: keep-all;
+  justify-content: center;
+  display:flex;
 
   @media only screen and ${device.mobileLMax} {
     font-size: 0.8rem;
@@ -345,9 +368,11 @@ const BackButtonContainer = styled.section`
 
 const BackButton = styled(Button)`
   width: fit-content;
-  padding: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
 
   @media ${device.laptop} {
     font-size: 1.2rem;
   }
 `;
+

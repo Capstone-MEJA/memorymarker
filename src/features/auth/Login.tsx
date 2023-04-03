@@ -86,10 +86,15 @@ const LogoWrapper = styled.section`
 `;
 
 const Logo = styled.img`
-  width: 20rem;
-
+  width: 10rem;
+  @media ${device.tablet} {
+    width:12rem;
+  }
   @media ${device.laptop} {
-    width: 30rem;
+    width:14rem;
+  }
+  @media ${device.desktop} {
+    width:16rem;
   }
 `;
 
@@ -99,6 +104,7 @@ const FormTitle = styled.h2`
   font-family: "Playfair Display", serif;
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: #486572;
 
   @media ${device.laptop} {
     font-size: 4rem;
@@ -121,7 +127,7 @@ const Input = styled.input`
   @media ${device.laptop} {
     height: 3rem;
     &::placeholder {
-      font-size: 23px;
+      font-size: 30px;
     }
   }
 `;
@@ -142,6 +148,7 @@ const Button = styled.button`
     margin: 20px 10px 20px 15px;
     height: 3rem;
     width: 10rem;
+    font-size: 30px;
   }
 `;
 

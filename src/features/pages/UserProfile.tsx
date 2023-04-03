@@ -2,6 +2,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { RootState } from "../../store";
+import { device } from "../../styles/global";
+// import authentication
 
 /**
  * Component for a landing page where a user can view their account info
@@ -53,24 +55,21 @@ h1{
   font-family: "Playfair Display", serif;
   text-transform: uppercase;
   padding: 10px;
+  color: #486572;
 }
 `;
 
 const ImageWrapper = styled.img`
-  height: 8rem;
-  width: 8rem;
+  width: 10rem;
 
-  @media (min-width: 425px) {
-    height: 10rem;
-    width: 10rem;
-  }
-  @media (min-width: 800px) {
-    height: 12rem;
+  @media ${device.tablet} {
     width: 12rem;
   }
-  @media (min-width: 1100px) {
-    height: 14rem;
+  @media ${device.laptop} {
     width: 14rem;
+  }
+  @media ${device.desktop} {
+    width: 16rem;
   }
 `;
 
@@ -103,12 +102,17 @@ const Paragraph = styled.p`
   font-family: "Cormorant Garamond", serif;
   font-size: 15px;
 
-  @media (min-width: 425px) {
+  @media ${device.tablet} {
     font-size: 20px;
     width: 70%;
     padding: 10px;
   }
-  @media (min-width: 800px) {
+  @media ${device.laptop} {
+    font-size: 25px;
+    width: 70%;
+    padding: 10px;
+  }
+  @media ${device.desktop} {
     font-size: 30px;
     width: 70%;
     padding: 10px;
