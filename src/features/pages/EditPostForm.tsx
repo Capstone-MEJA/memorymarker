@@ -97,7 +97,6 @@ const EditPostForm = () => {
   }
 
   function handleDelete() {
-    console.log("HIT HELLO");
     const deleteImage = async () => {
       await axios.delete(`/api/images/${global.selectedPost?.imageId._id}`);
       dispatch(

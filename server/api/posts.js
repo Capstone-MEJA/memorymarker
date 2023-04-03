@@ -100,19 +100,25 @@ router.put("/:_id", async (req, res, next) => {
         post.description = req.body.description;
       }
 
-      if (post.imageId) {
-        /** updating image */
-        if (req.body.imageId.toString() !== post.imageId.toString()) {
-          post.imageId = req.body.imageId;
-        }
+      //if you send in an image
+      // no -> image
+      // image to image
+      // image -> no
+
+      if (req.body.imageId) {
         /** deleting image */
         if (req.body.imageId.delete) {
           post.imageId = null;
         }
-      } else {
-        /** adding image to post that did not originally have one */
-        if (req.body.imageId) {
-          post.imageId = req.body.imageId;
+
+        if (post.imageId) {
+          /** updating image */
+          if (req.body.imageId.toString() !== post.imageId.toString()) {
+            post.imageId = req.body.imageId;
+          }
+        } else {
+            /** adding image to post that did not originally have one */
+            post.imageId = req.body.imageId;
         }
       }
     }
