@@ -226,7 +226,7 @@ const LogoutButton = styled.div`
   width: 100%;
   text-align: center;
   padding: 1em;
-  font: monsterrat;
+  font-family: "Montserrat", sans-serif;
   display: flex;
   justify-content: center;
 

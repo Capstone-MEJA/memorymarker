@@ -30,7 +30,7 @@ const UpVote = () => {
         ref={likeStatus}
       >
         {global.selectedPost!.favoritedUsers.includes(auth._id)
-          ? "Liked!"
+          ? "♥️"
           : "♡"}
       </Button>
       <LikeCount>
@@ -53,8 +53,6 @@ const Wrapper = styled.section`
 const Button = styled.button`
   font-family: "Montserrat", sans-serif;
   padding: 0.5rem;
-  padding-top: 0.4rem;
-  padding-bottom: 0.4rem;
   border-radius: 5px;
   border: none;
   cursor: pointer;

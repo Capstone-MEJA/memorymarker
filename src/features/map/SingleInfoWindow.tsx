@@ -91,5 +91,5 @@ const Button = styled.button`
   text-align: center;
   width: 60px;
   background-color: #739cf0;
-  color: white;
+  color: whitesmoke;
 `;
