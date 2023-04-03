@@ -180,18 +180,21 @@ const ManagePosts = () => {
 export default ManagePosts;
 
 const Wrapper = styled.section`
+  background-color: #ceebec;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  background-color: #ceebec;
-  height: fit-content;
-  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  gap: 1em;
 
-  @media only screen and ${device.mobileLMax} {
-    height: 100%;
-    padding: 1rem;
-  }
+  // @media only screen and ${device.mobileLMax} {
+  //   height: 100%;
+  //   padding: 1rem;
+  // }
 `;
 const LogoWrapper = styled.section`
   display: flex;

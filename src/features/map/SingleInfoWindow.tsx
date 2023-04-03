@@ -39,6 +39,12 @@ const SingleInfoWindow = () => {
         <PostText>{global.selectedPost!.description}</PostText>
         <PostText>Posted By: {global.selectedPost!.user.username}</PostText>
 
+        <div className="tagContainer">
+        {global.selectedPost!.tags?.map((tag: string) => {
+          return <span>{`#${tag} `}</span>
+        })}
+        </div>
+
         <UpVote />
 
         {auth._id === global.selectedPost!.user._id ? (

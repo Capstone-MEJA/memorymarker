@@ -9,9 +9,9 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  tags: {
-    type: [String],
-  },
+  tags: [{
+      type: String,
+  }],
   latitude: {
     type: Number,
     required: true,

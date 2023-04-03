@@ -5,7 +5,7 @@ export interface IPost {
   _id: string;
   title: string;
   description: string;
-  tags: [string];
+  tags: string[];
   latitude: number;
   longitude: number;
   user: IUser;

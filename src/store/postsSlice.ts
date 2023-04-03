@@ -34,12 +34,14 @@ export const newPost = createAsyncThunk(
     latitude,
     longitude,
     user,
+    tags,
   }: {
     title: string;
     description: string;
     latitude: number | null;
     longitude: number | null;
     user: string;
+    tags: string[];
   }) => {
     try {
       const { data } = await axios.post(`/api/posts`, {
@@ -48,6 +50,7 @@ export const newPost = createAsyncThunk(
         latitude,
         longitude,
         user,
+        tags,
       });
       return data;
     } catch (error) {
@@ -112,13 +115,13 @@ interface isPost {
   title: string;
   description: string;
   user: object;
-  tags: [string];
+  tags: string[];
   latitude: number;
   longitude: number;
   createdAt: number;
   timeStamp: string;
   favoriteCount: number;
-  favoritedUsers: [string];
+  favoritedUsers: string[];
 }
 
 let initialState: isPost[] = [];
