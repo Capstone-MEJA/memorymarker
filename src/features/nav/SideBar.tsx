@@ -70,6 +70,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/account"
               >
+                <FaIcons.FaUserAlt />
                 HI, {auth.username}!
               </MenuItemLink>
               <MenuItemLink
@@ -79,8 +80,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
-              <FaIcons.FaInfoCircle />
-
+                <FaIcons.FaInfoCircle />
                 ABOUT
               </MenuItemLink>
 
@@ -248,19 +248,19 @@ const MenuItemLinks = styled.div`
   text-decoration: none;
   margin: 10px;
   justify-content: center;
-  
+
   @media ${device.mobileS} {
     max-width: 800px;
     width: 100%;
   }
-  
+
   @media ${device.laptopL} {
     max-width: 1440px;
     width: 90%;
   }
-  `;
-  
-  const MenuItemLink = styled(Link)`
+`;
+
+const MenuItemLink = styled(Link)`
   text-transform: uppercase;
   margin: 0 2rem;
   border-radius: 5px;
