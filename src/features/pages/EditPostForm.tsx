@@ -202,6 +202,11 @@ const FormWrapper = styled.form`
       height: 5rem;
       font-size: 1.5rem;
     }
+
+    @media ${device.laptop}{
+      width: 60%;
+    }
+    
     @media (min-width: 1500px) {
       height: auto;
       width: auto;
@@ -309,12 +314,12 @@ const EditDeleteWrapper = styled.section`
 `;
 
 const ChangeDeletePhotoButton = styled(SubmitButton)`
-word-break: keep-all;
-font-size: 1rem;
-margin-bottom: 0.5rem;
-
-@media ${device.tablet} {
+  word-break: keep-all;
   font-size: 1rem;
-  margin: 1rem;
-}
-`
+  margin-bottom: 0.5rem;
+
+  @media ${device.tablet} {
+    font-size: 1rem;
+    margin: 1rem;
+  }
+`;
