@@ -79,8 +79,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
-              <FaIcons.FaInfoCircle />
-
+                <FaIcons.FaInfoCircle />
                 ABOUT
               </MenuItemLink>
 
@@ -271,6 +270,8 @@ const MenuItemLink = styled(Link)`
   font: monsterrat;
   display: flex;
   justify-content: center;
+  display: flex;
+  gap: 0.5em;
 
   &:hover {
     background-color: #F2CBAC;
