@@ -91,7 +91,7 @@ const Sidebar: React.FC = () => {
                 to="/team"
               >
                 <FaIcons.FaUsers />
-                MEET THE MAKERS
+                THE MAKERS
               </MenuItemLink>
               <LogoutButton
                 style={{ textDecoration: "none", color: "whitesmoke" }}
@@ -156,7 +156,7 @@ const Sidebar: React.FC = () => {
                 to="/team"
               >
                 <FaIcons.FaUsers />
-                MEET THE MAKERS
+                THE MAKERS
               </MenuItemLink>
             </MenuItemLinks>
           )}
@@ -273,6 +273,7 @@ const MenuItemLink = styled(Link)`
   justify-content: center;
   display: flex;
   gap: 0.5em;
+  border: 1px solid blue;
 
   &:hover {
     background-color: #F2CBAC;
