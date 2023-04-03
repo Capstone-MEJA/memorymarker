@@ -185,8 +185,8 @@ const Wrapper = styled.section`
   padding-left: 2rem;
   padding-right: 2rem;
   background-color: #ceebec;
-  height: fit-content;
-  width: fit-content;
+  height: 100vh;
+  width: 100vw;
 
   @media only screen and ${device.mobileLMax} {
     height: 100%;

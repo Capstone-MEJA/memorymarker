@@ -1,5 +1,6 @@
 const User = require("../server/models/User");
 const Post = require("../server/models/Post");
+const Image = require("../server/models/Image");
 const mongoose = require("mongoose");
 
 // this is the seed function
@@ -8,6 +9,7 @@ async function seed() {
   console.log("deleting table content!");
   await User.deleteMany({});
   await Post.deleteMany({});
+  await Image.deleteMany({});
   console.log("table contents have been deleted!");
 
   console.log("seeding users");

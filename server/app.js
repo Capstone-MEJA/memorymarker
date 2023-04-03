@@ -39,6 +39,19 @@ app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public/index.html"));
 });
 
+// const multer = require("multer");
+
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "uploads");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, file.fieldname + "-" + Date.now());
+//   },
+// });
+
+// const upload = multer({ storage: storage });
+
 // Error handling endware
 app.use((err, req, res) => {
   console.error(err);
