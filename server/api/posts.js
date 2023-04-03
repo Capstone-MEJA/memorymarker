@@ -79,6 +79,7 @@ router.post("/", async (req, res, next) => {
 router.put("/:_id", async (req, res, next) => {
   try {
     const post = await Post.findById(req.params._id);
+    console.log(post);
 
     /** liking/disliking a post */
     if (req.body.like) {
@@ -94,7 +95,10 @@ router.put("/:_id", async (req, res, next) => {
       if (req.body.title && req.body.title !== post.title) {
         post.title = req.body.title;
       }
-      post.tags = req.body.tags;
+
+      if (req.body.tags) {
+        post.tags = req.body.tags;
+      }
 
       if (req.body.description && req.body.description !== post.description) {
         post.description = req.body.description;
@@ -109,16 +113,14 @@ router.put("/:_id", async (req, res, next) => {
         /** deleting image */
         if (req.body.imageId.delete) {
           post.imageId = null;
-        }
-
-        if (post.imageId) {
+        } else if (post.imageId) {
           /** updating image */
           if (req.body.imageId.toString() !== post.imageId.toString()) {
             post.imageId = req.body.imageId;
           }
         } else {
-            /** adding image to post that did not originally have one */
-            post.imageId = req.body.imageId;
+          /** adding image to post that did not originally have one */
+          post.imageId = req.body.imageId;
         }
       }
     }
