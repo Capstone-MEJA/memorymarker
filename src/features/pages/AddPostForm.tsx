@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
+import axios from "axios";
 import { fetchAllPosts, newPost } from "../../store/postsSlice";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
@@ -32,19 +33,40 @@ const AddPostForm = () => {
   // helper function
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
     if (title.length === 0 || description.length === 0) {
-      alert("Please fill in both fields beforing submitting :)");
+      alert("Please fill in both fields before submitting :)");
     } else {
-      dispatch(
-        newPost({
-          title: title,
-          description: description,
-          latitude: global.position.lat,
-          longitude: global.position.lng,
-          user: auth._id,
-        })
-      );
-      dispatch(togglePostForm());
+      if (e.target.image.files.length !== 0) {
+        const submitImage = async () => {
+          const { data } = await axios.postForm("/api/images", {
+            image: e.target.image.files[0],
+          });
+          dispatch(
+            newPost({
+              title: title,
+              description: description,
+              latitude: global.position.lat,
+              longitude: global.position.lng,
+              user: auth._id,
+              imageId: data,
+            })
+          );
+          dispatch(togglePostForm());
+        };
+        submitImage();
+      } else {
+        dispatch(
+          newPost({
+            title: title,
+            description: description,
+            latitude: global.position.lat,
+            longitude: global.position.lng,
+            user: auth._id,
+          })
+        );
+        dispatch(togglePostForm());
+      }
     }
   }
 
@@ -78,6 +100,8 @@ const AddPostForm = () => {
           setDescription(e.target.value)
         }
       />
+      <UploadImage type="file" name="image" accept="image/png, image/jpeg" />
+
       <div className="submitButtonContainer">
         <SubmitButton type="submit">Submit</SubmitButton>
       </div>
@@ -208,6 +232,10 @@ const ClosedButton = styled.button`
       margin-bottom: 0.25rem;
     }
   }
+`;
+
+const UploadImage = styled.input`
+  margin: 8px;
 `;
 
 const SubmitButton = styled.button`

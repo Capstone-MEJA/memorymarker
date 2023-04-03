@@ -7,6 +7,7 @@ import * as FaIcons from "react-icons/fa";
 import { toggleEditPostForm } from "../../store/globalSlice";
 import { useSelector } from "react-redux";
 import { device } from "../../styles/global";
+import axios from "axios";
 
 /**
  * Component for editing a post
@@ -24,22 +25,64 @@ const EditPostForm = () => {
     global.selectedPost!.description
   );
 
+  const [changePhoto, setChangePhoto] = useState(false);
+  const [toggleDelete, setToggleDelete] = useState(
+    global.selectedPost!.imageId ? "delete" : ""
+  );
+
   // helper function
-  function handleSubmit(id: string | undefined) {
-    if (typeof id === "string") {
-      dispatch(
-        updatePost({
-          _id: id,
-          title: title,
-          description: description,
-        })
-      );
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const updateObj: {
+      _id: string;
+      title: string;
+      description: string;
+      imageId?: object;
+    } = {
+      _id: global.selectedPost!._id,
+      title: title,
+      description: description,
+    };
+
+    if (event.target.image) {
+      if (event.target.image.files.length > 0) {
+        const submitImage = async () => {
+          const { data } = await axios.postForm("/api/images", {
+            postId: global.selectedPost!._id,
+            image: event.target.image.files[0],
+          });
+
+          updateObj.imageId = data;
+          console.log(updateObj);
+          dispatch(updatePost(updateObj));
+          dispatch(toggleEditPostForm());
+        };
+        submitImage();
+      } else {
+        dispatch(updatePost(updateObj));
+        dispatch(toggleEditPostForm());
+      }
+    } else {
+      // console.log(updateObj)
+      dispatch(updatePost(updateObj));
       dispatch(toggleEditPostForm());
     }
   }
 
+  function handleDelete() {
+    console.log("HIT HELLO");
+    const deleteImage = async () => {
+      await axios.delete(`/api/images/${global.selectedPost?.imageId._id}`);
+      dispatch(
+        updatePost({ _id: global.selectedPost?._id, imageId: { delete: true } })
+      );
+      setToggleDelete("deleted");
+    };
+    deleteImage();
+  }
+
   return (
-    <FormWrapper onSubmit={() => handleSubmit(global.selectedPost!._id)}>
+    <FormWrapper onSubmit={handleSubmit}>
       <HeaderContainer>
         <div className="headerItem"></div>
         <img className="logo" src="logo.png"></img>
@@ -68,6 +111,33 @@ const EditPostForm = () => {
         }
         value={description}
       />
+      <EditDeleteWrapper>
+        <div>
+          {changePhoto ? (
+            <input type="file" name="image" />
+          ) : (
+            <ChangeDeletePhotoButton
+              type="button"
+              onClick={() => {
+                setChangePhoto(true);
+              }}
+            >
+              Change or Add Photo
+            </ChangeDeletePhotoButton>
+          )}
+        </div>
+        <div>
+          {!toggleDelete ? (
+            ""
+          ) : toggleDelete === "delete" ? (
+            <ChangeDeletePhotoButton type="button" onClick={handleDelete}>
+              Delete Photo
+            </ChangeDeletePhotoButton>
+          ) : (
+            <SubmitButton type="button">Deleted!</SubmitButton>
+          )}
+        </div>
+      </EditDeleteWrapper>
       <div className="submitButtonContainer">
         <SubmitButton type="submit">Submit</SubmitButton>
       </div>
@@ -223,3 +293,28 @@ const SubmitButton = styled.button`
     font-size: 30px;
   }
 `;
+
+const EditDeleteWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justfy-content: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+  @media ${device.tablet} {
+    flex-direction: row;
+    justify-content: center;
+  }
+`;
+
+const ChangeDeletePhotoButton = styled(SubmitButton)`
+word-break: keep-all;
+font-size: 1rem;
+margin-bottom: 0.5rem;
+
+@media ${device.tablet} {
+  font-size: 1rem;
+  margin: 1rem;
+}
+`
