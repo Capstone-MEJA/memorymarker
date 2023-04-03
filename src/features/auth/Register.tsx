@@ -64,11 +64,38 @@ const Register = () => {
             {auth.registerStatus === "pending" ? "Submitting..." : "Register"}
           </Button>
         </RegisterCredsWrapper>
-        {auth.registerStatus === "rejected"
-          ? auth.registerError.map((error, i) => {
-              return <p key={i}>{error}</p>;
-            })
-          : null}
+        <ErrorWrapper>
+          {auth.registerStatus === "rejected"
+            ? auth.registerError.map((error, i) => {
+                if (error.includes("username")) {
+                  if (error.includes("length")) {
+                    return (
+                      <Error key={i}>
+                        Username must be at least 5 characters in length
+                      </Error>
+                    );
+                  } else {
+                    return (
+                      <Error key={i}>Username field cannot be empty</Error>
+                    );
+                  }
+                } else {
+                  if (error.includes("length")) {
+                    return (
+                      <Error key={i}>
+                        Password must be at least 8 characters in length
+                      </Error>
+                    );
+                  } else {
+                    return (
+                      <Error key={i}>Password field cannot be empty</Error>
+                    );
+                  }
+                }
+                // return <Error key={i}>{error}</Error>;
+              })
+            : null}
+        </ErrorWrapper>
       </form>
     </RegisterWrapper>
   );
@@ -83,6 +110,8 @@ const RegisterWrapper = styled.div`
   background-color: #ceebec;
   height: 100vh;
   width: 100%;
+
+  justify-content: center;
 `;
 
 const LogoWrapper = styled.section`
@@ -171,4 +200,22 @@ const RegisterCredsWrapper = styled.section`
     flex-direction: row;
     justify-content: center;
   }
+`;
+
+const Error = styled.p`
+  text-align: center;
+  color: #486572;
+  margin-bottom: 1rem;
+
+  @media ${device.tablet} {
+    font-size: 1.5rem;
+  }
+`;
+
+const ErrorWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
 `;

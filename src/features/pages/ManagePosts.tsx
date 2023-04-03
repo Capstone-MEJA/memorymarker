@@ -74,7 +74,10 @@ const ManagePosts = () => {
       <section>
         {posts.filter((individual) => individual.user._id === loggedInUser._id)
           .length === 0 ? (
-          "No posts yet. Go out and make some new memories! :)"
+          <MessageWrapper>
+            <NoPosts>No posts yet.</NoPosts>
+            <NoPosts>Go out and make some new memories! :)</NoPosts>
+          </MessageWrapper>
         ) : (
           <Table>
             <Thead>
@@ -84,7 +87,7 @@ const ManagePosts = () => {
                 {/* <Th>Tags</Th> */}
                 <Th>Date</Th>
                 <Th>See a Typo?</Th>
-                <Th>Lets Erase</Th>
+                <Th>Let's Erase</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -132,31 +135,35 @@ const ManagePosts = () => {
 
                         <Td>{post.timeStamp?.slice(0, -32)}</Td>
                         <Td>
-                          <Button
-                            onClick={(event) => {
-                              onClickHandler({
-                                method: (event.target as HTMLInputElement)
-                                  .value,
-                                _id: post._id,
-                                title: post.title,
-                                description: post.description,
-                                // tags: post.tags,
-                              });
-                            }}
-                            value={!editMode ? "Edit" : "Save Changes"}
-                          >
-                            {!editMode ? "Edit" : "Save Changes"}
-                          </Button>
+                          <ButtonWrapper>
+                            <Button
+                              onClick={(event) => {
+                                onClickHandler({
+                                  method: (event.target as HTMLInputElement)
+                                    .value,
+                                  _id: post._id,
+                                  title: post.title,
+                                  description: post.description,
+                                  // tags: post.tags,
+                                });
+                              }}
+                              value={!editMode ? "Edit" : "Save Changes"}
+                            >
+                              {!editMode ? "Edit" : "Save Changes"}
+                            </Button>
+                          </ButtonWrapper>
                         </Td>
                         <Td>
-                          <Button
-                            className="btn delete-btn"
-                            onClick={() => {
-                              handleDelete(post._id);
-                            }}
-                          >
-                            Delete
-                          </Button>
+                          <ButtonWrapper>
+                            <Button
+                              className="btn delete-btn"
+                              onClick={() => {
+                                handleDelete(post._id);
+                              }}
+                            >
+                              Delete
+                            </Button>
+                          </ButtonWrapper>
                         </Td>
                       </Tr>
                     ))}
@@ -188,8 +195,13 @@ const Wrapper = styled.section`
   height: 100vh;
   width: 100vw;
 
+  // @media only screen and (min-width: 425px) {
+  //   align-items: center;
+  //   justify-content: center;
+  // }
+
   @media only screen and ${device.mobileLMax} {
-    height: 100%;
+    height: fit-content;
     width: 100vw;
     padding: 1rem;
   }
@@ -230,6 +242,28 @@ const Title = styled.p`
   }
 `;
 
+const MessageWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: solid #486572;
+  border-width: 2px;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+
+  @media only screen and ${device.mobileLMax} {
+    margin-bottom: 8.5rem;
+  }
+`;
+
+const NoPosts = styled.p`
+  color: #486572;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.5rem;
+`;
+
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -241,6 +275,7 @@ const Table = styled.table`
 
 const Tr = styled.tr`
   background: white;
+  color: #486572;
 
   @media only screen and ${device.mobileLMax} {
     display: block;
@@ -298,7 +333,7 @@ const Td = styled.td`
       padding: 5px;
       white-space: nowrap;
       background: #efefea;
-      color: black;
+      color: #486572;
       font-weight: 600;
       font-family: "Cormorant Garamond", serif;
     }
@@ -333,6 +368,11 @@ const Tbody = styled.tbody`
   }
 `;
 
+const ButtonWrapper = styled.section`
+  display: flex;
+  justify-content: center;
+`;
+
 const Button = styled.button`
   background-color: #739cf0;
   font-family: "Montserrat", sans-serif;
@@ -347,7 +387,7 @@ const Button = styled.button`
   width: 5rem;
   word-break: keep-all;
   justify-content: center;
-  display:flex;
+  display: flex;
 
   @media only screen and ${device.mobileLMax} {
     font-size: 0.8rem;
@@ -375,4 +415,3 @@ const BackButton = styled(Button)`
     font-size: 1.2rem;
   }
 `;
-

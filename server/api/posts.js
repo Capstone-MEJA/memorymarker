@@ -101,12 +101,14 @@ router.put("/:_id", async (req, res, next) => {
 
       if (post.imageId) {
         /** updating image */
-        if (req.body.imageId.toString() !== post.imageId.toString()) {
-          post.imageId = req.body.imageId;
-        }
-        /** deleting image */
-        if (req.body.imageId.delete) {
-          post.imageId = null;
+        if (req.body.imageId) {
+          if (req.body.imageId.toString() !== post.imageId.toString()) {
+            post.imageId = req.body.imageId;
+          }
+          /** deleting image */
+          if (req.body.imageId.delete) {
+            post.imageId = null;
+          }
         }
       } else {
         /** adding image to post that did not originally have one */
