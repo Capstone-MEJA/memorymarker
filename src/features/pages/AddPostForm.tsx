@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
+import axios from "axios";
 import { fetchAllPosts, newPost } from "../../store/postsSlice";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
@@ -35,19 +36,42 @@ const AddPostForm = () => {
   //submitting form
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
+
     if (title.length === 0 || description.length === 0) {
-      alert("Please fill in both fields beforing submitting :)");
+      alert("Please fill in both fields before submitting :)");
     } else {
-      const newPostObject = {
-        title: title,
-        description: description,
-        latitude: global.position.lat,
-        longitude: global.position.lng,
-        user: auth._id,
-        tags: tags,
-      };
-      await dispatch(newPost(newPostObject));
-      await dispatch(togglePostForm());
+      if (e.target.image.files.length !== 0) {
+        const submitImage = async () => {
+          const { data } = await axios.postForm("/api/images", {
+            image: e.target.image.files[0],
+          });
+          dispatch(
+            newPost({
+              title: title,
+              description: description,
+              latitude: global.position.lat,
+              longitude: global.position.lng,
+              user: auth._id,
+              imageId: data,
+              tags: tags,
+            })
+          );
+          dispatch(togglePostForm());
+        };
+        submitImage();
+      } else {
+        dispatch(
+          newPost({
+            title: title,
+            description: description,
+            latitude: global.position.lat,
+            longitude: global.position.lng,
+            user: auth._id,
+            tags: tags,
+          })
+        );
+        dispatch(togglePostForm());
+      }
     }
   }
 
@@ -79,7 +103,7 @@ const AddPostForm = () => {
     <FormWrapper onSubmit={handleSubmit} onKeyDown={(e) => checkKeyDown(e)}>
       <HeaderContainer>
         <div className="headerItem"></div>
-        <img className="headerItem logo" src="logo.png" />
+        <img className="logo" src="logo.png" />
         <div className="headerItem">
           <ClosedButton
             type="button"
@@ -124,6 +148,7 @@ const AddPostForm = () => {
           placeholder="Add Tags to Your Post!"
         />
       </TagsInputContainer>
+      <UploadImage type="file" name="image" accept="image/png, image/jpeg" />
 
       <div className="submitButtonContainer">
         <SubmitButton type="submit">Submit</SubmitButton>
@@ -145,25 +170,29 @@ const FormWrapper = styled.form`
   flex-direction: column;
   justify-content: center;
   align-item: space-evenly;
-  border-radius: 5px;
+  border-radius: 8px;
   border-width: 2px;
   border-style: solid;
   border-color: #95c4a1;
 
   .title {
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: "Playfair Display", serif;
+    color: #486572;
+    margin-bottom: 1rem;
   }
 
   .inputField {
     margin: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-family: "Cormorant Garamond", serif;
     border-radius: 5px;
+    // border: none;
   }
 
   .description {
     height: 7rem;
+    font-size: 1rem;
   }
 
   .submitButtonContainer {
@@ -177,12 +206,32 @@ const FormWrapper = styled.form`
     align-item: center;
 
     .title {
-      font-size: 2rem;
+      font-size: 2.5rem;
+    }
+    .inputField {
+      font-size: 1.5rem;
     }
 
     .description {
       height: 5rem;
+      font-size: 1.5rem;
     }
+    @media (min-width: 1500px) {
+      height: auto;
+      width: auto;
+      align-item: center;
+  
+      .title {
+        font-size: 5rem;
+      }
+      .inputField {
+        font-size: 3rem;
+      }
+  
+      .description {
+        height: 8rem;
+        font-size: 3rem;
+      }
   }
 `;
 
@@ -196,41 +245,71 @@ const HeaderContainer = styled.div`
     display: flex;
     justify-content: flex-end;
   }
+  .logo {
+    width: 10rem;
+  }
+  @media ${device.tablet} {
+    .logo {
+      width: 12rem;
+    }
+  @media ${device.laptop} and ${device.desktop} {
+    .logo {
+      width: 14rem;
+    }
+  }
 `;
 
 const ClosedButton = styled.button`
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2rem;
   background-color: #739cf0;
   border-width: 0px;
   border-radius: 5px;
 
   .icon {
-    color: white;
-    font-size: 2rem;
+    color: whitesmoke;
+    font-size: 1.5rem;  
+    margin-top: 0.25rem;
   }
 
   @media ${device.tablet} {
-    width: 1rem;
-    height: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
 
     .icon {
-      font-size: 1rem;
+      font-size: 2rem;
+      margin-bottom: 0.25rem;
     }
   }
 `;
 
+const UploadImage = styled.input`
+  margin: 8px;
+`;
+
 const SubmitButton = styled.button`
   background-color: #739cf0;
-  color: white;
-  padding: 0.5rem;
-  font-size: 2rem;
+  color: whitesmoke;
+  padding: 5px;
+  font-size: 20px;
   border-width: 0px;
   font-family: "Montserrat", sans-serif;
   border-radius: 5px;
+  border: none;
+  margin: 10px 2rem 20px 2rem;
+  width: 13rem;
 
-  @media ${device.tablet} {
-    font-size: 1rem;
+  @media ${device.laptop} {
+    margin: 20px 10px 20px 15px;
+    height: 4rem;
+    width: 10rem;
+    font-size: 30px;
+  }
+  @media (min-width: 1500px) {
+    margin: 20px 10px 20px 15px;
+    height: 4rem;
+    width: 10rem;
+    font-size: 30px;
   }
 `;
 

@@ -60,6 +60,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
+                <FaIcons.FaHome />
                 HOME
               </MenuItemLink>
               <MenuItemLink
@@ -78,6 +79,8 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
+              <FaIcons.FaInfoCircle />
+
                 ABOUT
               </MenuItemLink>
 
@@ -88,6 +91,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/team"
               >
+                <FaIcons.FaUsers />
                 MEET THE MAKERS
               </MenuItemLink>
               <LogoutButton
@@ -99,6 +103,7 @@ const Sidebar: React.FC = () => {
                   navigate("/");
                 }}
               >
+                <FaIcons.FaSignOutAlt />
                 LOG OUT
               </LogoutButton>
             </MenuItemLinks>
@@ -111,6 +116,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/"
               >
+                <FaIcons.FaHome />
                 HOME
               </MenuItemLink>
               <MenuItemLink
@@ -120,6 +126,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/Login"
               >
+                <FaIcons.FaSignInAlt />
                 LOGIN
               </MenuItemLink>
               <MenuItemLink
@@ -129,6 +136,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/register"
               >
+                <FaIcons.FaUserPlus />
                 SIGN-UP
               </MenuItemLink>
               <MenuItemLink
@@ -138,6 +146,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/about"
               >
+                <FaIcons.FaInfoCircle />
                 ABOUT
               </MenuItemLink>
               <MenuItemLink
@@ -147,6 +156,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/team"
               >
+                <FaIcons.FaUsers />
                 MEET THE MAKERS
               </MenuItemLink>
             </MenuItemLinks>
@@ -169,6 +179,9 @@ const MenuIconOpen = styled(Link)`
   margin-right: 2rem;
   color: #ffffff;
   border: 1px;
+  @media (min-width: 800px) {
+    font-size: 2.25rem;
+  }
 `;
 
 const MenuIconClose = styled(Link)`
@@ -190,7 +203,6 @@ const SidebarMenu = styled.div<{ sidebar: boolean }>`
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 0.6s;
   z-index: 1;
-  // padding-top: 10px;
 
   @media ${device.mobileS} {
     max-width: 800px;
@@ -202,7 +214,7 @@ const SidebarMenu = styled.div<{ sidebar: boolean }>`
     width: 30%;
   }
   
-  @media ${device.laptopL} {
+  @media ${device.laptop} {
     max-width: 1440px;
     width: 20%;
   }
@@ -214,7 +226,7 @@ const LogoutButton = styled.div`
   width: 100%;
   text-align: center;
   padding: 1em;
-  font: monsterrat;
+  font-family: "Montserrat", sans-serif;
   display: flex;
   justify-content: center;
 
@@ -259,12 +271,10 @@ const MenuItemLink = styled(Link)`
   font: monsterrat;
   display: flex;
   justify-content: center;
-  // min-width: 100px;
 
   &:hover {
     background-color: #F2CBAC;
     color: #000080;
-    flex-direction: column;
     align-items: center;
     font-size: 20px;
     text-decoration: none;
@@ -290,10 +300,9 @@ const Navbar = styled.div`
     width: 3rem;
   }
 
-  @media ${device.laptopL} {
-    max-width: 1440px;
-    height: 5rem;
-    width: 5rem;
+  @media ${device.laptop} {
+    height: 4rem;
+    width: 4rem;
   }
 `;
 

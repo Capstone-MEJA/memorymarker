@@ -152,10 +152,12 @@ export default EditAccount;
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background-color: #ceebec;
+  padding: 2rem;
 
   @media ${device.laptop} {
     height: 100vh;
@@ -169,11 +171,20 @@ const LogoWrapper = styled.section`
 `;
 
 const Logo = styled.img`
-  width: 15rem;
+  width: 8rem;
+  height: 8rem;
 
+  @media ${device.tablet} {
+    width: 10rem;
+    height: 10rem;
+  }
   @media ${device.laptop} {
-    width: 25rem;
-    height: 25rem;
+    width: 14rem;
+    height: 14rem;
+  }
+  @media ${device.desktop} {
+    width: 16rem;
+    height: 16rem;
   }
 `;
 
@@ -186,8 +197,9 @@ const Title = styled.h1`
   display: flex;
   justify-content: center;
   text-align: center;
-  font-size: 2rem;
   font-family: "Playfair Display", serif;
+  color: #486572;
+  font-size: 2rem;
 
   @media ${device.laptop} {
     font-size: 4rem;
@@ -202,8 +214,13 @@ const Reminder = styled.p`
   font-size: 15px;
   margin: 10px;
 
+  @media (min-width:425px) {
+    font-size: 20px;
+    padding: 10px;
+  }
+
   @media ${device.laptop} {
-    font-size: 22px;
+    font-size: 30px;
   }
 `;
 
@@ -231,6 +248,7 @@ const CredsLabels = styled(CredentialContainer)`
   font-weight: bold;
   font-family: "Montserrat", sans-serif;
   margin-bottom: 5px;
+  color: #486572;
 
   @media ${device.laptop} {
     font-size: 20px;
@@ -257,7 +275,7 @@ const Input = styled.input`
   border-radius: 5px;
   font-size: 15px;
   margin: 5px;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
   border: none;
   height: 50%;
 

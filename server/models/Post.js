@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const fs = require("fs")
 
 const postSchema = new mongoose.Schema({
   title: {
@@ -41,6 +42,10 @@ const postSchema = new mongoose.Schema({
   favoritedUsers: [{
     type: String
   }],
+  imageId: {
+    type: mongoose.Types.ObjectId,
+    ref: "Image"
+  },
 });
 
 const Post = mongoose.model("Post", postSchema);
