@@ -282,7 +282,7 @@ const SubmitButton = styled.button`
   font-family: "Montserrat", sans-serif;
   border-radius: 5px;
   border: none;
-  margin: 10px 2rem 20px 2rem;
+  // margin: 10px 2rem 20px 2rem;
   width: 13rem;
 
   @media ${device.laptop} {
@@ -302,8 +302,8 @@ const SubmitButton = styled.button`
 const EditDeleteWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justfy-content: center;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 5px;
   margin-top: 5px;
 
