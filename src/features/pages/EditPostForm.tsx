@@ -114,7 +114,7 @@ const EditPostForm = () => {
       <EditDeleteWrapper>
         <div>
           {changePhoto ? (
-            <input type="file" name="image" />
+            <input className="photo-input" type="file" name="image" />
           ) : (
             <ChangeDeletePhotoButton
               type="button"
@@ -306,6 +306,11 @@ const EditDeleteWrapper = styled.section`
   justify-content: center;
   margin-bottom: 5px;
   margin-top: 5px;
+
+  .photo-input {
+    max-width: 180px;
+    padding-bottom: 1em;
+  }
 
   @media ${device.tablet} {
     flex-direction: row;
