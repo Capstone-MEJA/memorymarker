@@ -114,7 +114,7 @@ const EditPostForm = () => {
       <EditDeleteWrapper>
         <div>
           {changePhoto ? (
-            <input type="file" name="image" />
+            <input className="photo-input" type="file" name="image" />
           ) : (
             <ChangeDeletePhotoButton
               type="button"
@@ -282,7 +282,7 @@ const SubmitButton = styled.button`
   font-family: "Montserrat", sans-serif;
   border-radius: 5px;
   border: none;
-  margin: 10px 2rem 20px 2rem;
+  // margin: 10px 2rem 20px 2rem;
   width: 13rem;
 
   @media ${device.laptop} {
@@ -302,10 +302,15 @@ const SubmitButton = styled.button`
 const EditDeleteWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justfy-content: center;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 5px;
   margin-top: 5px;
+
+  .photo-input {
+    max-width: 180px;
+    padding-bottom: 1em;
+  }
 
   @media ${device.tablet} {
     flex-direction: row;
