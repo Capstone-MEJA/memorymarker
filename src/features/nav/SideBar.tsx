@@ -228,7 +228,7 @@ const LogoutButton = styled.div`
   font-family: "Montserrat", sans-serif;
   display: flex;
   justify-content: center;
-  gap: 1em;
+  gap: 0.5em;
 
   &:hover {
     background-color: #f2cbac;
@@ -273,7 +273,6 @@ const MenuItemLink = styled(Link)`
   justify-content: center;
   display: flex;
   gap: 0.5em;
-  border: 1px solid blue;
 
   &:hover {
     background-color: #F2CBAC;
