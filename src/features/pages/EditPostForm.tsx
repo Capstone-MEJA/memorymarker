@@ -111,31 +111,33 @@ const EditPostForm = () => {
         }
         value={description}
       />
-      <div>
-        {changePhoto ? (
-          <input type="file" name="image" />
-        ) : (
-          <SubmitButton
-            type="button"
-            onClick={() => {
-              setChangePhoto(true);
-            }}
-          >
-            Change or Add Photo
-          </SubmitButton>
-        )}
-      </div>
-      <div>
-        {!toggleDelete ? (
-          ""
-        ) : toggleDelete === "delete" ? (
-          <SubmitButton type="button" onClick={handleDelete}>
-            Delete Photo
-          </SubmitButton>
-        ) : (
-          <SubmitButton type="button">Deleted!</SubmitButton>
-        )}
-      </div>
+      <EditDeleteWrapper>
+        <div>
+          {changePhoto ? (
+            <input type="file" name="image" />
+          ) : (
+            <ChangeDeletePhotoButton
+              type="button"
+              onClick={() => {
+                setChangePhoto(true);
+              }}
+            >
+              Change or Add Photo
+            </ChangeDeletePhotoButton>
+          )}
+        </div>
+        <div>
+          {!toggleDelete ? (
+            ""
+          ) : toggleDelete === "delete" ? (
+            <ChangeDeletePhotoButton type="button" onClick={handleDelete}>
+              Delete Photo
+            </ChangeDeletePhotoButton>
+          ) : (
+            <SubmitButton type="button">Deleted!</SubmitButton>
+          )}
+        </div>
+      </EditDeleteWrapper>
       <div className="submitButtonContainer">
         <SubmitButton type="submit">Submit</SubmitButton>
       </div>
@@ -239,8 +241,34 @@ const SubmitButton = styled.button`
   border-width: 0px;
   font-family: "Montserrat", sans-serif;
   border-radius: 5px;
+  width: 15rem;
 
   @media ${device.tablet} {
     font-size: 1rem;
   }
 `;
+
+const EditDeleteWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justfy-content: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+  @media ${device.tablet} {
+    flex-direction: row;
+    justify-content: center;
+  }
+`;
+
+const ChangeDeletePhotoButton = styled(SubmitButton)`
+word-break: keep-all;
+font-size: 1rem;
+margin-bottom: 0.5rem;
+
+@media ${device.tablet} {
+  font-size: 1rem;
+  margin: 1rem;
+}
+`
