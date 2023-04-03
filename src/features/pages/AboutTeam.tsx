@@ -44,7 +44,10 @@ const AboutTeam: React.FC = () => {
             <DevBlurb>
               Hi! 👋 I'm Alicia, a former laboratory scientist who has turned
               her love of analytical investigation into a passion for life-long
-              learning and technical problem solving. When I'm not coding, you can find me on various hiking trails around Virginia with my adorable toy Australian Shepherd or covered in sawdust working on renovating.
+              learning and technical problem solving. When I'm not coding, you
+              can find me on various hiking trails around Virginia with my
+              adorable toy Australian Shepherd or covered in sawdust working on
+              renovating.
             </DevBlurb>
           </DevContent>
         </DevWrapper>
@@ -76,8 +79,10 @@ const AboutTeam: React.FC = () => {
             </DevHeader>
 
             <DevBlurb>
-              Hello, Erica here! Software engineer by day and real estate agent by weekend. Easily excited over math problems and similar to code, there are many ways to approach a problem
-              but there will always be a right and wrong answer. Avid problem solver and memory maker. 
+              Hello, Erica here! Software engineer by day and real estate agent
+              by weekend. Easily excited over math problems and similar to code,
+              there are many ways to approach a problem but there will always be
+              a right and wrong answer. Avid problem solver and memory maker.
             </DevBlurb>
           </DevContent>
           <ProfileImageMobile src="erica.png" />
@@ -149,7 +154,8 @@ const AboutTeam: React.FC = () => {
               Hi, I'm Mandy! I am a software engineer with experience in
               full-stack web development and a background in education. When I’m
               not coding, you can find me reading, cooking, snapping pictures,
-              and strolling through Central Park.  My fondest memories are from Taiwan. Check them out on the map! :)
+              and strolling through Central Park. My fondest memories are from
+              Taiwan. Check them out on the map! :)
             </DevBlurb>
           </DevContent>
           <ProfileImageMobile src="mandy.png" />
@@ -191,7 +197,7 @@ const Wrapper = styled.div`
   @media ${device.laptop} {
     height: fit-content;
   }
-  @media (min-width:1500px) {
+  @media (min-width: 1500px) {
     height: fit-content;
   }
 `;
@@ -199,6 +205,7 @@ const Wrapper = styled.div`
 const LogoImage = styled.img`
   width: 10rem;
   padding-top: 10px;
+
   @media ${device.tablet} {
     width: 12rem;
   }
@@ -216,13 +223,13 @@ const PageTitle = styled.h1`
   margin-bottom: 0px;
   font-family: "Playfair Display", serif;
   @media ${device.tablet} {
-    font-size: 2.5rem
+    font-size: 2.5rem;
   }
   @media ${device.laptop} {
-    font-size: 3.5rem
+    font-size: 3.5rem;
   }
   @media ${device.desktop} {
-    font-size: 4.5rem
+    font-size: 4.5rem;
   }
 `;
 
@@ -231,7 +238,7 @@ const DevsWrapper = styled.div`
   align-items: center;
   width: 100%;
   max-width: 800px;
-  
+
   @media ${device.tablet} {
     display: flex;
     flex-direction: row;
@@ -315,7 +322,6 @@ const DevContent = styled.div`
     width: 300px;
     height: 735px;
   }
-
 `;
 
 const DevHeader = styled.div`
@@ -354,7 +360,7 @@ const DevBlurb = styled.div`
   text-align: center;
   color: #486572;
   font-family: "Cormorant Garamond", serif;
-  padding-top: .5em;
+  padding-top: 0.5em;
 
   @media ${device.tablet} {
     padding-top: 1em;
