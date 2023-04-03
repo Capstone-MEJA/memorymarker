@@ -70,6 +70,7 @@ const Sidebar: React.FC = () => {
                 style={{ textDecoration: "none", color: "whitesmoke" }}
                 to="/account"
               >
+                <FaIcons.FaUserAlt />
                 HI, {auth.username}!
               </MenuItemLink>
               <MenuItemLink
@@ -261,6 +262,7 @@ const MenuItemLinks = styled.div`
 `;
 
 const MenuItemLink = styled(Link)`
+  text-transform: uppercase;
   margin: 0 2rem;
   border-radius: 5px;
   text-align: center;
