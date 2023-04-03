@@ -139,6 +139,7 @@ const FormWrapper = styled.form`
     font-size: 1rem;
     font-family: "Cormorant Garamond", serif;
     border-radius: 5px;
+    border: 1px solid grey;
   }
 
   .description {
@@ -219,7 +220,7 @@ const ClosedButton = styled.button`
 
   .icon {
     color: whitesmoke;
-    font-size: 1.5rem;  
+    font-size: 1.5rem;
     margin-top: 0.25rem;
   }
 
