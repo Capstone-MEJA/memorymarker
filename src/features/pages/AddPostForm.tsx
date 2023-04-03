@@ -139,7 +139,6 @@ const FormWrapper = styled.form`
     font-size: 1rem;
     font-family: "Cormorant Garamond", serif;
     border-radius: 5px;
-    // border: none;
   }
 
   .description {
@@ -157,9 +156,9 @@ const FormWrapper = styled.form`
     width: auto;
     align-item: center;
 
-    .title {
-      font-size: 2.5rem;
-    }
+    // .title {
+    //   font-size: 1.75rem;
+    // }
     .inputField {
       font-size: 1.5rem;
     }
