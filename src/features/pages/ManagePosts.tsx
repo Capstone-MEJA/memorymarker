@@ -248,8 +248,8 @@ const MessageWrapper = styled.section`
   border: solid #486572;
   border-width: 2px;
   border-radius: 5px;
-  margin-bottom: 3rem;
-  margin-top: 3rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 `;
 
 const NoPosts = styled.p`
