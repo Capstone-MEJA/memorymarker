@@ -108,7 +108,7 @@ const LogoImage = styled.img`
 const PageTitle = styled.h1`
   color: #486572;
   margin-top: -2rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   font-family: "Playfair Display", serif;
   @media ${device.tablet} {
     font-size: 2.5rem;
