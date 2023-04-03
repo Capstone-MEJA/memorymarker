@@ -33,7 +33,7 @@ const AddPostForm = () => {
   // helper function
 
   //submitting form
-  function handleSubmit(e: React.FormEvent) {
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
     if (title.length === 0 || description.length === 0) {
       alert("Please fill in both fields beforing submitting :)");
@@ -46,9 +46,8 @@ const AddPostForm = () => {
         user: auth._id,
         tags: tags,
       };
-      console.log(newPostObject);
-      dispatch(newPost(newPostObject));
-      dispatch(togglePostForm());
+      await dispatch(newPost(newPostObject));
+      await dispatch(togglePostForm());
     }
   }
 

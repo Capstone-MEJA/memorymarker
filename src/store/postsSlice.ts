@@ -66,16 +66,19 @@ export const updatePost = createAsyncThunk(
     _id,
     title,
     description,
+    tags,
   }: {
     _id?: string;
     title?: string;
     description?: string;
+    tags?: string[];
   }) => {
     try {
       const { data } = await axios.put(`/api/posts/${_id}`, {
         _id,
         title,
         description,
+        tags,
       });
       return data;
     } catch (error) {

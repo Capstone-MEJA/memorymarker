@@ -84,23 +84,14 @@ router.put("/:_id", async (req, res, next) => {
           (user) => user !== req.body.userId
         );
       }
-
-      // await post.save();
-      // res.send(post);
     } else {
       if (req.body.title !== post.title) {
         post.title = req.body.title;
-        // await post.save();
       }
-
       if (req.body.description !== post.description) {
         post.description = req.body.description;
-        // await post.save();
       }
-      // await Post.updateOne({ _id: req.params._id }, req.body);
-      // const post = await Post.findById(req.params._id);
-      // await post.populate("user");
-      // res.send(post);
+      post.tags = req.body.tags;
     }
     await post.save();
     await post.populate("user");

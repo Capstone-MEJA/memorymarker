@@ -40,8 +40,8 @@ const SingleInfoWindow = () => {
         <PostText>Posted By: {global.selectedPost!.user.username}</PostText>
 
         <div className="tagContainer">
-        {global.selectedPost!.tags?.map((tag: string) => {
-          return <span>{`#${tag} `}</span>
+        {global.selectedPost!.tags?.map((tag: string, i: number) => {
+          return <span key={i}>{`#${tag} `}</span>
         })}
         </div>
 
