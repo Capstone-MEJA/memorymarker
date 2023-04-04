@@ -175,6 +175,7 @@ const FormWrapper = styled.form`
     font-size: 1rem;
     font-family: "Cormorant Garamond", serif;
     border-radius: 5px;
+    border: 1px solid #95c4a1;
   }
 
   .description {
