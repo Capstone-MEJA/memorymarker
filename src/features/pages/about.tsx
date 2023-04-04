@@ -76,7 +76,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1em;
+  gap-bottom: 1em;
   padding-left: 1em;
   padding-right: 1em;
 
@@ -92,6 +92,7 @@ const Wrapper = styled.div`
 const LogoImage = styled.img`
   width: 10rem;
   padding-top: 10px;
+  margin-top: -1rem;
 
   @media ${device.tablet} {
     width: 12rem;
@@ -106,8 +107,8 @@ const LogoImage = styled.img`
 
 const PageTitle = styled.h1`
   color: #486572;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-top: -2rem;
+  margin-bottom: 1rem;
   font-family: "Playfair Display", serif;
   @media ${device.tablet} {
     font-size: 2.5rem;
@@ -174,4 +175,8 @@ const DevBlurb = styled.div`
   color: #486572;
   font-family: "Cormorant Garamond", serif;
   padding-top: 0.5em;
+
+  @media ${device.tablet} {
+    font-size: 20px;
+  }
 `;

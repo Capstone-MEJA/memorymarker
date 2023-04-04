@@ -44,10 +44,9 @@ const AboutTeam: React.FC = () => {
             <DevBlurb>
               Hi! 👋 I'm Alicia, a former laboratory scientist who has turned
               her love of analytical investigation into a passion for life-long
-              learning and technical problem solving. When I'm not coding, you
-              can find me on various hiking trails around Virginia with my
-              adorable toy Australian Shepherd or covered in sawdust working on
-              renovating.
+              learning and problem solving. You can find me on various hiking
+              trails around Virginia with my adorable toy Australian Shepherd or
+              covered in sawdust working on renovating my home.
             </DevBlurb>
           </DevContent>
         </DevWrapper>
@@ -79,10 +78,11 @@ const AboutTeam: React.FC = () => {
             </DevHeader>
 
             <DevBlurb>
-              Hello, Erica here! Software engineer by day and real estate agent
-              by weekend. Easily excited over math problems and similar to code,
-              there are many ways to approach a problem but there will always be
-              a right and wrong answer. Avid problem solver and memory maker.
+              Hello, Erica here! :) I'm a software engineer during the week and real estate
+              🏠 agent on the weekends. I'm easily excited over math problems and
+              similar to code, there are many ways to approach a problem, but
+              there will always be a right and wrong answer. I'm an avid problem
+              solver and memory maker.
             </DevBlurb>
           </DevContent>
           <ProfileImageMobile src="erica.png" />
@@ -116,10 +116,11 @@ const AboutTeam: React.FC = () => {
             </DevHeader>
 
             <DevBlurb>
-              Full Stack software engineer with prior experience in finance.
-              Enjoy learning new things and solving interesting problems.
-              Currently listening to Myth and Legend Podcast, and following
-              financial and economical news.
+              Hey, I'm Jessie. I'm a full stack software engineer with prior
+              experience in finance. I enjoy learning new things and solving
+              interesting problems. I'm currently listening to Myth and Legend
+              Podcast, and following financial and economical news. I have a cat
+              named MonsterMonster 🐈‍⬛ who likes to bite my feet under the table.
             </DevBlurb>
           </DevContent>
         </DevWrapper>
@@ -152,10 +153,10 @@ const AboutTeam: React.FC = () => {
 
             <DevBlurb>
               Hi, I'm Mandy! I am a software engineer with experience in
-              full-stack web development and a background in education. When I’m
-              not coding, you can find me reading, cooking, snapping pictures,
+              full stack web development and a background in education. When I’m
+              not coding, you can find me reading, cooking, snapping pictures 📸,
               and strolling through Central Park. My fondest memories are from
-              Taiwan. Check them out on the map! :)
+              Taiwan. Check them out on the map!
             </DevBlurb>
           </DevContent>
           <ProfileImageMobile src="mandy.png" />
@@ -316,7 +317,7 @@ const DevContent = styled.div`
   }
   @media ${device.laptop} {
     width: 210px;
-    height: 525px;
+    height: fit-content;
   }
   @media (min-width: 1500px) {
     width: 300px;

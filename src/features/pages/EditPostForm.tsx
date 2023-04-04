@@ -175,6 +175,7 @@ const FormWrapper = styled.form`
     font-size: 1rem;
     font-family: "Cormorant Garamond", serif;
     border-radius: 5px;
+    border: 1px solid #95c4a1;
   }
 
   .description {
@@ -188,8 +189,8 @@ const FormWrapper = styled.form`
   }
 
   @media ${device.tablet} {
-    height: auto;
-    width: auto;
+    height: 90%;
+    width: 60%;
     align-item: center;
 
     .title {
@@ -202,27 +203,24 @@ const FormWrapper = styled.form`
       height: 5rem;
       font-size: 1.5rem;
     }
+  }
 
-    @media ${device.laptop}{
-      width: 60%;
+  @media (min-width: 1500px) {
+    height: auto;
+    width: auto;
+    align-item: center;
+
+    .title {
+      font-size: 5rem;
     }
-    
-    @media (min-width: 1500px) {
-      height: auto;
-      width: auto;
-      align-item: center;
-  
-      .title {
-        font-size: 5rem;
-      }
-      .inputField {
-        font-size: 3rem;
-      }
-  
-      .description {
-        height: 8rem;
-        font-size: 3rem;
-      }
+    .inputField {
+      font-size: 3rem;
+    }
+
+    .description {
+      height: 8rem;
+      font-size: 3rem;
+    }
   }
 `;
 
@@ -243,10 +241,10 @@ const HeaderContainer = styled.div`
     .logo {
       width: 12rem;
     }
-  @media ${device.laptop} and ${device.desktop} {
-    .logo {
-      width: 14rem;
-    }
+  }
+  @media${device.laptopL} {
+    justify-content: space-between;
+  }
 `;
 
 const ClosedButton = styled.button`
