@@ -66,7 +66,7 @@ const Register = () => {
         </RegisterCredsWrapper>
         <ErrorWrapper>
           {auth.registerStatus === "rejected"
-            ? auth.registerError.map((error, i) => {
+            ? auth.registerError.map((error: string, i) => {
                 if (error.includes("username")) {
                   if (error.includes("length")) {
                     return (

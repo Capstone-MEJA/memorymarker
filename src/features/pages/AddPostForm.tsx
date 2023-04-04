@@ -33,14 +33,15 @@ const AddPostForm = () => {
   // helper function
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const eventTarget: any = e.target;
 
     if (title.length === 0 || description.length === 0) {
       alert("Please fill in both fields before submitting :)");
     } else {
-      if (e.target.image.files.length !== 0) {
+      if (eventTarget.image.files.length !== 0) {
         const submitImage = async () => {
           const { data } = await axios.postForm("/api/images", {
-            image: e.target.image.files[0],
+            image: eventTarget.image.files[0],
           });
           dispatch(
             newPost({

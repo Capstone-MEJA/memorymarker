@@ -33,6 +33,7 @@ const EditPostForm = () => {
   // helper function
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const eventTarget: any = event.target;
     const updateObj: {
       _id: string;
       title: string;
@@ -44,12 +45,12 @@ const EditPostForm = () => {
       description: description,
     };
 
-    if (event.target.image) {
-      if (event.target.image.files.length > 0) {
+    if (eventTarget.image) {
+      if (eventTarget.image.files.length > 0) {
         const submitImage = async () => {
           const { data } = await axios.postForm("/api/images", {
             postId: global.selectedPost!._id,
-            image: event.target.image.files[0],
+            image: eventTarget.image.files[0],
           });
 
           updateObj.imageId = data;
