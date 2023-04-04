@@ -28,27 +28,25 @@ export const fetchSinglePost = createAsyncThunk(
 // a redux thunk that creates a new post and saves it to the database
 export const newPost = createAsyncThunk(
   "newPost",
-  async ({
-    title,
-    description,
-    latitude,
-    longitude,
-    user,
-  }: {
-    title: string;
-    description: string;
-    latitude: number | null;
-    longitude: number | null;
-    user: string;
-  }) => {
+  async ( postObj: object
+  //   {
+  //   title,
+  //   description,
+  //   latitude,
+  //   longitude,
+  //   user,
+  //   imageId
+  // }: {
+  //   title: string;
+  //   description: string;
+  //   latitude: number | null;
+  //   longitude: number | null;
+  //   user: string;
+  //   imageId?: string;
+  // }
+  ) => {
     try {
-      const { data } = await axios.post(`/api/posts`, {
-        title,
-        description,
-        latitude,
-        longitude,
-        user,
-      });
+      const { data } = await axios.post(`/api/posts`, postObj);
       return data;
     } catch (error) {
       console.log(error);
@@ -63,16 +61,20 @@ export const updatePost = createAsyncThunk(
     _id,
     title,
     description,
+    imageId
   }: {
     _id?: string;
     title?: string;
     description?: string;
+    imageId?: object;
   }) => {
     try {
+      console.log("is there an image?", imageId)
       const { data } = await axios.put(`/api/posts/${_id}`, {
         _id,
         title,
         description,
+        imageId
       });
       return data;
     } catch (error) {
@@ -143,6 +145,7 @@ export const PostsSlice = createSlice({
       })
       // when the updatePost thunk is fulfilled, return the state with the updated post
       .addCase(updatePost.fulfilled, (state, action) => {
+        console.log(action.payload)
         return state.map((post) => {
           if (post._id === action.payload._id) {
             return action.payload;

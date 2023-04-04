@@ -1,5 +1,4 @@
 const router = require("express").Router();
-
 const Post = require("../models/Post");
 const User = require("../models/User");
 const mongoose = require("mongoose");
@@ -14,7 +13,7 @@ const mongoose = require("mongoose");
 
 router.get("/", async (req, res, next) => {
   try {
-    const posts = await Post.find({}).populate("user");
+    const posts = await Post.find({}).populate("user").populate("imageId");
     res.json(posts);
   } catch (err) {
     console.log(err);
@@ -51,8 +50,14 @@ router.get("/:_id", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     req.body.user = new mongoose.Types.ObjectId(req.body.user);
+    if (req.body.imageId) {
+      req.body.imageId = new mongoose.Types.ObjectId(req.body.imageId);
+    }
     const post = await Post.create(req.body);
     await post.populate("user");
+    if (post.imageId) {
+      await post.populate("imageId");
+    }
     const user = await User.findById(req.body.user);
     user.posts.push(post._id);
     user.save();
@@ -75,6 +80,7 @@ router.put("/:_id", async (req, res, next) => {
   try {
     const post = await Post.findById(req.params._id);
 
+    /** liking/disliking a post */
     if (req.body.like) {
       post.favoriteCount = post.favoriteCount + req.body.like;
       if (req.body.like === 1) {
@@ -84,26 +90,40 @@ router.put("/:_id", async (req, res, next) => {
           (user) => user !== req.body.userId
         );
       }
-
-      // await post.save();
-      // res.send(post);
     } else {
-      if (req.body.title !== post.title) {
+      if (req.body.title && req.body.title !== post.title) {
         post.title = req.body.title;
-        // await post.save();
       }
 
-      if (req.body.description !== post.description) {
+      if (req.body.description && req.body.description !== post.description) {
         post.description = req.body.description;
-        // await post.save();
       }
-      // await Post.updateOne({ _id: req.params._id }, req.body);
-      // const post = await Post.findById(req.params._id);
-      // await post.populate("user");
-      // res.send(post);
+
+      if (post.imageId) {
+        /** updating image */
+        if (req.body.imageId) {
+          if (req.body.imageId.toString() !== post.imageId.toString()) {
+            post.imageId = req.body.imageId;
+          }
+          /** deleting image */
+          if (req.body.imageId.delete) {
+            post.imageId = null;
+          }
+        }
+      } else {
+        /** adding image to post that did not originally have one */
+        if (req.body.imageId) {
+          post.imageId = req.body.imageId;
+        }
+      }
     }
+
+    console.log(post);
     await post.save();
     await post.populate("user");
+    if (post.imageId) {
+      await post.populate("imageId");
+    }
     res.send(post);
   } catch (err) {
     console.log(err);

@@ -74,7 +74,10 @@ const ManagePosts = () => {
       <section>
         {posts.filter((individual) => individual.user._id === loggedInUser._id)
           .length === 0 ? (
-          "No posts yet. Go out and make some new memories! :)"
+          <MessageWrapper>
+            <NoPosts>No posts yet.</NoPosts>
+            <NoPosts>Go out and make some new memories! :)</NoPosts>
+          </MessageWrapper>
         ) : (
           <Table>
             <Thead>
@@ -83,8 +86,8 @@ const ManagePosts = () => {
                 <Th>Description</Th>
                 {/* <Th>Tags</Th> */}
                 <Th>Date</Th>
-                <Th></Th>
-                <Th></Th>
+                <Th>See a Typo?</Th>
+                <Th>Let's Erase</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -132,31 +135,35 @@ const ManagePosts = () => {
 
                         <Td>{post.timeStamp?.slice(0, -32)}</Td>
                         <Td>
-                          <Button
-                            onClick={(event) => {
-                              onClickHandler({
-                                method: (event.target as HTMLInputElement)
-                                  .value,
-                                _id: post._id,
-                                title: post.title,
-                                description: post.description,
-                                // tags: post.tags,
-                              });
-                            }}
-                            value={!editMode ? "Edit" : "Save Changes"}
-                          >
-                            {!editMode ? "Edit" : "Save Changes"}
-                          </Button>
+                          <ButtonWrapper>
+                            <Button
+                              onClick={(event) => {
+                                onClickHandler({
+                                  method: (event.target as HTMLInputElement)
+                                    .value,
+                                  _id: post._id,
+                                  title: post.title,
+                                  description: post.description,
+                                  // tags: post.tags,
+                                });
+                              }}
+                              value={!editMode ? "Edit" : "Save Changes"}
+                            >
+                              {!editMode ? "Edit" : "Save Changes"}
+                            </Button>
+                          </ButtonWrapper>
                         </Td>
                         <Td>
-                          <Button
-                            className="btn delete-btn"
-                            onClick={() => {
-                              handleDelete(post._id);
-                            }}
-                          >
-                            Delete
-                          </Button>
+                          <ButtonWrapper>
+                            <Button
+                              className="btn delete-btn"
+                              onClick={() => {
+                                handleDelete(post._id);
+                              }}
+                            >
+                              Delete
+                            </Button>
+                          </ButtonWrapper>
                         </Td>
                       </Tr>
                     ))}
@@ -185,11 +192,17 @@ const Wrapper = styled.section`
   padding-left: 2rem;
   padding-right: 2rem;
   background-color: #ceebec;
-  height: fit-content;
-  width: fit-content;
+  height: 100vh;
+  width: 100vw;
+
+  // @media only screen and (min-width: 425px) {
+  //   align-items: center;
+  //   justify-content: center;
+  // }
 
   @media only screen and ${device.mobileLMax} {
-    height: 100%;
+    height: fit-content;
+    width: 100vw;
     padding: 1rem;
   }
 `;
@@ -201,10 +214,19 @@ const LogoWrapper = styled.section`
 
 const Logo = styled.img`
   width: 10rem;
+  height: 10rem;
 
+  @media ${device.tablet} {
+    width: 12rem;
+    height: 12rem;
+  }
   @media ${device.laptop} {
-    width: 20rem;
-    height: 20rem;
+    width: 14rem;
+    height: 14rem;
+  }
+  @media ${device.desktop} {
+    width: 16rem;
+    height: 16rem;
   }
 `;
 
@@ -213,10 +235,33 @@ const Title = styled.p`
   font-size: 4rem;
   text-align: center;
   margin-bottom: 1rem;
+  color: #486572;
 
   @media only screen and ${device.mobileLMax} {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
+`;
+
+const MessageWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: solid #486572;
+  border-width: 2px;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+
+  @media only screen and ${device.mobileLMax} {
+    margin-bottom: 8.5rem;
+  }
+`;
+
+const NoPosts = styled.p`
+  color: #486572;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.5rem;
 `;
 
 const Table = styled.table`
@@ -230,9 +275,14 @@ const Table = styled.table`
 
 const Tr = styled.tr`
   background: white;
+  color: #486572;
 
   @media only screen and ${device.mobileLMax} {
     display: block;
+    // position: absolute;
+    // top: -9999px;
+    // left: -9999px;
+
     border: 1px solid #ccc;
   }
 `;
@@ -249,10 +299,11 @@ const Th = styled.th`
 
   @media only screen and ${device.mobileLMax} {
     display: block;
-
     position: absolute;
     top: -9999px;
     left: -9999px;
+    background: #739cf0;
+    color: whitesmoke;
   }
 `;
 
@@ -275,11 +326,16 @@ const Td = styled.td`
 
     :before {
       position: absolute;
-      top: 6px;
-      left: 6px;
+      top: 1px;
+      left: 1px;
+      bottom: 1px;
       width: 45%;
-      padding-right: 10px;
+      padding: 5px;
       white-space: nowrap;
+      background: #efefea;
+      color: #486572;
+      font-weight: 600;
+      font-family: "Cormorant Garamond", serif;
     }
 
     :nth-of-type(1):before {
@@ -292,10 +348,10 @@ const Td = styled.td`
       content: "Date";
     }
     :nth-of-type(4):before {
-      content: "Edit Post";
+      content: "See a Typo?";
     }
     :nth-of-type(5):before {
-      content: "Delete Post";
+      content: "Lets Erase";
     }
   }
 `;
@@ -312,6 +368,11 @@ const Tbody = styled.tbody`
   }
 `;
 
+const ButtonWrapper = styled.section`
+  display: flex;
+  justify-content: center;
+`;
+
 const Button = styled.button`
   background-color: #739cf0;
   font-family: "Montserrat", sans-serif;
@@ -325,6 +386,8 @@ const Button = styled.button`
   margin-right: 2px;
   width: 5rem;
   word-break: keep-all;
+  justify-content: center;
+  display: flex;
 
   @media only screen and ${device.mobileLMax} {
     font-size: 0.8rem;
@@ -345,7 +408,8 @@ const BackButtonContainer = styled.section`
 
 const BackButton = styled(Button)`
   width: fit-content;
-  padding: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
 
   @media ${device.laptop} {
     font-size: 1.2rem;
