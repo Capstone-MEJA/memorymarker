@@ -46,7 +46,7 @@ const AboutTeam: React.FC = () => {
               her love of analytical investigation into a passion for life-long
               learning and problem solving. You can find me on various hiking
               trails around Virginia with my adorable toy Australian Shepherd or
-              covered in sawdust working on renovating.
+              covered in sawdust working on renovating my home.
             </DevBlurb>
           </DevContent>
         </DevWrapper>
